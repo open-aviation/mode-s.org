@@ -7,7 +7,7 @@ Within the BDS 5,0 message, five different types of aircraft states are given, m
 - true track angle
 - ground speed
 - track angle rate
-- true airspeend
+- true airspeed
 
 The 56-bit MB filed is structure as following:
 

@@ -66,12 +66,11 @@ An Open access book on Mode-S/ADS-B decoding and related topics
   <br/>
   <h3>Page Source</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/adsb.rst.txt"
-           rel="nofollow">Show Source</a></li>
-  <!--
-    <li><a href="https://github.com/junzis/decode-modes/blob/master/adsb.rst"
-           rel="nofollow">Show on GitHub</a></li> -->
-    <li><a href="https://github.com/junzis/decode-modes/edit/master/adsb.rst"
+    <!-- <li><a href="_sources/adsb.rst.txt"
+           rel="nofollow">Show Source</a></li> -->
+    <li><a href="https://github.com/junzis/the-1090mhz-riddle/blob/master/adsb.rst"
+           rel="nofollow">Show on GitHub</a></li>
+    <li><a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb.rst"
            rel="nofollow">Edit on GitHub</a></li>
   </ul>
 <div id="searchbox" style="display: none" role="search">
@@ -230,26 +229,26 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <div class="section" id="aircraft-identification">
 <h2>1.2. Aircraft Identification<a class="headerlink" href="#aircraft-identification" title="Permalink to this headline">¶</a></h2>
 <p>An aircraft identification message has <code class="docutils literal"><span class="pre">DF:</span> <span class="pre">17</span> <span class="pre">or</span> <span class="pre">18</span></code>, and <code class="docutils literal"><span class="pre">TC:</span> <span class="pre">1</span> <span class="pre">to</span> <span class="pre">4</span></code>, the 56-bit <code class="docutils literal"><span class="pre">DATA</span></code> field is configured as follows:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+</span>
-<span class="o">|</span>  <span class="n">TC</span> <span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">|</span>  <span class="n">EC</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C1</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C2</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C3</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C4</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C5</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C6</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C7</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C8</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>
-<span class="o">+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+</span>
+<span class="o">|</span> <span class="n">TC</span> <span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">|</span> <span class="n">EC</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">|</span> <span class="n">C1</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">C2</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">C3</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">C4</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">C5</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">C6</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">C7</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">C8</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+</span>
 
 <span class="n">TC</span><span class="p">:</span> <span class="n">Type</span> <span class="n">code</span>
 <span class="n">EC</span><span class="p">:</span> <span class="n">Emitter</span> <span class="n">category</span>
-<span class="n">C</span><span class="o">*</span><span class="p">:</span> <span class="n">Charactor</span>
+<span class="n">C</span><span class="o">*</span><span class="p">:</span> <span class="n">A</span> <span class="n">character</span>
 </pre></div>
 </div>
-<p>For decode charactors, a lookup table is needed for mapping numbers to characters. It is defines as follows, where the <code class="docutils literal"><span class="pre">#</span></code> is not used, and <code class="docutils literal"><span class="pre">_</span></code> represents a sepration.</p>
+<p>For decode characters, a lookup table is needed for mapping numbers to characters. It is defines as follows, where the <code class="docutils literal"><span class="pre">#</span></code> is not used, and <code class="docutils literal"><span class="pre">_</span></code> represents a separation.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#ABCDEFGHIJKLMNOPQRSTUVWXYZ#####_###############0123456789######</span>
 </pre></div>
 </div>
-<p>In summary, characters and there decimal reprsentations are:</p>
+<p>In summary, characters and there decimal representations are:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">-</span> <span class="n">Z</span> <span class="p">:</span>   <span class="mi">1</span> <span class="o">-</span> <span class="mi">26</span>
 <span class="mi">0</span> <span class="o">-</span> <span class="mi">9</span> <span class="p">:</span>  <span class="mi">48</span> <span class="o">-</span> <span class="mi">57</span>
     <span class="n">_</span> <span class="p">:</span>  <span class="mi">32</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">EC</span></code> value in combination with <code class="docutils literal"><span class="pre">TC</span></code> value defines the category of the aircraft (such as: heavy, large, small, light, glider, etc.). When <code class="docutils literal"><span class="pre">EC</span></code> is set to zeros, such information is not avaiable.</p>
+<p>The <code class="docutils literal"><span class="pre">EC</span></code> value in combination with <code class="docutils literal"><span class="pre">TC</span></code> value defines the category of the aircraft (such as: heavy, large, small, light, glider, etc.). When <code class="docutils literal"><span class="pre">EC</span></code> is set to zeros, such information is not available.</p>
 <div class="section" id="example">
 <h3>1.2.1. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
 <p>For example:</p>
@@ -335,7 +334,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 </div>
 <div class="section" id="airborne-positions">
 <h2>1.4. Airborne Positions<a class="headerlink" href="#airborne-positions" title="Permalink to this headline">¶</a></h2>
-<p>An aircraft airborne position message has <code class="docutils literal"><span class="pre">DownlinkFormat:</span> <span class="pre">17</span> <span class="pre">or</span> <span class="pre">18</span></code> and <code class="docutils literal"><span class="pre">TypeCode:</span> <span class="pre">from</span> <span class="pre">9</span> <span class="pre">to</span> <span class="pre">18</span></code>.</p>
+<p>An aircraft airborne position message has <code class="docutils literal"><span class="pre">Downlink</span> <span class="pre">Format:</span> <span class="pre">17</span> <span class="pre">or</span> <span class="pre">18</span></code> and <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code:</span> <span class="pre">from</span> <span class="pre">9</span> <span class="pre">to</span> <span class="pre">18</span></code>.</p>
 <p>Messages are composed as following:</p>
 <table border="1" class="docutils">
 <colgroup>
