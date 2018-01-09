@@ -6,11 +6,11 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1. ADS-B (Automatic Dependent Surveillance – Broadcast) &#8212; The 1090MHz Riddle Book</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
+        URL_ROOT:    './',
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -18,16 +18,16 @@
         SOURCELINK_SUFFIX: '.txt'
       };
     </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2. EHS (Mode-S Enhanced Surveillance)" href="ehs.html" />
-    <link rel="prev" title="The 1090MHz Riddle" href="../index.html" />
+    <link rel="prev" title="The 1090MHz Riddle" href="index.html" />
    
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
@@ -37,9 +37,9 @@
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><h3><a href="../index.html">The 1090MHz Riddle</a></h3>
+        <div class="sphinxsidebarwrapper"><h3><a href="index.html">The 1090MHz Riddle</a></h3>
 
-A Open book on Mode-S and ADS-B decoding
+An Open access book on Mode-S/ADS-B decoding and related topics
 
 <br/><br/><h3>Navigation</h3>
 <ul class="current">
@@ -66,17 +66,17 @@ A Open book on Mode-S and ADS-B decoding
   <br/>
   <h3>Page Source</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/content/adsb.rst.txt"
+    <li><a href="_sources/adsb.rst.txt"
            rel="nofollow">Show Source</a></li>
   <!--
-    <li><a href="https://github.com/junzis/decode-modes/blob/master/content/adsb.rst"
+    <li><a href="https://github.com/junzis/decode-modes/blob/master/adsb.rst"
            rel="nofollow">Show on GitHub</a></li> -->
-    <li><a href="https://github.com/junzis/decode-modes/edit/master/content/adsb.rst"
+    <li><a href="https://github.com/junzis/decode-modes/edit/master/adsb.rst"
            rel="nofollow">Edit on GitHub</a></li>
   </ul>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
+    <form class="search" action="search.html" method="get">
       <div><input type="text" name="q" /></div>
       <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
@@ -284,7 +284,7 @@ A Open book on Mode-S and ADS-B decoding
 <p>An easy example to understand the principle behind CPR:</p>
 <p>Imaging the world is constructed by 16 grid, which we have divided into two level, each level are encoded with two bits. Higher level in color are <code class="docutils literal"><span class="pre">00</span></code> (yellow), <code class="docutils literal"><span class="pre">01</span></code> (blue), <code class="docutils literal"><span class="pre">10</span></code> (red), <code class="docutils literal"><span class="pre">11</span></code> (green). And within each color grid, the lower levels are also encoded similarly.</p>
 <p>Then each grid can be represented as 4 digit from <code class="docutils literal"><span class="pre">0000</span></code> to <code class="docutils literal"><span class="pre">1111</span></code>. Now, we want to describe the movement indicated as the arrows in the green grids <code class="docutils literal"><span class="pre">1100</span> <span class="pre">-&gt;</span> <span class="pre">1101</span></code>, but we only have 3 bits to encode each position.</p>
-<a class="reference internal image-reference" href="../_images/illustration-cpr-1.svg"><img alt="../_images/illustration-cpr-1.svg" src="../_images/illustration-cpr-1.svg" width="472px" /></a>
+<a class="reference internal image-reference" href="../images/illustration-cpr-1.svg"><img alt="../images/illustration-cpr-1.svg" src="../images/illustration-cpr-1.svg" width="472px" /></a>
 <p>It is easy to see that the high 2 bits appeared in all positions, so we can define a structure to do the following:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">The</span> <span class="n">last</span> <span class="n">two</span> <span class="n">bits</span> <span class="n">shall</span> <span class="n">represent</span> <span class="n">the</span> <span class="n">local</span> <span class="n">position</span>
 <span class="mf">2.</span> <span class="n">The</span> <span class="n">combination</span> <span class="n">of</span> <span class="n">first</span> <span class="n">digit</span> <span class="kn">from</span> <span class="nn">two</span> <span class="n">messages</span> <span class="n">defines</span> <span class="n">the</span> <span class="n">higher</span> <span class="n">grid</span>
@@ -292,7 +292,7 @@ A Open book on Mode-S and ADS-B decoding
 </div>
 <p>The then two message can be sent as <code class="docutils literal"><span class="pre">1</span> <span class="pre">00</span> <span class="pre">-&gt;</span> <span class="pre">1</span> <span class="pre">01</span></code></p>
 <p>From lower bits <code class="docutils literal"><span class="pre">00</span> <span class="pre">-&gt;</span> <span class="pre">01</span></code>, we have four different possibility of movement as show in dashed arrows, and from the two first bit combination <code class="docutils literal"><span class="pre">11</span></code>, we know the the arrow shall represent the movement in the green grids:</p>
-<a class="reference internal image-reference" href="../_images/illustration-cpr-2.svg"><img alt="../_images/illustration-cpr-2.svg" src="../_images/illustration-cpr-2.svg" width="332px" /></a>
+<a class="reference internal image-reference" href="../images/illustration-cpr-2.svg"><img alt="../images/illustration-cpr-2.svg" src="../images/illustration-cpr-2.svg" width="332px" /></a>
 </div>
 <div class="section" id="the-cpr-and-functions">
 <h3>1.3.2. The CPR and functions<a class="headerlink" href="#the-cpr-and-functions" title="Permalink to this headline">¶</a></h3>
@@ -1176,7 +1176,7 @@ positions.</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/content/adsb.rst.txt"
+      <a href="_sources/adsb.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

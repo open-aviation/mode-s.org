@@ -2,7 +2,7 @@
 The 1090MHz Riddle
 ============================================================
 ------------------------------------------------------------
-A Open Book on Mode-S and ADS-B Decoding
+The book about decoding Mode-S and ADS-B data
 ------------------------------------------------------------
 
 Preface
@@ -19,8 +19,8 @@ Table of content
     :maxdepth: 2
     :numbered:
 
-    content/adsb
-    content/ehs
+    adsb
+    ehs
 
 
 Documents, code, and data
@@ -30,13 +30,13 @@ This guide document is shared on GitHub and ReadTheDoc. Please feel free to help
 
 Links to this guide document:
 
+* (Rst source) https://github.com/junzis/the-1090mhz-riddle
+* (Live book) http://mode-s.org
+
+
+You can download the pyModeS tool from GitHub, which is a Python implementation of all (and more) message types described here:
+
 * (GitHub) https://github.com/junzis/pyModeS
-* (Document) http://adsb-decode-guide.readthedocs.org/
-
-
-You can download from GitHub the python decoder, as well as some data samples we collected:
-
-* https://github.com/junzis/py-adsb-decoder
 
 
 Contact
