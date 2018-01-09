@@ -1,0 +1,432 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Airborne Positions &#8212; The 1090MHz Riddle Book</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3><a href="../index.html">The 1090MHz Riddle</a></h3>
+
+A Open book on Mode-S and ADS-B decoding
+
+<br/><br/><h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adsb.html">1. ADS-B (Automatic Dependent Surveillance – Broadcast)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adsb.html#introduction">1.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adsb.html#aircraft-identification">1.2. Aircraft Identification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adsb.html#compact-position-reporting">1.3. Compact Position Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adsb.html#airborne-positions">1.4. Airborne Positions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adsb.html#airborne-velocity">1.5. Airborne Velocity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adsb.html#integrity-and-accuracy">1.6. Integrity and Accuracy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ehs.html">2. EHS (Mode-S Enhanced Surveillance)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ehs.html#introduction">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ehs.html#aircraft-identification-bds-2-0">2.2. Aircraft identification (BDS 2,0)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ehs.html#selected-intention-bds-4-0">2.3. Selected intention (BDS 4,0)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ehs.html#track-and-turn-bds-5-0">2.4. Track and turn (BDS 5,0)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ehs.html#heading-and-speed-bds-6-0">2.5. Heading and speed (BDS 6,0)</a></li>
+</ul>
+</li>
+</ul>
+
+
+  <br/>
+  <h3>Page Source</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/content/adsb-airborne-position.rst.txt"
+           rel="nofollow">Show Source</a></li>
+  <!--
+    <li><a href="https://github.com/junzis/decode-modes/blob/master/content/adsb-airborne-position.rst"
+           rel="nofollow">Show on GitHub</a></li> -->
+    <li><a href="https://github.com/junzis/decode-modes/edit/master/content/adsb-airborne-position.rst"
+           rel="nofollow">Edit on GitHub</a></li>
+  </ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="airborne-positions">
+<h1>Airborne Positions<a class="headerlink" href="#airborne-positions" title="Permalink to this headline">¶</a></h1>
+<p>An aircraft airborne position message has <code class="docutils literal"><span class="pre">DownlinkFormat:</span> <span class="pre">17</span> <span class="pre">or</span> <span class="pre">18</span></code> and <code class="docutils literal"><span class="pre">TypeCode:</span> <span class="pre">from</span> <span class="pre">9</span> <span class="pre">to</span> <span class="pre">18</span></code>.</p>
+<p>Messages are composed as following:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="14%" />
+<col width="14%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">MSG bits</th>
+<th class="head"># bits</th>
+<th class="head">Abbr</th>
+<th class="head">Content</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1-5</td>
+<td>5</td>
+<td>DF</td>
+<td>Downlink format</td>
+</tr>
+<tr class="row-odd"><td>33-37</td>
+<td>5</td>
+<td>TC</td>
+<td>Type code</td>
+</tr>
+<tr class="row-even"><td>38-39</td>
+<td>2</td>
+<td>SS</td>
+<td>Surveillance status</td>
+</tr>
+<tr class="row-odd"><td>40</td>
+<td>1</td>
+<td>NICsb</td>
+<td>NIC supplement-B</td>
+</tr>
+<tr class="row-even"><td>41-52</td>
+<td>12</td>
+<td>ALT</td>
+<td>Altitude</td>
+</tr>
+<tr class="row-odd"><td>53</td>
+<td>1</td>
+<td>T</td>
+<td>Time</td>
+</tr>
+<tr class="row-even"><td>54</td>
+<td>1</td>
+<td>F</td>
+<td>CPR odd/even frame flag</td>
+</tr>
+<tr class="row-odd"><td>55-71</td>
+<td>17</td>
+<td>LAT-CPR</td>
+<td>Latitude in CPR format</td>
+</tr>
+<tr class="row-even"><td>72-88</td>
+<td>17</td>
+<td>LON-CPR</td>
+<td>Longitude in CPR format</td>
+</tr>
+</tbody>
+</table>
+<p>Two types of the position messages (odd and even frames) are broadcast alternately. There are two different ways to decode an airborne position base on these messages:</p>
+<ol class="arabic simple">
+<li>Unknown position, using both type of messages (aka. globally unambiguous position)</li>
+<li>Knowing previous position, using only one message (aka. locally unambiguous position)</li>
+</ol>
+<p>Note: The definition of functions <code class="docutils literal"><span class="pre">NL(lat)</span></code>, <code class="docutils literal"><span class="pre">floor(x)</span></code>, and <code class="docutils literal"><span class="pre">mod(x,y)</span></code> are described in CPR chapter</p>
+<div class="section" id="globally-unambiguous-position-decoding-with-two-messages">
+<h2>Globally unambiguous position (decoding with two messages)<a class="headerlink" href="#globally-unambiguous-position-decoding-with-two-messages" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="odd-or-even-message">
+<h3>odd” or “even” message?<a class="headerlink" href="#odd-or-even-message" title="Permalink to this headline">¶</a></h3>
+<p>For each frame, bit 54 determines whether it is an “odd” or “even” frame:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">Even</span> <span class="n">frame</span>
+<span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">Odd</span> <span class="n">frame</span>
+</pre></div>
+</div>
+<p>For example, the two following messages are received:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">8</span><span class="n">D40621D58C382D690C8AC2863A7</span>
+<span class="mi">8</span><span class="n">D40621D58C386435CC412692AD6</span>
+
+<span class="o">|</span>    <span class="o">|</span> <span class="n">ICAO24</span> <span class="o">|</span>      <span class="n">DATA</span>      <span class="o">|</span>  <span class="n">CRC</span>   <span class="o">|</span>
+<span class="o">|----|--------|----------------|--------|</span>
+<span class="o">|</span> <span class="mi">8</span><span class="n">D</span> <span class="o">|</span> <span class="mi">40621</span><span class="n">D</span> <span class="o">|</span> <span class="mi">58</span><span class="n">C382D690C8AC</span> <span class="o">|</span> <span class="mi">2863</span><span class="n">A7</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">8</span><span class="n">D</span> <span class="o">|</span> <span class="mi">40621</span><span class="n">D</span> <span class="o">|</span> <span class="mi">58</span><span class="n">C386435CC412</span> <span class="o">|</span> <span class="mi">692</span><span class="n">AD6</span> <span class="o">|</span>
+
+
+<span class="n">Data</span> <span class="ow">in</span> <span class="n">binary</span><span class="p">:</span>
+
+<span class="o">|</span> <span class="n">DATA</span>                                                                              <span class="o">|</span>
+<span class="o">|===================================================================================|</span>
+<span class="o">|</span> <span class="n">TC</span>    <span class="o">|</span> <span class="n">SS</span> <span class="o">|</span> <span class="n">NICsb</span> <span class="o">|</span> <span class="n">ALT</span>          <span class="o">|</span> <span class="n">T</span> <span class="o">|</span> <span class="n">F</span> <span class="o">|</span> <span class="n">CPR</span><span class="o">-</span><span class="n">LAT</span>           <span class="o">|</span> <span class="n">CPR</span><span class="o">-</span><span class="n">LON</span>           <span class="o">|</span>
+<span class="o">|-------|----|-------|--------------|---|---|-------------------|-------------------|</span>
+<span class="o">|</span> <span class="mi">01011</span> <span class="o">|</span> <span class="mi">00</span> <span class="o">|</span> <span class="mi">0</span>     <span class="o">|</span> <span class="mi">110000111000</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">10110101101001000</span> <span class="o">|</span> <span class="mi">01100100010101100</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">01011</span> <span class="o">|</span> <span class="mi">00</span> <span class="o">|</span> <span class="mi">0</span>     <span class="o">|</span> <span class="mi">110000111000</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">10010000110101110</span> <span class="o">|</span> <span class="mi">01100010000010010</span> <span class="o">|</span>
+</pre></div>
+</div>
+<p>In both messages we can find <code class="docutils literal"><span class="pre">DF=17</span></code> and <code class="docutils literal"><span class="pre">TC=11</span></code>, with the same ICAO24 address <code class="docutils literal"><span class="pre">40621D</span></code>. So, those two frames are valid for decoding the positions of this aircraft. Assume the first message is the newest message received.</p>
+</div>
+<div class="section" id="the-cpr-representation-of-coordinates">
+<h3>The CPR representation of coordinates<a class="headerlink" href="#the-cpr-representation-of-coordinates" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">F</span> <span class="o">|</span> <span class="n">CPR</span> <span class="n">Latitude</span>      <span class="o">|</span> <span class="n">CPR</span> <span class="n">Longitude</span>     <span class="o">|</span>
+<span class="o">|---|-------------------|-------------------|</span>
+<span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">10110101101001000</span> <span class="o">|</span> <span class="mi">01100100010101100</span> <span class="o">|</span>  <span class="o">-&gt;</span> <span class="n">newest</span> <span class="n">frame</span> <span class="n">received</span>
+<span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">10010000110101110</span> <span class="o">|</span> <span class="mi">01100010000010010</span> <span class="o">|</span>
+<span class="o">|---|-------------------|-------------------|</span>
+
+<span class="n">In</span> <span class="n">decimal</span><span class="p">:</span>
+
+<span class="o">|---|-------------------|-------------------|</span>
+<span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">93000</span>             <span class="o">|</span> <span class="mi">51372</span>             <span class="o">|</span>
+<span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">74158</span>             <span class="o">|</span> <span class="mi">50194</span>             <span class="o">|</span>
+<span class="o">|---|-------------------|-------------------|</span>
+
+<span class="n">CPR_LAT_EVEN</span><span class="p">:</span> <span class="mi">93000</span> <span class="o">/</span> <span class="mi">131072</span> <span class="o">-&gt;</span> <span class="mf">0.7095</span>
+<span class="n">CPR_LON_EVEN</span><span class="p">:</span> <span class="mi">51372</span> <span class="o">/</span> <span class="mi">131072</span> <span class="o">-&gt;</span> <span class="mf">0.3919</span>
+<span class="n">CPR_LAT_ODD</span><span class="p">:</span>  <span class="mi">74158</span> <span class="o">/</span> <span class="mi">131072</span> <span class="o">-&gt;</span> <span class="mf">0.5658</span>
+<span class="n">CPR_LON_ODD</span><span class="p">:</span>  <span class="mi">50194</span> <span class="o">/</span> <span class="mi">131072</span> <span class="o">-&gt;</span> <span class="mf">0.3829</span>
+</pre></div>
+</div>
+<p>Since CPR latitude and longitude are encoded in 17 bits, 131072 (2^17) is the maximum value.</p>
+</div>
+<div class="section" id="calculate-the-latitude-index-j">
+<h3>Calculate the latitude index j<a class="headerlink" href="#calculate-the-latitude-index-j" title="Permalink to this headline">¶</a></h3>
+<p>Use the following equation:</p>
+<div class="math">
+\[j = floor \left( 59 \cdot \mathrm{Lat}_\mathrm{cprEven} - 60 \cdot \mathrm{Lat}_\mathrm{cprOdd} + \frac{1}{2}  \right)\]</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">j</span> <span class="o">=</span> <span class="mi">8</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="calculate-latitude">
+<h3>Calculate latitude<a class="headerlink" href="#calculate-latitude" title="Permalink to this headline">¶</a></h3>
+<p>First, two constants will be used:</p>
+<div class="math">
+\[ \begin{align}\begin{aligned}\mathrm{dLat}_\mathrm{even} &amp;= \frac{360}{4 \cdot NZ} = \frac{360}{60}\\\mathrm{dLat}_\mathrm{odd} &amp;= \frac{360}{4 \cdot NZ - 1}  = \frac{360}{59}\end{aligned}\end{align} \]</div>
+<p>Then we can use the following equations to compute the relative latitudes:</p>
+<div class="math">
+\[ \begin{align}\begin{aligned}\mathrm{Lat}_\mathrm{even} &amp;= \mathrm{dLat}_\mathrm{even} \cdot [mod(j, 60) + \mathrm{Lat}_\mathrm{cprEven}]\\\mathrm{Lat}_\mathrm{odd} &amp;= \mathrm{dLat}_\mathrm{odd} \cdot [mod(j, 59) + \mathrm{Lat}_\mathrm{cprOdd}]\end{aligned}\end{align} \]</div>
+<p>For southern hemisphere, values will fall from 270 to 360 degrees. we need to
+make sure the latitude is within range <code class="docutils literal"><span class="pre">[-90,</span> <span class="pre">+90]</span></code>:</p>
+<div class="math">
+\[ \begin{align}\begin{aligned}\mathrm{Lat}_\mathrm{even} &amp;= \mathrm{Lat}_\mathrm{even} - 360  \quad \text{if } (\mathrm{Lat}_\mathrm{even} \geq 270)\\\mathrm{Lat}_\mathrm{odd} &amp;= \mathrm{Lat}_\mathrm{odd} - 360  \quad \text{if } (\mathrm{Lat}_\mathrm{odd} \geq 270)\end{aligned}\end{align} \]</div>
+<p>Final latitude is chosen depending on the time stamp of the frames–the newest one is
+used:</p>
+<div class="math">
+\[\begin{split}\mathrm{Lat} =
+\begin{cases}
+ \mathrm{Lat}_\mathrm{even}     &amp; \text{if } (T_\mathrm{even} \geq T_\mathrm{odd}) \\
+ \mathrm{Lat}_\mathrm{odd}     &amp; \text{else}
+\end{cases}\end{split}\]</div>
+<p>In the example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Lat_EVEN</span> <span class="o">=</span> <span class="mf">52.25720214843750</span>
+<span class="n">Lat_ODD</span>  <span class="o">=</span> <span class="mf">52.26578017412606</span>
+<span class="n">Lat</span> <span class="o">=</span> <span class="n">Lat_EVEN</span> <span class="o">=</span> <span class="mf">52.25720</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="check-the-latitude-zone-consistency">
+<h3>Check the latitude zone consistency<a class="headerlink" href="#check-the-latitude-zone-consistency" title="Permalink to this headline">¶</a></h3>
+<p>Compute <code class="docutils literal"><span class="pre">NL(Lat_E)</span></code> and <code class="docutils literal"><span class="pre">NL(Lat_O)</span></code>. If not the same, two positions are located at different latitude zones. Computation of a global longitude is not
+possible. exit the calculation and wait for new messages. If two values are the same, we proceed to longitude calculation.</p>
+</div>
+<div class="section" id="calculate-longitude">
+<h3>Calculate longitude<a class="headerlink" href="#calculate-longitude" title="Permalink to this headline">¶</a></h3>
+<p>If the even frame come latest <code class="docutils literal"><span class="pre">T_EVEN</span> <span class="pre">&gt;</span> <span class="pre">T_ODD</span></code>:</p>
+<div class="math">
+\[ \begin{align}\begin{aligned}ni &amp;= max \left( NL(\mathrm{Lat}_\mathrm{even}), 1 \right)\\\mathrm{dLon} &amp;= \frac{360}{ni}\\m &amp;= floor \left\{ Lon_\mathrm{cprEven} \cdot [NL(\mathrm{Lat}_\mathrm{even})-1] - Lon_\mathrm{cprOdd} \cdot NL(\mathrm{Lat}_\mathrm{even}) + \frac{1}{2}  \right\}\\\mathrm{Lon} &amp;= \mathrm{dLon} \cdot \left( mod(m, ni) + Lon_\mathrm{cprEven} \right)\end{aligned}\end{align} \]</div>
+<p>In case where the odd frame come latest <code class="docutils literal"><span class="pre">T_EVEN</span> <span class="pre">&lt;</span> <span class="pre">T_ODD</span></code>:</p>
+<div class="math">
+\[ \begin{align}\begin{aligned}ni &amp;= max \left( NL(\mathrm{Lat}_\mathrm{odd})-1, 1 \right)\\\mathrm{dLon} &amp;= \frac{360}{ni}\\m &amp;= floor \left\{ Lon_\mathrm{cprEven} \cdot [NL(\mathrm{Lat}_\mathrm{odd})-1] - Lon_\mathrm{cprOdd} \cdot NL(\mathrm{Lat}_\mathrm{odd}) + \frac{1}{2}  \right\}\\\mathrm{Lon} &amp;= \mathrm{dLon} \cdot \left( mod(m, ni) + Lon_\mathrm{cprOdd} \right)\end{aligned}\end{align} \]</div>
+<p>if the result is larger than 180 degrees:</p>
+<div class="math">
+\[\mathrm{Lon} = \mathrm{Lon} - 360  \quad \text{if } (\mathrm{Lon} \geq 180)\]</div>
+<p>In the example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Lon</span><span class="p">:</span>  <span class="mf">3.91937</span>
+</pre></div>
+</div>
+<p>Here is a Python implemented: <a class="reference external" href="https://github.com/junzis/pyModeS/blob/faf4313/pyModeS/adsb.py#L166">https://github.com/junzis/pyModeS/blob/faf4313/pyModeS/adsb.py#L166</a></p>
+</div>
+<div class="section" id="calculate-altitude">
+<h3>Calculate altitude<a class="headerlink" href="#calculate-altitude" title="Permalink to this headline">¶</a></h3>
+<p>The altitude of the aircraft is much easier to compute from the data frame. The bits in the altitude field (either odd or even frame) are as following:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">1100001</span> <span class="mi">1</span> <span class="mi">1000</span>
+        <span class="o">^</span>
+       <span class="n">Q</span><span class="o">-</span><span class="n">bit</span>
+</pre></div>
+</div>
+<p>This Q-bit (bit 48) indicates whether the altitude is encoded in multiples of 25 or 100 ft (0: 100 ft, 1: 25 ft).</p>
+<p>For Q = 1, we can calculate the altitude as following:</p>
+<p>First, remove the Q-bit</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1100001</span> <span class="mi">1000</span> <span class="o">=&gt;</span> <span class="mi">1560</span> <span class="p">(</span><span class="ow">in</span> <span class="n">decimal</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The final altitude value will be:</p>
+<div class="math">
+\[Alt = N \cdot 25 - 1000 \quad \text{(ft.)}\]</div>
+<p>In this example, the altitude at which aircraft is flying is:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">1560</span> <span class="o">*</span> <span class="mi">25</span> <span class="o">-</span> <span class="mi">1000</span> <span class="o">=</span> <span class="mi">38000</span> <span class="n">ft</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Note that the altitude has the accuracy of +/- 25 ft when the Q-bit is 1, and the value can represent altitude from -1000 to +50175 ft.</p>
+</div>
+<div class="section" id="the-final-position">
+<h3>The final position<a class="headerlink" href="#the-final-position" title="Permalink to this headline">¶</a></h3>
+<p>Finally, we have all three components (latitude/longitude/altitude) of the aircraft position:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">LAT</span><span class="p">:</span> <span class="mf">52.25720</span> <span class="p">(</span><span class="n">degrees</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">LON</span><span class="p">:</span>  <span class="mf">3.91937</span> <span class="p">(</span><span class="n">degrees</span> <span class="n">E</span><span class="p">)</span>
+<span class="n">ALT</span><span class="p">:</span>    <span class="mi">38000</span> <span class="n">ft</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="locally-unambiguous-position-decoding-with-one-message">
+<h2>Locally unambiguous position (decoding with one message)<a class="headerlink" href="#locally-unambiguous-position-decoding-with-one-message" title="Permalink to this headline">¶</a></h2>
+<p>This method gives the possibility of decoding aircraft using only one message knowing a reference position. This method compute the latitude index (j) and longitude index (m) based on such reference, and can be used with either type of the messages.</p>
+<div class="section" id="the-reference-position">
+<h3>The reference position<a class="headerlink" href="#the-reference-position" title="Permalink to this headline">¶</a></h3>
+<p>The reference position should be close to the actual position (eg. position of aircraft previously decoded, or the location of ADS-B antenna), and must be <strong>within 180 NM</strong> range.</p>
+</div>
+<div class="section" id="calculate-dlat">
+<h3>Calculate dLat<a class="headerlink" href="#calculate-dlat" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[\begin{split}dLat =
+\begin{cases}
+ \frac{360}{4 \cdot NZ} = \frac{360}{60}          &amp; \text{if even message}  \\
+ \frac{360}{4 \cdot NZ - 1}  = \frac{360}{59}     &amp; \text{if odd message}
+\end{cases}\end{split}\]</div>
+</div>
+<div class="section" id="id1">
+<h3>Calculate the latitude index j<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[j = floor \left (\frac{\mathrm{Lat}_{ref}}{dLat} \right) + floor \left( \frac{mod(\mathrm{Lat}_{ref}, dLat)}{dLat}  - \mathrm{Lat}_\mathrm{cpr}  + \frac{1}{2} \right)\]</div>
+</div>
+<div class="section" id="id2">
+<h3>Calculate latitude<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[\mathrm{Lat} = dLat \cdot (j + \mathrm{Lat}_\mathrm{cpr})\]</div>
+</div>
+<div class="section" id="calculate-dlon">
+<h3>Calculate dLon<a class="headerlink" href="#calculate-dlon" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[\begin{split}\mathrm{dLon} =
+\begin{cases}
+ \frac{360}{NL(Lat)}    &amp; \text{if } NL(Lat) &gt; 0  \\
+ 360                    &amp; \text{if } NL(Lat) = 0
+\end{cases}\end{split}\]</div>
+</div>
+<div class="section" id="calculate-longitude-index-m">
+<h3>Calculate longitude index m<a class="headerlink" href="#calculate-longitude-index-m" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[m = floor \left( \frac{Lon_{ref}}{\mathrm{dLon}} \right) + floor \left( \frac{mod(Lon_{ref}, \mathrm{dLon})}{\mathrm{dLon}}  - Lon_\mathrm{cpr}  + \frac{1}{2}  \right)\]</div>
+</div>
+<div class="section" id="id3">
+<h3>Calculate longitude<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[Lon = \mathrm{dLon} \cdot (m + Lon_\mathrm{cpr})\]</div>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>For the same example message:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">8</span><span class="n">D40621D58C382D690C8AC2863A7</span>
+
+<span class="n">Reference</span> <span class="n">position</span><span class="p">:</span>
+  <span class="n">LAT</span><span class="p">:</span> <span class="mf">52.258</span>
+  <span class="n">LON</span><span class="p">:</span>  <span class="mf">3.918</span>
+</pre></div>
+</div>
+<p>The structure of message is:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">8</span><span class="n">D40621D58C382D690C8AC2863A7</span>
+
+<span class="o">|</span>    <span class="o">|</span> <span class="n">ICAO24</span> <span class="o">|</span>      <span class="n">DATA</span>      <span class="o">|</span>  <span class="n">CRC</span>   <span class="o">|</span>
+<span class="o">|----|--------|----------------|--------|</span>
+<span class="o">|</span> <span class="mi">8</span><span class="n">D</span> <span class="o">|</span> <span class="mi">40621</span><span class="n">D</span> <span class="o">|</span> <span class="mi">58</span><span class="n">C382D690C8AC</span> <span class="o">|</span> <span class="mi">2863</span><span class="n">A7</span> <span class="o">|</span>
+
+
+<span class="n">Data</span> <span class="ow">in</span> <span class="n">binary</span><span class="p">:</span>
+
+<span class="o">|</span> <span class="n">DATA</span>                                                                              <span class="o">|</span>
+<span class="o">|===================================================================================|</span>
+<span class="o">|</span> <span class="n">TC</span>    <span class="o">|</span> <span class="n">SS</span> <span class="o">|</span> <span class="n">NICsb</span> <span class="o">|</span> <span class="n">ALT</span>          <span class="o">|</span> <span class="n">T</span> <span class="o">|</span> <span class="n">F</span> <span class="o">|</span> <span class="n">CPR</span><span class="o">-</span><span class="n">LAT</span>           <span class="o">|</span> <span class="n">CPR</span><span class="o">-</span><span class="n">LON</span>           <span class="o">|</span>
+<span class="o">|-------|----|-------|--------------|---|---|-------------------|-------------------|</span>
+<span class="o">|</span> <span class="mi">01011</span> <span class="o">|</span> <span class="mi">00</span> <span class="o">|</span> <span class="mi">0</span>     <span class="o">|</span> <span class="mi">110000111000</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">10110101101001000</span> <span class="o">|</span> <span class="mi">01100100010101100</span> <span class="o">|</span>
+
+
+<span class="n">CPR</span> <span class="n">representation</span><span class="p">:</span>
+
+<span class="o">|</span> <span class="n">F</span> <span class="o">|</span> <span class="n">CPR</span> <span class="n">Latitude</span>      <span class="o">|</span> <span class="n">CPR</span> <span class="n">Longitude</span>     <span class="o">|</span>
+<span class="o">|---|-------------------|-------------------|</span>
+<span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">10110101101001000</span> <span class="o">|</span> <span class="mi">01100100010101100</span> <span class="o">|</span>
+<span class="o">|---|-------------------|-------------------|</span>
+
+<span class="n">In</span> <span class="n">decimal</span><span class="p">:</span>
+
+<span class="o">|---|-------------------|-------------------|</span>
+<span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">93000</span>             <span class="o">|</span> <span class="mi">51372</span>             <span class="o">|</span>
+<span class="o">|---|-------------------|-------------------|</span>
+
+<span class="n">CPR_LAT</span><span class="p">:</span> <span class="mi">93000</span> <span class="o">/</span> <span class="mi">131072</span> <span class="o">-&gt;</span> <span class="mf">0.7095</span>
+<span class="n">CPR_LON</span><span class="p">:</span> <span class="mi">51372</span> <span class="o">/</span> <span class="mi">131072</span> <span class="o">-&gt;</span> <span class="mf">0.3919</span>
+</pre></div>
+</div>
+<p>Run the calculation, the same result will be decoded:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">d_lat</span><span class="p">:</span>  <span class="mi">6</span>
+<span class="n">j</span><span class="p">:</span>      <span class="mi">8</span>
+<span class="n">lat</span><span class="p">:</span>    <span class="mf">52.25720</span>
+<span class="n">m</span><span class="p">:</span>      <span class="mi">0</span>
+<span class="n">d_lon</span><span class="p">:</span>  <span class="mi">10</span>
+<span class="n">lon</span><span class="p">:</span>    <span class="mf">3.91937</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2018, Junzi Sun.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/content/adsb-airborne-position.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
