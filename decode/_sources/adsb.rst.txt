@@ -27,7 +27,7 @@ This table lists the key bits of a message:
 +----------+------------+----------+----------------------------------------+
 | 3        | 6 - 8      | CA       | Capability (additional identifier)     |
 +----------+------------+----------+----------------------------------------+
-| 24       | 9- 32      | ICAO     | ICAO aircraft address                  |
+| 24       | 9 - 32     | ICAO     | ICAO aircraft address                  |
 +----------+------------+----------+----------------------------------------+
 | 56       | 33 - 88    | DATA     | Data                                   |
 +          +------------+----------+----------------------------------------+
@@ -57,6 +57,15 @@ Example:
 
 Any ADS-B must start with the Downlink Format 17 or 18 (10001 or 10010 in binary code) for the first 5 bits. Bits 6-8 are used as additional identifier, which has different meanings within different types of ADS-B message.
 
+
+ICAO address
+~~~~~~~~~~~~
+
+In each ADS-B message, the sender (originated aircraft) can be identified using the icao address. It is located from 9 to 32 bits in binary (or 3 to 8 in hexadecimal). In above example, it is ``4840D6`` or ``010010000100``.
+
+An unique ICAO address is assigned to each Mode-S transponder of an aircraft. Thus this is a unique identifier for aircraft. You can use the query tool (`World Aircraft Database <https://junzis.com/adb/>`_) from mode-s.org to find out more about the aircraft wiht the ICAO address. For instance, using previous ICAO ``4840D6`` example will return the result of a ``Fokker 70`` (wow, it must be one of last in its kind in operation) with registration of ``PH-KZD``.
+
+In addition, you can down the datebase from aforementioned website in CSV format.
 
 
 ADS-B message types
