@@ -1,0 +1,270 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>1.1. Introduction &#8212; The 1090MHz Riddle Book</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.2. Aircraft Identification" href="identification.html" />
+    <link rel="prev" title="1. ADS-B (Automatic Dependent Surveillance – Broadcast)" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3><a href="../index.html">The 1090MHz Riddle</a></h3>
+
+An Open access book on Mode-S/ADS-B decoding and related topics
+
+<br/><br/><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. ADS-B (Automatic Dependent Surveillance – Broadcast)</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html">1.2. Aircraft Identification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compact-position-report.html">1.3. Compact Position Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="airborne-position.html">1.4. Airborne Positions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="airborne-velocity.html">1.5. Airborne Velocity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrity-accuracy.html">1.6. Integrity and Accuracy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ehs/index.html">2. EHS (Mode-S Enhanced Surveillance)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ehs/introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ehs/bds20-identification.html">2.2. Aircraft identification (BDS 2,0)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ehs/bds40-intention.html">2.3. Selected intention (BDS 4,0)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ehs/bds50-track-n-turn.html">2.4. Track and turn (BDS 5,0)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ehs/bds60-airspeed.html">2.5. Heading and speed (BDS 6,0)</a></li>
+</ul>
+</li>
+</ul>
+
+
+  <br/>
+  <h3>Page Source</h3>
+  <ul class="this-page-menu">
+    <!-- <li><a href="../_sources/adsb/introduction.rst.txt"
+           rel="nofollow">Show Source</a></li> -->
+    <li><a href="https://github.com/junzis/the-1090mhz-riddle/blob/master/adsb/introduction.rst"
+           rel="nofollow">Show on GitHub</a></li>
+    <li><a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/introduction.rst"
+           rel="nofollow">Edit on GitHub</a></li>
+  </ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction">
+<h1>1.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="message-structure">
+<h2>1.1.1. Message structure<a class="headerlink" href="#message-structure" title="Permalink to this headline">¶</a></h2>
+<p>An ADS-B message is 112 bits long, and consist of 5 parts:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">+--------+--------+-----------+--------------------------+---------+</span>
+<span class="o">|</span>  <span class="n">DF</span> <span class="mi">5</span>  <span class="o">|</span>  <span class="o">**</span> <span class="mi">3</span>  <span class="o">|</span>  <span class="n">ICAO</span> <span class="mi">24</span>  <span class="o">|</span>          <span class="n">DATA</span> <span class="mi">56</span>         <span class="o">|</span>  <span class="n">PI</span> <span class="mi">24</span>  <span class="o">|</span>
+<span class="o">+-----------------+-----------+--------------------------+---------+</span>
+</pre></div>
+</div>
+<p>This table lists the key bits of a message:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="17%" />
+<col width="14%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">nBits</th>
+<th class="head">Bits</th>
+<th class="head">Abbr.</th>
+<th class="head">Name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>5</td>
+<td>1 - 5</td>
+<td>DF</td>
+<td>Downlink Format (17 or 18)</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>6 - 8</td>
+<td>CA</td>
+<td>Capability (additional identifier)</td>
+</tr>
+<tr class="row-even"><td>24</td>
+<td>9 - 32</td>
+<td>ICAO</td>
+<td>ICAO aircraft address</td>
+</tr>
+<tr class="row-odd"><td rowspan="2">56</td>
+<td>33 - 88</td>
+<td>DATA</td>
+<td>Data</td>
+</tr>
+<tr class="row-even"><td>[33 - 37]</td>
+<td>[TC]</td>
+<td>Type code</td>
+</tr>
+<tr class="row-odd"><td>24</td>
+<td>89 - 112</td>
+<td>PI</td>
+<td>Parity/Interrogator ID</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Raw</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">hexadecimal</span><span class="p">:</span>
+<span class="mi">8</span><span class="n">D4840D6202CC371C32CE0576098</span>
+
+
+<span class="o">-----+------------+--------------+-------------------------------+--------------</span>
+<span class="n">HEX</span>  <span class="o">|</span> <span class="mi">8</span><span class="n">D</span>         <span class="o">|</span> <span class="mi">4840</span><span class="n">D6</span>       <span class="o">|</span> <span class="mi">202</span><span class="n">CC371C32CE0</span>                <span class="o">|</span> <span class="mi">576098</span>
+<span class="o">-----+------------+--------------+-------------------------------+--------------</span>
+<span class="n">BIN</span>  <span class="o">|</span> <span class="mi">10001</span>  <span class="mi">101</span> <span class="o">|</span> <span class="mi">010010000100</span> <span class="o">|</span> <span class="p">[</span><span class="mi">00100</span><span class="p">]</span><span class="mi">0000010110011000011011</span> <span class="o">|</span> <span class="mi">010101110110</span>
+     <span class="o">|</span>            <span class="o">|</span> <span class="mi">000011010110</span> <span class="o">|</span> <span class="mi">10001110000110010110011100000</span> <span class="o">|</span> <span class="mi">000010011000</span>
+<span class="o">-----+------------+--------------+-------------------------------+--------------</span>
+<span class="n">DEC</span>  <span class="o">|</span>  <span class="mi">17</span>    <span class="mi">5</span>   <span class="o">|</span>              <span class="o">|</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">.......................</span>   <span class="o">|</span>
+<span class="o">-----+------------+--------------+-------------------------------+--------------</span>
+        <span class="n">DF</span>    <span class="n">CA</span>     <span class="n">ICAO</span>          <span class="p">[</span><span class="n">TC</span><span class="p">]</span> <span class="o">------</span> <span class="n">DATA</span> <span class="o">----------</span>    <span class="n">PI</span>
+</pre></div>
+</div>
+<p>Any ADS-B must start with the Downlink Format 17 or 18 (10001 or 10010 in binary code) for the first 5 bits. Bits 6-8 are used as additional identifier, which has different meanings within different types of ADS-B message.</p>
+</div>
+<div class="section" id="icao-address">
+<h2>1.1.2. ICAO address<a class="headerlink" href="#icao-address" title="Permalink to this headline">¶</a></h2>
+<p>In each ADS-B message, the sender (originated aircraft) can be identified using the icao address. It is located from 9 to 32 bits in binary (or 3 to 8 in hexadecimal). In above example, it is <code class="docutils literal"><span class="pre">4840D6</span></code> or <code class="docutils literal"><span class="pre">010010000100</span></code>.</p>
+<p>An unique ICAO address is assigned to each Mode-S transponder of an aircraft. Thus this is a unique identifier for aircraft. You can use the query tool (<a class="reference external" href="https://junzis.com/adb/">World Aircraft Database</a>) from mode-s.org to find out more about the aircraft wiht the ICAO address. For instance, using previous ICAO <code class="docutils literal"><span class="pre">4840D6</span></code> example will return the result of a <code class="docutils literal"><span class="pre">Fokker</span> <span class="pre">70</span></code> (wow, it must be one of last in its kind in operation) with registration of <code class="docutils literal"><span class="pre">PH-KZD</span></code>.</p>
+<p>In addition, you can down the datebase from aforementioned website in CSV format.</p>
+</div>
+<div class="section" id="ads-b-message-types">
+<h2>1.1.3. ADS-B message types<a class="headerlink" href="#ads-b-message-types" title="Permalink to this headline">¶</a></h2>
+<p>To identify what information is contained in a ADS-B message. We need to take a look at the <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code> of the message, indicated at bits 33 - 37 of the ADS-B message (or first 5 bits of the <code class="docutils literal"><span class="pre">DATA</span></code> segment)</p>
+<p>Following are the relationship between each <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code> and its information contained in the <code class="docutils literal"><span class="pre">DATA</span></code> segment:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">TC</th>
+<th class="head">Content</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1 - 4</td>
+<td>Aircraft identification</td>
+</tr>
+<tr class="row-odd"><td>5 - 8</td>
+<td>Surface position</td>
+</tr>
+<tr class="row-even"><td>9 - 18</td>
+<td>Airborne position (w/ Baro Altitude)</td>
+</tr>
+<tr class="row-odd"><td>19</td>
+<td>Airborne velocities</td>
+</tr>
+<tr class="row-even"><td>20 - 22</td>
+<td>Airborne position (w/ GNSS Height)</td>
+</tr>
+<tr class="row-odd"><td>23 - 31</td>
+<td>Reserved for other uses</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ads-b-checksum">
+<h2>1.1.4. ADS-B Checksum<a class="headerlink" href="#ads-b-checksum" title="Permalink to this headline">¶</a></h2>
+<p>ADS-B uses cyclic redundancy check to validate the correctness of received message, where the last 24 bits are the parity bits. Following pseudo-code describes the CRC process:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GENERATOR</span> <span class="o">=</span> <span class="mi">1111111111111010000001001</span>
+
+<span class="n">MSG</span> <span class="o">=</span> <span class="n">binary</span><span class="p">(</span><span class="mi">8</span><span class="n">D4840D6202CC371C32CE0576098</span><span class="p">)</span>    <span class="c1"># 112 bits</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="kn">from</span> <span class="mi">0</span> <span class="n">to</span> <span class="mi">88</span><span class="p">:</span>                           <span class="c1"># 112 bits - 24 parity bits</span>
+  <span class="k">if</span> <span class="n">MSG</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">MSG</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">24</span><span class="p">]</span> <span class="o">=</span> <span class="n">MSG</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">24</span><span class="p">]</span> <span class="o">^</span> <span class="n">GENERATOR</span>
+
+<span class="n">CRC</span> <span class="o">=</span> <span class="n">MSG</span><span class="p">[</span><span class="o">-</span><span class="mi">24</span><span class="p">:]</span>                               <span class="c1"># last 24 bits of result</span>
+
+<span class="n">IF</span> <span class="n">CRC</span> <span class="ow">not</span> <span class="mi">0</span><span class="p">:</span>
+  <span class="n">MSG</span> <span class="ow">is</span> <span class="n">corrupted</span>
+</pre></div>
+</div>
+<p>For the implementation of CRC encoder in python, refer to the pyModeS library function: <code class="docutils literal"><span class="pre">pyModeS.util.crc()</span></code></p>
+<p>A comprehensive documentation on Mode-S parity coding can be found:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Gertz</span><span class="p">,</span> <span class="n">Jeffrey</span> <span class="n">L</span><span class="o">.</span> <span class="n">Fundamentals</span> <span class="n">of</span> <span class="n">mode</span> <span class="n">s</span> <span class="n">parity</span> <span class="n">coding</span><span class="o">.</span> <span class="n">No</span><span class="o">.</span> <span class="n">ATC</span><span class="o">-</span><span class="mf">117.</span>
+<span class="n">MASSACHUSETTS</span> <span class="n">INST</span> <span class="n">OF</span> <span class="n">TECH</span> <span class="n">LEXINGTON</span> <span class="n">LINCOLN</span> <span class="n">LAB</span><span class="p">,</span> <span class="mf">1984.</span> <span class="n">APA</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+
+    <div class="footer">
+      &copy;2018, Junzi Sun.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/adsb/introduction.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-74700456-1');
+</script>
+
+
+  </body>
+</html>
