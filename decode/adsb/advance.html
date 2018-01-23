@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>1. ADS-B (Automatic Dependent Surveillance – Broadcast) &#8212; The 1090MHz Riddle Book</title>
+    <title>1.6. Advanced topics &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1.1. Introduction" href="introduction.html" />
-    <link rel="prev" title="The 1090MHz Riddle" href="../index.html" />
+    <link rel="next" title="1.6.1. ADS-B versions" href="advance/version.html" />
+    <link rel="prev" title="1.5. Airborne Velocity" href="airborne-velocity.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -43,16 +43,16 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 
 <br/><br/><h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">1. ADS-B (Automatic Dependent Surveillance – Broadcast)</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="../adsb.html">1. ADS-B (Automatic Dependent Surveillance – Broadcast)</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="introduction.html">1.1. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="identification.html">1.2. Aircraft Identification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="compact-position-report.html">1.3. Compact Position Reporting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="airborne-position.html">1.4. Airborne Positions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="airborne-velocity.html">1.5. Airborne Velocity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="integrity-accuracy.html">1.6. Integrity and Accuracy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.6. Advanced topics</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ehs/index.html">2. EHS (Mode-S Enhanced Surveillance)</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../ehs.html">2. EHS (Mode-S Enhanced Surveillance)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ehs/introduction.html">2.1. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ehs/bds20-identification.html">2.2. Aircraft identification (BDS 2,0)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ehs/bds40-intention.html">2.3. Selected intention (BDS 4,0)</a></li>
@@ -66,11 +66,11 @@ An Open access book on Mode-S/ADS-B decoding and related topics
   <br/>
   <h3>Page Source</h3>
   <ul class="this-page-menu">
-    <!-- <li><a href="../_sources/adsb/index.rst.txt"
+    <!-- <li><a href="../_sources/adsb/advance.rst.txt"
            rel="nofollow">Show Source</a></li> -->
-    <li><a href="https://github.com/junzis/the-1090mhz-riddle/blob/master/adsb/index.rst"
+    <li><a href="https://github.com/junzis/the-1090mhz-riddle/blob/master/adsb/advance.rst"
            rel="nofollow">Show on GitHub</a></li>
-    <li><a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/index.rst"
+    <li><a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/advance.rst"
            rel="nofollow">Edit on GitHub</a></li>
   </ul>
 <div id="searchbox" style="display: none" role="search">
@@ -89,18 +89,12 @@ An Open access book on Mode-S/ADS-B decoding and related topics
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="ads-b-automatic-dependent-surveillance-broadcast">
-<h1>1. ADS-B (Automatic Dependent Surveillance – Broadcast)<a class="headerlink" href="#ads-b-automatic-dependent-surveillance-broadcast" title="Permalink to this headline">¶</a></h1>
-<p>ADS-B is short for Automatic Dependent Surveillance–Broadcast. it is a satellite based surveillance system. Aircraft position, velocity, together with identification are transmitted through Mode-S Extended Squitter (1090 MHz).</p>
-<p>Majority of the aircraft nowadays are broadcasting ADS-B messages constantly. There are many ways you can set up you own receiver and antenna to start tapping into those signals (DVB-T usb stick, ModeSBeast, Raspberry Pi, RadarScape, etc).</p>
+  <div class="section" id="advanced-topics">
+<h1>1.6. Advanced topics<a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">1.1. Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="identification.html">1.2. Aircraft Identification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="compact-position-report.html">1.3. Compact Position Reporting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airborne-position.html">1.4. Airborne Positions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="airborne-velocity.html">1.5. Airborne Velocity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="integrity-accuracy.html">1.6. Integrity and Accuracy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advance/version.html">1.6.1. ADS-B versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advance/uncertainty.html">1.6.2. Uncertainty and accuracy</a></li>
 </ul>
 </div>
 </div>
@@ -120,7 +114,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/adsb/index.rst.txt"
+      <a href="../_sources/adsb/advance.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

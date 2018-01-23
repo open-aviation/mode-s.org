@@ -1,0 +1,1011 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>1.6.2. Uncertainty and accuracy &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2. EHS (Mode-S Enhanced Surveillance)" href="../../ehs.html" />
+    <link rel="prev" title="1.6.1. ADS-B versions" href="version.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3><a href="../../index.html">The 1090MHz Riddle</a></h3>
+
+An Open access book on Mode-S/ADS-B decoding and related topics
+
+<br/><br/><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../adsb.html">1. ADS-B (Automatic Dependent Surveillance – Broadcast)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">1.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../identification.html">1.2. Aircraft Identification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compact-position-report.html">1.3. Compact Position Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../airborne-position.html">1.4. Airborne Positions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../airborne-velocity.html">1.5. Airborne Velocity</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../advance.html">1.6. Advanced topics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ehs.html">2. EHS (Mode-S Enhanced Surveillance)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ehs/introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ehs/bds20-identification.html">2.2. Aircraft identification (BDS 2,0)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ehs/bds40-intention.html">2.3. Selected intention (BDS 4,0)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ehs/bds50-track-n-turn.html">2.4. Track and turn (BDS 5,0)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ehs/bds60-airspeed.html">2.5. Heading and speed (BDS 6,0)</a></li>
+</ul>
+</li>
+</ul>
+
+
+  <br/>
+  <h3>Page Source</h3>
+  <ul class="this-page-menu">
+    <!-- <li><a href="../../_sources/adsb/advance/uncertainty.rst.txt"
+           rel="nofollow">Show Source</a></li> -->
+    <li><a href="https://github.com/junzis/the-1090mhz-riddle/blob/master/adsb/advance/uncertainty.rst"
+           rel="nofollow">Show on GitHub</a></li>
+    <li><a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/advance/uncertainty.rst"
+           rel="nofollow">Edit on GitHub</a></li>
+  </ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="uncertainty-and-accuracy">
+<h1>1.6.2. Uncertainty and accuracy<a class="headerlink" href="#uncertainty-and-accuracy" title="Permalink to this headline">¶</a></h1>
+<p>NIC, NAC, NUC, and SIL, those acronyms do sound confusing. They are categorical numbers for the integrity,  accuracy, or uncertainties of the position measurements.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">NUCp</span></code>: Navigation Uncertainty Category - Position<ul>
+<li>Values: 0 - 9</li>
+<li>Version 0, 1, and 2</li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">NUCv</span></code>: Navigation Uncertainty Category - Velocity<ul>
+<li>Values: 0 - 4</li>
+<li>Version 0, 1, and 2</li>
+<li>a.k.a. NUCr, Navigation Uncertainty Category - Rate</li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">NIC</span></code>: Navigation Integrity Category<ul>
+<li>Values: 0 - 11</li>
+<li>Version 1 and 2</li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">NACp</span></code>: Navigation Accuracy Category - Position<ul>
+<li>Values: 0 - 11</li>
+<li>Version 1 and 2</li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">SIL</span></code>: Surveillance Integrity Level<ul>
+<li>Values: 0 - 3</li>
+<li>Version 1 and 2</li>
+</ul>
+</li>
+</ul>
+<p>For each category name, specific values are given corresponding to the numerical indicators. The relation of the category names and value names are:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">NUCp</span></code>:<ul>
+<li>Horizontal Protection Limit (<code class="docutils literal"><span class="pre">HPL</span></code>)</li>
+<li>95% Containment Radius - Horizontal (<code class="docutils literal"><span class="pre">RCu</span></code>)</li>
+<li>95% Containment Radius - Vertical (<code class="docutils literal"><span class="pre">RCv</span></code>)</li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">NUCv</span></code>:<ul>
+<li>95% Horizontal Velocity Error (<code class="docutils literal"><span class="pre">HVE</span></code>)</li>
+<li>95% Vetical Velocity Error (<code class="docutils literal"><span class="pre">VVE</span></code>)</li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">NIC</span></code>:<ul>
+<li>Horizontal Radius of Containment (<code class="docutils literal"><span class="pre">RCu</span></code>)</li>
+<li>Vertical Protection Limit (<code class="docutils literal"><span class="pre">VPL</span></code>)
+- a.k.a. Integrity Containment Region</li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">NACp</span></code>:<ul>
+<li>95% horizontal accuracy bounds<ul>
+<li>a.k.a. Estimated Position Uncertainty (<code class="docutils literal"><span class="pre">EPU</span></code>)</li>
+<li>a.k.a. Horizontal Figure of Merit (<code class="docutils literal"><span class="pre">HFOM</span></code>)</li>
+</ul>
+</li>
+<li>95% vertical accuracy bounds<ul>
+<li>a.k.a. Vertical Estimated Position Uncertainty (V``EPU)</li>
+<li>a.k.a. Vertical Figure of Merit (<code class="docutils literal"><span class="pre">VFOM</span></code>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">SIL</span></code>:<ul>
+<li>Probability of exceeding Horizontal Radius of Containment <code class="docutils literal"><span class="pre">RCu</span></code> (<code class="docutils literal"><span class="pre">PE_RCu</span></code>)</li>
+<li>Probability of exceeding Vertical Integrity Containment Region <code class="docutils literal"><span class="pre">VPL</span></code> (<code class="docutils literal"><span class="pre">PE_VPL</span></code>)</li>
+</ul>
+</li>
+</ul>
+<p>Depending on the ADS-B versions, the bits to uncover these values maybe different. We are going to address the uncertainty measures by ADS-B versions.</p>
+<div class="section" id="version-0">
+<h2>1.6.2.1. Version 0<a class="headerlink" href="#version-0" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nucp">
+<h3>1.6.2.1.1. NUCp<a class="headerlink" href="#nucp" title="Permalink to this headline">¶</a></h3>
+<p>In ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code>, the accuracy is express as <strong>Navigation Uncertainty Category - position</strong> (NUCp). It is directly related (one-to-one relationship) with <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code>, as follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="4%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="4%" />
+<col width="4%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="8%" />
+<col width="8%" />
+<col width="6%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td colspan="4">Surface position</td>
+<td colspan="10">Airborne position
+(Barometric altitude)</td>
+<td colspan="3">Airborne position
+(GNSS height)</td>
+</tr>
+<tr class="row-even"><td>TC</td>
+<td>0</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+<td>12</td>
+<td>13</td>
+<td>14</td>
+<td>15</td>
+<td>16</td>
+<td>17</td>
+<td>18</td>
+<td>20</td>
+<td>21</td>
+<td>22</td>
+</tr>
+<tr class="row-odd"><td>NUCp</td>
+<td>0</td>
+<td>9</td>
+<td>8</td>
+<td>7</td>
+<td>6</td>
+<td>9</td>
+<td>8</td>
+<td>7</td>
+<td>6</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>9</td>
+<td>8</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Higher number of NUCp represents a higher confidence of in the position measurement (hence, a lower uncertainty). Horizontal Protection Limit (<code class="docutils literal"><span class="pre">HPL</span></code>) and Radius of containment for horizontal (<code class="docutils literal"><span class="pre">RCu</span></code>) are used to quantify the uncertainty.</p>
+<p>For surface position (<code class="docutils literal"><span class="pre">TC=5-8</span></code>):</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="12%" />
+<col width="39%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">TC</th>
+<th class="head">NUCp</th>
+<th class="head">HPL</th>
+<th class="head">RCu</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>5</td>
+<td>9</td>
+<td>&lt; 7.5 m</td>
+<td>&lt; 3 m</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>8</td>
+<td>&lt; 25 m</td>
+<td>&lt; 10 m</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>7</td>
+<td>&lt; 0.1 NM (185 m)</td>
+<td>&lt; 0.05 NM (93 m)</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>6</td>
+<td>&gt; 0.1 NM (185 m)</td>
+<td>&gt; 0.05 NM (93 m)</td>
+</tr>
+</tbody>
+</table>
+<p>For airborne position with barometric altitude (<code class="docutils literal"><span class="pre">TC=9-18</span></code>):</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="38%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">TC</th>
+<th class="head">NUCp</th>
+<th class="head">HPL</th>
+<th class="head">RCu</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>9</td>
+<td>9</td>
+<td>&lt; 7.5 m</td>
+<td>&lt; 3 m</td>
+</tr>
+<tr class="row-odd"><td>10</td>
+<td>8</td>
+<td>&lt; 25 m</td>
+<td>&lt; 10 m</td>
+</tr>
+<tr class="row-even"><td>11</td>
+<td>7</td>
+<td>&lt; 0.1 NM (185 m)</td>
+<td>&lt; 0.05 NM (93 m)</td>
+</tr>
+<tr class="row-odd"><td>12</td>
+<td>6</td>
+<td>&lt; 0.2 NM (370 m)</td>
+<td>&lt; 0.1 NM (185 m)</td>
+</tr>
+<tr class="row-even"><td>13</td>
+<td>5</td>
+<td>&lt; 0.5 NM (926 m)</td>
+<td>&lt; 0.25 NM (463 m)</td>
+</tr>
+<tr class="row-odd"><td>14</td>
+<td>4</td>
+<td>&lt; 1 NM (1852 m)</td>
+<td>&lt; 0.5 NM (926 m)</td>
+</tr>
+<tr class="row-even"><td>15</td>
+<td>3</td>
+<td>&lt; 2 NM (3704 m)</td>
+<td>&lt; 1 NM (1852 m)</td>
+</tr>
+<tr class="row-odd"><td>16</td>
+<td>2</td>
+<td>&lt; 10 NM (18520 m)</td>
+<td>&lt; 5 NM (9260 m)</td>
+</tr>
+<tr class="row-even"><td>17</td>
+<td>1</td>
+<td>&lt; 20 NM (37040 m)</td>
+<td>&lt; 10 NM (18520 m)</td>
+</tr>
+<tr class="row-odd"><td>18</td>
+<td>0</td>
+<td>&gt; 20 NM (37040 m)</td>
+<td>&gt; 10 NM (18520 m)</td>
+</tr>
+</tbody>
+</table>
+<p>In the case of  airborne position with GNSS height (<code class="docutils literal"><span class="pre">TC=20-22</span></code>), <code class="docutils literal"><span class="pre">HPL</span></code> and <code class="docutils literal"><span class="pre">RCu</span></code> are defined slight differently. In addition, Radius of containment for vertical position (<code class="docutils literal"><span class="pre">RCv</span></code>) is added:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="25%" />
+<col width="23%" />
+<col width="23%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">TC</th>
+<th class="head">NUCp</th>
+<th class="head">HPL</th>
+<th class="head">RCu</th>
+<th class="head">RCv</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>20</td>
+<td>9</td>
+<td>&lt; 7.5 m</td>
+<td>&lt; 3 m</td>
+<td>&lt; 4 m</td>
+</tr>
+<tr class="row-odd"><td>21</td>
+<td>8</td>
+<td>&lt; 25 m</td>
+<td>&lt; 10 m</td>
+<td>&lt; 15 m</td>
+</tr>
+<tr class="row-even"><td>22</td>
+<td>0</td>
+<td>&gt; 25 m</td>
+<td>&gt; 10 m</td>
+<td>&gt; 15 m</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="nucv">
+<h3>1.6.2.1.2. NUCv<a class="headerlink" href="#nucv" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">NUCv</span></code> bits are located at the airborne velocity message, <code class="docutils literal"><span class="pre">TC=19</span></code>, message bit 43-45 (or payload bit 11-13). It defines the 95% of the error in horizontal and vertical speed.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="30%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">NUCp</th>
+<th class="head">HVE (95%)</th>
+<th class="head">VVE (95%)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>unknown</td>
+<td>unknown</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>&lt; 10 m/s</td>
+<td>&lt; 15.2 m/s (50 pfs)</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>&lt; 3 m/s</td>
+<td>&lt; 4.5 m/s (15 fps)</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>&lt; 1 m/s</td>
+<td>&lt; 1.5 m/s (5 fps)</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>&lt; 0.3 m/s</td>
+<td>&lt; 0.46 m/s (1.5 fps)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="version-1">
+<h2>1.6.2.2. Version 1<a class="headerlink" href="#version-1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nic">
+<h3>1.6.2.2.1. NIC<a class="headerlink" href="#nic" title="Permalink to this headline">¶</a></h3>
+<p>In ADS-B Version 1, the <code class="docutils literal"><span class="pre">NUCp</span></code> value is still kept, but has been moved to the new “operation status messages” (<code class="docutils literal"><span class="pre">TC=31</span></code>). Instead, <strong>Navigation Integrity Category</strong> (<code class="docutils literal"><span class="pre">NIC</span></code>) is introduced to provide more levels of uncertainty definitions. Specificly, for <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code>: <code class="docutils literal"><span class="pre">7</span></code> and <code class="docutils literal"><span class="pre">11</span></code>, two <code class="docutils literal"><span class="pre">NIC</span></code> levels present in each code. In order to distinguish these two different levels, a <strong>NIC Supplement Bit</strong> (<code class="docutils literal"><span class="pre">NICs</span></code>) is introduced in “operation status messages” <code class="docutils literal"><span class="pre">TC=31</span></code>  (message bit 76 or payload bit 44). The relation of TC, NIC, and Rc are list in following tables.</p>
+<p>For surface position (<code class="docutils literal"><span class="pre">TC=5-8</span></code>)</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="18%" />
+<col width="16%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">TC</th>
+<th class="head">NICs</th>
+<th class="head">NIC</th>
+<th class="head">Rc</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>5</td>
+<td>0</td>
+<td>11</td>
+<td>&lt; 7.5 m</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>0</td>
+<td>10</td>
+<td>&lt; 25 m</td>
+</tr>
+<tr class="row-even"><td rowspan="2">7</td>
+<td>1</td>
+<td>9</td>
+<td>&lt; 75 m</td>
+</tr>
+<tr class="row-odd"><td>0</td>
+<td>8</td>
+<td>&lt; 0.1 NM (185 m)</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>0</td>
+<td>0</td>
+<td>&gt; 0.1 NM or Unknown</td>
+</tr>
+</tbody>
+</table>
+<p>For airborne position with barometric altitude (<code class="docutils literal"><span class="pre">TC=9-18</span></code>):</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="17%" />
+<col width="11%" />
+<col width="43%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">TC</th>
+<th class="head">NICs</th>
+<th class="head">NIC</th>
+<th class="head">Rc</th>
+<th class="head">VPL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>9</td>
+<td>0</td>
+<td>11</td>
+<td>&lt; 7.5 m</td>
+<td>&lt; 11 m</td>
+</tr>
+<tr class="row-odd"><td>10</td>
+<td>0</td>
+<td>10</td>
+<td>&lt; 25 m</td>
+<td>&lt; 37.5 m</td>
+</tr>
+<tr class="row-even"><td rowspan="2">11</td>
+<td>1</td>
+<td>9</td>
+<td>&lt; 75 m</td>
+<td>&lt; 112 m</td>
+</tr>
+<tr class="row-odd"><td>0</td>
+<td>8</td>
+<td>&lt; 0.1 NM (185 m)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>12</td>
+<td>0</td>
+<td>7</td>
+<td>&lt; 0.2 NM (370 m)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td rowspan="2">13</td>
+<td>0</td>
+<td rowspan="2">6</td>
+<td>&lt; 0.5 NM (926 m)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>1</td>
+<td>&lt; 0.6 NM (1111 m)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>14</td>
+<td>0</td>
+<td>5</td>
+<td>&lt; 1.0 NM (1852 m)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>15</td>
+<td>0</td>
+<td>4</td>
+<td>&lt; 2 NM (3704 m)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td rowspan="2">16</td>
+<td>1</td>
+<td>3</td>
+<td>&lt; 4 NM (7408 m)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>0</td>
+<td>2</td>
+<td>&lt; 8 NM (14.8 km)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>17</td>
+<td>0</td>
+<td>1</td>
+<td>&lt; 20 NM (37.0 km)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>18</td>
+<td>0</td>
+<td>0</td>
+<td>&gt; 20 NM or Unknown</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<p>In the case of  airborne position with GNSS height (<code class="docutils literal"><span class="pre">TC=20-22</span></code>), <code class="docutils literal"><span class="pre">Rc</span></code> is defined slight differently:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="19%" />
+<col width="31%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">TC</th>
+<th class="head">NIC</th>
+<th class="head">Rc</th>
+<th class="head">VPL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>20</td>
+<td>11</td>
+<td>&lt; 7.5 m</td>
+<td>&lt; 11 m</td>
+</tr>
+<tr class="row-odd"><td>21</td>
+<td>10</td>
+<td>&lt; 25 m</td>
+<td>&lt; 37.5 m</td>
+</tr>
+<tr class="row-even"><td>22</td>
+<td>0</td>
+<td>&gt; 25 m</td>
+<td>&gt; 112 m</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="nacp">
+<h3>1.6.2.2.2. NACp<a class="headerlink" href="#nacp" title="Permalink to this headline">¶</a></h3>
+<p>In addition to <code class="docutils literal"><span class="pre">NIC</span></code>, <strong>Navigation Accuracy Category - Position</strong> (<code class="docutils literal"><span class="pre">NACp</span></code>) is also introduced int ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>. <code class="docutils literal"><span class="pre">NACp</span></code> can be found in:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">TC=29</span></code>, target state and status message, message bit 72-75 (or payload bit 40-43)</li>
+<li><code class="docutils literal"><span class="pre">TC=31</span></code>, operational status message, message bit 77-80 (or payload bit 45-48)</li>
+</ul>
+<p>With <code class="docutils literal"><span class="pre">NACp</span></code>, one can find out the 95% horizontal and vertical accuracy bounds (<code class="docutils literal"><span class="pre">EPU</span></code> and <code class="docutils literal"><span class="pre">VEPU</span></code>, or <code class="docutils literal"><span class="pre">HFOM</span></code> and <code class="docutils literal"><span class="pre">VFOM</span></code>). <code class="docutils literal"><span class="pre">NACp</span></code> and <code class="docutils literal"><span class="pre">NIC</span></code> usually share the same value, and their values are closed related.</p>
+<div class="math">
+\[\begin{split}\mathrm{EPU} &amp;\approx \mathrm{Rc} / 2.5   \qquad  \mathrm{NAC, NIC} \ge 9 \\
+\mathrm{EPU} &amp;\approx \mathrm{Rc} / 2.0  \qquad  \mathrm{NAC, NIC} \lt 9\end{split}\]</div>
+<p>For ADS-B, <code class="docutils literal"><span class="pre">NACp</span></code> is also indicated in the operational status messages (<code class="docutils literal"><span class="pre">TC=31</span></code>). <code class="docutils literal"><span class="pre">NACp</span></code> and corresponding <code class="docutils literal"><span class="pre">EPU</span></code>/<code class="docutils literal"><span class="pre">VEPU</span></code> are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="59%" />
+<col width="24%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">NACp</th>
+<th class="head">EPU</th>
+<th class="head">VEPU</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>11</td>
+<td>&lt; 3 m</td>
+<td>&lt; 4 m</td>
+</tr>
+<tr class="row-odd"><td>10</td>
+<td>&lt; 10 m</td>
+<td>&lt; 15 m</td>
+</tr>
+<tr class="row-even"><td>9</td>
+<td>&lt; 30 m</td>
+<td>&lt; 45 m</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>&lt; 0.05 NM (93 m)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>&lt; 0.1 NM (185 m)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>&lt; 0.3 NM (556 m)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>&lt; 0.5 NM (926 m)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>&lt; 1.0 NM (1852 m)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>&lt; 2 NM (3704 m)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>&lt; 4 NM (7408 m)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>1</td>
+<td>&lt; 10 NM (18520 km)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>0</td>
+<td>&gt; 10 NM or Unknown</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="sil">
+<h3>1.6.2.2.3. SIL<a class="headerlink" href="#sil" title="Permalink to this headline">¶</a></h3>
+<p>On the other hand, Surveillance Integrity Level (<code class="docutils literal"><span class="pre">SIL</span></code>) is introduced in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> to indicate the probability of measurement exceeding the containment radius horizontally (<code class="docutils literal"><span class="pre">PE_RCu</span></code>) and vertically (<code class="docutils literal"><span class="pre">PE_VPL</span></code>).</p>
+<p><code class="docutils literal"><span class="pre">SIL</span></code> value can be found in two different locations:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">TC=29</span></code>, target state and status message, message bit 77-78 (or payload bit 45-46)</li>
+<li><code class="docutils literal"><span class="pre">TC=31</span></code>, operational status message, message bit 83-84 (or payload bit 51-52)</li>
+</ul>
+<p>The definitions are as follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="44%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SIL</th>
+<th class="head">PE_RCu</th>
+<th class="head">PE_VPL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>unknown</td>
+<td>unknown</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>&lt; 1 x 10 <sup>-3</sup></td>
+<td>&lt; 1 x 10 <sup>-3</sup></td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>&lt; 1 x 10 <sup>-5</sup></td>
+<td>&lt; 1 x 10 <sup>-5</sup></td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>&lt; 1 x 10 <sup>-7</sup></td>
+<td>&lt; 2 x 10 <sup>-7</sup></td>
+</tr>
+</tbody>
+</table>
+<p>The unit for <code class="docutils literal"><span class="pre">PE_RCu</span></code> and <code class="docutils literal"><span class="pre">PE_VPL</span></code> is  per hour or per sample.</p>
+</div>
+</div>
+<div class="section" id="version-2">
+<h2>1.6.2.3. Version 2<a class="headerlink" href="#version-2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>1.6.2.3.1. NIC<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>In ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, levels of accuracies are further divided by two addition <code class="docutils literal"><span class="pre">NIC</span></code> supplement bits. In <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, we call them NIC Supplement Bit A (<code class="docutils literal"><span class="pre">NICa</span></code>),  NIC Supplement Bit B (<code class="docutils literal"><span class="pre">NICb</span></code>), and  NIC Supplement Bit C (<code class="docutils literal"><span class="pre">NICc</span></code>).</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">NICa</span></code> is in the same location as in ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>, which located in the operational status message <code class="docutils literal"><span class="pre">TC=31</span></code> (message bit 76 or payload bit 44).</li>
+<li><code class="docutils literal"><span class="pre">NICb</span></code> is located in the airborne position message (<code class="docutils literal"><span class="pre">TC=9-18</span></code>, message bit 40 or payload bit 8), where the “single antenna flag” was located in previous ADS-B versions.</li>
+<li><code class="docutils literal"><span class="pre">NICc</span></code> is also located in the operational status message <code class="docutils literal"><span class="pre">TC=31</span></code> (message bit 52 or payload bit 20).</li>
+</ul>
+<p>Gather the NIC supplement bits, together with the <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code>, accuracies are defined.</p>
+<p>For surface possible message (<code class="docutils literal"><span class="pre">TC=5-8</span></code>), using <code class="docutils literal"><span class="pre">TC</span></code>, <code class="docutils literal"><span class="pre">NICa</span></code>, and <code class="docutils literal"><span class="pre">NICc</span></code>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="15%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">TC</th>
+<th class="head">NICa</th>
+<th class="head">NICc</th>
+<th class="head">NIC</th>
+<th class="head">Rc</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>5</td>
+<td>0</td>
+<td>0</td>
+<td>11</td>
+<td>&lt; 7.5 m</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>0</td>
+<td>0</td>
+<td>10</td>
+<td>&lt; 25 m</td>
+</tr>
+<tr class="row-even"><td rowspan="2">7</td>
+<td>1</td>
+<td>0</td>
+<td>9</td>
+<td>&lt; 75 m</td>
+</tr>
+<tr class="row-odd"><td>0</td>
+<td>0</td>
+<td>8</td>
+<td>&lt; 0.1 NM (185 m)</td>
+</tr>
+<tr class="row-even"><td rowspan="4">8</td>
+<td>1</td>
+<td>1</td>
+<td>7</td>
+<td>&lt; 0.2 NM (370 m)</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>0</td>
+<td rowspan="2">6</td>
+<td>&lt; 0.3 NM (556 m)</td>
+</tr>
+<tr class="row-even"><td>0</td>
+<td>1</td>
+<td>&lt; 0.6 NM (1111 m)</td>
+</tr>
+<tr class="row-odd"><td>0</td>
+<td>0</td>
+<td>0</td>
+<td>&gt; 0.6 NM or Unknown</td>
+</tr>
+</tbody>
+</table>
+<p>For airborne possible message (<code class="docutils literal"><span class="pre">TC=9-18</span></code>), using <code class="docutils literal"><span class="pre">TC</span></code>, <code class="docutils literal"><span class="pre">NICa</span></code>, and <code class="docutils literal"><span class="pre">NICc</span></code>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="14%" />
+<col width="14%" />
+<col width="11%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">TC</th>
+<th class="head">NICa</th>
+<th class="head">NICb</th>
+<th class="head">NIC</th>
+<th class="head">Rc</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>9</td>
+<td>0</td>
+<td>0</td>
+<td>11</td>
+<td>&lt; 7.5 m</td>
+</tr>
+<tr class="row-odd"><td>10</td>
+<td>0</td>
+<td>0</td>
+<td>10</td>
+<td>&lt; 25 m</td>
+</tr>
+<tr class="row-even"><td rowspan="2">11</td>
+<td>1</td>
+<td>1</td>
+<td>9</td>
+<td>&lt; 75 m</td>
+</tr>
+<tr class="row-odd"><td>0</td>
+<td>0</td>
+<td>8</td>
+<td>&lt; 0.1 NM (185 m)</td>
+</tr>
+<tr class="row-even"><td>12</td>
+<td>0</td>
+<td>0</td>
+<td>7</td>
+<td>&lt; 0.2 NM (370 m)</td>
+</tr>
+<tr class="row-odd"><td rowspan="3">13</td>
+<td>0</td>
+<td>1</td>
+<td rowspan="3">6</td>
+<td>&lt; 0.3 NM (556 m)</td>
+</tr>
+<tr class="row-even"><td>0</td>
+<td>0</td>
+<td>&lt; 0.5 NM (926 m)</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>1</td>
+<td>&lt; 0.6 NM (1111 m)</td>
+</tr>
+<tr class="row-even"><td>14</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+<td>&lt; 1.0 NM (1852 m)</td>
+</tr>
+<tr class="row-odd"><td>15</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>&lt; 2 NM (3704 m)</td>
+</tr>
+<tr class="row-even"><td rowspan="2">16</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>&lt; 4 NM (7408 m)</td>
+</tr>
+<tr class="row-odd"><td>0</td>
+<td>0</td>
+<td>2</td>
+<td>&lt; 8 NM (14.8 km)</td>
+</tr>
+<tr class="row-even"><td>17</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>&lt; 20 NM (37.0 km)</td>
+</tr>
+<tr class="row-odd"><td>18</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>&gt; 20 NM or Unknown</td>
+</tr>
+</tbody>
+</table>
+<p>In the case of  airborne position with GNSS height (<code class="docutils literal"><span class="pre">TC=20-22</span></code>), the table remains the same as previous version.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="27%" />
+<col width="45%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">TC</th>
+<th class="head">NIC</th>
+<th class="head">Rc</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>20</td>
+<td>11</td>
+<td>&lt; 7.5 m</td>
+</tr>
+<tr class="row-odd"><td>21</td>
+<td>10</td>
+<td>&lt; 25 m</td>
+</tr>
+<tr class="row-even"><td>22</td>
+<td>0</td>
+<td>&gt; 25 m</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id2">
+<h3>1.6.2.3.2. NACp<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>NACp in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code> remains the same as in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>.</p>
+</div>
+<div class="section" id="id3">
+<h3>1.6.2.3.3. SIL<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>In <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, an additional <strong>SIL supplement bit</strong> (<code class="docutils literal"><span class="pre">SILs</span></code>) is introduced to distinguish the value is based on per flight hour or per sample.</p>
+<p>The same as in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>, <code class="docutils literal"><span class="pre">SIL</span></code> value can be found in two different locations:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">TC=29</span></code>, target state and status message, message bit 77-78 (or payload bit 45-46)</li>
+<li><code class="docutils literal"><span class="pre">TC=31</span></code>, operational status message, message bit 83-84 (or payload bit 51-52)</li>
+</ul>
+<p><code class="docutils literal"><span class="pre">SILs</span></code> bit can also be found at two different locations:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">TC=29</span></code>, target state and status message, message bit 40 (or payload bit 8)</li>
+<li><code class="docutils literal"><span class="pre">TC=31</span></code>, operational status message, message bit 87 (or payload bit 55)</li>
+<li><code class="docutils literal"><span class="pre">SILs=0</span></code>: probability is “per hour” based</li>
+<li><code class="docutils literal"><span class="pre">SILs=1</span></code>: probability is “per sample” based</li>
+</ul>
+<p>The same values from <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> are kept:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="44%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SIL</th>
+<th class="head">PE_RCu</th>
+<th class="head">PE_VPL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>unknown</td>
+<td>unknown</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>&lt; 1 x 10 <sup>-3</sup></td>
+<td>&lt; 1 x 10 <sup>-3</sup></td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>&lt; 1 x 10 <sup>-5</sup></td>
+<td>&lt; 1 x 10 <sup>-5</sup></td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>&lt; 1 x 10 <sup>-7</sup></td>
+<td>&lt; 2 x 10 <sup>-7</sup></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+
+    <div class="footer">
+      &copy;2018, Junzi Sun.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../../_sources/adsb/advance/uncertainty.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-74700456-1');
+</script>
+
+
+  </body>
+</html>
