@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>2. EHS (Mode-S Enhanced Surveillance) &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
+    <title>1. ADS-B (Automatic Dependent Surveillance – Broadcast) &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2.1. Introduction" href="ehs/introduction.html" />
-    <link rel="prev" title="1.6.3. Uncertainty and accuracy" href="adsb/advance/uncertainty.html" />
+    <link rel="next" title="1.1. Introduction" href="adsb/introduction.html" />
+    <link rel="prev" title="The 1090MHz Riddle" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -46,7 +46,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 
 <br/><br/><h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="adsb.html">1. ADS-B (Automatic Dependent Surveillance – Broadcast)</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. ADS-B (Automatic Dependent Surveillance – Broadcast)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="adsb/introduction.html">1.1. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="adsb/identification.html">1.2. Aircraft Identification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="adsb/compact-position-report.html">1.3. Compact Position Reporting</a></li>
@@ -55,7 +55,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <li class="toctree-l2"><a class="reference internal" href="adsb/advance.html">1.6. Advanced topics</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">2. EHS (Mode-S Enhanced Surveillance)</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="ehs.html">2. EHS (Mode-S Enhanced Surveillance)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ehs/introduction.html">2.1. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ehs/bds20-identification.html">2.2. Aircraft identification (BDS 2,0)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ehs/bds40-intention.html">2.3. Selected intention (BDS 4,0)</a></li>
@@ -69,11 +69,11 @@ An Open access book on Mode-S/ADS-B decoding and related topics
   <br/>
   <h3>Page Source</h3>
   <ul class="this-page-menu">
-    <!-- <li><a href="_sources/ehs.rst.txt"
+    <!-- <li><a href="_sources/adsb.rst.txt"
            rel="nofollow">Show Source</a></li> -->
-    <li><a href="https://github.com/junzis/the-1090mhz-riddle/blob/master/ehs.rst"
+    <li><a href="https://github.com/junzis/the-1090mhz-riddle/blob/master/adsb.rst"
            rel="nofollow">Show on GitHub</a></li>
-    <li><a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/ehs.rst"
+    <li><a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb.rst"
            rel="nofollow">Edit on GitHub</a></li>
   </ul>
 <div id="searchbox" style="display: none" role="search">
@@ -92,36 +92,46 @@ An Open access book on Mode-S/ADS-B decoding and related topics
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="ehs-mode-s-enhanced-surveillance">
-<h1>2. EHS (Mode-S Enhanced Surveillance)<a class="headerlink" href="#ehs-mode-s-enhanced-surveillance" title="Permalink to this headline">¶</a></h1>
-<p>Let’s hack into the EHS messaged too! more information on aircraft air speeds.</p>
-<p>The Mode-S Enhanced Surveillance (EHS) provides air traffic controller more information that what is included in the ADS-B (a.k.a Mode-S Elementary Surveillance). It responds to ATC Secondary Surveillance Radar, and broadcast specific parameters non-independently. Hence it is only available in the area where ATC presents.</p>
-<p>There are quite a few very interesting data contained within various types of the EHS messages. Such as: airspeeds (IAS, TAS, Mach), roll angles, track angles, track angle rates, selected altitude, magnetic heading, vertical rate, etc..</p>
-<dl class="docutils">
-<dt>There are a few challenges to decode those information:</dt>
-<dd><ul class="first last simple">
-<li>Which aircraft does one message come from?</li>
-<li>What is the type of one message (a.k.a. which BDS code) most likely to be?</li>
-<li>How confident is the information that has been decoded?</li>
-</ul>
-</dd>
-</dl>
-<p>This part of the book covers only a selected common type of EHS messages. For a complete Python implementation:
-<a class="reference external" href="https://github.com/junzis/pyModeS/blob/master/pyModeS/ehs.py">https://github.com/junzis/pyModeS/blob/master/pyModeS/ehs.py</a></p>
+  <div class="section" id="ads-b-automatic-dependent-surveillance-broadcast">
+<h1>1. ADS-B (Automatic Dependent Surveillance – Broadcast)<a class="headerlink" href="#ads-b-automatic-dependent-surveillance-broadcast" title="Permalink to this headline">¶</a></h1>
+<p>ADS-B is short for Automatic Dependent Surveillance–Broadcast. it is a satellite based surveillance system. Aircraft position, velocity, together with identification are transmitted through Mode-S Extended Squitter (1090 MHz).</p>
+<p>Majority of the aircraft nowadays are broadcasting ADS-B messages constantly. There are many ways you can set up you own receiver and antenna to start tapping into those signals (DVB-T usb stick, ModeSBeast, Raspberry Pi, RadarScape, etc).</p>
 <hr class="docutils" />
-<p><strong>Chapter structure:</strong></p>
+<p><strong>Chapter structure</strong></p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ehs/introduction.html">2.1. Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ehs/introduction.html#downlink-format-and-message-structure">2.1.1. Downlink Format and message structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ehs/introduction.html#parity-and-icao-address-recovery">2.1.2. Parity and ICAO address recovery</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ehs/introduction.html#bds-comm-b-data-selector">2.1.3. BDS (Comm-B Data Selector)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adsb/introduction.html">1.1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adsb/introduction.html#message-structure">1.1.1. Message structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adsb/introduction.html#icao-address">1.1.2. ICAO address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adsb/introduction.html#ads-b-message-types">1.1.3. ADS-B message types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adsb/introduction.html#ads-b-checksum">1.1.4. ADS-B Checksum</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ehs/bds20-identification.html">2.2. Aircraft identification (BDS 2,0)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ehs/bds40-intention.html">2.3. Selected intention (BDS 4,0)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ehs/bds50-track-n-turn.html">2.4. Track and turn (BDS 5,0)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ehs/bds60-airspeed.html">2.5. Heading and speed (BDS 6,0)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adsb/identification.html">1.2. Aircraft Identification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adsb/identification.html#example">1.2.1. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="adsb/compact-position-report.html">1.3. Compact Position Reporting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adsb/compact-position-report.html#example">1.3.1. Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adsb/compact-position-report.html#the-cpr-and-functions">1.3.2. The CPR and functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="adsb/airborne-position.html">1.4. Airborne Positions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adsb/airborne-position.html#globally-unambiguous-position-decoding-with-two-messages">1.4.1. Globally unambiguous position (decoding with two messages)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adsb/airborne-position.html#locally-unambiguous-position-decoding-with-one-message">1.4.2. Locally unambiguous position (decoding with one message)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="adsb/airborne-velocity.html">1.5. Airborne Velocity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adsb/airborne-velocity.html#subtype-1-ground-speed">1.5.1. Subtype 1 (Ground Speed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adsb/airborne-velocity.html#subtype-3-airspeed">1.5.2. Subtype 3 (Airspeed)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="adsb/advance.html">1.6. Advanced topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adsb/advance/version.html">1.6.1. ADS-B versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adsb/advance/operation-status.html">1.6.2. Aircraft Operation Status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adsb/advance/uncertainty.html">1.6.3. Uncertainty and accuracy</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -141,7 +151,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/ehs.rst.txt"
+      <a href="_sources/adsb.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
