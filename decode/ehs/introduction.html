@@ -34,6 +34,9 @@
 
   </head>
   <body>
+
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -100,19 +103,19 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 </pre></div>
 </div>
 <p>The message is structured as following, where the digit represents the number of binary digits:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">+--------+--------+--------+--------+-------------+------------------+------------+</span>
-<span class="o">|</span>  <span class="n">DF</span> <span class="mi">5</span>  <span class="o">|</span>  <span class="n">FS</span> <span class="mi">3</span>  <span class="o">|</span>  <span class="n">DR</span> <span class="mi">5</span>  <span class="o">|</span>  <span class="n">UM</span> <span class="mi">6</span>  <span class="o">|</span>    <span class="n">AC</span> <span class="mi">13</span>    <span class="o">|</span>       <span class="n">MB</span> <span class="mi">56</span>      <span class="o">|</span>  <span class="n">AP</span><span class="o">/</span><span class="n">DP</span> <span class="mi">24</span>  <span class="o">|</span>
-<span class="o">+-----------------+--------+-----------------------------------------+------------+</span>
-<span class="o">|</span>    <span class="o">&lt;---------+</span>      <span class="mi">32</span> <span class="n">bits</span>      <span class="o">+--------&gt;</span>     <span class="o">|</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>+--------+--------+--------+--------+-------------+------------------+------------+
+|  DF 5  |  FS 3  |  DR 5  |  UM 6  |    AC 13    |       MB 56      |  AP/DP 24  |
++-----------------+--------+-----------------------------------------+------------+
+|    &lt;---------+      32 bits      +--------&gt;     |
 
 
-<span class="n">DF</span><span class="p">:</span>     <span class="n">downlink</span> <span class="nb">format</span>
-<span class="n">FS</span><span class="p">:</span>     <span class="n">flight</span> <span class="n">status</span>
-<span class="n">DR</span><span class="p">:</span>     <span class="n">downlink</span> <span class="n">request</span>
-<span class="n">UM</span><span class="p">:</span>     <span class="n">utility</span> <span class="n">message</span>
-<span class="n">ID</span><span class="p">:</span>     <span class="n">identity</span>
-<span class="n">MB</span><span class="p">:</span>     <span class="n">message</span><span class="p">,</span> <span class="n">Comm</span><span class="o">-</span><span class="n">B</span>
-<span class="n">AP</span><span class="o">/</span><span class="n">DP</span><span class="p">:</span>  <span class="n">address</span><span class="o">/</span><span class="n">parity</span> <span class="ow">or</span> <span class="n">data</span><span class="o">/</span><span class="n">parity</span>
+DF:     downlink format
+FS:     flight status
+DR:     downlink request
+UM:     utility message
+ID:     identity
+MB:     message, Comm-B
+AP/DP:  address/parity or data/parity
 </pre></div>
 </div>
 <p>Except the DF, the first 32 bits does not contain useful information for decode the message. The exact definitions can be found in ICAO annex 10 (Aeronautical Telecommunications).</p>
@@ -124,30 +127,30 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <div class="section" id="address-parity">
 <h3>2.1.2.1. Address Parity<a class="headerlink" href="#address-parity" title="Permalink to this headline">¶</a></h3>
 <p>For AP, message parity field is produced by XOR ICAO with message data CRC checksum. So, to recover the ICAO bits, simply reverse XOR process will work, shown as follows:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">+-------------------------------+</span>  <span class="o">+------------------+</span>
-<span class="o">|</span>   <span class="n">DATA</span> <span class="n">FIELD</span> <span class="p">(</span><span class="mi">32</span> <span class="n">OR</span> <span class="mi">88</span> <span class="n">BIT</span><span class="p">)</span>   <span class="o">|</span>  <span class="o">|</span>   <span class="n">PARITY</span> <span class="n">BITS</span>    <span class="o">|</span>
-<span class="o">+--------------+----------------+</span>  <span class="o">+------------------+</span>
-               <span class="o">|</span>
-               <span class="o">|</span>                           <span class="n">XOR</span>
-               <span class="n">v</span>
-<span class="o">+--------------+-----------+</span>       <span class="o">+------------------+</span>
-<span class="o">|</span>          <span class="n">ENCODER</span>         <span class="o">|</span>  <span class="o">+--&gt;</span> <span class="o">|</span> <span class="n">CHECKSUM</span> <span class="p">(</span><span class="mi">24</span><span class="n">BIT</span><span class="p">)</span> <span class="o">|</span>
-<span class="o">+--------------------------+</span>       <span class="o">+------------------+</span>
-                                            <span class="o">||</span>
-                                   <span class="o">+------------------+</span>
-                                   <span class="o">|</span>   <span class="n">ICAO</span> <span class="p">(</span><span class="mi">24</span><span class="n">BIT</span><span class="p">)</span>   <span class="o">|</span>
-                                   <span class="o">+------------------+</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>+-------------------------------+  +--------------------+
+|   DATA FIELD (32 OR 88 BIT)   |  |    PARITY BITS     |
++--------------+----------------+  +--------------------+
+               |
+               |                           XOR
+               v
++--------------+-----------+       +--------------------+
+|          ENCODER         |  +--&gt; | CHECKSUM (24 BITS) |
++--------------------------+       +--------------------+
+                                            ||
+                                   +--------------------+
+                                   |   ICAO (24 BITS)   |
+                                   +--------------------+
 </pre></div>
 </div>
 <p>An example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Message</span><span class="p">:</span>      <span class="n">A0001838CA380031440000F24177</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>Message:      A0001838CA380031440000F24177
 
-<span class="n">Data</span><span class="p">:</span>         <span class="n">A0001838CA380031440000</span>
-<span class="n">Parity</span><span class="p">:</span>                             <span class="n">F24177</span>
+Data:         A0001838CA380031440000
+Parity:                             F24177
 
-<span class="n">Encode</span> <span class="n">data</span><span class="p">:</span>  <span class="n">CE2CA7</span>
+Encode data:  CE2CA7
 
-<span class="n">ICAO</span><span class="p">:</span>    <span class="p">[</span><span class="n">F24177</span><span class="p">]</span> <span class="n">XOR</span> <span class="p">[</span><span class="n">CE2CA7</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">3</span><span class="n">C6DD0</span><span class="p">]</span>
+ICAO:    [F24177] XOR [CE2CA7] =&gt; [3C6DD0]
 </pre></div>
 </div>
 <p>For the implementation of CRC encoder, refer to the pyModeS library <code class="docutils literal"><span class="pre">pyModeS.util.crc(msg,</span> <span class="pre">encode=True)</span></code></p>
@@ -158,12 +161,12 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <p>In simply words, BDS is a number (usually a 2-digit hexadecimal) that defines the type of message we are looking at. Both ADS-B messages and other types of Mods-S messages are all assigned their distinctive BDS number. However, it is <strong>no where</strong> to be found in the messages.</p>
 <p>When SSR interrogates aircraft, a BDS code is included in request message ( Uplink Format - UF 4, 5, 20, or 21). This BDS code are then used by the aircraft transponder to register the type of message to be sent. But when the downlink message is transmitted, its BDS code is not included in the message (because the SSR knows what kind message it requested). Good new for them, but challenges for us.</p>
 <p>Here are some BDS codes that we are interested, where additional parameters about aircraft can be found:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">BDS</span> <span class="mi">2</span><span class="p">,</span><span class="mi">0</span>   <span class="n">Aircraft</span> <span class="n">identification</span>
-<span class="n">BDS</span> <span class="mi">2</span><span class="p">,</span><span class="mi">1</span>   <span class="n">Aircraft</span> <span class="ow">and</span> <span class="n">airline</span> <span class="n">registration</span> <span class="n">markings</span>
-<span class="n">BDS</span> <span class="mi">4</span><span class="p">,</span><span class="mi">0</span>   <span class="n">Selected</span> <span class="n">vertical</span> <span class="n">intention</span>
-<span class="n">BDS</span> <span class="mi">4</span><span class="p">,</span><span class="mi">4</span>   <span class="n">Meteorological</span> <span class="n">routine</span> <span class="n">air</span> <span class="n">report</span>
-<span class="n">BDS</span> <span class="mi">5</span><span class="p">,</span><span class="mi">0</span>   <span class="n">Track</span> <span class="ow">and</span> <span class="n">turn</span> <span class="n">report</span>
-<span class="n">BDS</span> <span class="mi">6</span><span class="p">,</span><span class="mi">0</span>   <span class="n">Heading</span> <span class="ow">and</span> <span class="n">speed</span> <span class="n">report</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>BDS 2,0   Aircraft identification
+BDS 2,1   Aircraft and airline registration markings
+BDS 4,0   Selected vertical intention
+BDS 4,4   Meteorological routine air report
+BDS 5,0   Track and turn report
+BDS 6,0   Heading and speed report
 </pre></div>
 </div>
 </div>
@@ -191,17 +194,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
     
 
     
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-74700456-1');
-</script>
-
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-74700456-1');
+  </script>
 
   </body>
 </html>

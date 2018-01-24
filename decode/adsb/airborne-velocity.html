@@ -34,6 +34,9 @@
 
   </head>
   <body>
+
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -99,18 +102,18 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <h2>1.5.1. Subtype 1 (Ground Speed)<a class="headerlink" href="#subtype-1-ground-speed" title="Permalink to this headline">¶</a></h2>
 <p>Subtype 1 (subsonic, ground speed), are broadcast when ground velocity information are available. The aircraft velocity contains speed and heading information. The speed and heading are also decomposed into North-South, and East-West components.</p>
 <p>For example, following message is received:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Message</span><span class="p">:</span> <span class="mi">8</span><span class="n">D485020994409940838175B284F</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>Message: 8D485020994409940838175B284F
 
-<span class="o">|</span>    <span class="o">|</span> <span class="n">ICAO24</span> <span class="o">|</span>      <span class="n">DATA</span>      <span class="o">|</span>  <span class="n">CRC</span>   <span class="o">|</span>
-<span class="o">|----|--------|----------------|--------|</span>
-<span class="o">|</span> <span class="mi">8</span><span class="n">D</span> <span class="o">|</span> <span class="mi">485020</span> <span class="o">|</span> <span class="mi">99440994083817</span> <span class="o">|</span> <span class="mi">5</span><span class="n">B284F</span> <span class="o">|</span>
+|    | ICAO24 |      DATA      |  CRC   |
+|----|--------|----------------|--------|
+| 8D | 485020 | 99440994083817 | 5B284F |
 
-<span class="n">Convert</span> <span class="n">DATA</span> <span class="p">[</span><span class="mi">99440994083817</span><span class="p">]</span> <span class="n">into</span> <span class="n">binary</span><span class="p">:</span>
+Convert DATA [99440994083817] into binary:
 
-<span class="o">|-------|-----|----|--------|-----|------|------------|------|------------|-------|------|-----------|--------|-------|---------|</span>
-<span class="o">|</span>  <span class="n">TC</span>   <span class="o">|</span> <span class="n">ST</span>  <span class="o">|</span> <span class="n">IC</span> <span class="o">|</span> <span class="n">RESV_A</span> <span class="o">|</span> <span class="n">NAC</span> <span class="o">|</span> <span class="n">S</span><span class="o">-</span><span class="n">EW</span> <span class="o">|</span> <span class="n">V</span><span class="o">-</span><span class="n">EW</span>       <span class="o">|</span> <span class="n">S</span><span class="o">-</span><span class="n">NS</span> <span class="o">|</span> <span class="n">V</span><span class="o">-</span><span class="n">NS</span>       <span class="o">|</span> <span class="n">VrSrc</span> <span class="o">|</span> <span class="n">S</span><span class="o">-</span><span class="n">Vr</span> <span class="o">|</span> <span class="n">Vr</span>        <span class="o">|</span> <span class="n">RESV_B</span> <span class="o">|</span> <span class="n">S_Dif</span> <span class="o">|</span> <span class="n">Dif</span>     <span class="o">|</span>
-<span class="o">|-------|-----|----|--------|-----|------|------------|------|------------|-------|------|-----------|--------|-------|---------|</span>
-<span class="o">|</span> <span class="mi">10011</span> <span class="o">|</span> <span class="mi">001</span> <span class="o">|</span> <span class="mi">0</span>  <span class="o">|</span> <span class="mi">1</span>      <span class="o">|</span> <span class="mi">000</span> <span class="o">|</span> <span class="mi">1</span>    <span class="o">|</span> <span class="mi">0000001001</span> <span class="o">|</span> <span class="mi">1</span>    <span class="o">|</span> <span class="mi">0010100000</span> <span class="o">|</span> <span class="mi">0</span>     <span class="o">|</span> <span class="mi">1</span>    <span class="o">|</span> <span class="mi">000001110</span> <span class="o">|</span> <span class="mi">00</span>     <span class="o">|</span> <span class="mi">0</span>     <span class="o">|</span> <span class="mi">0010111</span> <span class="o">|</span>
+|-------|-----|----|--------|-----|------|------------|------|------------|-------|------|-----------|--------|-------|---------|
+|  TC   | ST  | IC | RESV_A | NAC | S-EW | V-EW       | S-NS | V-NS       | VrSrc | S-Vr | Vr        | RESV_B | S_Dif | Dif     |
+|-------|-----|----|--------|-----|------|------------|------|------------|-------|------|-----------|--------|-------|---------|
+| 10011 | 001 | 0  | 1      | 000 | 1    | 0000001001 | 1    | 0010100000 | 0     | 1    | 000001110 | 00     | 0     | 0010111 |
 </pre></div>
 </div>
 <p>There are quite a few parameters in the the velocity message. From left to rights, the number of bits indicate the following contents:</p>
@@ -292,18 +295,18 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <div class="section" id="subtype-3-airspeed">
 <h2>1.5.2. Subtype 3 (Airspeed)<a class="headerlink" href="#subtype-3-airspeed" title="Permalink to this headline">¶</a></h2>
 <p>Subtype 3 (subsonic, aripseed), are broadcast when ground speed information are NOT available, while airspeed is available. The structure of the message is similar to previous one. Let’s take a close look at an example for decoding here.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Message</span><span class="p">:</span> <span class="mi">8</span><span class="n">DA05F219B06B6AF189400CBC33F</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>Message: 8DA05F219B06B6AF189400CBC33F
 
-<span class="o">|</span>    <span class="o">|</span> <span class="n">ICAO24</span> <span class="o">|</span>      <span class="n">DATA</span>      <span class="o">|</span>  <span class="n">CRC</span>   <span class="o">|</span>
-<span class="o">|----|--------|----------------|--------|</span>
-<span class="o">|</span> <span class="mi">8</span><span class="n">D</span> <span class="o">|</span> <span class="n">A05F21</span> <span class="o">|</span> <span class="mi">9</span><span class="n">B06B6AF189400</span> <span class="o">|</span> <span class="n">CBC33F</span> <span class="o">|</span>
+|    | ICAO24 |      DATA      |  CRC   |
+|----|--------|----------------|--------|
+| 8D | A05F21 | 9B06B6AF189400 | CBC33F |
 
-<span class="n">Convert</span> <span class="n">DATA</span> <span class="p">[</span><span class="mi">9</span><span class="n">B06B6AF189400</span><span class="p">]</span> <span class="n">into</span> <span class="n">binary</span><span class="p">:</span>
+Convert DATA [9B06B6AF189400] into binary:
 
-<span class="o">|-------|-----|----|--------|-----|------|------------|------|------------|-------|------|-----------|--------|-------|---------|</span>
-<span class="o">|</span>  <span class="n">TC</span>   <span class="o">|</span> <span class="n">ST</span>  <span class="o">|</span> <span class="n">IC</span> <span class="o">|</span> <span class="n">RESV_A</span> <span class="o">|</span> <span class="n">NAC</span> <span class="o">|</span> <span class="n">S_hdg</span><span class="o">|</span> <span class="n">Hdg</span>        <span class="o">|</span> <span class="n">AS</span><span class="o">-</span><span class="n">t</span> <span class="o">|</span> <span class="n">AS</span>         <span class="o">|</span> <span class="n">VrSrc</span> <span class="o">|</span> <span class="n">S</span><span class="o">-</span><span class="n">Vr</span> <span class="o">|</span> <span class="n">Vr</span>        <span class="o">|</span> <span class="n">RESV_B</span> <span class="o">|</span> <span class="n">S_Dif</span> <span class="o">|</span> <span class="n">Dif</span>     <span class="o">|</span>
-<span class="o">|-------|-----|----|--------|-----|------|------------|------|------------|-------|------|-----------|--------|-------|---------|</span>
-<span class="o">|</span> <span class="mi">10011</span> <span class="o">|</span> <span class="mi">011</span> <span class="o">|</span> <span class="mi">0</span>  <span class="o">|</span> <span class="mi">0</span>      <span class="o">|</span> <span class="mi">000</span> <span class="o">|</span> <span class="mi">1</span>    <span class="o">|</span> <span class="mi">1010110110</span> <span class="o">|</span> <span class="mi">1</span>    <span class="o">|</span> <span class="mi">0101111000</span> <span class="o">|</span> <span class="mi">1</span>     <span class="o">|</span> <span class="mi">1</span>    <span class="o">|</span> <span class="mi">000100101</span> <span class="o">|</span> <span class="mi">00</span>     <span class="o">|</span> <span class="mi">0</span>     <span class="o">|</span> <span class="mi">0000000</span> <span class="o">|</span>
+|-------|-----|----|--------|-----|------|------------|------|------------|-------|------|-----------|--------|-------|---------|
+|  TC   | ST  | IC | RESV_A | NAC | S_hdg| Hdg        | AS-t | AS         | VrSrc | S-Vr | Vr        | RESV_B | S_Dif | Dif     |
+|-------|-----|----|--------|-----|------|------------|------|------------|-------|------|-----------|--------|-------|---------|
+| 10011 | 011 | 0  | 0      | 000 | 1    | 1010110110 | 1    | 0101111000 | 1     | 1    | 000100101 | 00     | 0     | 0000000 |
 </pre></div>
 </div>
 <p>The detail bits representations are:</p>
@@ -473,17 +476,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
     
 
     
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-74700456-1');
-</script>
-
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-74700456-1');
+  </script>
 
   </body>
 </html>

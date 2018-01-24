@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>1.6.2. Uncertainty and accuracy &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
+    <title>1.6.3. Uncertainty and accuracy &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="2. EHS (Mode-S Enhanced Surveillance)" href="../../ehs.html" />
-    <link rel="prev" title="1.6.1. ADS-B versions" href="version.html" />
+    <link rel="prev" title="1.6.2. Aircraft Operation Status" href="operation-status.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -34,6 +34,9 @@
 
   </head>
   <body>
+
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -90,7 +93,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
           <div class="body" role="main">
             
   <div class="section" id="uncertainty-and-accuracy">
-<h1>1.6.2. Uncertainty and accuracy<a class="headerlink" href="#uncertainty-and-accuracy" title="Permalink to this headline">¶</a></h1>
+<h1>1.6.3. Uncertainty and accuracy<a class="headerlink" href="#uncertainty-and-accuracy" title="Permalink to this headline">¶</a></h1>
 <p>NIC, NAC, NUC, and SIL, those acronyms do sound confusing. They are categorical numbers for the integrity,  accuracy, or uncertainties of the position measurements.</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">NUCp</span></code>: Navigation Uncertainty Category - Position<ul>
@@ -98,10 +101,9 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <li>Version 0, 1, and 2</li>
 </ul>
 </li>
-<li><code class="docutils literal"><span class="pre">NUCv</span></code>: Navigation Uncertainty Category - Velocity<ul>
+<li><code class="docutils literal"><span class="pre">NUCr</span></code>: Navigation Uncertainty Category - Velocity (Rate)<ul>
 <li>Values: 0 - 4</li>
-<li>Version 0, 1, and 2</li>
-<li>a.k.a. NUCr, Navigation Uncertainty Category - Rate</li>
+<li>Version 0</li>
 </ul>
 </li>
 <li><code class="docutils literal"><span class="pre">NIC</span></code>: Navigation Integrity Category<ul>
@@ -111,6 +113,11 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 </li>
 <li><code class="docutils literal"><span class="pre">NACp</span></code>: Navigation Accuracy Category - Position<ul>
 <li>Values: 0 - 11</li>
+<li>Version 1 and 2</li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">NACv</span></code>: Navigation Accuracy Category - Velocity<ul>
+<li>Values: 0 - 4</li>
 <li>Version 1 and 2</li>
 </ul>
 </li>
@@ -128,9 +135,9 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <li>95% Containment Radius - Vertical (<code class="docutils literal"><span class="pre">RCv</span></code>)</li>
 </ul>
 </li>
-<li><code class="docutils literal"><span class="pre">NUCv</span></code>:<ul>
+<li><code class="docutils literal"><span class="pre">NUCr</span></code>:<ul>
 <li>95% Horizontal Velocity Error (<code class="docutils literal"><span class="pre">HVE</span></code>)</li>
-<li>95% Vetical Velocity Error (<code class="docutils literal"><span class="pre">VVE</span></code>)</li>
+<li>95% Vertical Velocity Error (<code class="docutils literal"><span class="pre">VVE</span></code>)</li>
 </ul>
 </li>
 <li><code class="docutils literal"><span class="pre">NIC</span></code>:<ul>
@@ -140,16 +147,19 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 </ul>
 </li>
 <li><code class="docutils literal"><span class="pre">NACp</span></code>:<ul>
-<li>95% horizontal accuracy bounds<ul>
-<li>a.k.a. Estimated Position Uncertainty (<code class="docutils literal"><span class="pre">EPU</span></code>)</li>
+<li>95% horizontal accuracy bounds, Estimated Position Uncertainty (<code class="docutils literal"><span class="pre">EPU</span></code>)<ul>
 <li>a.k.a. Horizontal Figure of Merit (<code class="docutils literal"><span class="pre">HFOM</span></code>)</li>
 </ul>
 </li>
-<li>95% vertical accuracy bounds<ul>
-<li>a.k.a. Vertical Estimated Position Uncertainty (V``EPU)</li>
+<li>95% vertical accuracy bounds, Vertical Estimated Position Uncertainty (<code class="docutils literal"><span class="pre">VEPU</span></code>)<ul>
 <li>a.k.a. Vertical Figure of Merit (<code class="docutils literal"><span class="pre">VFOM</span></code>)</li>
 </ul>
 </li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">NACv</span></code>:<ul>
+<li>95% horizontal accuracy bounds for velocity, Horizontal Figure of Merit (<code class="docutils literal"><span class="pre">HFOMr</span></code>)</li>
+<li>95% vertical accuracy bounds for velocity, Vertical Figure of Merit (<code class="docutils literal"><span class="pre">VFOMr</span></code>)</li>
 </ul>
 </li>
 <li><code class="docutils literal"><span class="pre">SIL</span></code>:<ul>
@@ -159,11 +169,13 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 </li>
 </ul>
 <p>Depending on the ADS-B versions, the bits to uncover these values maybe different. We are going to address the uncertainty measures by ADS-B versions.</p>
+<blockquote>
+<div>To understand about these versions, first take a look at the <a class="reference external" href="version.html">ADS-B version chapter</a>.</div></blockquote>
 <div class="section" id="version-0">
-<h2>1.6.2.1. Version 0<a class="headerlink" href="#version-0" title="Permalink to this headline">¶</a></h2>
+<h2>1.6.3.1. Version 0<a class="headerlink" href="#version-0" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="nucp">
-<h3>1.6.2.1.1. NUCp<a class="headerlink" href="#nucp" title="Permalink to this headline">¶</a></h3>
-<p>In ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code>, the accuracy is express as <strong>Navigation Uncertainty Category - position</strong> (NUCp). It is directly related (one-to-one relationship) with <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code>, as follows:</p>
+<h3>1.6.3.1.1. NUCp<a class="headerlink" href="#nucp" title="Permalink to this headline">¶</a></h3>
+<p>In ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code>, the accuracy is express as <strong>Navigation Uncertainty Category - position</strong> (<code class="docutils literal"><span class="pre">NUCp</span></code>). It is directly related (one-to-one relationship) with <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code>, as follows:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="8%" />
@@ -384,8 +396,8 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 </table>
 </div>
 <div class="section" id="nucv">
-<h3>1.6.2.1.2. NUCv<a class="headerlink" href="#nucv" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">NUCv</span></code> bits are located at the airborne velocity message, <code class="docutils literal"><span class="pre">TC=19</span></code>, message bit 43-45 (or payload bit 11-13). It defines the 95% of the error in horizontal and vertical speed.</p>
+<h3>1.6.3.1.2. NUCv<a class="headerlink" href="#nucv" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Navigation Uncertainty Category - velocity</strong> (<code class="docutils literal"><span class="pre">NUCv</span></code>) it is used to indicate the uncertainty of the horizontal and vertical speeds. Related bits are located at the airborne velocity message, <code class="docutils literal"><span class="pre">TC=19</span></code>, message bit 43-45 (or payload bit 11-13). It defines the 95% of the error in horizontal and vertical speed.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -424,10 +436,11 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 </div>
 </div>
 <div class="section" id="version-1">
-<h2>1.6.2.2. Version 1<a class="headerlink" href="#version-1" title="Permalink to this headline">¶</a></h2>
+<h2>1.6.3.2. Version 1<a class="headerlink" href="#version-1" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="nic">
-<h3>1.6.2.2.1. NIC<a class="headerlink" href="#nic" title="Permalink to this headline">¶</a></h3>
-<p>In ADS-B Version 1, the <code class="docutils literal"><span class="pre">NUCp</span></code> value is still kept, but has been moved to the new “operation status messages” (<code class="docutils literal"><span class="pre">TC=31</span></code>). Instead, <strong>Navigation Integrity Category</strong> (<code class="docutils literal"><span class="pre">NIC</span></code>) is introduced to provide more levels of uncertainty definitions. Specificly, for <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code>: <code class="docutils literal"><span class="pre">7</span></code> and <code class="docutils literal"><span class="pre">11</span></code>, two <code class="docutils literal"><span class="pre">NIC</span></code> levels present in each code. In order to distinguish these two different levels, a <strong>NIC Supplement Bit</strong> (<code class="docutils literal"><span class="pre">NICs</span></code>) is introduced in “operation status messages” <code class="docutils literal"><span class="pre">TC=31</span></code>  (message bit 76 or payload bit 44). The relation of TC, NIC, and Rc are list in following tables.</p>
+<h3>1.6.3.2.1. NIC<a class="headerlink" href="#nic" title="Permalink to this headline">¶</a></h3>
+<p>In ADS-B Version 1, <strong>Navigation Integrity Category</strong> (<code class="docutils literal"><span class="pre">NIC</span></code>) is introduced to provide more levels of uncertainty definitions. The <code class="docutils literal"><span class="pre">NUCp</span></code> value is still kept, but has been moved to the new “operation status messages” (<code class="docutils literal"><span class="pre">TC=31</span></code>).</p>
+<p>As for <code class="docutils literal"><span class="pre">NIC</span></code>, in <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code>: <code class="docutils literal"><span class="pre">7</span></code> and <code class="docutils literal"><span class="pre">11</span></code>, two <code class="docutils literal"><span class="pre">NIC</span></code> levels present in each code. In order to distinguish these two different levels, a <strong>NIC Supplement Bit</strong> (<code class="docutils literal"><span class="pre">NICs</span></code>) is introduced in “operation status messages” <code class="docutils literal"><span class="pre">TC=31</span></code>  (message bit 76 or payload bit 44). The relation of TC, NIC, and Rc are list in following tables.</p>
 <p>For surface position (<code class="docutils literal"><span class="pre">TC=5-8</span></code>)</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -599,7 +612,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 </table>
 </div>
 <div class="section" id="nacp">
-<h3>1.6.2.2.2. NACp<a class="headerlink" href="#nacp" title="Permalink to this headline">¶</a></h3>
+<h3>1.6.3.2.2. NACp<a class="headerlink" href="#nacp" title="Permalink to this headline">¶</a></h3>
 <p>In addition to <code class="docutils literal"><span class="pre">NIC</span></code>, <strong>Navigation Accuracy Category - Position</strong> (<code class="docutils literal"><span class="pre">NACp</span></code>) is also introduced int ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>. <code class="docutils literal"><span class="pre">NACp</span></code> can be found in:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">TC=29</span></code>, target state and status message, message bit 72-75 (or payload bit 40-43)</li>
@@ -612,14 +625,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <p>For ADS-B, <code class="docutils literal"><span class="pre">NACp</span></code> is also indicated in the operational status messages (<code class="docutils literal"><span class="pre">TC=31</span></code>). <code class="docutils literal"><span class="pre">NACp</span></code> and corresponding <code class="docutils literal"><span class="pre">EPU</span></code>/<code class="docutils literal"><span class="pre">VEPU</span></code> are:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="18%" />
-<col width="59%" />
-<col width="24%" />
+<col width="15%" />
+<col width="51%" />
+<col width="33%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">NACp</th>
-<th class="head">EPU</th>
-<th class="head">VEPU</th>
+<th class="head">HFU (HFOM)</th>
+<th class="head">VEPU (VFOM)</th>
 </tr>
 </thead>
 <tbody valign="top">
@@ -674,9 +687,48 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 </tbody>
 </table>
 </div>
+<div class="section" id="nacv">
+<h3>1.6.3.2.3. NACv<a class="headerlink" href="#nacv" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Navigation Accuracy Category - Velocity</strong> (<code class="docutils literal"><span class="pre">NACv</span></code>) is introduced in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> to replace the <code class="docutils literal"><span class="pre">NUCv</span></code> from <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code>. The bits are located at the same location and has the same definitions of values. It can be found in airborne velocity message, <code class="docutils literal"><span class="pre">TC=19</span></code>, message bit 43-45 (or payload bit 11-13). It defines the 95% of the error in horizontal and vertical speed.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="30%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">NAVc</th>
+<th class="head">HFOMr (95%)</th>
+<th class="head">VFOMr (95%)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>unknown</td>
+<td>unknown</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>&lt; 10 m/s</td>
+<td>&lt; 15.2 m/s (50 pfs)</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>&lt; 3 m/s</td>
+<td>&lt; 4.5 m/s (15 fps)</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>&lt; 1 m/s</td>
+<td>&lt; 1.5 m/s (5 fps)</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>&lt; 0.3 m/s</td>
+<td>&lt; 0.46 m/s (1.5 fps)</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="sil">
-<h3>1.6.2.2.3. SIL<a class="headerlink" href="#sil" title="Permalink to this headline">¶</a></h3>
-<p>On the other hand, Surveillance Integrity Level (<code class="docutils literal"><span class="pre">SIL</span></code>) is introduced in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> to indicate the probability of measurement exceeding the containment radius horizontally (<code class="docutils literal"><span class="pre">PE_RCu</span></code>) and vertically (<code class="docutils literal"><span class="pre">PE_VPL</span></code>).</p>
+<h3>1.6.3.2.4. SIL<a class="headerlink" href="#sil" title="Permalink to this headline">¶</a></h3>
+<p>On the other hand, <strong>Surveillance Integrity Level</strong> (<code class="docutils literal"><span class="pre">SIL</span></code>) is introduced in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> to indicate the probability of measurement exceeding the containment radius horizontally (<code class="docutils literal"><span class="pre">PE_RCu</span></code>) and vertically (<code class="docutils literal"><span class="pre">PE_VPL</span></code>).</p>
 <p><code class="docutils literal"><span class="pre">SIL</span></code> value can be found in two different locations:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">TC=29</span></code>, target state and status message, message bit 77-78 (or payload bit 45-46)</li>
@@ -718,9 +770,9 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 </div>
 </div>
 <div class="section" id="version-2">
-<h2>1.6.2.3. Version 2<a class="headerlink" href="#version-2" title="Permalink to this headline">¶</a></h2>
+<h2>1.6.3.3. Version 2<a class="headerlink" href="#version-2" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
-<h3>1.6.2.3.1. NIC<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>1.6.3.3.1. NIC<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>In ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, levels of accuracies are further divided by two addition <code class="docutils literal"><span class="pre">NIC</span></code> supplement bits. In <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, we call them NIC Supplement Bit A (<code class="docutils literal"><span class="pre">NICa</span></code>),  NIC Supplement Bit B (<code class="docutils literal"><span class="pre">NICb</span></code>), and  NIC Supplement Bit C (<code class="docutils literal"><span class="pre">NICc</span></code>).</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">NICa</span></code> is in the same location as in ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>, which located in the operational status message <code class="docutils literal"><span class="pre">TC=31</span></code> (message bit 76 or payload bit 44).</li>
@@ -919,11 +971,15 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 </table>
 </div>
 <div class="section" id="id2">
-<h3>1.6.2.3.2. NACp<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>1.6.3.3.2. NACp<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>NACp in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code> remains the same as in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>.</p>
 </div>
 <div class="section" id="id3">
-<h3>1.6.2.3.3. SIL<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>1.6.3.3.3. NACv<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>NACv in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code> remains the same as in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>.</p>
+</div>
+<div class="section" id="id4">
+<h3>1.6.3.3.4. SIL<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>In <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, an additional <strong>SIL supplement bit</strong> (<code class="docutils literal"><span class="pre">SILs</span></code>) is introduced to distinguish the value is based on per flight hour or per sample.</p>
 <p>The same as in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>, <code class="docutils literal"><span class="pre">SIL</span></code> value can be found in two different locations:</p>
 <ul class="simple">
@@ -995,17 +1051,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
     
 
     
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-74700456-1');
-</script>
-
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-74700456-1');
+  </script>
 
   </body>
 </html>

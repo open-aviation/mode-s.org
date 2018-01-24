@@ -34,6 +34,9 @@
 
   </head>
   <body>
+
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -171,46 +174,46 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 </pre></div>
 </div>
 <p>For example, the two following messages are received:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">8</span><span class="n">D40621D58C382D690C8AC2863A7</span>
-<span class="mi">8</span><span class="n">D40621D58C386435CC412692AD6</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>8D40621D58C382D690C8AC2863A7
+8D40621D58C386435CC412692AD6
 
-<span class="o">|</span>    <span class="o">|</span> <span class="n">ICAO24</span> <span class="o">|</span>      <span class="n">DATA</span>      <span class="o">|</span>  <span class="n">CRC</span>   <span class="o">|</span>
-<span class="o">|----|--------|----------------|--------|</span>
-<span class="o">|</span> <span class="mi">8</span><span class="n">D</span> <span class="o">|</span> <span class="mi">40621</span><span class="n">D</span> <span class="o">|</span> <span class="mi">58</span><span class="n">C382D690C8AC</span> <span class="o">|</span> <span class="mi">2863</span><span class="n">A7</span> <span class="o">|</span>
-<span class="o">|</span> <span class="mi">8</span><span class="n">D</span> <span class="o">|</span> <span class="mi">40621</span><span class="n">D</span> <span class="o">|</span> <span class="mi">58</span><span class="n">C386435CC412</span> <span class="o">|</span> <span class="mi">692</span><span class="n">AD6</span> <span class="o">|</span>
+|    | ICAO24 |      DATA      |  CRC   |
+|----|--------|----------------|--------|
+| 8D | 40621D | 58C382D690C8AC | 2863A7 |
+| 8D | 40621D | 58C386435CC412 | 692AD6 |
 
 
-<span class="n">Data</span> <span class="ow">in</span> <span class="n">binary</span><span class="p">:</span>
+Data in binary:
 
-<span class="o">|</span> <span class="n">DATA</span>                                                                              <span class="o">|</span>
-<span class="o">|===================================================================================|</span>
-<span class="o">|</span> <span class="n">TC</span>    <span class="o">|</span> <span class="n">SS</span> <span class="o">|</span> <span class="n">NICsb</span> <span class="o">|</span> <span class="n">ALT</span>          <span class="o">|</span> <span class="n">T</span> <span class="o">|</span> <span class="n">F</span> <span class="o">|</span> <span class="n">CPR</span><span class="o">-</span><span class="n">LAT</span>           <span class="o">|</span> <span class="n">CPR</span><span class="o">-</span><span class="n">LON</span>           <span class="o">|</span>
-<span class="o">|-------|----|-------|--------------|---|---|-------------------|-------------------|</span>
-<span class="o">|</span> <span class="mi">01011</span> <span class="o">|</span> <span class="mi">00</span> <span class="o">|</span> <span class="mi">0</span>     <span class="o">|</span> <span class="mi">110000111000</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">10110101101001000</span> <span class="o">|</span> <span class="mi">01100100010101100</span> <span class="o">|</span>
-<span class="o">|</span> <span class="mi">01011</span> <span class="o">|</span> <span class="mi">00</span> <span class="o">|</span> <span class="mi">0</span>     <span class="o">|</span> <span class="mi">110000111000</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">10010000110101110</span> <span class="o">|</span> <span class="mi">01100010000010010</span> <span class="o">|</span>
+| DATA                                                                              |
+|===================================================================================|
+| TC    | SS | NICsb | ALT          | T | F | CPR-LAT           | CPR-LON           |
+|-------|----|-------|--------------|---|---|-------------------|-------------------|
+| 01011 | 00 | 0     | 110000111000 | 0 | 0 | 10110101101001000 | 01100100010101100 |
+| 01011 | 00 | 0     | 110000111000 | 0 | 1 | 10010000110101110 | 01100010000010010 |
 </pre></div>
 </div>
 <p>In both messages we can find <code class="docutils literal"><span class="pre">DF=17</span></code> and <code class="docutils literal"><span class="pre">TC=11</span></code>, with the same ICAO24 address <code class="docutils literal"><span class="pre">40621D</span></code>. So, those two frames are valid for decoding the positions of this aircraft. Assume the first message is the newest message received.</p>
 </div>
 <div class="section" id="the-cpr-representation-of-coordinates">
 <h3>1.4.1.2. The CPR representation of coordinates<a class="headerlink" href="#the-cpr-representation-of-coordinates" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">F</span> <span class="o">|</span> <span class="n">CPR</span> <span class="n">Latitude</span>      <span class="o">|</span> <span class="n">CPR</span> <span class="n">Longitude</span>     <span class="o">|</span>
-<span class="o">|---|-------------------|-------------------|</span>
-<span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">10110101101001000</span> <span class="o">|</span> <span class="mi">01100100010101100</span> <span class="o">|</span>  <span class="o">-&gt;</span> <span class="n">newest</span> <span class="n">frame</span> <span class="n">received</span>
-<span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">10010000110101110</span> <span class="o">|</span> <span class="mi">01100010000010010</span> <span class="o">|</span>
-<span class="o">|---|-------------------|-------------------|</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>| F | CPR Latitude      | CPR Longitude     |
+|---|-------------------|-------------------|
+| 0 | 10110101101001000 | 01100100010101100 |  -&gt; newest frame received
+| 1 | 10010000110101110 | 01100010000010010 |
+|---|-------------------|-------------------|
 
-<span class="n">In</span> <span class="n">decimal</span><span class="p">:</span>
+In decimal:
 
-<span class="o">|---|-------------------|-------------------|</span>
-<span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">93000</span>             <span class="o">|</span> <span class="mi">51372</span>             <span class="o">|</span>
-<span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">74158</span>             <span class="o">|</span> <span class="mi">50194</span>             <span class="o">|</span>
-<span class="o">|---|-------------------|-------------------|</span>
+|---|-------------------|-------------------|
+| 0 | 93000             | 51372             |
+| 1 | 74158             | 50194             |
+|---|-------------------|-------------------|
 
-<span class="n">CPR_LAT_EVEN</span><span class="p">:</span> <span class="mi">93000</span> <span class="o">/</span> <span class="mi">131072</span> <span class="o">-&gt;</span> <span class="mf">0.7095</span>
-<span class="n">CPR_LON_EVEN</span><span class="p">:</span> <span class="mi">51372</span> <span class="o">/</span> <span class="mi">131072</span> <span class="o">-&gt;</span> <span class="mf">0.3919</span>
-<span class="n">CPR_LAT_ODD</span><span class="p">:</span>  <span class="mi">74158</span> <span class="o">/</span> <span class="mi">131072</span> <span class="o">-&gt;</span> <span class="mf">0.5658</span>
-<span class="n">CPR_LON_ODD</span><span class="p">:</span>  <span class="mi">50194</span> <span class="o">/</span> <span class="mi">131072</span> <span class="o">-&gt;</span> <span class="mf">0.3829</span>
+CPR_LAT_EVEN: 93000 / 131072 -&gt; 0.7095
+CPR_LON_EVEN: 51372 / 131072 -&gt; 0.3919
+CPR_LAT_ODD:  74158 / 131072 -&gt; 0.5658
+CPR_LON_ODD:  50194 / 131072 -&gt; 0.3829
 </pre></div>
 </div>
 <p>Since CPR latitude and longitude are encoded in 17 bits, 131072 (2^17) is the maximum value.</p>
@@ -354,45 +357,45 @@ possible. exit the calculation and wait for new messages. If two values are the 
 <div class="section" id="example">
 <h3>1.4.2.8. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
 <p>For the same example message:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">8</span><span class="n">D40621D58C382D690C8AC2863A7</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>8D40621D58C382D690C8AC2863A7
 
-<span class="n">Reference</span> <span class="n">position</span><span class="p">:</span>
-  <span class="n">LAT</span><span class="p">:</span> <span class="mf">52.258</span>
-  <span class="n">LON</span><span class="p">:</span>  <span class="mf">3.918</span>
+Reference position:
+  LAT: 52.258
+  LON:  3.918
 </pre></div>
 </div>
 <p>The structure of message is:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">8</span><span class="n">D40621D58C382D690C8AC2863A7</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>8D40621D58C382D690C8AC2863A7
 
-<span class="o">|</span>    <span class="o">|</span> <span class="n">ICAO24</span> <span class="o">|</span>      <span class="n">DATA</span>      <span class="o">|</span>  <span class="n">CRC</span>   <span class="o">|</span>
-<span class="o">|----|--------|----------------|--------|</span>
-<span class="o">|</span> <span class="mi">8</span><span class="n">D</span> <span class="o">|</span> <span class="mi">40621</span><span class="n">D</span> <span class="o">|</span> <span class="mi">58</span><span class="n">C382D690C8AC</span> <span class="o">|</span> <span class="mi">2863</span><span class="n">A7</span> <span class="o">|</span>
-
-
-<span class="n">Data</span> <span class="ow">in</span> <span class="n">binary</span><span class="p">:</span>
-
-<span class="o">|</span> <span class="n">DATA</span>                                                                              <span class="o">|</span>
-<span class="o">|===================================================================================|</span>
-<span class="o">|</span> <span class="n">TC</span>    <span class="o">|</span> <span class="n">SS</span> <span class="o">|</span> <span class="n">NICsb</span> <span class="o">|</span> <span class="n">ALT</span>          <span class="o">|</span> <span class="n">T</span> <span class="o">|</span> <span class="n">F</span> <span class="o">|</span> <span class="n">CPR</span><span class="o">-</span><span class="n">LAT</span>           <span class="o">|</span> <span class="n">CPR</span><span class="o">-</span><span class="n">LON</span>           <span class="o">|</span>
-<span class="o">|-------|----|-------|--------------|---|---|-------------------|-------------------|</span>
-<span class="o">|</span> <span class="mi">01011</span> <span class="o">|</span> <span class="mi">00</span> <span class="o">|</span> <span class="mi">0</span>     <span class="o">|</span> <span class="mi">110000111000</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">10110101101001000</span> <span class="o">|</span> <span class="mi">01100100010101100</span> <span class="o">|</span>
+|    | ICAO24 |      DATA      |  CRC   |
+|----|--------|----------------|--------|
+| 8D | 40621D | 58C382D690C8AC | 2863A7 |
 
 
-<span class="n">CPR</span> <span class="n">representation</span><span class="p">:</span>
+Data in binary:
 
-<span class="o">|</span> <span class="n">F</span> <span class="o">|</span> <span class="n">CPR</span> <span class="n">Latitude</span>      <span class="o">|</span> <span class="n">CPR</span> <span class="n">Longitude</span>     <span class="o">|</span>
-<span class="o">|---|-------------------|-------------------|</span>
-<span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">10110101101001000</span> <span class="o">|</span> <span class="mi">01100100010101100</span> <span class="o">|</span>
-<span class="o">|---|-------------------|-------------------|</span>
+| DATA                                                                              |
+|===================================================================================|
+| TC    | SS | NICsb | ALT          | T | F | CPR-LAT           | CPR-LON           |
+|-------|----|-------|--------------|---|---|-------------------|-------------------|
+| 01011 | 00 | 0     | 110000111000 | 0 | 0 | 10110101101001000 | 01100100010101100 |
 
-<span class="n">In</span> <span class="n">decimal</span><span class="p">:</span>
 
-<span class="o">|---|-------------------|-------------------|</span>
-<span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">93000</span>             <span class="o">|</span> <span class="mi">51372</span>             <span class="o">|</span>
-<span class="o">|---|-------------------|-------------------|</span>
+CPR representation:
 
-<span class="n">CPR_LAT</span><span class="p">:</span> <span class="mi">93000</span> <span class="o">/</span> <span class="mi">131072</span> <span class="o">-&gt;</span> <span class="mf">0.7095</span>
-<span class="n">CPR_LON</span><span class="p">:</span> <span class="mi">51372</span> <span class="o">/</span> <span class="mi">131072</span> <span class="o">-&gt;</span> <span class="mf">0.3919</span>
+| F | CPR Latitude      | CPR Longitude     |
+|---|-------------------|-------------------|
+| 0 | 10110101101001000 | 01100100010101100 |
+|---|-------------------|-------------------|
+
+In decimal:
+
+|---|-------------------|-------------------|
+| 0 | 93000             | 51372             |
+|---|-------------------|-------------------|
+
+CPR_LAT: 93000 / 131072 -&gt; 0.7095
+CPR_LON: 51372 / 131072 -&gt; 0.3919
 </pre></div>
 </div>
 <p>Run the calculation, the same result will be decoded:</p>
@@ -430,17 +433,14 @@ possible. exit the calculation and wait for new messages. If two values are the 
     
 
     
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-74700456-1');
-</script>
-
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-74700456-1');
+  </script>
 
   </body>
 </html>

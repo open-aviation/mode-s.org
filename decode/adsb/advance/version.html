@@ -24,7 +24,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1.6.2. Uncertainty and accuracy" href="uncertainty.html" />
+    <link rel="next" title="1.6.2. Aircraft Operation Status" href="operation-status.html" />
     <link rel="prev" title="1.6. Advanced topics" href="../advance.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -34,6 +34,9 @@
 
   </head>
   <body>
+
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -94,26 +97,23 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <p>In this advance chapter, we are going to looking into different versions and evolution of the ADS-B.</p>
 <p>Since the beginning of ADS-B, there have been three different versions (to my knowledge) implemented. The major reason for these update is to enable more information (types of data) in ADS-B. Documentations on these versions and differences are quite far from user friendly. They are always presented in a very scattered fashion. even the official <code class="docutils literal"><span class="pre">ICAO_9871</span></code> document is confusing to read. I am going to try my best to put the pieces together in this chapter.</p>
 <p>There are three versions implemented so far, starting from Version 0, then  Version 1 around 2008 and Version 2 around 2012. Major changes in Version 1 and Version 2 are listed as follows:</p>
-<ol class="arabic simple">
-<li>From <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code> to <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>:</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>Added <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code> 28, 19, and 31 messages
-- <code class="docutils literal"><span class="pre">TC=28</span></code>: Aircraft status - Emergency/priority status and ACAS RA Broadcast
-- <code class="docutils literal"><span class="pre">TC=29</span></code>: Target state and status
-- <code class="docutils literal"><span class="pre">TC=31</span></code>: Operational status</li>
-<li>Introduced the “Navigation integrity category (<code class="docutils literal"><span class="pre">NIC</span></code>)” and “Surveillance integrity level (<code class="docutils literal"><span class="pre">SIL</span></code>)” in addition to the “Navigation accuracy category (<code class="docutils literal"><span class="pre">NAC</span></code>)” from the <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code>
-- Type Code and an NIC Supplement bit (<code class="docutils literal"><span class="pre">NICs</span></code>) is used to define the NIC
-- NIC Supplement bit included in <code class="docutils literal"><span class="pre">TC=31</span></code> messages</li>
-<li>ADS-B version number included in <code class="docutils literal"><span class="pre">TC=31</span></code></li>
+<p>From <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code> to <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>:</p>
+<ul class="simple">
+<li>Added <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code> 28, 19, and 31 messages<ul>
+<li><code class="docutils literal"><span class="pre">TC=28</span></code>: Aircraft status - Emergency/priority status and ACAS RA Broadcast</li>
+<li><code class="docutils literal"><span class="pre">TC=29</span></code>: Target state and status</li>
+<li><code class="docutils literal"><span class="pre">TC=31</span></code>: Operational status</li>
 </ul>
-</div></blockquote>
-<ol class="arabic simple" start="2">
-<li>From <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> to <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>:</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
+</li>
+<li>Introduced the “Navigation integrity category (<code class="docutils literal"><span class="pre">NIC</span></code>)” and “Surveillance integrity level (<code class="docutils literal"><span class="pre">SIL</span></code>)” in addition to the “Navigation accuracy category (<code class="docutils literal"><span class="pre">NAC</span></code>)” from the <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code><ul>
+<li>Type Code and an NIC Supplement bit (<code class="docutils literal"><span class="pre">NICs</span></code>) is used to define the NIC</li>
+<li>NIC Supplement bit included in <code class="docutils literal"><span class="pre">TC=31</span></code> messages</li>
+</ul>
+</li>
+<li>The ADS-B version number is now indicated in operation status message <code class="docutils literal"><span class="pre">TC=31</span></code></li>
+</ul>
+<p>From <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> to <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>:</p>
+<ul class="simple">
 <li>Re-defined the structure and content of <code class="docutils literal"><span class="pre">TC=28</span></code>, <code class="docutils literal"><span class="pre">TC=29</span></code>, and <code class="docutils literal"><span class="pre">TC=31</span></code> messages.</li>
 <li>Introduced two additional NIC Supplement Bit</li>
 <li><code class="docutils literal"><span class="pre">NICa</span></code> is defined in operational status messages (<code class="docutils literal"><span class="pre">TC=31</span></code>)</li>
@@ -121,7 +121,6 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <li><code class="docutils literal"><span class="pre">NICc</span></code> is defined in operational status messages (<code class="docutils literal"><span class="pre">TC=31</span></code>)</li>
 <li>Introduced an additional “Horizontal Containment Radius (<code class="docutils literal"><span class="pre">Rc</span></code>)” within <code class="docutils literal"><span class="pre">NIC=6</span></code> / <code class="docutils literal"><span class="pre">TC=13</span></code></li>
 </ul>
-</div></blockquote>
 <div class="section" id="identify-the-ads-b-version">
 <h2>1.6.1.1. Identify the ADS-B Version<a class="headerlink" href="#identify-the-ads-b-version" title="Permalink to this headline">¶</a></h2>
 <p>There two steps to check the ADS-B version, this is due to the fact that ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code> is not included in any messages.</p>
@@ -155,17 +154,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
     
 
     
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-74700456-1');
-</script>
-
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-74700456-1');
+  </script>
 
   </body>
 </html>

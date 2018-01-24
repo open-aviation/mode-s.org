@@ -34,6 +34,9 @@
 
   </head>
   <body>
+
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -92,26 +95,26 @@ An Open access book on Mode-S/ADS-B decoding and related topics
   <div class="section" id="aircraft-identification-bds-2-0">
 <h1>2.2. Aircraft identification (BDS 2,0)<a class="headerlink" href="#aircraft-identification-bds-2-0" title="Permalink to this headline">¶</a></h1>
 <p>Similar to ADS-B aircraft identification message, the callsign of aircraft can be decode in the same way. For the 56-bit MB (message, Comm-B) field, information decodes as follows:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">+--------------+---------+---------+---------+---------+---------+---------+---------+---------+</span>
-<span class="o">|</span>  <span class="n">BDS2</span><span class="p">,</span><span class="mi">0</span>  <span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C1</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C2</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C3</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C4</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C5</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C6</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C7</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>  <span class="n">C8</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>
-<span class="o">+--------------+---------+---------+---------+---------+---------+---------+---------+---------+</span>
-  <span class="mi">0010</span> <span class="mi">0000</span>      <span class="mi">6</span> <span class="n">bits</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>+--------------+---------+---------+---------+---------+---------+---------+---------+---------+
+|  BDS2,0  (8) |  C1 (6) |  C2 (6) |  C3 (6) |  C4 (6) |  C5 (6) |  C6 (6) |  C7 (6) |  C8 (6) |
++--------------+---------+---------+---------+---------+---------+---------+---------+---------+
+  0010 0000      6 bits
 </pre></div>
 </div>
 <p>Here, 8 bits are 0010 0000 (2,0 in hexadecimal) and the rest of chars are 6 bits each. To decode the chars, the same char map as ADS-B is used:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;#ABCDEFGHIJKLMNOPQRSTUVWXYZ#####_###############0123456789######&#39;</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>&#39;#ABCDEFGHIJKLMNOPQRSTUVWXYZ#####_###############0123456789######&#39;
 </pre></div>
 </div>
 <p>Example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MSG</span><span class="p">:</span>  <span class="n">A000083E202CC371C31DE0AA1CCF</span>
-<span class="n">DATA</span><span class="p">:</span>         <span class="mi">202</span><span class="n">CC371C31DE0</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>MSG:  A000083E202CC371C31DE0AA1CCF
+DATA:         202CC371C31DE0
 
-<span class="n">BIN</span><span class="p">:</span>  <span class="mi">0010</span> <span class="mi">0000</span> <span class="mi">001011</span> <span class="mi">001100</span> <span class="mi">001101</span> <span class="mi">110001</span> <span class="mi">110000</span> <span class="mi">110001</span> <span class="mi">110111</span> <span class="mi">100000</span>
-<span class="n">HEX</span><span class="p">:</span>     <span class="mi">2</span>    <span class="mi">0</span>
-<span class="n">DEC</span><span class="p">:</span>             <span class="mi">11</span>     <span class="mi">12</span>     <span class="mi">13</span>     <span class="mi">49</span>     <span class="mi">48</span>     <span class="mi">49</span>     <span class="mi">55</span>     <span class="mi">32</span>
-<span class="n">CHR</span><span class="p">:</span>             <span class="n">K</span>      <span class="n">L</span>      <span class="n">M</span>      <span class="mi">1</span>      <span class="mi">0</span>      <span class="mi">1</span>      <span class="mi">7</span>      <span class="n">_</span>
+BIN:  0010 0000 001011 001100 001101 110001 110000 110001 110111 100000
+HEX:     2    0
+DEC:             11     12     13     49     48     49     55     32
+CHR:             K      L      M      1      0      1      7      _
 
-<span class="n">ID</span><span class="p">:</span>   <span class="n">KLM1017</span>
+ID:   KLM1017
 </pre></div>
 </div>
 </div>
@@ -138,17 +141,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
     
 
     
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-74700456-1');
-</script>
-
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-74700456-1');
+  </script>
 
   </body>
 </html>

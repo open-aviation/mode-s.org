@@ -34,6 +34,9 @@
 
   </head>
   <body>
+
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -100,84 +103,84 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <li>true airspeed</li>
 </ul>
 <p>The 56-bit MB filed is structure as following:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span> <span class="n">FIELD</span>                                   <span class="n">START</span>  <span class="n">N</span><span class="o">-</span><span class="n">BITS</span>
-                                         <span class="p">(</span><span class="n">END</span><span class="p">)</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Sign</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">left</span> <span class="n">wing</span> <span class="n">down</span>             <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Roll</span> <span class="n">angle</span>                            <span class="o">|</span>  <span class="mi">3</span>   <span class="o">|</span>  <span class="mi">9</span>   <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="nb">range</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span> <span class="n">degrees</span>             <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="n">LSB</span><span class="p">:</span> <span class="mi">45</span><span class="o">/</span><span class="mi">256</span> <span class="n">degree</span>                    <span class="o">|</span>  <span class="mi">11</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">12</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Sign</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">west</span>                       <span class="o">|</span>  <span class="mi">13</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="kc">True</span> <span class="n">track</span> <span class="n">angle</span>                      <span class="o">|</span>  <span class="mi">14</span>  <span class="o">|</span>  <span class="mi">10</span>  <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="nb">range</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">]</span> <span class="n">degrees</span>           <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="n">LSB</span><span class="p">:</span> <span class="mi">90</span><span class="o">/</span><span class="mi">512</span> <span class="n">degree</span>                    <span class="o">|</span>  <span class="mi">23</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">24</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Ground</span> <span class="n">speed</span>                          <span class="o">|</span>  <span class="mi">25</span>  <span class="o">|</span>  <span class="mi">10</span>  <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="nb">range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2046</span><span class="p">]</span> <span class="n">knots</span>               <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="n">LSB</span><span class="p">:</span> <span class="mi">2</span> <span class="n">knots</span>                          <span class="o">|</span>  <span class="mi">34</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">35</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Sign</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">negative</span> <span class="n">value</span>             <span class="o">|</span>  <span class="mi">36</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Track</span> <span class="n">angle</span> <span class="n">rate</span>                      <span class="o">|</span>  <span class="mi">37</span>  <span class="o">|</span>  <span class="mi">9</span>   <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="nb">range</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">]</span> <span class="n">degrees</span>             <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="n">LSB</span><span class="p">:</span> <span class="mi">8</span><span class="o">/</span><span class="mi">256</span> <span class="n">degree</span> <span class="o">/</span> <span class="n">second</span>            <span class="o">|</span>  <span class="mi">45</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">46</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="kc">True</span> <span class="n">airspeed</span>                         <span class="o">|</span>  <span class="mi">47</span>  <span class="o">|</span>  <span class="mi">10</span>  <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="nb">range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2046</span><span class="p">]</span> <span class="n">knots</span>               <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="n">LSB</span><span class="p">:</span> <span class="mi">2</span> <span class="n">knots</span>                          <span class="o">|</span>  <span class="mi">56</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>+---------------------------------------+------+------+
+| FIELD                                 | MB   |N-BITS|
++=======================================+======+======+
+| Status                                |  1   |  1   |
++---------------------------------------+------+------+
+| Sign, 1 -&gt; left wing down             |  1   |  1   |
++---------------------------------------+------+------+
+| Roll angle                            |  3   |  9   |
+|                                       |      |      |
+| range = [-90, 90] degrees             |      |      |
+|                                       |      |      |
+| LSB: 45/256 degree                    |  11  |      |
++---------------------------------------+------+------+
+| Status                                |  12  |  1   |
++---------------------------------------+------+------+
+| Sign, 1 -&gt; west                       |  13  |  1   |
++---------------------------------------+------+------+
+| True track angle                      |  14  |  10  |
+|                                       |      |      |
+| range = [-180, 180] degrees           |      |      |
+|                                       |      |      |
+| LSB: 90/512 degree                    |  23  |      |
++---------------------------------------+------+------+
+| Status                                |  24  |  1   |
++---------------------------------------+------+------+
+| Ground speed                          |  25  |  10  |
+|                                       |      |      |
+| range = [0, 2046] knots               |      |      |
+|                                       |      |      |
+| LSB: 2 knots                          |  34  |      |
++---------------------------------------+------+------+
+| Status                                |  35  |  1   |
++---------------------------------------+------+------+
+| Sign, 1 -&gt; negative value             |  36  |  1   |
++---------------------------------------+------+------+
+| Track angle rate                      |  37  |  9   |
+|                                       |      |      |
+| range = [-16, 16] degrees             |      |      |
+|                                       |      |      |
+| LSB: 8/256 degree / second            |  45  |      |
++---------------------------------------+------+------+
+| Status                                |  46  |  1   |
++---------------------------------------+------+------+
+| True airspeed                         |  47  |  10  |
+|                                       |      |      |
+| range = [0, 2046] knots               |      |      |
+|                                       |      |      |
+| LSB: 2 knots                          |  56  |      |
++---------------------------------------+------+------+
 </pre></div>
 </div>
 <p>An example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MSG</span><span class="p">:</span>  <span class="n">A000139381951536E024D4CCF6B5</span>
-<span class="n">MB</span><span class="p">:</span>           <span class="mf">81951536E024</span><span class="n">D4</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>MSG:  A000139381951536E024D4CCF6B5
+MB:           81951536E024D4
 
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">MB</span> <span class="n">BIN</span><span class="p">:</span>   <span class="mi">1</span> <span class="mi">0</span> <span class="mi">000001100</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1010001010</span> <span class="mi">1</span> <span class="mi">0011011011</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">000000100</span> <span class="mi">1</span> <span class="mi">0011010100</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">STATUS</span><span class="p">:</span>   <span class="mi">1</span>
-<span class="n">SIGN</span><span class="p">:</span>       <span class="o">+</span>
-<span class="n">ROLL</span><span class="p">:</span>         <span class="mi">12</span> <span class="p">(</span><span class="n">x45</span><span class="o">/</span><span class="mi">256</span><span class="p">)</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">STATUS</span><span class="p">:</span>                 <span class="mi">1</span>
-<span class="n">SIGN</span><span class="p">:</span>                     <span class="o">+</span>
-<span class="n">TRACK</span> <span class="n">ANGLE</span><span class="p">:</span>                <span class="mi">650</span> <span class="p">(</span><span class="n">x90</span><span class="o">/</span><span class="mi">512</span><span class="p">)</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">STATUS</span><span class="p">:</span>                                <span class="mi">1</span>
-<span class="n">GROUND</span> <span class="n">SPEED</span><span class="p">:</span>                            <span class="mi">219</span> <span class="p">(</span><span class="n">x2</span><span class="p">)</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">STATUS</span><span class="p">:</span>                                             <span class="mi">1</span>
-<span class="n">SIGN</span><span class="p">:</span>                                                <span class="o">+</span>
-<span class="n">TRACK</span> <span class="n">ANGLE</span> <span class="n">RATE</span><span class="p">:</span>                                      <span class="mi">4</span> <span class="p">(</span><span class="n">x8</span><span class="o">/</span><span class="mi">256</span><span class="p">)</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">STATUS</span><span class="p">:</span>                                                           <span class="mi">1</span>
-<span class="n">TRUE</span> <span class="n">AIRSPEED</span><span class="p">:</span>                                                      <span class="mi">212</span> <span class="p">(</span><span class="n">x2</span><span class="p">)</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">FINAL</span><span class="p">:</span>      <span class="mf">2.1</span> <span class="n">deg</span>      <span class="mf">114.3</span> <span class="n">deg</span>       <span class="mi">438</span> <span class="n">kt</span>      <span class="mf">0.1</span> <span class="n">deg</span><span class="o">/</span><span class="n">s</span>     <span class="mi">424</span> <span class="n">kt</span>
-<span class="o">---------------------------------------------------------------------------------</span>
+---------------------------------------------------------------------------------
+MB BIN:   1 0 000001100 1 0 1010001010 1 0011011011 1 0 000000100 1 0011010100
+---------------------------------------------------------------------------------
+STATUS:   1
+SIGN:       +
+ROLL:         12 (x45/256)
+---------------------------------------------------------------------------------
+STATUS:                 1
+SIGN:                     +
+TRACK ANGLE:                650 (x90/512)
+---------------------------------------------------------------------------------
+STATUS:                                1
+GROUND SPEED:                            219 (x2)
+---------------------------------------------------------------------------------
+STATUS:                                             1
+SIGN:                                                +
+TRACK ANGLE RATE:                                      4 (x8/256)
+---------------------------------------------------------------------------------
+STATUS:                                                           1
+TRUE AIRSPEED:                                                      212 (x2)
+---------------------------------------------------------------------------------
+FINAL:      2.1 deg      114.3 deg       438 kt      0.1 deg/s     424 kt
+---------------------------------------------------------------------------------
 </pre></div>
 </div>
 <p>Of course, all fields are not always available in each of DBS 5,0 message. For those information that are not available, status bits are set to 0.</p>
@@ -205,17 +208,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
     
 
     
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-74700456-1');
-</script>
-
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-74700456-1');
+  </script>
 
   </body>
 </html>

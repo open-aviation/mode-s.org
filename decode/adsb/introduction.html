@@ -34,6 +34,9 @@
 
   </head>
   <body>
+
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -147,19 +150,19 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 </tbody>
 </table>
 <p>Example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Raw</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">hexadecimal</span><span class="p">:</span>
-<span class="mi">8</span><span class="n">D4840D6202CC371C32CE0576098</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>Raw message in hexadecimal:
+8D4840D6202CC371C32CE0576098
 
 
-<span class="o">-----+------------+--------------+-------------------------------+--------------</span>
-<span class="n">HEX</span>  <span class="o">|</span> <span class="mi">8</span><span class="n">D</span>         <span class="o">|</span> <span class="mi">4840</span><span class="n">D6</span>       <span class="o">|</span> <span class="mi">202</span><span class="n">CC371C32CE0</span>                <span class="o">|</span> <span class="mi">576098</span>
-<span class="o">-----+------------+--------------+-------------------------------+--------------</span>
-<span class="n">BIN</span>  <span class="o">|</span> <span class="mi">10001</span>  <span class="mi">101</span> <span class="o">|</span> <span class="mi">010010000100</span> <span class="o">|</span> <span class="p">[</span><span class="mi">00100</span><span class="p">]</span><span class="mi">0000010110011000011011</span> <span class="o">|</span> <span class="mi">010101110110</span>
-     <span class="o">|</span>            <span class="o">|</span> <span class="mi">000011010110</span> <span class="o">|</span> <span class="mi">10001110000110010110011100000</span> <span class="o">|</span> <span class="mi">000010011000</span>
-<span class="o">-----+------------+--------------+-------------------------------+--------------</span>
-<span class="n">DEC</span>  <span class="o">|</span>  <span class="mi">17</span>    <span class="mi">5</span>   <span class="o">|</span>              <span class="o">|</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">.......................</span>   <span class="o">|</span>
-<span class="o">-----+------------+--------------+-------------------------------+--------------</span>
-        <span class="n">DF</span>    <span class="n">CA</span>     <span class="n">ICAO</span>          <span class="p">[</span><span class="n">TC</span><span class="p">]</span> <span class="o">------</span> <span class="n">DATA</span> <span class="o">----------</span>    <span class="n">PI</span>
+-----+------------+--------------+-------------------------------+--------------
+HEX  | 8D         | 4840D6       | 202CC371C32CE0                | 576098
+-----+------------+--------------+-------------------------------+--------------
+BIN  | 10001  101 | 010010000100 | [00100]0000010110011000011011 | 010101110110
+     |            | 000011010110 | 10001110000110010110011100000 | 000010011000
+-----+------------+--------------+-------------------------------+--------------
+DEC  |  17    5   |              | [4] .......................   |
+-----+------------+--------------+-------------------------------+--------------
+        DF    CA     ICAO          [TC] ------ DATA ----------    PI
 </pre></div>
 </div>
 <p>Any ADS-B must start with the Downlink Format 17 or 18 (10001 or 10010 in binary code) for the first 5 bits. Bits 6-8 are used as additional identifier, which has different meanings within different types of ADS-B message.</p>
@@ -209,7 +212,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <div class="section" id="ads-b-checksum">
 <h2>1.1.4. ADS-B Checksum<a class="headerlink" href="#ads-b-checksum" title="Permalink to this headline">¶</a></h2>
 <p>ADS-B uses cyclic redundancy check to validate the correctness of received message, where the last 24 bits are the parity bits. Following pseudo-code describes the CRC process:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GENERATOR</span> <span class="o">=</span> <span class="mi">1111111111111010000001001</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">GENERATOR</span> <span class="o">=</span> <span class="mi">1111111111111010000001001</span>
 
 <span class="n">MSG</span> <span class="o">=</span> <span class="n">binary</span><span class="p">(</span><span class="mi">8</span><span class="n">D4840D6202CC371C32CE0576098</span><span class="p">)</span>    <span class="c1"># 112 bits</span>
 
@@ -254,17 +257,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
     
 
     
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-74700456-1');
-</script>
-
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-74700456-1');
+  </script>
 
   </body>
 </html>

@@ -34,6 +34,9 @@
 
   </head>
   <body>
+
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -92,78 +95,78 @@ An Open access book on Mode-S/ADS-B decoding and related topics
   <div class="section" id="selected-intention-bds-4-0">
 <h1>2.3. Selected intention (BDS 4,0)<a class="headerlink" href="#selected-intention-bds-4-0" title="Permalink to this headline">¶</a></h1>
 <p>In BDS 4,0, information such as aircraft select altitude and barometric pressure settings are given. The 56-bit MB filed is structure as following:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span> <span class="n">FIELD</span>                                   <span class="n">START</span>  <span class="n">N</span><span class="o">-</span><span class="n">BITS</span>
-                                         <span class="p">(</span><span class="n">END</span><span class="p">)</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">MCP</span><span class="o">/</span><span class="n">FCU</span> <span class="n">selected</span> <span class="n">altitude</span>             <span class="o">|</span>  <span class="mi">2</span>   <span class="o">|</span>  <span class="mi">12</span>  <span class="o">|</span>   <span class="o">**</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="nb">range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">65520</span><span class="p">]</span> <span class="n">ft</span>                 <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="n">LSB</span><span class="p">:</span> <span class="mi">16</span> <span class="n">ft</span>                            <span class="o">|</span>  <span class="mi">13</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">14</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">FMS</span> <span class="n">selected</span> <span class="n">altitude</span>                 <span class="o">|</span>  <span class="mi">15</span>  <span class="o">|</span>  <span class="mi">12</span>  <span class="o">|</span>   <span class="o">**</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="nb">range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">65520</span><span class="p">]</span> <span class="n">ft</span>                 <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="n">LSB</span><span class="p">:</span> <span class="mi">16</span> <span class="n">ft</span>                            <span class="o">|</span>  <span class="mi">26</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">27</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Barometric</span> <span class="n">pressure</span> <span class="n">setting</span>           <span class="o">|</span>  <span class="mi">28</span>  <span class="o">|</span>  <span class="mi">12</span>  <span class="o">|</span>   <span class="o">**</span>
-<span class="o">|</span>   <span class="o">-&gt;</span> <span class="n">Note</span><span class="p">:</span> <span class="n">actual</span> <span class="n">value</span> <span class="n">minus</span> <span class="mi">800</span>     <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="nb">range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">410</span><span class="p">]</span> <span class="n">mb</span>                   <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="n">LSB</span><span class="p">:</span> <span class="mf">0.1</span> <span class="n">mb</span>                           <span class="o">|</span>  <span class="mi">39</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Reserved</span>                              <span class="o">|</span>  <span class="mi">40</span>  <span class="o">|</span>  <span class="mi">8</span>   <span class="o">|</span>
-<span class="o">|</span>   <span class="o">-&gt;</span> <span class="nb">set</span> <span class="n">to</span> <span class="n">ZEROS</span>                     <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>  <span class="mi">47</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">48</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">|</span>   <span class="o">-&gt;</span> <span class="nb">next</span> <span class="mi">3</span> <span class="n">fields</span>                    <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Mode</span><span class="p">:</span> <span class="n">VNAV</span>                            <span class="o">|</span>  <span class="mi">49</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Mode</span><span class="p">:</span> <span class="n">Alt</span> <span class="n">hold</span>                        <span class="o">|</span>  <span class="mi">50</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Mode</span><span class="p">:</span> <span class="n">Approach</span>                        <span class="o">|</span>  <span class="mi">51</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Reserved</span>                              <span class="o">|</span>  <span class="mi">52</span>  <span class="o">|</span>  <span class="mi">2</span>   <span class="o">|</span>
-<span class="o">|</span>   <span class="o">-&gt;</span> <span class="nb">set</span> <span class="n">to</span> <span class="n">ZEROS</span>                     <span class="o">|</span>  <span class="mi">53</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">54</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Target</span> <span class="n">alt</span> <span class="n">source</span>                     <span class="o">|</span>  <span class="mi">55</span>  <span class="o">|</span>  <span class="mi">2</span>   <span class="o">|</span>
-<span class="o">|</span>   <span class="o">-&gt;</span> <span class="mi">00</span><span class="p">:</span> <span class="n">Unknown</span>                      <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>   <span class="o">-&gt;</span> <span class="mi">01</span><span class="p">:</span> <span class="n">Aircraft</span> <span class="n">altitude</span>            <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>   <span class="o">-&gt;</span> <span class="mi">10</span><span class="p">:</span> <span class="n">FCU</span><span class="o">/</span><span class="n">MCP</span> <span class="n">selected</span> <span class="n">altitude</span>    <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>   <span class="o">-&gt;</span> <span class="mi">11</span><span class="p">:</span> <span class="n">FMS</span> <span class="n">selected</span> <span class="n">altitude</span>        <span class="o">|</span>  <span class="mi">56</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>+---------------------------------------+------+------+
+| FIELD                                 | MB   |N-BITS|
++=======================================+======+======+
+| Status                                |  1   |  1   |
++---------------------------------------+------+------+
+| MCP/FCU selected altitude             |  2   |  12  |   **
+|                                       |      |      |
+| range = [0, 65520] ft                 |      |      |
+|                                       |      |      |
+| LSB: 16 ft                            |  13  |      |
++---------------------------------------+------+------+
+| Status                                |  14  |  1   |
++---------------------------------------+------+------+
+| FMS selected altitude                 |  15  |  12  |   **
+|                                       |      |      |
+| range = [0, 65520] ft                 |      |      |
+|                                       |      |      |
+| LSB: 16 ft                            |  26  |      |
++---------------------------------------+------+------+
+| Status                                |  27  |  1   |
++---------------------------------------+------+------+
+| Barometric pressure setting           |  28  |  12  |   **
+|   -&gt; Note: actual value minus 800     |      |      |
+|                                       |      |      |
+| range = [0, 410] mb                   |      |      |
+|                                       |      |      |
+| LSB: 0.1 mb                           |  39  |      |
++---------------------------------------+------+------+
+| Reserved                              |  40  |  8   |
+|   -&gt; set to ZEROS                     |      |      |
+|                                       |  47  |      |
++---------------------------------------+------+------+
+| Status                                |  48  |  1   |
+|   -&gt; next 3 fields                    |      |      |
++---------------------------------------+------+------+
+| Mode: VNAV                            |  49  |  1   |
++---------------------------------------+------+------+
+| Mode: Alt hold                        |  50  |  1   |
++---------------------------------------+------+------+
+| Mode: Approach                        |  51  |  1   |
++---------------------------------------+------+------+
+| Reserved                              |  52  |  2   |
+|   -&gt; set to ZEROS                     |  53  |      |
++---------------------------------------+------+------+
+| Status                                |  54  |  1   |
++---------------------------------------+------+------+
+| Target alt source                     |  55  |  2   |
+|   -&gt; 00: Unknown                      |      |      |
+|   -&gt; 01: Aircraft altitude            |      |      |
+|   -&gt; 10: FCU/MCP selected altitude    |      |      |
+|   -&gt; 11: FMS selected altitude        |  56  |      |
++---------------------------------------+------+------+
 </pre></div>
 </div>
 <p>An example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MSG</span><span class="p">:</span>  <span class="n">A000029C85E42F313000007047D3</span>
-<span class="n">MB</span><span class="p">:</span>           <span class="mf">85E42</span><span class="n">F31300000</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>MSG:  A000029C85E42F313000007047D3
+MB:           85E42F31300000
 
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">MB</span> <span class="n">BIN</span><span class="p">:</span>   <span class="mi">1</span> <span class="mi">000010111100</span> <span class="mi">1</span> <span class="mi">000010111100</span> <span class="mi">1</span> <span class="mi">100010011000</span> <span class="mi">00000000</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">00</span> <span class="mi">0</span> <span class="mi">00</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">STATUS</span><span class="p">:</span>   <span class="mi">1</span>
-<span class="n">MCP</span><span class="p">:</span>        <span class="mi">188</span> <span class="p">(</span><span class="n">x16</span><span class="p">)</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">STATUS</span><span class="p">:</span>                  <span class="mi">1</span>
-<span class="n">FMS</span><span class="p">:</span>                       <span class="mi">188</span> <span class="p">(</span><span class="n">x16</span><span class="p">)</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">STATUS</span><span class="p">:</span>                                 <span class="mi">1</span>
-<span class="n">BARO</span><span class="p">:</span>                                     <span class="mi">2200</span> <span class="p">(</span><span class="n">x0</span><span class="o">.</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">800</span><span class="p">)</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">FINAL</span><span class="p">:</span>      <span class="mi">3008</span> <span class="n">ft</span>        <span class="mi">3008</span> <span class="n">ft</span>        <span class="mi">1020</span> <span class="n">mb</span>
-<span class="o">---------------------------------------------------------------------------------</span>
+---------------------------------------------------------------------------------
+MB BIN:   1 000010111100 1 000010111100 1 100010011000 00000000 0 0 0 0 00 0 00
+---------------------------------------------------------------------------------
+STATUS:   1
+MCP:        188 (x16)
+---------------------------------------------------------------------------------
+STATUS:                  1
+FMS:                       188 (x16)
+---------------------------------------------------------------------------------
+STATUS:                                 1
+BARO:                                     2200 (x0.1 + 800)
+---------------------------------------------------------------------------------
+FINAL:      3008 ft        3008 ft        1020 mb
+---------------------------------------------------------------------------------
 </pre></div>
 </div>
 </div>
@@ -190,17 +193,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
     
 
     
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-74700456-1');
-</script>
-
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-74700456-1');
+  </script>
 
   </body>
 </html>

@@ -1,0 +1,249 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>1.6.2. Aircraft Operation Status &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.6.3. Uncertainty and accuracy" href="uncertainty.html" />
+    <link rel="prev" title="1.6.1. ADS-B versions" href="version.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3><a href="../../index.html">The 1090MHz Riddle</a></h3>
+
+An Open access book on Mode-S/ADS-B decoding and related topics
+
+<br/><br/><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../adsb.html">1. ADS-B (Automatic Dependent Surveillance – Broadcast)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">1.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../identification.html">1.2. Aircraft Identification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compact-position-report.html">1.3. Compact Position Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../airborne-position.html">1.4. Airborne Positions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../airborne-velocity.html">1.5. Airborne Velocity</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../advance.html">1.6. Advanced topics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ehs.html">2. EHS (Mode-S Enhanced Surveillance)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ehs/introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ehs/bds20-identification.html">2.2. Aircraft identification (BDS 2,0)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ehs/bds40-intention.html">2.3. Selected intention (BDS 4,0)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ehs/bds50-track-n-turn.html">2.4. Track and turn (BDS 5,0)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ehs/bds60-airspeed.html">2.5. Heading and speed (BDS 6,0)</a></li>
+</ul>
+</li>
+</ul>
+
+
+  <br/>
+  <h3>Page Source</h3>
+  <ul class="this-page-menu">
+    <!-- <li><a href="../../_sources/adsb/advance/operation-status.rst.txt"
+           rel="nofollow">Show Source</a></li> -->
+    <li><a href="https://github.com/junzis/the-1090mhz-riddle/blob/master/adsb/advance/operation-status.rst"
+           rel="nofollow">Show on GitHub</a></li>
+    <li><a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/advance/operation-status.rst"
+           rel="nofollow">Edit on GitHub</a></li>
+  </ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="aircraft-operation-status">
+<h1>1.6.2. Aircraft Operation Status<a class="headerlink" href="#aircraft-operation-status" title="Permalink to this headline">¶</a></h1>
+<p>Operation status message is introduced since the <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> of ADS-B. And there are also slightly differences in the structure of Aircraft Operation Messages between Version 1 and 2.</p>
+<blockquote>
+<div>To understand about these versions, first take a look at the <a class="reference external" href="version.html">ADS-B version chapter</a>.</div></blockquote>
+<p>The operation status is transmitted with <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code> 31 (<code class="docutils literal"><span class="pre">TC=31</span></code>). The structure of the message (in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>) is laid out as follows:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>+----------------------------------------+------+------+------+
+| FIELD                                  | MSG  | MB   |N-BITS|
++========================================+======+======+======+
+| Downlink Format = 17                   |  1   |      |  8   |
+|                                        |  8   |      |      |
++----------------------------------------+------+------+------+
+| ICAO Address                           |  9   |      |  24  |
+|                                        |  32  |      |      |
++----------------------------------------+------+------+------+
+| Type Code = 31                         |  33  |  1   |  5   |
+|                                        |  37  |  5   |      |
++----------------------------------------+------+------+------+
+| Subtype Code                           |  38  |  6   |  3   |
+|                                        |      |      |      |
+|  - 0: airborne                         |      |      |      |
+|  - 1: surface                          |      |      |      |
+|  - 2-7: reserved                       |  40  |  8   |      |
++-------------------+--------------------+------+------+------+
+|                   |                    |  41  |  9   | 16   |
+|  Airborne         |  Surface           |      |      |      |
+|  capacity class   |  capacity class    |      |      |      |
+|  codes            |  codes             |      |      |      |
+|                   |                    |  52  |  20  |      |
+|                   +--------------------+------+------+------+
+|                   |                    |  53  |  21  | (4)  |
+|                   |  Length/width      |      |      |      |
+|                   |  codes             |      |      |      |
+|                   |                    |  56  |  24  |      |
++-------------------+--------------------+------+------+------+
+| Operational mode code                  |  57  |  25  |  16  |
+|                                        |      |      |      |
+|                                        |      |      |      |
+|                                        |  72  |  40  |      |
++----------------------------------------+------+------+------+
+| ADS-B version number                   |  73  |  41  |  3   |
+|                                        |  75  |  43  |      |
++----------------------------------------+------+------+------+
+| NIC supplement bit                     |  76  |  44  |  1   |
++----------------------------------------+------+------+------+
+| NUCp: Navigation accuracy category     |  77  |  45  |  4   |
+|        - position                      |  80  |  48  |      |
++-------------------+--------------------+------+------+------+
+| BAQ = 0           | Reserved           |  81  |  49  |  2   |
+|                   |                    |  82  |  50  |      |
++-------------------+--------------------+------+------+------+
+| SIL: Surveillance integrity level      |  83  |  51  |  2   |
+|                                        |  84  |  52  |      |
++-------------------+--------------------+------+------+------+
+| NIC-BARO          | TRK/HDG            |  85  |  53  |  1   |
++-------------------+--------------------+------+------+------+
+| HRD                                    |  86  |  54  |  1   |
++----------------------------------------+------+------+------+
+| Reserved                               |  87  |  55  |  2   |
+|                                        |  88  |  56  |      |
++----------------------------------------+------+------+------+
+</pre></div>
+</div>
+<p>Acronyms:</p>
+<ul class="simple">
+<li>BAQ: Barometric Altitude Quality (always set to zero for airborne message <code class="docutils literal"><span class="pre">subtype=1</span></code>)</li>
+<li>HRD: Horizontal Reference Direction<ul>
+<li>0: True North</li>
+<li>1: Magnetic North</li>
+</ul>
+</li>
+</ul>
+<p>In ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, most part of the message remains the same, we will only address the second half of the message, where the changes have been made.</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>+----------------------------------------+------+------+------+
+| FIELD                                  | MSG  | MB   |N-BITS|
++========================================+======+======+======+
+| Airborne          | Surface            |  57  |  25  |  16  |
+| operational       | operational        |      |      |      |
+| mode code         | mode code          |      |      |      |
+|                   |                    |  72  |  40  |      |
++-------------------+--------------------+------+------+------+
+| ADS-B version number                   |  73  |  41  |  3   |
+|                                        |  75  |  43  |      |
++----------------------------------------+------+------+------+
+| NIC supplement bit - A                 |  76  |  44  |  1   |
++----------------------------------------+------+------+------+
+| NUCp: Navigation accuracy category     |  77  |  45  |  4   |
+|       - position                       |      |      |      |
+|                                        |  80  |  48  |      |
++-------------------+--------------------+------+------+------+
+| GVA               | Reserved           |  81  |  49  |  2   |
+|                   |                    |  82  |  50  |      |
++-------------------+--------------------+------+------+------+
+| SIL: Surveillance integrity level      |  83  |  51  |  2   |
+|                                        |  84  |  52  |      |
++-------------------+--------------------+------+------+------+
+| NIC-BARO          | TRK/HDG            |  85  |  53  |  1   |
++-------------------+--------------------+------+------+------+
+| HRD                                    |  86  |  54  |  1   |
++----------------------------------------+------+------+------+
+| SIL supplement bit                     |  87  |  55  |  1   |
++----------------------------------------+------+------+------+
+| Reserved                               |  88  |  56  |  1   |
++----------------------------------------+------+------+------+
+</pre></div>
+</div>
+<p>Acronyms:</p>
+<ul class="simple">
+<li>GVA: Geometric Vertical Accuracy - GNSS position source, 95% vertical figure of merit (<code class="docutils literal"><span class="pre">VFOM</span></code>)<ul>
+<li>0: unknown or &gt; 150 meters</li>
+<li>1: &lt; 150 meters</li>
+<li>2: &lt; 45 meters</li>
+<li>3: reserved</li>
+</ul>
+</li>
+<li>SIL, NIC, NAC are also related to measurement uncertainty or accuracy.<ul>
+<li>A lot or more details are given in <a class="reference external" href="uncertainty.html">the uncertainty chapter</a>.</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+
+    <div class="footer">
+      &copy;2018, Junzi Sun.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../../_sources/adsb/advance/operation-status.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-74700456-1');
+  </script>
+
+  </body>
+</html>

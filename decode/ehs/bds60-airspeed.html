@@ -33,6 +33,9 @@
 
   </head>
   <body>
+
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -99,84 +102,84 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <li>inertial vertical rate</li>
 </ul>
 <p>The 56-bit MB filed is structure as following:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span> <span class="n">FIELD</span>                                   <span class="n">START</span>  <span class="n">N</span><span class="o">-</span><span class="n">BITS</span>
-                                         <span class="p">(</span><span class="n">END</span><span class="p">)</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Sign</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">West</span>                       <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Magnetic</span> <span class="n">heading</span>                      <span class="o">|</span>  <span class="mi">3</span>   <span class="o">|</span>  <span class="mi">10</span>  <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="nb">range</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">]</span> <span class="n">degrees</span>           <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="n">LSB</span><span class="p">:</span> <span class="mi">90</span><span class="o">/</span><span class="mi">512</span> <span class="n">degree</span>                    <span class="o">|</span>  <span class="mi">12</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">13</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Indicated</span> <span class="n">airspeed</span>                    <span class="o">|</span>  <span class="mi">14</span>  <span class="o">|</span>  <span class="mi">10</span>  <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="nb">range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1023</span><span class="p">]</span> <span class="n">knots</span>               <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="n">LSB</span><span class="p">:</span> <span class="mi">1</span> <span class="n">knots</span>                          <span class="o">|</span>  <span class="mi">23</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">24</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Mach</span> <span class="n">number</span>                           <span class="o">|</span>  <span class="mi">25</span>  <span class="o">|</span>  <span class="mi">10</span>  <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="nb">range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">4.092</span><span class="p">]</span> <span class="n">Mach</span>               <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="n">LSB</span><span class="p">:</span> <span class="mf">2.048</span> <span class="o">/</span> <span class="mi">512</span> <span class="n">Mach</span>                 <span class="o">|</span>  <span class="mi">34</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">35</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">SIGN</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">Below</span>                       <span class="o">|</span>  <span class="mi">36</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Barometric</span> <span class="n">altitude</span> <span class="n">rate</span>              <span class="o">|</span>  <span class="mi">37</span>  <span class="o">|</span>  <span class="mi">9</span>   <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="nb">range</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">16384</span><span class="p">,</span> <span class="mi">16352</span><span class="p">]</span> <span class="n">ft</span><span class="o">/</span><span class="nb">min</span>        <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="n">LSB</span><span class="p">:</span> <span class="mi">32</span> <span class="n">ft</span><span class="o">/</span><span class="nb">min</span>                        <span class="o">|</span>  <span class="mi">45</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Status</span>                                <span class="o">|</span>  <span class="mi">46</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">SIGN</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">Below</span>                       <span class="o">|</span>  <span class="mi">47</span>  <span class="o">|</span>  <span class="mi">1</span>   <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
-<span class="o">|</span> <span class="n">Inertial</span> <span class="n">altitude</span> <span class="n">rate</span>                <span class="o">|</span>  <span class="mi">48</span>  <span class="o">|</span>  <span class="mi">9</span>   <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="nb">range</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">16384</span><span class="p">,</span> <span class="mi">16352</span><span class="p">]</span> <span class="n">ft</span><span class="o">/</span><span class="nb">min</span>        <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span>                                       <span class="o">|</span>      <span class="o">|</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="n">LSB</span><span class="p">:</span> <span class="mi">32</span> <span class="n">ft</span><span class="o">/</span><span class="nb">min</span>                        <span class="o">|</span>  <span class="mi">56</span>  <span class="o">|</span>      <span class="o">|</span>
-<span class="o">+---------------------------------------+------+------+</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>+---------------------------------------+------+------+
+| FIELD                                 | MB   |N-BITS|
++=======================================+======+======+
+| Status                                |  1   |  1   |
++---------------------------------------+------+------+
+| Sign, 1 -&gt; West                       |  1   |  1   |
++---------------------------------------+------+------+
+| Magnetic heading                      |  3   |  10  |
+|                                       |      |      |
+| range = [-180, 180] degrees           |      |      |
+|                                       |      |      |
+| LSB: 90/512 degree                    |  12  |      |
++---------------------------------------+------+------+
+| Status                                |  13  |  1   |
++---------------------------------------+------+------+
+| Indicated airspeed                    |  14  |  10  |
+|                                       |      |      |
+| range = [0, 1023] knots               |      |      |
+|                                       |      |      |
+| LSB: 1 knots                          |  23  |      |
++---------------------------------------+------+------+
+| Status                                |  24  |  1   |
++---------------------------------------+------+------+
+| Mach number                           |  25  |  10  |
+|                                       |      |      |
+| range = [0, 4.092] Mach               |      |      |
+|                                       |      |      |
+| LSB: 2.048 / 512 Mach                 |  34  |      |
++---------------------------------------+------+------+
+| Status                                |  35  |  1   |
++---------------------------------------+------+------+
+| SIGN 1 -&gt; Below                       |  36  |  1   |
++---------------------------------------+------+------+
+| Barometric altitude rate              |  37  |  9   |
+|                                       |      |      |
+| range = [-16384, 16352] ft/min        |      |      |
+|                                       |      |      |
+| LSB: 32 ft/min                        |  45  |      |
++---------------------------------------+------+------+
+| Status                                |  46  |  1   |
++---------------------------------------+------+------+
+| SIGN 1 -&gt; Below                       |  47  |  1   |
++---------------------------------------+------+------+
+| Inertial altitude rate                |  48  |  9   |
+|                                       |      |      |
+| range = [-16384, 16352] ft/min        |      |      |
+|                                       |      |      |
+| LSB: 32 ft/min                        |  56  |      |
++---------------------------------------+------+------+
 </pre></div>
 </div>
 <p>An example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MSG</span><span class="p">:</span>  <span class="n">A000029CFFBAA11E2004727281F1</span>
-<span class="n">MB</span><span class="p">:</span>           <span class="n">FFBAA11E200472</span>
+<div class="highlight-text"><div class="highlight"><pre><span></span>MSG:  A000029CFFBAA11E2004727281F1
+MB:           FFBAA11E200472
 
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">MB</span> <span class="n">BIN</span><span class="p">:</span>   <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1111111011</span> <span class="mi">1</span> <span class="mi">0101010000</span> <span class="mi">1</span> <span class="mi">0001111000</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">000000000</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">001110010</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">STATUS</span><span class="p">:</span>   <span class="mi">1</span>
-<span class="n">SIGN</span><span class="p">:</span>       <span class="o">-</span>
-<span class="n">HEADING</span><span class="p">:</span>      <span class="mi">1019</span> <span class="p">(</span><span class="n">x90</span><span class="o">/</span><span class="mi">512</span><span class="p">)</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">STATUS</span><span class="p">:</span>                  <span class="mi">1</span>
-<span class="n">IAS</span><span class="p">:</span>                       <span class="mi">336</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">STATUS</span><span class="p">:</span>                               <span class="mi">1</span>
-<span class="n">MACH</span><span class="p">:</span>                                   <span class="mi">120</span> <span class="p">(</span><span class="n">x2</span><span class="o">.</span><span class="mi">048</span><span class="o">/</span><span class="mi">512</span><span class="p">)</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">STATUS</span><span class="p">:</span>                                             <span class="mi">1</span>
-<span class="n">SIGN</span><span class="p">:</span>                                                <span class="o">+</span>
-<span class="n">VERTIVAL</span> <span class="n">RATE</span> <span class="o">-</span> <span class="n">BARO</span><span class="p">:</span>                                  <span class="mi">0</span> <span class="p">(</span><span class="n">x32</span><span class="p">)</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">STATUS</span><span class="p">:</span>                                                         <span class="mi">1</span>
-<span class="n">SIGN</span><span class="p">:</span>                                                             <span class="o">-</span>
-<span class="n">VERTICAL</span> <span class="n">RATE</span> <span class="o">-</span> <span class="n">INERTIAL</span><span class="p">:</span>                                           <span class="mi">114</span> <span class="p">(</span><span class="n">x32</span><span class="p">)</span>
-<span class="o">---------------------------------------------------------------------------------</span>
-<span class="n">FINAL</span><span class="p">:</span>      <span class="o">-</span><span class="mf">179.1</span> <span class="n">deg</span>     <span class="mi">336</span> <span class="n">kt</span>      <span class="mf">0.48</span> <span class="n">Mach</span>     <span class="mi">0</span> <span class="n">ft</span><span class="o">/</span><span class="nb">min</span>     <span class="o">-</span><span class="mi">3648</span> <span class="n">ft</span><span class="o">/</span><span class="nb">min</span>
-<span class="o">---------------------------------------------------------------------------------</span>
+---------------------------------------------------------------------------------
+MB BIN:   1 1 1111111011 1 0101010000 1 0001111000 1 0 000000000 1 0 001110010
+---------------------------------------------------------------------------------
+STATUS:   1
+SIGN:       -
+HEADING:      1019 (x90/512)
+---------------------------------------------------------------------------------
+STATUS:                  1
+IAS:                       336
+---------------------------------------------------------------------------------
+STATUS:                               1
+MACH:                                   120 (x2.048/512)
+---------------------------------------------------------------------------------
+STATUS:                                             1
+SIGN:                                                +
+VERTIVAL RATE - BARO:                                  0 (x32)
+---------------------------------------------------------------------------------
+STATUS:                                                         1
+SIGN:                                                             -
+VERTICAL RATE - INERTIAL:                                           114 (x32)
+---------------------------------------------------------------------------------
+FINAL:      -179.1 deg     336 kt      0.48 Mach     0 ft/min     -3648 ft/min
+---------------------------------------------------------------------------------
 </pre></div>
 </div>
 </div>
@@ -203,17 +206,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
     
 
     
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-74700456-1');
-</script>
-
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-74700456-1');
+  </script>
 
   </body>
 </html>
