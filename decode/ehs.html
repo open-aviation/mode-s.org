@@ -37,10 +37,54 @@
 
   <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 
-  <div class="document">
-    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ehs-mode-s-enhanced-surveillance">
+<h1>2. EHS (Mode-S Enhanced Surveillance)<a class="headerlink" href="#ehs-mode-s-enhanced-surveillance" title="Permalink to this headline">¶</a></h1>
+<p>Let’s hack into the EHS messaged too! more information on aircraft air speeds.</p>
+<p>The Mode-S Enhanced Surveillance (EHS) provides air traffic controller more information that what is included in the ADS-B (a.k.a Mode-S Elementary Surveillance). It responds to ATC Secondary Surveillance Radar, and broadcast specific parameters non-independently. Hence it is only available in the area where ATC presents.</p>
+<p>There are quite a few very interesting data contained within various types of the EHS messages. Such as: airspeeds (IAS, TAS, Mach), roll angles, track angles, track angle rates, selected altitude, magnetic heading, vertical rate, etc..</p>
+<dl class="docutils">
+<dt>There are a few challenges to decode those information:</dt>
+<dd><ul class="first last simple">
+<li>Which aircraft does one message come from?</li>
+<li>What is the type of one message (a.k.a. which BDS code) most likely to be?</li>
+<li>How confident is the information that has been decoded?</li>
+</ul>
+</dd>
+</dl>
+<p>This part of the book covers only a selected common type of EHS messages. For a complete Python implementation:
+<a class="reference external" href="https://github.com/junzis/pyModeS/blob/master/pyModeS/ehs.py">https://github.com/junzis/pyModeS/blob/master/pyModeS/ehs.py</a></p>
+<hr class="docutils" />
+<p><strong>Chapter structure:</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ehs/introduction.html">2.1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ehs/introduction.html#downlink-format-and-message-structure">2.1.1. Downlink Format and message structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ehs/introduction.html#parity-and-icao-address-recovery">2.1.2. Parity and ICAO address recovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ehs/introduction.html#bds-comm-b-data-selector">2.1.3. BDS (Comm-B Data Selector)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ehs/bds20-identification.html">2.2. Aircraft identification (BDS 2,0)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ehs/bds40-intention.html">2.3. Selected intention (BDS 4,0)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ehs/bds50-track-n-turn.html">2.4. Track and turn (BDS 5,0)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ehs/bds60-airspeed.html">2.5. Heading and speed (BDS 6,0)</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><h2 class="logo"><a href="index.html">The 1090MHz Riddle</a></h2>
+        <div class="sphinxsidebarwrapper"><div class="logo"><a href="http://mode-s.org"> < Mode-S.org </a></div>
+<h2 class="logo"><a href="index.html">The 1090MHz Riddle</a></h2>
 
 An Open access book on Mode-S/ADS-B decoding and related topics
 
@@ -88,50 +132,8 @@ An Open access book on Mode-S/ADS-B decoding and related topics
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="ehs-mode-s-enhanced-surveillance">
-<h1>2. EHS (Mode-S Enhanced Surveillance)<a class="headerlink" href="#ehs-mode-s-enhanced-surveillance" title="Permalink to this headline">¶</a></h1>
-<p>Let’s hack into the EHS messaged too! more information on aircraft air speeds.</p>
-<p>The Mode-S Enhanced Surveillance (EHS) provides air traffic controller more information that what is included in the ADS-B (a.k.a Mode-S Elementary Surveillance). It responds to ATC Secondary Surveillance Radar, and broadcast specific parameters non-independently. Hence it is only available in the area where ATC presents.</p>
-<p>There are quite a few very interesting data contained within various types of the EHS messages. Such as: airspeeds (IAS, TAS, Mach), roll angles, track angles, track angle rates, selected altitude, magnetic heading, vertical rate, etc..</p>
-<dl class="docutils">
-<dt>There are a few challenges to decode those information:</dt>
-<dd><ul class="first last simple">
-<li>Which aircraft does one message come from?</li>
-<li>What is the type of one message (a.k.a. which BDS code) most likely to be?</li>
-<li>How confident is the information that has been decoded?</li>
-</ul>
-</dd>
-</dl>
-<p>This part of the book covers only a selected common type of EHS messages. For a complete Python implementation:
-<a class="reference external" href="https://github.com/junzis/pyModeS/blob/master/pyModeS/ehs.py">https://github.com/junzis/pyModeS/blob/master/pyModeS/ehs.py</a></p>
-<hr class="docutils" />
-<p><strong>Chapter structure:</strong></p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="ehs/introduction.html">2.1. Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ehs/introduction.html#downlink-format-and-message-structure">2.1.1. Downlink Format and message structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ehs/introduction.html#parity-and-icao-address-recovery">2.1.2. Parity and ICAO address recovery</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ehs/introduction.html#bds-comm-b-data-selector">2.1.3. BDS (Comm-B Data Selector)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ehs/bds20-identification.html">2.2. Aircraft identification (BDS 2,0)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ehs/bds40-intention.html">2.3. Selected intention (BDS 4,0)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ehs/bds50-track-n-turn.html">2.4. Track and turn (BDS 5,0)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ehs/bds60-airspeed.html">2.5. Heading and speed (BDS 6,0)</a></li>
-</ul>
-</div>
-</div>
-
-
-          </div>
-        </div>
-      </div>
-    <div class="clearer"></div>
-  </div>
+      <div class="clearer"></div>
+    </div>
 
     <div class="footer">
       &copy;2018, Junzi Sun.
