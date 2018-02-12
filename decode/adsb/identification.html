@@ -56,11 +56,11 @@
 <span class="n">C</span><span class="o">*</span><span class="p">:</span> <span class="n">A</span> <span class="n">character</span>
 </pre></div>
 </div>
-<p>For decode characters, a lookup table is needed for mapping numbers to characters. It is defines as follows, where the <code class="docutils literal"><span class="pre">#</span></code> is not used, and <code class="docutils literal"><span class="pre">_</span></code> represents a separation.</p>
+<p>To decode characters, a lookup table is needed for mapping numbers to characters. It is defined as follows, where the <code class="docutils literal"><span class="pre">#</span></code> is not used, and <code class="docutils literal"><span class="pre">_</span></code> represents a separation.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#ABCDEFGHIJKLMNOPQRSTUVWXYZ#####_###############0123456789######</span>
 </pre></div>
 </div>
-<p>In summary, characters and there decimal representations are:</p>
+<p>In summary, characters and their decimal representations are:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">-</span> <span class="n">Z</span> <span class="p">:</span>   <span class="mi">1</span> <span class="o">-</span> <span class="mi">26</span>
 <span class="mi">0</span> <span class="o">-</span> <span class="mi">9</span> <span class="p">:</span>  <span class="mi">48</span> <span class="o">-</span> <span class="mi">57</span>
     <span class="n">_</span> <span class="p">:</span>  <span class="mi">32</span>
@@ -73,7 +73,7 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">8</span><span class="n">D4840D6202CC371C32CE0576098</span>
 </pre></div>
 </div>
-<p>The structure of the message is:</p>
+<p>The structure of the message is as follows:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>     <span class="n">DF</span><span class="o">---</span> <span class="n">CA</span><span class="o">-</span>  <span class="n">ICAO</span><span class="o">--</span>  <span class="n">DATA</span><span class="o">------------------</span>  <span class="n">PI</span><span class="o">----</span>
 <span class="n">HEX</span><span class="p">:</span> <span class="mi">8</span>   <span class="n">D</span>      <span class="mi">4840</span><span class="n">D6</span>  <span class="mi">2</span>   <span class="mi">0</span>     <span class="mi">2</span><span class="n">CC371C32CE0</span>  <span class="mi">576098</span>
 <span class="n">BIN</span><span class="p">:</span> <span class="mi">10001</span><span class="o">|</span><span class="mi">101</span>  <span class="o">******</span>  <span class="mi">00100</span><span class="o">|</span><span class="mi">000</span> <span class="o">************</span>  <span class="o">******</span>
@@ -81,8 +81,8 @@
                         <span class="n">TC</span>    <span class="o">*</span>
 </pre></div>
 </div>
-<p>Note that <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code> is inside of the DATA frame (first 5 bits). With <code class="docutils literal"><span class="pre">DF=17</span></code> and <code class="docutils literal"><span class="pre">TC=4</span></code>, we can confirm this is a aircraft identification message. Aircraft <code class="docutils literal"><span class="pre">callsign</span></code> then can be decoded.</p>
-<p>In previous example message, it is easy to decode the <code class="docutils literal"><span class="pre">Data</span></code> segment:</p>
+<p>Note that <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code> is inside of the DATA frame (first 5 bits). With <code class="docutils literal"><span class="pre">DF=17</span></code> and <code class="docutils literal"><span class="pre">TC=4</span></code>, we can confirm this is an aircraft identification message. Aircraft <code class="docutils literal"><span class="pre">callsign</span></code> then can be decoded.</p>
+<p>In the previous example message, it is easy to decode the <code class="docutils literal"><span class="pre">Data</span></code> segment:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">HEX</span><span class="p">:</span> <span class="mi">20</span>         <span class="mi">2</span><span class="n">CC371C32CE0</span>
 <span class="n">BIN</span><span class="p">:</span> <span class="mi">00100000</span> <span class="o">|</span> <span class="mi">001011</span> <span class="mi">001100</span> <span class="mi">001101</span> <span class="mi">110001</span> <span class="mi">110000</span> <span class="mi">110010</span> <span class="mi">110011</span> <span class="mi">100000</span>
 <span class="n">DEC</span><span class="p">:</span>          <span class="o">|</span>   <span class="mi">11</span>     <span class="mi">12</span>     <span class="mi">13</span>     <span class="mi">49</span>     <span class="mi">48</span>     <span class="mi">50</span>     <span class="mi">51</span>     <span class="mi">32</span>
@@ -90,7 +90,7 @@
 </pre></div>
 </div>
 <p>So the final aircraft callsign decoded is: <strong>KLM1023_</strong></p>
-<p>For detailed codes in python, refer to the pyModeS library function: <code class="docutils literal"><span class="pre">pyModeS.adsb.callsign()</span></code></p>
+<p>For detailed codes in Python, refer to the pyModeS library function: <code class="docutils literal"><span class="pre">pyModeS.adsb.callsign()</span></code></p>
 </div>
 </div>
 
@@ -145,7 +145,12 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
+  <h3>Related</h3>
+  <ul class="this-page-menu">
+    <li><a href="https://github.com/junzis/pyModeS"
+           rel="nofollow">pyModeS on GitHub</a></li>
+  </ul>
         </div>
       </div>
       <div class="clearer"></div>

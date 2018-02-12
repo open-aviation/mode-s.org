@@ -46,19 +46,19 @@
             
   <div class="section" id="ehs-mode-s-enhanced-surveillance">
 <h1>2. EHS (Mode-S Enhanced Surveillance)<a class="headerlink" href="#ehs-mode-s-enhanced-surveillance" title="Permalink to this headline">¶</a></h1>
-<p>Let’s hack into the EHS messaged too! more information on aircraft air speeds.</p>
-<p>The Mode-S Enhanced Surveillance (EHS) provides air traffic controller more information that what is included in the ADS-B (a.k.a Mode-S Elementary Surveillance). It responds to ATC Secondary Surveillance Radar, and broadcast specific parameters non-independently. Hence it is only available in the area where ATC presents.</p>
-<p>There are quite a few very interesting data contained within various types of the EHS messages. Such as: airspeeds (IAS, TAS, Mach), roll angles, track angles, track angle rates, selected altitude, magnetic heading, vertical rate, etc..</p>
+<p>Let’s hack into the EHS messaged too! More information on aircraft air speeds.</p>
+<p>The Mode-S Enhanced Surveillance (EHS) provides to the air traffic controller more information than what is included in the ADS-B (aka Mode-S Elementary Surveillance). It responds to the ATC Secondary Surveillance Radar, and broadcasts specific parameters non-independently. Hence it is only available in the area where ATC presents.</p>
+<p>There are quite a few very interesting data contained within various types of the EHS messages. Such as: airspeeds (IAS, TAS, Mach), roll angles, track angles, track angle rates, selected altitude, magnetic heading, vertical rate, etc.</p>
 <dl class="docutils">
-<dt>There are a few challenges to decode those information:</dt>
+<dt>There are a few challenges to decode this information:</dt>
 <dd><ul class="first last simple">
-<li>Which aircraft does one message come from?</li>
-<li>What is the type of one message (a.k.a. which BDS code) most likely to be?</li>
-<li>How confident is the information that has been decoded?</li>
+<li>Which aircraft does one message came from?</li>
+<li>What is the type of one message (aka which BDS code) most likely to be?</li>
+<li>How reliable is the information that has been decoded?</li>
 </ul>
 </dd>
 </dl>
-<p>This part of the book covers only a selected common type of EHS messages. For a complete Python implementation:
+<p>This part of the book covers only a selected common types of EHS messages. For a complete Python implementation:
 <a class="reference external" href="https://github.com/junzis/pyModeS/blob/master/pyModeS/ehs.py">https://github.com/junzis/pyModeS/blob/master/pyModeS/ehs.py</a></p>
 <hr class="docutils" />
 <p><strong>Chapter structure:</strong></p>
@@ -129,7 +129,12 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
+  <h3>Related</h3>
+  <ul class="this-page-menu">
+    <li><a href="https://github.com/junzis/pyModeS"
+           rel="nofollow">pyModeS on GitHub</a></li>
+  </ul>
         </div>
       </div>
       <div class="clearer"></div>

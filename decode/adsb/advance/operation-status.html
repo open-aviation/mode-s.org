@@ -46,7 +46,7 @@
             
   <div class="section" id="aircraft-operation-status">
 <h1>1.6.2. Aircraft Operation Status<a class="headerlink" href="#aircraft-operation-status" title="Permalink to this headline">¶</a></h1>
-<p>Operation status message is introduced since the <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> of ADS-B. And there are also slightly differences in the structure of Aircraft Operation Messages between Version 1 and 2.</p>
+<p>Operation status message is introduced since the <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> of ADS-B. And there are also slight differences in the structure of Aircraft Operation Messages between Version 1 and 2.</p>
 <blockquote>
 <div>To understand about these versions, first take a look at the <a class="reference external" href="version.html">ADS-B version chapter</a>.</div></blockquote>
 <p>The operation status is transmitted with <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code> 31 (<code class="docutils literal"><span class="pre">TC=31</span></code>). The structure of the message (in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>) is laid out as follows:</p>
@@ -89,7 +89,7 @@
 +----------------------------------------+------+------+------+
 | NIC supplement bit                     |  76  |  44  |  1   |
 +----------------------------------------+------+------+------+
-| NUCp: Navigation accuracy category     |  77  |  45  |  4   |
+| NACp: Navigation accuracy category     |  77  |  45  |  4   |
 |        - position                      |  80  |  48  |      |
 +-------------------+--------------------+------+------+------+
 | BAQ = 0           | Reserved           |  81  |  49  |  2   |
@@ -130,7 +130,7 @@
 +----------------------------------------+------+------+------+
 | NIC supplement bit - A                 |  76  |  44  |  1   |
 +----------------------------------------+------+------+------+
-| NUCp: Navigation accuracy category     |  77  |  45  |  4   |
+| NACp: Navigation accuracy category     |  77  |  45  |  4   |
 |       - position                       |      |      |      |
 |                                        |  80  |  48  |      |
 +-------------------+--------------------+------+------+------+
@@ -217,7 +217,12 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
+  <h3>Related</h3>
+  <ul class="this-page-menu">
+    <li><a href="https://github.com/junzis/pyModeS"
+           rel="nofollow">pyModeS on GitHub</a></li>
+  </ul>
         </div>
       </div>
       <div class="clearer"></div>

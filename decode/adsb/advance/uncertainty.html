@@ -127,7 +127,7 @@
 <h2>1.6.3.1. Version 0<a class="headerlink" href="#version-0" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="nucp">
 <h3>1.6.3.1.1. NUCp<a class="headerlink" href="#nucp" title="Permalink to this headline">¶</a></h3>
-<p>In ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code>, the accuracy is express as <strong>Navigation Uncertainty Category - position</strong> (<code class="docutils literal"><span class="pre">NUCp</span></code>). It is directly related (one-to-one relationship) with <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code>, as follows:</p>
+<p>In ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code>, the accuracy is expressed as <strong>Navigation Uncertainty Category - position</strong> (<code class="docutils literal"><span class="pre">NUCp</span></code>). It is directly related (one-to-one relationship) with <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code>, as follows:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="8%" />
@@ -570,7 +570,7 @@
 <li><code class="docutils literal"><span class="pre">TC=29</span></code>, target state and status message, message bit 72-75 (or payload bit 40-43)</li>
 <li><code class="docutils literal"><span class="pre">TC=31</span></code>, operational status message, message bit 77-80 (or payload bit 45-48)</li>
 </ul>
-<p>With <code class="docutils literal"><span class="pre">NACp</span></code>, one can find out the 95% horizontal and vertical accuracy bounds (<code class="docutils literal"><span class="pre">EPU</span></code> and <code class="docutils literal"><span class="pre">VEPU</span></code>, or <code class="docutils literal"><span class="pre">HFOM</span></code> and <code class="docutils literal"><span class="pre">VFOM</span></code>). <code class="docutils literal"><span class="pre">NACp</span></code> and <code class="docutils literal"><span class="pre">NIC</span></code> usually share the same value, and their values are closed related.</p>
+<p>With <code class="docutils literal"><span class="pre">NACp</span></code>, one can find out the 95% horizontal and vertical accuracy bounds (<code class="docutils literal"><span class="pre">EPU</span></code> and <code class="docutils literal"><span class="pre">VEPU</span></code>, or <code class="docutils literal"><span class="pre">HFOM</span></code> and <code class="docutils literal"><span class="pre">VFOM</span></code>). <code class="docutils literal"><span class="pre">NACp</span></code> and <code class="docutils literal"><span class="pre">NIC</span></code> usually share the same value, and their values are closely related.</p>
 <div class="math">
 \[\begin{split}\mathrm{EPU} &amp;\approx \mathrm{Rc} / 2.5   \qquad  \mathrm{NAC, NIC} \ge 9 \\
 \mathrm{EPU} &amp;\approx \mathrm{Rc} / 2.0  \qquad  \mathrm{NAC, NIC} \lt 9\end{split}\]</div>
@@ -641,7 +641,7 @@
 </div>
 <div class="section" id="nacv">
 <h3>1.6.3.2.3. NACv<a class="headerlink" href="#nacv" title="Permalink to this headline">¶</a></h3>
-<p>The <strong>Navigation Accuracy Category - Velocity</strong> (<code class="docutils literal"><span class="pre">NACv</span></code>) is introduced in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> to replace the <code class="docutils literal"><span class="pre">NUCv</span></code> from <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code>. The bits are located at the same location and has the same definitions of values. It can be found in airborne velocity message, <code class="docutils literal"><span class="pre">TC=19</span></code>, message bit 43-45 (or payload bit 11-13). It defines the 95% of the error in horizontal and vertical speed.</p>
+<p>The <strong>Navigation Accuracy Category - Velocity</strong> (<code class="docutils literal"><span class="pre">NACv</span></code>) is introduced in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> to replace the <code class="docutils literal"><span class="pre">NUCv</span></code> from <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code>. The bits are located at the same location and have the same definitions of values. It can be found in airborne velocity message, <code class="docutils literal"><span class="pre">TC=19</span></code>, message bit 43-45 (or payload bit 11-13). It defines the 95% of the error in horizontal and vertical speed.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -727,7 +727,7 @@
 <h3>1.6.3.3.1. NIC<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>In ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, levels of accuracies are further divided by two addition <code class="docutils literal"><span class="pre">NIC</span></code> supplement bits. In <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, we call them NIC Supplement Bit A (<code class="docutils literal"><span class="pre">NICa</span></code>),  NIC Supplement Bit B (<code class="docutils literal"><span class="pre">NICb</span></code>), and  NIC Supplement Bit C (<code class="docutils literal"><span class="pre">NICc</span></code>).</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">NICa</span></code> is in the same location as in ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>, which located in the operational status message <code class="docutils literal"><span class="pre">TC=31</span></code> (message bit 76 or payload bit 44).</li>
+<li><code class="docutils literal"><span class="pre">NICa</span></code> is in the same location as in ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>, which is located in the operational status message <code class="docutils literal"><span class="pre">TC=31</span></code> (message bit 76 or payload bit 44).</li>
 <li><code class="docutils literal"><span class="pre">NICb</span></code> is located in the airborne position message (<code class="docutils literal"><span class="pre">TC=9-18</span></code>, message bit 40 or payload bit 8), where the “single antenna flag” was located in previous ADS-B versions.</li>
 <li><code class="docutils literal"><span class="pre">NICc</span></code> is also located in the operational status message <code class="docutils literal"><span class="pre">TC=31</span></code> (message bit 52 or payload bit 20).</li>
 </ul>
@@ -932,7 +932,7 @@
 </div>
 <div class="section" id="id4">
 <h3>1.6.3.3.4. SIL<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>In <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, an additional <strong>SIL supplement bit</strong> (<code class="docutils literal"><span class="pre">SILs</span></code>) is introduced to distinguish the value is based on per flight hour or per sample.</p>
+<p>In <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, an additional <strong>SIL supplement bit</strong> (<code class="docutils literal"><span class="pre">SILs</span></code>) is introduced to distinguish if the value is based on per flight hour or per sample.</p>
 <p>The same as in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>, <code class="docutils literal"><span class="pre">SIL</span></code> value can be found in two different locations:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">TC=29</span></code>, target state and status message, message bit 77-78 (or payload bit 45-46)</li>
@@ -1032,7 +1032,12 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
+  <h3>Related</h3>
+  <ul class="this-page-menu">
+    <li><a href="https://github.com/junzis/pyModeS"
+           rel="nofollow">pyModeS on GitHub</a></li>
+  </ul>
         </div>
       </div>
       <div class="clearer"></div>

@@ -46,14 +46,14 @@
             
   <div class="section" id="airborne-velocity">
 <h1>1.5. Airborne Velocity<a class="headerlink" href="#airborne-velocity" title="Permalink to this headline">¶</a></h1>
-<p>There are two different types of messages for velocities, determined by  3-bit subtype in the message. With subtype 1 and 2, surface velocity  (ground speed) is reported. And in subtype 3 and 4, aircraft airspeed are reported.</p>
+<p>There are two different types of messages for velocities, determined by 3-bit subtype in the message. With subtype 1 and 2, surface velocity (ground speed) is reported. And in subtype 3 and 4, aircraft airspeed is reported.</p>
 <p>Type 2 and 4 are for supersonic aircraft. So, before we have another commercial supersonic aircraft flying around, you won’t see any of those types.</p>
-<p>In real world, very few of subtype 3 messages are reported. In our setup, we only received <strong>0.3%</strong> of these message with regard to subtype 1.</p>
-<p>An aircraft velocity message has <code class="docutils literal"><span class="pre">DF:</span> <span class="pre">17</span> <span class="pre">or</span> <span class="pre">18</span></code>, <code class="docutils literal"><span class="pre">TC:</span> <span class="pre">19</span></code>. and the subtype code are represented in bits 38 to 40. Now, we can decode those messages.</p>
+<p>In real world, very few of subtype 3 messages are reported. In our setup, we only received <strong>0.3%</strong> of these message with regards to subtype 1.</p>
+<p>An aircraft velocity message has <code class="docutils literal"><span class="pre">DF:</span> <span class="pre">17</span> <span class="pre">or</span> <span class="pre">18</span></code>, <code class="docutils literal"><span class="pre">TC:</span> <span class="pre">19</span></code>, and the subtype codes are represented in bits 38 to 40. Now, we can decode those messages.</p>
 <div class="section" id="subtype-1-ground-speed">
 <h2>1.5.1. Subtype 1 (Ground Speed)<a class="headerlink" href="#subtype-1-ground-speed" title="Permalink to this headline">¶</a></h2>
-<p>Subtype 1 (subsonic, ground speed), are broadcast when ground velocity information are available. The aircraft velocity contains speed and heading information. The speed and heading are also decomposed into North-South, and East-West components.</p>
-<p>For example, following message is received:</p>
+<p>Subtype 1 (subsonic, ground speed), are broadcast when ground velocity information is available. The aircraft velocity contains speed and heading information. The speed and heading are also decomposed into North-South, and East-West components.</p>
+<p>For example, the following message is received:</p>
 <div class="highlight-text"><div class="highlight"><pre><span></span>Message: 8D485020994409940838175B284F
 
 |    | ICAO24 |      DATA      |  CRC   |
@@ -68,7 +68,7 @@ Convert DATA [99440994083817] into binary:
 | 10011 | 001 | 0  | 1      | 000 | 1    | 0000001001 | 1    | 0010100000 | 0     | 1    | 000001110 | 00     | 0     | 0010111 |
 </pre></div>
 </div>
-<p>There are quite a few parameters in the the velocity message. From left to rights, the number of bits indicate the following contents:</p>
+<p>There are quite a few parameters in the velocity message. From left to right, the number of bits indicates the following contents:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="17%" />
@@ -206,7 +206,7 @@ Convert DATA [99440994083817] into binary:
 \[v = \sqrt{V_{we}^{2} + V_{sn}^{2}}\]</div>
 <div class="math">
 \[h = arctan2 \left( V_{we}, V_{sn} \right) \cdot \frac{360}{2\pi}  \quad \text{(deg)}\]</div>
-<p>In case of an negative value here, we will simply add 360 degrees.</p>
+<p>In case of a negative value here, we will simply add 360 degrees.</p>
 <div class="math">
 \[h = h + 360  \quad (\text{if } h &lt; 0)\]</div>
 <p>So, now we have the speed and heading of our example:</p>
@@ -237,7 +237,7 @@ Convert DATA [99440994083817] into binary:
 </pre></div>
 </div>
 <p>So we see a descending aircraft at 832 ft/min rate of descend.</p>
-<p>The Vertical Rate Source (VrSrc) field determine whether if it is a measurement in barometric pressure altitude or geometric altitude:</p>
+<p>The Vertical Rate Source (VrSrc) field determines if it is a measurement in barometric pressure altitude or geometric altitude:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span>  <span class="n">Baro</span><span class="o">-</span><span class="n">pressure</span> <span class="n">altitude</span> <span class="n">change</span> <span class="n">rate</span>
 <span class="mi">1</span> <span class="o">-&gt;</span>  <span class="n">Geometric</span> <span class="n">altitude</span> <span class="n">change</span> <span class="n">rate</span>
 </pre></div>
@@ -246,7 +246,7 @@ Convert DATA [99440994083817] into binary:
 </div>
 <div class="section" id="subtype-3-airspeed">
 <h2>1.5.2. Subtype 3 (Airspeed)<a class="headerlink" href="#subtype-3-airspeed" title="Permalink to this headline">¶</a></h2>
-<p>Subtype 3 (subsonic, aripseed), are broadcast when ground speed information are NOT available, while airspeed is available. The structure of the message is similar to previous one. Let’s take a close look at an example for decoding here.</p>
+<p>Subtype 3 (subsonic, airspeed), are broadcast when ground speed information is NOT available, while airspeed is available. The structure of the message is similar to the previous one. Let’s take a close look at an example for decoding here.</p>
 <div class="highlight-text"><div class="highlight"><pre><span></span>Message: 8DA05F219B06B6AF189400CBC33F
 
 |    | ICAO24 |      DATA      |  CRC   |
@@ -394,7 +394,7 @@ Convert DATA [9B06B6AF189400] into binary:
 <span class="mi">1</span> <span class="o">-&gt;</span> <span class="kc">True</span> <span class="n">Airspeed</span> <span class="p">(</span><span class="n">TAS</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>And the the speed is simply a binary to decimal conversion of <code class="docutils literal"><span class="pre">AS</span></code> bits (in knot). In our example:</p>
+<p>And then the speed is simply a binary to decimal conversion of <code class="docutils literal"><span class="pre">AS</span></code> bits (in knot). In our example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0101111000</span> <span class="o">-&gt;</span> <span class="mi">376</span> <span class="n">knot</span>
 </pre></div>
 </div>
@@ -457,7 +457,12 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
+  <h3>Related</h3>
+  <ul class="this-page-menu">
+    <li><a href="https://github.com/junzis/pyModeS"
+           rel="nofollow">pyModeS on GitHub</a></li>
+  </ul>
         </div>
       </div>
       <div class="clearer"></div>

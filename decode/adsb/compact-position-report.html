@@ -50,25 +50,25 @@
 <div class="section" id="example">
 <h2>1.3.1. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>An easy example to understand the principle behind CPR:</p>
-<p>Imaging the world is constructed by 16 grid, which we have divided into two level, each level are encoded with two bits. Higher level in color are <code class="docutils literal"><span class="pre">00</span></code> (yellow), <code class="docutils literal"><span class="pre">01</span></code> (blue), <code class="docutils literal"><span class="pre">10</span></code> (red), <code class="docutils literal"><span class="pre">11</span></code> (green). And within each color grid, the lower levels are also encoded similarly.</p>
-<p>Then each grid can be represented as 4 digit from <code class="docutils literal"><span class="pre">0000</span></code> to <code class="docutils literal"><span class="pre">1111</span></code>. Now, we want to describe the movement indicated as the arrows in the green grids <code class="docutils literal"><span class="pre">1100</span> <span class="pre">-&gt;</span> <span class="pre">1101</span></code>, but we only have 3 bits to encode each position.</p>
+<p>Imaging the world is constructed by 16 grid, which we have divided into two levels, each level is encoded with two bits. Higher levels in color are <code class="docutils literal"><span class="pre">00</span></code> (yellow), <code class="docutils literal"><span class="pre">01</span></code> (blue), <code class="docutils literal"><span class="pre">10</span></code> (red), <code class="docutils literal"><span class="pre">11</span></code> (green). And within each color grid, the lower levels are also encoded similarly.</p>
+<p>Then each grid can be represented as 4 digits from <code class="docutils literal"><span class="pre">0000</span></code> to <code class="docutils literal"><span class="pre">1111</span></code>. Now, we want to describe the movement indicated as the arrows in the green grids <code class="docutils literal"><span class="pre">1100</span> <span class="pre">-&gt;</span> <span class="pre">1101</span></code>, but we only have 3 bits to encode each position.</p>
 <a class="reference internal image-reference" href="../_images/illustration-cpr-1.svg"><img alt="../_images/illustration-cpr-1.svg" src="../_images/illustration-cpr-1.svg" width="472px" /></a>
 <p>It is easy to see that the high 2 bits appeared in all positions, so we can define a structure to do the following:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">The</span> <span class="n">last</span> <span class="n">two</span> <span class="n">bits</span> <span class="n">shall</span> <span class="n">represent</span> <span class="n">the</span> <span class="n">local</span> <span class="n">position</span>
 <span class="mf">2.</span> <span class="n">The</span> <span class="n">combination</span> <span class="n">of</span> <span class="n">first</span> <span class="n">digit</span> <span class="kn">from</span> <span class="nn">two</span> <span class="n">messages</span> <span class="n">defines</span> <span class="n">the</span> <span class="n">higher</span> <span class="n">grid</span>
 </pre></div>
 </div>
-<p>The then two message can be sent as <code class="docutils literal"><span class="pre">1</span> <span class="pre">00</span> <span class="pre">-&gt;</span> <span class="pre">1</span> <span class="pre">01</span></code></p>
-<p>From lower bits <code class="docutils literal"><span class="pre">00</span> <span class="pre">-&gt;</span> <span class="pre">01</span></code>, we have four different possibility of movement as show in dashed arrows, and from the two first bit combination <code class="docutils literal"><span class="pre">11</span></code>, we know the the arrow shall represent the movement in the green grids:</p>
+<p>Then the two messages can be sent as <code class="docutils literal"><span class="pre">1</span> <span class="pre">00</span> <span class="pre">-&gt;</span> <span class="pre">1</span> <span class="pre">01</span></code>.</p>
+<p>From lower bits <code class="docutils literal"><span class="pre">00</span> <span class="pre">-&gt;</span> <span class="pre">01</span></code>, we have four different possibility of movement as shown in dashed arrows, and from the two first bits combination <code class="docutils literal"><span class="pre">11</span></code>, we know that the arrow shall represent the movement in the green grids:</p>
 <a class="reference internal image-reference" href="../_images/illustration-cpr-2.svg"><img alt="../_images/illustration-cpr-2.svg" src="../_images/illustration-cpr-2.svg" width="332px" /></a>
 </div>
 <div class="section" id="the-cpr-and-functions">
 <h2>1.3.2. The CPR and functions<a class="headerlink" href="#the-cpr-and-functions" title="Permalink to this headline">¶</a></h2>
-<p>The actual CPR algorithm of course is more complicated, but the principle is very similar to previous example. If only one message is given, it is possible to find multiple solutions that are spaced around the world. The combination of two (different types of) messages will yield the final result.</p>
-<p>In CPR encoding, the earth is divided in many zones (similar to the grid in previous example). And the encoding algorithm is also more complicated (described in later section). First, we will list some of the parameters and common functions used in the decoding process here.</p>
+<p>The actual CPR algorithm of course is more complicated, but the principle is very similar to the previous example. If only one message is given, it is possible to find multiple solutions that are spaced around the world. The combination of two (different types of) messages will yield the final result.</p>
+<p>In CPR encoding, the Earth is divided in many zones (similar to the grid in the previous example). And the encoding algorithm is also more complicated (described in a later section). First, we will list some of the parameters and common functions used in the decoding process here.</p>
 <div class="section" id="nz">
 <h3>1.3.2.1. NZ<a class="headerlink" href="#nz" title="Permalink to this headline">¶</a></h3>
-<p>Number of geographic latitude zones between equator and a pole. It is set to <code class="docutils literal"><span class="pre">NZ</span> <span class="pre">=</span> <span class="pre">15</span></code> for Mode-S CPR encoding</p>
+<p>Number of geographic latitude zones between equator and a pole. It is set to <code class="docutils literal"><span class="pre">NZ</span> <span class="pre">=</span> <span class="pre">15</span></code> for Mode-S CPR encoding.</p>
 </div>
 <div class="section" id="floor-x">
 <h3>1.3.2.2. floor(x)<a class="headerlink" href="#floor-x" title="Permalink to this headline">¶</a></h3>
@@ -80,7 +80,7 @@
 </div>
 <div class="section" id="mod-x-y">
 <h3>1.3.2.3. mod(x, y)<a class="headerlink" href="#mod-x-y" title="Permalink to this headline">¶</a></h3>
-<p>the modulus function <code class="docutils literal"><span class="pre">mod(x,</span> <span class="pre">y)</span></code> return:</p>
+<p>the modulus function <code class="docutils literal"><span class="pre">mod(x,</span> <span class="pre">y)</span></code> returns:</p>
 <div class="math">
 \[x - y \cdot floor(\frac{x}{y})\]</div>
 <p>where <code class="docutils literal"><span class="pre">y</span></code> can not be zero</p>
@@ -90,7 +90,7 @@
 <p>Denotes the “number of longitude zones” function, given the latitude angle <code class="docutils literal"><span class="pre">lat</span></code>. The returned integer value is constrained within <code class="docutils literal"><span class="pre">[1,</span> <span class="pre">59]</span></code>, calculated as:</p>
 <div class="math">
 \[\text{NL}(lat) = floor \left( \frac{2 \pi}{\arccos(1 - \frac{1-\cos(\frac{\pi}{2 \cdot \text{NZ}})}{\cos^2(\frac{\pi}{180} \cdot \text{lat})}) } \right)\]</div>
-<p>For latitudes that are close to equator or poles, following value is returned:</p>
+<p>For latitudes that are close to the equator or the poles, one of following values is returned:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lat</span> <span class="o">=</span> <span class="mi">0</span>     <span class="o">-&gt;</span>    <span class="n">NL</span> <span class="o">=</span> <span class="mi">59</span>
 <span class="n">lat</span> <span class="o">=</span> <span class="o">+</span><span class="mi">87</span>   <span class="o">-&gt;</span>    <span class="n">NL</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">lat</span> <span class="o">=</span> <span class="o">-</span><span class="mi">87</span>   <span class="o">-&gt;</span>    <span class="n">NL</span> <span class="o">=</span> <span class="mi">2</span>
@@ -153,7 +153,12 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
+  <h3>Related</h3>
+  <ul class="this-page-menu">
+    <li><a href="https://github.com/junzis/pyModeS"
+           rel="nofollow">pyModeS on GitHub</a></li>
+  </ul>
         </div>
       </div>
       <div class="clearer"></div>
