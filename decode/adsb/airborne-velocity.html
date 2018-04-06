@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1.5. Airborne Velocity &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -32,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
 
   <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 
@@ -49,12 +40,12 @@
 <p>There are two different types of messages for velocities, determined by 3-bit subtype in the message. With subtype 1 and 2, surface velocity (ground speed) is reported. And in subtype 3 and 4, aircraft airspeed is reported.</p>
 <p>Type 2 and 4 are for supersonic aircraft. So, before we have another commercial supersonic aircraft flying around, you won’t see any of those types.</p>
 <p>In real world, very few of subtype 3 messages are reported. In our setup, we only received <strong>0.3%</strong> of these message with regards to subtype 1.</p>
-<p>An aircraft velocity message has <code class="docutils literal"><span class="pre">DF:</span> <span class="pre">17</span> <span class="pre">or</span> <span class="pre">18</span></code>, <code class="docutils literal"><span class="pre">TC:</span> <span class="pre">19</span></code>, and the subtype codes are represented in bits 38 to 40. Now, we can decode those messages.</p>
+<p>An aircraft velocity message has <code class="docutils literal notranslate"><span class="pre">DF:</span> <span class="pre">17</span> <span class="pre">or</span> <span class="pre">18</span></code>, <code class="docutils literal notranslate"><span class="pre">TC:</span> <span class="pre">19</span></code>, and the subtype codes are represented in bits 38 to 40. Now, we can decode those messages.</p>
 <div class="section" id="subtype-1-ground-speed">
 <h2>1.5.1. Subtype 1 (Ground Speed)<a class="headerlink" href="#subtype-1-ground-speed" title="Permalink to this headline">¶</a></h2>
 <p>Subtype 1 (subsonic, ground speed), are broadcast when ground velocity information is available. The aircraft velocity contains speed and heading information. The speed and heading are also decomposed into North-South, and East-West components.</p>
 <p>For example, the following message is received:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>Message: 8D485020994409940838175B284F
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Message: 8D485020994409940838175B284F
 
 |    | ICAO24 |      DATA      |  CRC   |
 |----|--------|----------------|--------|
@@ -180,8 +171,8 @@ Convert DATA [99440994083817] into binary:
 </table>
 <div class="section" id="horizontal-velocity">
 <h3>1.5.1.1. Horizontal Velocity<a class="headerlink" href="#horizontal-velocity" title="Permalink to this headline">¶</a></h3>
-<p>For calculating the horizontal speed and heading we need four values, East-West Velocity <code class="docutils literal"><span class="pre">V_ew</span></code>, East-West Velocity Sign <code class="docutils literal"><span class="pre">S_ew</span></code>, North-South Velocity <code class="docutils literal"><span class="pre">V_ns</span></code>, North-South Velocity Sign <code class="docutils literal"><span class="pre">S_ns</span></code>. And pay attention on the directions (signs) in the calculation.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">S_ns</span><span class="p">:</span>
+<p>For calculating the horizontal speed and heading we need four values, East-West Velocity <code class="docutils literal notranslate"><span class="pre">V_ew</span></code>, East-West Velocity Sign <code class="docutils literal notranslate"><span class="pre">S_ew</span></code>, North-South Velocity <code class="docutils literal notranslate"><span class="pre">V_ns</span></code>, North-South Velocity Sign <code class="docutils literal notranslate"><span class="pre">S_ns</span></code>. And pay attention on the directions (signs) in the calculation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S_ns</span><span class="p">:</span>
     <span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">flying</span> <span class="n">North</span> <span class="n">to</span> <span class="n">South</span>
     <span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">flying</span> <span class="n">South</span> <span class="n">to</span> <span class="n">North</span>
 <span class="n">S_ew</span><span class="p">:</span>
@@ -190,27 +181,27 @@ Convert DATA [99440994083817] into binary:
 </pre></div>
 </div>
 <p>The Speed (v) and heading (h) with unit <cite>knot</cite> and <cite>degree</cite> can be computed as follows:</p>
-<div class="math">
+<div class="math notranslate">
 \[\begin{split}V_{we} =
 \begin{cases}
  -1 \cdot (V_{ew} - 1)    &amp; \text{if } s_{ew} = 1 \\
  V_{ew} - 1         &amp; \text{if } s_{ew} = 0
 \end{cases}\end{split}\]</div>
-<div class="math">
+<div class="math notranslate">
 \[\begin{split}V_{sn} =
 \begin{cases}
  -1 \cdot (V_{ns} - 1)    &amp; \text{if } s_{ns} = 1 \\
  V_{ns} - 1         &amp; \text{if } s_{ns} = 0
 \end{cases}\end{split}\]</div>
-<div class="math">
+<div class="math notranslate">
 \[v = \sqrt{V_{we}^{2} + V_{sn}^{2}}\]</div>
-<div class="math">
+<div class="math notranslate">
 \[h = arctan2 \left( V_{we}, V_{sn} \right) \cdot \frac{360}{2\pi}  \quad \text{(deg)}\]</div>
 <p>In case of a negative value here, we will simply add 360 degrees.</p>
-<div class="math">
+<div class="math notranslate">
 \[h = h + 360  \quad (\text{if } h &lt; 0)\]</div>
 <p>So, now we have the speed and heading of our example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">V</span><span class="o">-</span><span class="n">EW</span><span class="p">:</span> <span class="mi">0000001001</span> <span class="o">-&gt;</span> <span class="mi">9</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">V</span><span class="o">-</span><span class="n">EW</span><span class="p">:</span> <span class="mi">0000001001</span> <span class="o">-&gt;</span> <span class="mi">9</span>
 <span class="n">S</span><span class="o">-</span><span class="n">EW</span><span class="p">:</span> <span class="mi">1</span>
 <span class="n">V</span><span class="o">-</span><span class="n">NS</span><span class="p">:</span> <span class="mi">0010100000</span> <span class="o">-&gt;</span> <span class="mi">160</span>
 <span class="n">S</span><span class="o">-</span><span class="n">NS</span><span class="p">:</span> <span class="mi">1</span>
@@ -225,20 +216,20 @@ Convert DATA [99440994083817] into binary:
 </div>
 <div class="section" id="vertical-rate">
 <h3>1.5.1.2. Vertical Rate<a class="headerlink" href="#vertical-rate" title="Permalink to this headline">¶</a></h3>
-<p>The direction of vertical movement of aircraft can be read from <code class="docutils literal"><span class="pre">S_vr</span></code> field, in message bit-69:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">UP</span>
+<p>The direction of vertical movement of aircraft can be read from <code class="docutils literal notranslate"><span class="pre">S_vr</span></code> field, in message bit-69:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">UP</span>
 <span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">Down</span>
 </pre></div>
 </div>
-<p>The actual vertical rate <code class="docutils literal"><span class="pre">Vr</span></code> is the value of bits 70-78, minus 1, and then multiplied by 64 in <strong>feet/minute</strong> (ft/min). In our example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Vr</span><span class="o">-</span><span class="n">bits</span><span class="p">:</span> <span class="mi">000001110</span> <span class="o">=</span> <span class="mi">14</span>
+<p>The actual vertical rate <code class="docutils literal notranslate"><span class="pre">Vr</span></code> is the value of bits 70-78, minus 1, and then multiplied by 64 in <strong>feet/minute</strong> (ft/min). In our example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Vr</span><span class="o">-</span><span class="n">bits</span><span class="p">:</span> <span class="mi">000001110</span> <span class="o">=</span> <span class="mi">14</span>
 <span class="n">Vr</span><span class="p">:</span> <span class="p">(</span><span class="mi">14</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="n">x</span> <span class="mi">64</span> <span class="o">=&gt;</span> <span class="mi">832</span> <span class="n">fpm</span>
 <span class="n">S</span><span class="o">-</span><span class="n">Vr</span><span class="p">:</span> <span class="mi">0</span> <span class="o">=&gt;</span> <span class="n">Down</span> <span class="o">/</span> <span class="n">Descending</span>
 </pre></div>
 </div>
 <p>So we see a descending aircraft at 832 ft/min rate of descend.</p>
 <p>The Vertical Rate Source (VrSrc) field determines if it is a measurement in barometric pressure altitude or geometric altitude:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span>  <span class="n">Baro</span><span class="o">-</span><span class="n">pressure</span> <span class="n">altitude</span> <span class="n">change</span> <span class="n">rate</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span>  <span class="n">Baro</span><span class="o">-</span><span class="n">pressure</span> <span class="n">altitude</span> <span class="n">change</span> <span class="n">rate</span>
 <span class="mi">1</span> <span class="o">-&gt;</span>  <span class="n">Geometric</span> <span class="n">altitude</span> <span class="n">change</span> <span class="n">rate</span>
 </pre></div>
 </div>
@@ -247,7 +238,7 @@ Convert DATA [99440994083817] into binary:
 <div class="section" id="subtype-3-airspeed">
 <h2>1.5.2. Subtype 3 (Airspeed)<a class="headerlink" href="#subtype-3-airspeed" title="Permalink to this headline">¶</a></h2>
 <p>Subtype 3 (subsonic, airspeed), are broadcast when ground speed information is NOT available, while airspeed is available. The structure of the message is similar to the previous one. Let’s take a close look at an example for decoding here.</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>Message: 8DA05F219B06B6AF189400CBC33F
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Message: 8DA05F219B06B6AF189400CBC33F
 
 |    | ICAO24 |      DATA      |  CRC   |
 |----|--------|----------------|--------|
@@ -373,29 +364,29 @@ Convert DATA [9B06B6AF189400] into binary:
 </table>
 <div class="section" id="heading">
 <h3>1.5.2.1. Heading<a class="headerlink" href="#heading" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal"><span class="pre">S_hdg</span></code> makes the status of heading data:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">heading</span> <span class="n">data</span> <span class="ow">not</span> <span class="n">available</span>
+<p><code class="docutils literal notranslate"><span class="pre">S_hdg</span></code> makes the status of heading data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">heading</span> <span class="n">data</span> <span class="ow">not</span> <span class="n">available</span>
 <span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">heading</span> <span class="n">data</span> <span class="n">available</span>
 </pre></div>
 </div>
-<p>10-bits <code class="docutils literal"><span class="pre">Hdg</span></code> is the represent the proportion of the degrees of a full circle, i.e. 360 degrees. (Note: 0000000000 - 1111111111 represents 0 - 1023 )</p>
-<div class="math">
+<p>10-bits <code class="docutils literal notranslate"><span class="pre">Hdg</span></code> is the represent the proportion of the degrees of a full circle, i.e. 360 degrees. (Note: 0000000000 - 1111111111 represents 0 - 1023 )</p>
+<div class="math notranslate">
 \[heading = Decimal(Hdg) / 1024 * 360^o\]</div>
 <p>in our example</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">1010110110</span> <span class="o">-&gt;</span> <span class="mi">694</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1010110110</span> <span class="o">-&gt;</span> <span class="mi">694</span>
 <span class="n">heading</span> <span class="o">=</span> <span class="mi">694</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">360</span> <span class="o">=</span> <span class="mf">243.98</span> <span class="p">(</span><span class="n">degree</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="velocity-airspeed">
 <h3>1.5.2.2. Velocity (Airspeed)<a class="headerlink" href="#velocity-airspeed" title="Permalink to this headline">¶</a></h3>
-<p>To find out which type of the airspeed (TAS or IAS), first we need to look at the <code class="docutils literal"><span class="pre">AS-t</span></code> field:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">Indicated</span> <span class="n">Airspeed</span> <span class="p">(</span><span class="n">IAS</span><span class="p">)</span>
+<p>To find out which type of the airspeed (TAS or IAS), first we need to look at the <code class="docutils literal notranslate"><span class="pre">AS-t</span></code> field:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">Indicated</span> <span class="n">Airspeed</span> <span class="p">(</span><span class="n">IAS</span><span class="p">)</span>
 <span class="mi">1</span> <span class="o">-&gt;</span> <span class="kc">True</span> <span class="n">Airspeed</span> <span class="p">(</span><span class="n">TAS</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>And then the speed is simply a binary to decimal conversion of <code class="docutils literal"><span class="pre">AS</span></code> bits (in knot). In our example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0101111000</span> <span class="o">-&gt;</span> <span class="mi">376</span> <span class="n">knot</span>
+<p>And then the speed is simply a binary to decimal conversion of <code class="docutils literal notranslate"><span class="pre">AS</span></code> bits (in knot). In our example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0101111000</span> <span class="o">-&gt;</span> <span class="mi">376</span> <span class="n">knot</span>
 </pre></div>
 </div>
 </div>
@@ -450,12 +441,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
   </ul>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
   <h3>Related</h3>
@@ -472,7 +465,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       &copy;2018, Junzi Sun.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

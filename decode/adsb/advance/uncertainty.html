@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1.6.3. Uncertainty and accuracy &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
@@ -32,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
 
   <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 
@@ -48,32 +39,32 @@
 <h1>1.6.3. Uncertainty and accuracy<a class="headerlink" href="#uncertainty-and-accuracy" title="Permalink to this headline">¶</a></h1>
 <p>NIC, NAC, NUC, and SIL, those acronyms do sound confusing. They are categorical numbers for the integrity,  accuracy, or uncertainties of the position measurements.</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">NUCp</span></code>: Navigation Uncertainty Category - Position<ul>
+<li><code class="docutils literal notranslate"><span class="pre">NUCp</span></code>: Navigation Uncertainty Category - Position<ul>
 <li>Values: 0 - 9</li>
 <li>Version 0, 1, and 2</li>
 </ul>
 </li>
-<li><code class="docutils literal"><span class="pre">NUCr</span></code>: Navigation Uncertainty Category - Velocity (Rate)<ul>
+<li><code class="docutils literal notranslate"><span class="pre">NUCr</span></code>: Navigation Uncertainty Category - Velocity (Rate)<ul>
 <li>Values: 0 - 4</li>
 <li>Version 0</li>
 </ul>
 </li>
-<li><code class="docutils literal"><span class="pre">NIC</span></code>: Navigation Integrity Category<ul>
+<li><code class="docutils literal notranslate"><span class="pre">NIC</span></code>: Navigation Integrity Category<ul>
 <li>Values: 0 - 11</li>
 <li>Version 1 and 2</li>
 </ul>
 </li>
-<li><code class="docutils literal"><span class="pre">NACp</span></code>: Navigation Accuracy Category - Position<ul>
+<li><code class="docutils literal notranslate"><span class="pre">NACp</span></code>: Navigation Accuracy Category - Position<ul>
 <li>Values: 0 - 11</li>
 <li>Version 1 and 2</li>
 </ul>
 </li>
-<li><code class="docutils literal"><span class="pre">NACv</span></code>: Navigation Accuracy Category - Velocity<ul>
+<li><code class="docutils literal notranslate"><span class="pre">NACv</span></code>: Navigation Accuracy Category - Velocity<ul>
 <li>Values: 0 - 4</li>
 <li>Version 1 and 2</li>
 </ul>
 </li>
-<li><code class="docutils literal"><span class="pre">SIL</span></code>: Surveillance Integrity Level<ul>
+<li><code class="docutils literal notranslate"><span class="pre">SIL</span></code>: Surveillance Integrity Level<ul>
 <li>Values: 0 - 3</li>
 <li>Version 1 and 2</li>
 </ul>
@@ -81,42 +72,42 @@
 </ul>
 <p>For each category name, specific values are given corresponding to the numerical indicators. The relation of the category names and value names are:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">NUCp</span></code>:<ul>
-<li>Horizontal Protection Limit (<code class="docutils literal"><span class="pre">HPL</span></code>)</li>
-<li>95% Containment Radius - Horizontal (<code class="docutils literal"><span class="pre">RCu</span></code>)</li>
-<li>95% Containment Radius - Vertical (<code class="docutils literal"><span class="pre">RCv</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">NUCp</span></code>:<ul>
+<li>Horizontal Protection Limit (<code class="docutils literal notranslate"><span class="pre">HPL</span></code>)</li>
+<li>95% Containment Radius - Horizontal (<code class="docutils literal notranslate"><span class="pre">RCu</span></code>)</li>
+<li>95% Containment Radius - Vertical (<code class="docutils literal notranslate"><span class="pre">RCv</span></code>)</li>
 </ul>
 </li>
-<li><code class="docutils literal"><span class="pre">NUCr</span></code>:<ul>
-<li>95% Horizontal Velocity Error (<code class="docutils literal"><span class="pre">HVE</span></code>)</li>
-<li>95% Vertical Velocity Error (<code class="docutils literal"><span class="pre">VVE</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">NUCr</span></code>:<ul>
+<li>95% Horizontal Velocity Error (<code class="docutils literal notranslate"><span class="pre">HVE</span></code>)</li>
+<li>95% Vertical Velocity Error (<code class="docutils literal notranslate"><span class="pre">VVE</span></code>)</li>
 </ul>
 </li>
-<li><code class="docutils literal"><span class="pre">NIC</span></code>:<ul>
-<li>Horizontal Radius of Containment (<code class="docutils literal"><span class="pre">RCu</span></code>)</li>
-<li>Vertical Protection Limit (<code class="docutils literal"><span class="pre">VPL</span></code>)
+<li><code class="docutils literal notranslate"><span class="pre">NIC</span></code>:<ul>
+<li>Horizontal Radius of Containment (<code class="docutils literal notranslate"><span class="pre">RCu</span></code>)</li>
+<li>Vertical Protection Limit (<code class="docutils literal notranslate"><span class="pre">VPL</span></code>)
 - a.k.a. Integrity Containment Region</li>
 </ul>
 </li>
-<li><code class="docutils literal"><span class="pre">NACp</span></code>:<ul>
-<li>95% horizontal accuracy bounds, Estimated Position Uncertainty (<code class="docutils literal"><span class="pre">EPU</span></code>)<ul>
-<li>a.k.a. Horizontal Figure of Merit (<code class="docutils literal"><span class="pre">HFOM</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">NACp</span></code>:<ul>
+<li>95% horizontal accuracy bounds, Estimated Position Uncertainty (<code class="docutils literal notranslate"><span class="pre">EPU</span></code>)<ul>
+<li>a.k.a. Horizontal Figure of Merit (<code class="docutils literal notranslate"><span class="pre">HFOM</span></code>)</li>
 </ul>
 </li>
-<li>95% vertical accuracy bounds, Vertical Estimated Position Uncertainty (<code class="docutils literal"><span class="pre">VEPU</span></code>)<ul>
-<li>a.k.a. Vertical Figure of Merit (<code class="docutils literal"><span class="pre">VFOM</span></code>)</li>
+<li>95% vertical accuracy bounds, Vertical Estimated Position Uncertainty (<code class="docutils literal notranslate"><span class="pre">VEPU</span></code>)<ul>
+<li>a.k.a. Vertical Figure of Merit (<code class="docutils literal notranslate"><span class="pre">VFOM</span></code>)</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><code class="docutils literal"><span class="pre">NACv</span></code>:<ul>
-<li>95% horizontal accuracy bounds for velocity, Horizontal Figure of Merit (<code class="docutils literal"><span class="pre">HFOMr</span></code>)</li>
-<li>95% vertical accuracy bounds for velocity, Vertical Figure of Merit (<code class="docutils literal"><span class="pre">VFOMr</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">NACv</span></code>:<ul>
+<li>95% horizontal accuracy bounds for velocity, Horizontal Figure of Merit (<code class="docutils literal notranslate"><span class="pre">HFOMr</span></code>)</li>
+<li>95% vertical accuracy bounds for velocity, Vertical Figure of Merit (<code class="docutils literal notranslate"><span class="pre">VFOMr</span></code>)</li>
 </ul>
 </li>
-<li><code class="docutils literal"><span class="pre">SIL</span></code>:<ul>
-<li>Probability of exceeding Horizontal Radius of Containment <code class="docutils literal"><span class="pre">RCu</span></code> (<code class="docutils literal"><span class="pre">PE_RCu</span></code>)</li>
-<li>Probability of exceeding Vertical Integrity Containment Region <code class="docutils literal"><span class="pre">VPL</span></code> (<code class="docutils literal"><span class="pre">PE_VPL</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">SIL</span></code>:<ul>
+<li>Probability of exceeding Horizontal Radius of Containment <code class="docutils literal notranslate"><span class="pre">RCu</span></code> (<code class="docutils literal notranslate"><span class="pre">PE_RCu</span></code>)</li>
+<li>Probability of exceeding Vertical Integrity Containment Region <code class="docutils literal notranslate"><span class="pre">VPL</span></code> (<code class="docutils literal notranslate"><span class="pre">PE_VPL</span></code>)</li>
 </ul>
 </li>
 </ul>
@@ -127,7 +118,7 @@
 <h2>1.6.3.1. Version 0<a class="headerlink" href="#version-0" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="nucp">
 <h3>1.6.3.1.1. NUCp<a class="headerlink" href="#nucp" title="Permalink to this headline">¶</a></h3>
-<p>In ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code>, the accuracy is expressed as <strong>Navigation Uncertainty Category - position</strong> (<code class="docutils literal"><span class="pre">NUCp</span></code>). It is directly related (one-to-one relationship) with <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code>, as follows:</p>
+<p>In ADS-B <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">0</span></code>, the accuracy is expressed as <strong>Navigation Uncertainty Category - position</strong> (<code class="docutils literal notranslate"><span class="pre">NUCp</span></code>). It is directly related (one-to-one relationship) with <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">Code</span></code>, as follows:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="8%" />
@@ -201,8 +192,8 @@
 </tr>
 </tbody>
 </table>
-<p>Higher number of NUCp represents a higher confidence of in the position measurement (hence, a lower uncertainty). Horizontal Protection Limit (<code class="docutils literal"><span class="pre">HPL</span></code>) and Radius of containment for horizontal (<code class="docutils literal"><span class="pre">RCu</span></code>) are used to quantify the uncertainty.</p>
-<p>For surface position (<code class="docutils literal"><span class="pre">TC=5-8</span></code>):</p>
+<p>Higher number of NUCp represents a higher confidence of in the position measurement (hence, a lower uncertainty). Horizontal Protection Limit (<code class="docutils literal notranslate"><span class="pre">HPL</span></code>) and Radius of containment for horizontal (<code class="docutils literal notranslate"><span class="pre">RCu</span></code>) are used to quantify the uncertainty.</p>
+<p>For surface position (<code class="docutils literal notranslate"><span class="pre">TC=5-8</span></code>):</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="8%" />
@@ -240,7 +231,7 @@
 </tr>
 </tbody>
 </table>
-<p>For airborne position with barometric altitude (<code class="docutils literal"><span class="pre">TC=9-18</span></code>):</p>
+<p>For airborne position with barometric altitude (<code class="docutils literal notranslate"><span class="pre">TC=9-18</span></code>):</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="11%" />
@@ -308,7 +299,7 @@
 </tr>
 </tbody>
 </table>
-<p>In the case of  airborne position with GNSS height (<code class="docutils literal"><span class="pre">TC=20-22</span></code>), <code class="docutils literal"><span class="pre">HPL</span></code> and <code class="docutils literal"><span class="pre">RCu</span></code> are defined slight differently. In addition, Radius of containment for vertical position (<code class="docutils literal"><span class="pre">RCv</span></code>) is added:</p>
+<p>In the case of  airborne position with GNSS height (<code class="docutils literal notranslate"><span class="pre">TC=20-22</span></code>), <code class="docutils literal notranslate"><span class="pre">HPL</span></code> and <code class="docutils literal notranslate"><span class="pre">RCu</span></code> are defined slight differently. In addition, Radius of containment for vertical position (<code class="docutils literal notranslate"><span class="pre">RCv</span></code>) is added:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -349,7 +340,7 @@
 </div>
 <div class="section" id="nucv">
 <h3>1.6.3.1.2. NUCv<a class="headerlink" href="#nucv" title="Permalink to this headline">¶</a></h3>
-<p>The <strong>Navigation Uncertainty Category - velocity</strong> (<code class="docutils literal"><span class="pre">NUCv</span></code>) it is used to indicate the uncertainty of the horizontal and vertical speeds. Related bits are located at the airborne velocity message, <code class="docutils literal"><span class="pre">TC=19</span></code>, message bit 43-45 (or payload bit 11-13). It defines the 95% of the error in horizontal and vertical speed.</p>
+<p>The <strong>Navigation Uncertainty Category - velocity</strong> (<code class="docutils literal notranslate"><span class="pre">NUCv</span></code>) it is used to indicate the uncertainty of the horizontal and vertical speeds. Related bits are located at the airborne velocity message, <code class="docutils literal notranslate"><span class="pre">TC=19</span></code>, message bit 43-45 (or payload bit 11-13). It defines the 95% of the error in horizontal and vertical speed.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -391,9 +382,9 @@
 <h2>1.6.3.2. Version 1<a class="headerlink" href="#version-1" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="nic">
 <h3>1.6.3.2.1. NIC<a class="headerlink" href="#nic" title="Permalink to this headline">¶</a></h3>
-<p>In ADS-B Version 1, <strong>Navigation Integrity Category</strong> (<code class="docutils literal"><span class="pre">NIC</span></code>) is introduced to provide more levels of uncertainty definitions. The <code class="docutils literal"><span class="pre">NUCp</span></code> value is still kept, but has been moved to the new “operation status messages” (<code class="docutils literal"><span class="pre">TC=31</span></code>).</p>
-<p>As for <code class="docutils literal"><span class="pre">NIC</span></code>, in <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code>: <code class="docutils literal"><span class="pre">7</span></code> and <code class="docutils literal"><span class="pre">11</span></code>, two <code class="docutils literal"><span class="pre">NIC</span></code> levels present in each code. In order to distinguish these two different levels, a <strong>NIC Supplement Bit</strong> (<code class="docutils literal"><span class="pre">NICs</span></code>) is introduced in “operation status messages” <code class="docutils literal"><span class="pre">TC=31</span></code>  (message bit 76 or payload bit 44). The relation of TC, NIC, and Rc are list in following tables.</p>
-<p>For surface position (<code class="docutils literal"><span class="pre">TC=5-8</span></code>)</p>
+<p>In ADS-B Version 1, <strong>Navigation Integrity Category</strong> (<code class="docutils literal notranslate"><span class="pre">NIC</span></code>) is introduced to provide more levels of uncertainty definitions. The <code class="docutils literal notranslate"><span class="pre">NUCp</span></code> value is still kept, but has been moved to the new “operation status messages” (<code class="docutils literal notranslate"><span class="pre">TC=31</span></code>).</p>
+<p>As for <code class="docutils literal notranslate"><span class="pre">NIC</span></code>, in <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">Code</span></code>: <code class="docutils literal notranslate"><span class="pre">7</span></code> and <code class="docutils literal notranslate"><span class="pre">11</span></code>, two <code class="docutils literal notranslate"><span class="pre">NIC</span></code> levels present in each code. In order to distinguish these two different levels, a <strong>NIC Supplement Bit</strong> (<code class="docutils literal notranslate"><span class="pre">NICs</span></code>) is introduced in “operation status messages” <code class="docutils literal notranslate"><span class="pre">TC=31</span></code>  (message bit 76 or payload bit 44). The relation of TC, NIC, and Rc are list in following tables.</p>
+<p>For surface position (<code class="docutils literal notranslate"><span class="pre">TC=5-8</span></code>)</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -435,7 +426,7 @@
 </tr>
 </tbody>
 </table>
-<p>For airborne position with barometric altitude (<code class="docutils literal"><span class="pre">TC=9-18</span></code>):</p>
+<p>For airborne position with barometric altitude (<code class="docutils literal notranslate"><span class="pre">TC=9-18</span></code>):</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="9%" />
@@ -529,7 +520,7 @@
 </tr>
 </tbody>
 </table>
-<p>In the case of  airborne position with GNSS height (<code class="docutils literal"><span class="pre">TC=20-22</span></code>), <code class="docutils literal"><span class="pre">Rc</span></code> is defined slight differently:</p>
+<p>In the case of  airborne position with GNSS height (<code class="docutils literal notranslate"><span class="pre">TC=20-22</span></code>), <code class="docutils literal notranslate"><span class="pre">Rc</span></code> is defined slight differently:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="19%" />
@@ -565,16 +556,16 @@
 </div>
 <div class="section" id="nacp">
 <h3>1.6.3.2.2. NACp<a class="headerlink" href="#nacp" title="Permalink to this headline">¶</a></h3>
-<p>In addition to <code class="docutils literal"><span class="pre">NIC</span></code>, <strong>Navigation Accuracy Category - Position</strong> (<code class="docutils literal"><span class="pre">NACp</span></code>) is also introduced int ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>. <code class="docutils literal"><span class="pre">NACp</span></code> can be found in:</p>
+<p>In addition to <code class="docutils literal notranslate"><span class="pre">NIC</span></code>, <strong>Navigation Accuracy Category - Position</strong> (<code class="docutils literal notranslate"><span class="pre">NACp</span></code>) is also introduced int ADS-B <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">1</span></code>. <code class="docutils literal notranslate"><span class="pre">NACp</span></code> can be found in:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">TC=29</span></code>, target state and status message, message bit 72-75 (or payload bit 40-43)</li>
-<li><code class="docutils literal"><span class="pre">TC=31</span></code>, operational status message, message bit 77-80 (or payload bit 45-48)</li>
+<li><code class="docutils literal notranslate"><span class="pre">TC=29</span></code>, target state and status message, message bit 72-75 (or payload bit 40-43)</li>
+<li><code class="docutils literal notranslate"><span class="pre">TC=31</span></code>, operational status message, message bit 77-80 (or payload bit 45-48)</li>
 </ul>
-<p>With <code class="docutils literal"><span class="pre">NACp</span></code>, one can find out the 95% horizontal and vertical accuracy bounds (<code class="docutils literal"><span class="pre">EPU</span></code> and <code class="docutils literal"><span class="pre">VEPU</span></code>, or <code class="docutils literal"><span class="pre">HFOM</span></code> and <code class="docutils literal"><span class="pre">VFOM</span></code>). <code class="docutils literal"><span class="pre">NACp</span></code> and <code class="docutils literal"><span class="pre">NIC</span></code> usually share the same value, and their values are closely related.</p>
-<div class="math">
+<p>With <code class="docutils literal notranslate"><span class="pre">NACp</span></code>, one can find out the 95% horizontal and vertical accuracy bounds (<code class="docutils literal notranslate"><span class="pre">EPU</span></code> and <code class="docutils literal notranslate"><span class="pre">VEPU</span></code>, or <code class="docutils literal notranslate"><span class="pre">HFOM</span></code> and <code class="docutils literal notranslate"><span class="pre">VFOM</span></code>). <code class="docutils literal notranslate"><span class="pre">NACp</span></code> and <code class="docutils literal notranslate"><span class="pre">NIC</span></code> usually share the same value, and their values are closely related.</p>
+<div class="math notranslate">
 \[\begin{split}\mathrm{EPU} &amp;\approx \mathrm{Rc} / 2.5   \qquad  \mathrm{NAC, NIC} \ge 9 \\
 \mathrm{EPU} &amp;\approx \mathrm{Rc} / 2.0  \qquad  \mathrm{NAC, NIC} \lt 9\end{split}\]</div>
-<p>For ADS-B, <code class="docutils literal"><span class="pre">NACp</span></code> is also indicated in the operational status messages (<code class="docutils literal"><span class="pre">TC=31</span></code>). <code class="docutils literal"><span class="pre">NACp</span></code> and corresponding <code class="docutils literal"><span class="pre">EPU</span></code>/<code class="docutils literal"><span class="pre">VEPU</span></code> are:</p>
+<p>For ADS-B, <code class="docutils literal notranslate"><span class="pre">NACp</span></code> is also indicated in the operational status messages (<code class="docutils literal notranslate"><span class="pre">TC=31</span></code>). <code class="docutils literal notranslate"><span class="pre">NACp</span></code> and corresponding <code class="docutils literal notranslate"><span class="pre">EPU</span></code>/<code class="docutils literal notranslate"><span class="pre">VEPU</span></code> are:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -641,7 +632,7 @@
 </div>
 <div class="section" id="nacv">
 <h3>1.6.3.2.3. NACv<a class="headerlink" href="#nacv" title="Permalink to this headline">¶</a></h3>
-<p>The <strong>Navigation Accuracy Category - Velocity</strong> (<code class="docutils literal"><span class="pre">NACv</span></code>) is introduced in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> to replace the <code class="docutils literal"><span class="pre">NUCv</span></code> from <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code>. The bits are located at the same location and have the same definitions of values. It can be found in airborne velocity message, <code class="docutils literal"><span class="pre">TC=19</span></code>, message bit 43-45 (or payload bit 11-13). It defines the 95% of the error in horizontal and vertical speed.</p>
+<p>The <strong>Navigation Accuracy Category - Velocity</strong> (<code class="docutils literal notranslate"><span class="pre">NACv</span></code>) is introduced in <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">1</span></code> to replace the <code class="docutils literal notranslate"><span class="pre">NUCv</span></code> from <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">0</span></code>. The bits are located at the same location and have the same definitions of values. It can be found in airborne velocity message, <code class="docutils literal notranslate"><span class="pre">TC=19</span></code>, message bit 43-45 (or payload bit 11-13). It defines the 95% of the error in horizontal and vertical speed.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -680,11 +671,11 @@
 </div>
 <div class="section" id="sil">
 <h3>1.6.3.2.4. SIL<a class="headerlink" href="#sil" title="Permalink to this headline">¶</a></h3>
-<p>On the other hand, <strong>Surveillance Integrity Level</strong> (<code class="docutils literal"><span class="pre">SIL</span></code>) is introduced in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> to indicate the probability of measurement exceeding the containment radius horizontally (<code class="docutils literal"><span class="pre">PE_RCu</span></code>) and vertically (<code class="docutils literal"><span class="pre">PE_VPL</span></code>).</p>
-<p><code class="docutils literal"><span class="pre">SIL</span></code> value can be found in two different locations:</p>
+<p>On the other hand, <strong>Surveillance Integrity Level</strong> (<code class="docutils literal notranslate"><span class="pre">SIL</span></code>) is introduced in <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">1</span></code> to indicate the probability of measurement exceeding the containment radius horizontally (<code class="docutils literal notranslate"><span class="pre">PE_RCu</span></code>) and vertically (<code class="docutils literal notranslate"><span class="pre">PE_VPL</span></code>).</p>
+<p><code class="docutils literal notranslate"><span class="pre">SIL</span></code> value can be found in two different locations:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">TC=29</span></code>, target state and status message, message bit 77-78 (or payload bit 45-46)</li>
-<li><code class="docutils literal"><span class="pre">TC=31</span></code>, operational status message, message bit 83-84 (or payload bit 51-52)</li>
+<li><code class="docutils literal notranslate"><span class="pre">TC=29</span></code>, target state and status message, message bit 77-78 (or payload bit 45-46)</li>
+<li><code class="docutils literal notranslate"><span class="pre">TC=31</span></code>, operational status message, message bit 83-84 (or payload bit 51-52)</li>
 </ul>
 <p>The definitions are as follows:</p>
 <table border="1" class="docutils">
@@ -718,21 +709,21 @@
 </tr>
 </tbody>
 </table>
-<p>The unit for <code class="docutils literal"><span class="pre">PE_RCu</span></code> and <code class="docutils literal"><span class="pre">PE_VPL</span></code> is  per hour or per sample.</p>
+<p>The unit for <code class="docutils literal notranslate"><span class="pre">PE_RCu</span></code> and <code class="docutils literal notranslate"><span class="pre">PE_VPL</span></code> is  per hour or per sample.</p>
 </div>
 </div>
 <div class="section" id="version-2">
 <h2>1.6.3.3. Version 2<a class="headerlink" href="#version-2" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
 <h3>1.6.3.3.1. NIC<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>In ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, levels of accuracies are further divided by two addition <code class="docutils literal"><span class="pre">NIC</span></code> supplement bits. In <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, we call them NIC Supplement Bit A (<code class="docutils literal"><span class="pre">NICa</span></code>),  NIC Supplement Bit B (<code class="docutils literal"><span class="pre">NICb</span></code>), and  NIC Supplement Bit C (<code class="docutils literal"><span class="pre">NICc</span></code>).</p>
+<p>In ADS-B <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">2</span></code>, levels of accuracies are further divided by two addition <code class="docutils literal notranslate"><span class="pre">NIC</span></code> supplement bits. In <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">2</span></code>, we call them NIC Supplement Bit A (<code class="docutils literal notranslate"><span class="pre">NICa</span></code>),  NIC Supplement Bit B (<code class="docutils literal notranslate"><span class="pre">NICb</span></code>), and  NIC Supplement Bit C (<code class="docutils literal notranslate"><span class="pre">NICc</span></code>).</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">NICa</span></code> is in the same location as in ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>, which is located in the operational status message <code class="docutils literal"><span class="pre">TC=31</span></code> (message bit 76 or payload bit 44).</li>
-<li><code class="docutils literal"><span class="pre">NICb</span></code> is located in the airborne position message (<code class="docutils literal"><span class="pre">TC=9-18</span></code>, message bit 40 or payload bit 8), where the “single antenna flag” was located in previous ADS-B versions.</li>
-<li><code class="docutils literal"><span class="pre">NICc</span></code> is also located in the operational status message <code class="docutils literal"><span class="pre">TC=31</span></code> (message bit 52 or payload bit 20).</li>
+<li><code class="docutils literal notranslate"><span class="pre">NICa</span></code> is in the same location as in ADS-B <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">1</span></code>, which is located in the operational status message <code class="docutils literal notranslate"><span class="pre">TC=31</span></code> (message bit 76 or payload bit 44).</li>
+<li><code class="docutils literal notranslate"><span class="pre">NICb</span></code> is located in the airborne position message (<code class="docutils literal notranslate"><span class="pre">TC=9-18</span></code>, message bit 40 or payload bit 8), where the “single antenna flag” was located in previous ADS-B versions.</li>
+<li><code class="docutils literal notranslate"><span class="pre">NICc</span></code> is also located in the operational status message <code class="docutils literal notranslate"><span class="pre">TC=31</span></code> (message bit 52 or payload bit 20).</li>
 </ul>
-<p>Gather the NIC supplement bits, together with the <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code>, accuracies are defined.</p>
-<p>For surface possible message (<code class="docutils literal"><span class="pre">TC=5-8</span></code>), using <code class="docutils literal"><span class="pre">TC</span></code>, <code class="docutils literal"><span class="pre">NICa</span></code>, and <code class="docutils literal"><span class="pre">NICc</span></code>:</p>
+<p>Gather the NIC supplement bits, together with the <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">Code</span></code>, accuracies are defined.</p>
+<p>For surface possible message (<code class="docutils literal notranslate"><span class="pre">TC=5-8</span></code>), using <code class="docutils literal notranslate"><span class="pre">TC</span></code>, <code class="docutils literal notranslate"><span class="pre">NICa</span></code>, and <code class="docutils literal notranslate"><span class="pre">NICc</span></code>:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
@@ -795,7 +786,7 @@
 </tr>
 </tbody>
 </table>
-<p>For airborne possible message (<code class="docutils literal"><span class="pre">TC=9-18</span></code>), using <code class="docutils literal"><span class="pre">TC</span></code>, <code class="docutils literal"><span class="pre">NICa</span></code>, and <code class="docutils literal"><span class="pre">NICc</span></code>:</p>
+<p>For airborne possible message (<code class="docutils literal notranslate"><span class="pre">TC=9-18</span></code>), using <code class="docutils literal notranslate"><span class="pre">TC</span></code>, <code class="docutils literal notranslate"><span class="pre">NICa</span></code>, and <code class="docutils literal notranslate"><span class="pre">NICc</span></code>:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="9%" />
@@ -893,7 +884,7 @@
 </tr>
 </tbody>
 </table>
-<p>In the case of  airborne position with GNSS height (<code class="docutils literal"><span class="pre">TC=20-22</span></code>), the table remains the same as previous version.</p>
+<p>In the case of  airborne position with GNSS height (<code class="docutils literal notranslate"><span class="pre">TC=20-22</span></code>), the table remains the same as previous version.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="27%" />
@@ -924,28 +915,28 @@
 </div>
 <div class="section" id="id2">
 <h3>1.6.3.3.2. NACp<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>NACp in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code> remains the same as in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>.</p>
+<p>NACp in <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">2</span></code> remains the same as in <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">1</span></code>.</p>
 </div>
 <div class="section" id="id3">
 <h3>1.6.3.3.3. NACv<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>NACv in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code> remains the same as in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>.</p>
+<p>NACv in <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">2</span></code> remains the same as in <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">1</span></code>.</p>
 </div>
 <div class="section" id="id4">
 <h3>1.6.3.3.4. SIL<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>In <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, an additional <strong>SIL supplement bit</strong> (<code class="docutils literal"><span class="pre">SILs</span></code>) is introduced to distinguish if the value is based on per flight hour or per sample.</p>
-<p>The same as in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>, <code class="docutils literal"><span class="pre">SIL</span></code> value can be found in two different locations:</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">2</span></code>, an additional <strong>SIL supplement bit</strong> (<code class="docutils literal notranslate"><span class="pre">SILs</span></code>) is introduced to distinguish if the value is based on per flight hour or per sample.</p>
+<p>The same as in <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">SIL</span></code> value can be found in two different locations:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">TC=29</span></code>, target state and status message, message bit 77-78 (or payload bit 45-46)</li>
-<li><code class="docutils literal"><span class="pre">TC=31</span></code>, operational status message, message bit 83-84 (or payload bit 51-52)</li>
+<li><code class="docutils literal notranslate"><span class="pre">TC=29</span></code>, target state and status message, message bit 77-78 (or payload bit 45-46)</li>
+<li><code class="docutils literal notranslate"><span class="pre">TC=31</span></code>, operational status message, message bit 83-84 (or payload bit 51-52)</li>
 </ul>
-<p><code class="docutils literal"><span class="pre">SILs</span></code> bit can also be found at two different locations:</p>
+<p><code class="docutils literal notranslate"><span class="pre">SILs</span></code> bit can also be found at two different locations:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">TC=29</span></code>, target state and status message, message bit 40 (or payload bit 8)</li>
-<li><code class="docutils literal"><span class="pre">TC=31</span></code>, operational status message, message bit 87 (or payload bit 55)</li>
-<li><code class="docutils literal"><span class="pre">SILs=0</span></code>: probability is “per hour” based</li>
-<li><code class="docutils literal"><span class="pre">SILs=1</span></code>: probability is “per sample” based</li>
+<li><code class="docutils literal notranslate"><span class="pre">TC=29</span></code>, target state and status message, message bit 40 (or payload bit 8)</li>
+<li><code class="docutils literal notranslate"><span class="pre">TC=31</span></code>, operational status message, message bit 87 (or payload bit 55)</li>
+<li><code class="docutils literal notranslate"><span class="pre">SILs=0</span></code>: probability is “per hour” based</li>
+<li><code class="docutils literal notranslate"><span class="pre">SILs=1</span></code>: probability is “per sample” based</li>
 </ul>
-<p>The same values from <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> are kept:</p>
+<p>The same values from <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">1</span></code> are kept:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="11%" />
@@ -1025,12 +1016,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
   </ul>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
   <h3>Related</h3>
@@ -1047,7 +1040,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       &copy;2018, Junzi Sun.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

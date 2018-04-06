@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1.1. Introduction &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -32,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
 
   <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 
@@ -49,7 +40,7 @@
 <div class="section" id="message-structure">
 <h2>1.1.1. Message structure<a class="headerlink" href="#message-structure" title="Permalink to this headline">¶</a></h2>
 <p>An ADS-B message is 112 bits long, and consists of 5 parts:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">+--------+--------+-----------+--------------------------+---------+</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+--------+--------+-----------+--------------------------+---------+</span>
 <span class="o">|</span>  <span class="n">DF</span> <span class="mi">5</span>  <span class="o">|</span>  <span class="o">**</span> <span class="mi">3</span>  <span class="o">|</span>  <span class="n">ICAO</span> <span class="mi">24</span>  <span class="o">|</span>          <span class="n">DATA</span> <span class="mi">56</span>         <span class="o">|</span>  <span class="n">PI</span> <span class="mi">24</span>  <span class="o">|</span>
 <span class="o">+--------+--------+-----------+--------------------------+---------+</span>
 </pre></div>
@@ -57,10 +48,10 @@
 <p>This table lists the key bits of a message:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="14%" />
-<col width="17%" />
-<col width="14%" />
-<col width="56%" />
+<col width="13%" />
+<col width="15%" />
+<col width="13%" />
+<col width="59%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">nBits</th>
@@ -73,7 +64,7 @@
 <tr class="row-even"><td>5</td>
 <td>1 - 5</td>
 <td>DF</td>
-<td>Downlink Format (17 or 18)</td>
+<td>Downlink Format = 17 (or 18 for TIS-B)</td>
 </tr>
 <tr class="row-odd"><td>3</td>
 <td>6 - 8</td>
@@ -102,7 +93,7 @@
 </tbody>
 </table>
 <p>Example:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>Raw message in hexadecimal:
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Raw message in hexadecimal:
 8D4840D6202CC371C32CE0576098
 
 
@@ -121,14 +112,14 @@ DEC  |  17    5   |              | [4] .......................   |
 </div>
 <div class="section" id="icao-address">
 <h2>1.1.2. ICAO address<a class="headerlink" href="#icao-address" title="Permalink to this headline">¶</a></h2>
-<p>In each ADS-B message, the sender (originating aircraft) can be identified using the ICAO address. It is located from 9 to 32 bits in binary (or 3 to 8 in hexadecimal). In the example above, it is <code class="docutils literal"><span class="pre">4840D6</span></code> or <code class="docutils literal"><span class="pre">010010000100</span></code>.</p>
-<p>An unique ICAO address is assigned to each Mode-S transponder of an aircraft. Thus this is a unique identifier for each aircraft. You can use the query tool (<a class="reference external" href="https://junzis.com/adb/">World Aircraft Database</a>) from mode-s.org to find out more about the aircraft with a given ICAO address. For instance, using the previous ICAO <code class="docutils literal"><span class="pre">4840D6</span></code> example, it will return the result of a <code class="docutils literal"><span class="pre">Fokker</span> <span class="pre">70</span></code> (wow, it must be one of last in its kind in operation) with registration of <code class="docutils literal"><span class="pre">PH-KZD</span></code>.</p>
+<p>In each ADS-B message, the sender (originating aircraft) can be identified using the ICAO address. It is located from 9 to 32 bits in binary (or 3 to 8 in hexadecimal). In the example above, it is <code class="docutils literal notranslate"><span class="pre">4840D6</span></code> or <code class="docutils literal notranslate"><span class="pre">010010000100</span></code>.</p>
+<p>An unique ICAO address is assigned to each Mode-S transponder of an aircraft. Thus this is a unique identifier for each aircraft. You can use the query tool (<a class="reference external" href="https://junzis.com/adb/">World Aircraft Database</a>) from mode-s.org to find out more about the aircraft with a given ICAO address. For instance, using the previous ICAO <code class="docutils literal notranslate"><span class="pre">4840D6</span></code> example, it will return the result of a <code class="docutils literal notranslate"><span class="pre">Fokker</span> <span class="pre">70</span></code> (wow, it must be one of last in its kind in operation) with registration of <code class="docutils literal notranslate"><span class="pre">PH-KZD</span></code>.</p>
 <p>In addition, you can download the database from the aforementioned website in CSV format.</p>
 </div>
 <div class="section" id="ads-b-message-types">
 <h2>1.1.3. ADS-B message types<a class="headerlink" href="#ads-b-message-types" title="Permalink to this headline">¶</a></h2>
-<p>To identify what information is contained in an ADS-B message, we need to take a look at the <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code> of the message, indicated at bits 33 - 37 of the ADS-B message (or first 5 bits of the <code class="docutils literal"><span class="pre">DATA</span></code> segment).</p>
-<p>Following are the relationships between each <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code> and its information contained in the <code class="docutils literal"><span class="pre">DATA</span></code> segment:</p>
+<p>To identify what information is contained in an ADS-B message, we need to take a look at the <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">Code</span></code> of the message, indicated at bits 33 - 37 of the ADS-B message (or first 5 bits of the <code class="docutils literal notranslate"><span class="pre">DATA</span></code> segment).</p>
+<p>Following are the relationships between each <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">Code</span></code> and its information contained in the <code class="docutils literal notranslate"><span class="pre">DATA</span></code> segment:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="20%" />
@@ -164,7 +155,7 @@ DEC  |  17    5   |              | [4] .......................   |
 <div class="section" id="ads-b-checksum">
 <h2>1.1.4. ADS-B Checksum<a class="headerlink" href="#ads-b-checksum" title="Permalink to this headline">¶</a></h2>
 <p>ADS-B uses a cyclic redundancy check to validate the correctness of the received message, where the last 24 bits are the parity bits. The following pseudo-code describes the CRC process:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">GENERATOR</span> <span class="o">=</span> <span class="mi">1111111111111010000001001</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GENERATOR</span> <span class="o">=</span> <span class="mi">1111111111111010000001001</span>
 
 <span class="n">MSG</span> <span class="o">=</span> <span class="n">binary</span><span class="p">(</span><span class="mi">8</span><span class="n">D4840D6202CC371C32CE0576098</span><span class="p">)</span>    <span class="c1"># 112 bits</span>
 
@@ -178,9 +169,9 @@ DEC  |  17    5   |              | [4] .......................   |
   <span class="n">MSG</span> <span class="ow">is</span> <span class="n">corrupted</span>
 </pre></div>
 </div>
-<p>For the implementation of CRC encoder in Python, refer to the pyModeS library function: <code class="docutils literal"><span class="pre">pyModeS.util.crc()</span></code></p>
+<p>For the implementation of CRC encoder in Python, refer to the pyModeS library function: <code class="docutils literal notranslate"><span class="pre">pyModeS.util.crc()</span></code></p>
 <p>A comprehensive documentation on Mode-S parity coding can be found:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Gertz</span><span class="p">,</span> <span class="n">Jeffrey</span> <span class="n">L</span><span class="o">.</span> <span class="n">Fundamentals</span> <span class="n">of</span> <span class="n">mode</span> <span class="n">s</span> <span class="n">parity</span> <span class="n">coding</span><span class="o">.</span> <span class="n">No</span><span class="o">.</span> <span class="n">ATC</span><span class="o">-</span><span class="mf">117.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Gertz</span><span class="p">,</span> <span class="n">Jeffrey</span> <span class="n">L</span><span class="o">.</span> <span class="n">Fundamentals</span> <span class="n">of</span> <span class="n">mode</span> <span class="n">s</span> <span class="n">parity</span> <span class="n">coding</span><span class="o">.</span> <span class="n">No</span><span class="o">.</span> <span class="n">ATC</span><span class="o">-</span><span class="mf">117.</span>
 <span class="n">MASSACHUSETTS</span> <span class="n">INST</span> <span class="n">OF</span> <span class="n">TECH</span> <span class="n">LEXINGTON</span> <span class="n">LINCOLN</span> <span class="n">LAB</span><span class="p">,</span> <span class="mf">1984.</span> <span class="n">APA</span>
 </pre></div>
 </div>
@@ -231,12 +222,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
   </ul>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
   <h3>Related</h3>
@@ -253,7 +246,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       &copy;2018, Junzi Sun.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

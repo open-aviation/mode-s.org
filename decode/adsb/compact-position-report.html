@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1.3. Compact Position Reporting &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -32,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
 
   <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 
@@ -50,16 +41,16 @@
 <div class="section" id="example">
 <h2>1.3.1. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>An easy example to understand the principle behind CPR:</p>
-<p>Imaging the world is constructed by 16 grid, which we have divided into two levels, each level is encoded with two bits. Higher levels in color are <code class="docutils literal"><span class="pre">00</span></code> (yellow), <code class="docutils literal"><span class="pre">01</span></code> (blue), <code class="docutils literal"><span class="pre">10</span></code> (red), <code class="docutils literal"><span class="pre">11</span></code> (green). And within each color grid, the lower levels are also encoded similarly.</p>
-<p>Then each grid can be represented as 4 digits from <code class="docutils literal"><span class="pre">0000</span></code> to <code class="docutils literal"><span class="pre">1111</span></code>. Now, we want to describe the movement indicated as the arrows in the green grids <code class="docutils literal"><span class="pre">1100</span> <span class="pre">-&gt;</span> <span class="pre">1101</span></code>, but we only have 3 bits to encode each position.</p>
+<p>Imaging the world is constructed by 16 grid, which we have divided into two levels, each level is encoded with two bits. Higher levels in color are <code class="docutils literal notranslate"><span class="pre">00</span></code> (yellow), <code class="docutils literal notranslate"><span class="pre">01</span></code> (blue), <code class="docutils literal notranslate"><span class="pre">10</span></code> (red), <code class="docutils literal notranslate"><span class="pre">11</span></code> (green). And within each color grid, the lower levels are also encoded similarly.</p>
+<p>Then each grid can be represented as 4 digits from <code class="docutils literal notranslate"><span class="pre">0000</span></code> to <code class="docutils literal notranslate"><span class="pre">1111</span></code>. Now, we want to describe the movement indicated as the arrows in the green grids <code class="docutils literal notranslate"><span class="pre">1100</span> <span class="pre">-&gt;</span> <span class="pre">1101</span></code>, but we only have 3 bits to encode each position.</p>
 <a class="reference internal image-reference" href="../_images/illustration-cpr-1.svg"><img alt="../_images/illustration-cpr-1.svg" src="../_images/illustration-cpr-1.svg" width="472px" /></a>
 <p>It is easy to see that the high 2 bits appeared in all positions, so we can define a structure to do the following:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">The</span> <span class="n">last</span> <span class="n">two</span> <span class="n">bits</span> <span class="n">shall</span> <span class="n">represent</span> <span class="n">the</span> <span class="n">local</span> <span class="n">position</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">The</span> <span class="n">last</span> <span class="n">two</span> <span class="n">bits</span> <span class="n">shall</span> <span class="n">represent</span> <span class="n">the</span> <span class="n">local</span> <span class="n">position</span>
 <span class="mf">2.</span> <span class="n">The</span> <span class="n">combination</span> <span class="n">of</span> <span class="n">first</span> <span class="n">digit</span> <span class="kn">from</span> <span class="nn">two</span> <span class="n">messages</span> <span class="n">defines</span> <span class="n">the</span> <span class="n">higher</span> <span class="n">grid</span>
 </pre></div>
 </div>
-<p>Then the two messages can be sent as <code class="docutils literal"><span class="pre">1</span> <span class="pre">00</span> <span class="pre">-&gt;</span> <span class="pre">1</span> <span class="pre">01</span></code>.</p>
-<p>From lower bits <code class="docutils literal"><span class="pre">00</span> <span class="pre">-&gt;</span> <span class="pre">01</span></code>, we have four different possibility of movement as shown in dashed arrows, and from the two first bits combination <code class="docutils literal"><span class="pre">11</span></code>, we know that the arrow shall represent the movement in the green grids:</p>
+<p>Then the two messages can be sent as <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">00</span> <span class="pre">-&gt;</span> <span class="pre">1</span> <span class="pre">01</span></code>.</p>
+<p>From lower bits <code class="docutils literal notranslate"><span class="pre">00</span> <span class="pre">-&gt;</span> <span class="pre">01</span></code>, we have four different possibility of movement as shown in dashed arrows, and from the two first bits combination <code class="docutils literal notranslate"><span class="pre">11</span></code>, we know that the arrow shall represent the movement in the green grids:</p>
 <a class="reference internal image-reference" href="../_images/illustration-cpr-2.svg"><img alt="../_images/illustration-cpr-2.svg" src="../_images/illustration-cpr-2.svg" width="332px" /></a>
 </div>
 <div class="section" id="the-cpr-and-functions">
@@ -68,30 +59,30 @@
 <p>In CPR encoding, the Earth is divided in many zones (similar to the grid in the previous example). And the encoding algorithm is also more complicated (described in a later section). First, we will list some of the parameters and common functions used in the decoding process here.</p>
 <div class="section" id="nz">
 <h3>1.3.2.1. NZ<a class="headerlink" href="#nz" title="Permalink to this headline">¶</a></h3>
-<p>Number of geographic latitude zones between equator and a pole. It is set to <code class="docutils literal"><span class="pre">NZ</span> <span class="pre">=</span> <span class="pre">15</span></code> for Mode-S CPR encoding.</p>
+<p>Number of geographic latitude zones between equator and a pole. It is set to <code class="docutils literal notranslate"><span class="pre">NZ</span> <span class="pre">=</span> <span class="pre">15</span></code> for Mode-S CPR encoding.</p>
 </div>
 <div class="section" id="floor-x">
 <h3>1.3.2.2. floor(x)<a class="headerlink" href="#floor-x" title="Permalink to this headline">¶</a></h3>
-<p>the floor function <code class="docutils literal"><span class="pre">floor(x)</span></code> defines as the greatest integer value k, such that <code class="docutils literal"><span class="pre">k&lt;=x</span></code>, for example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">floor</span><span class="p">(</span><span class="mf">5.6</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5</span>
+<p>the floor function <code class="docutils literal notranslate"><span class="pre">floor(x)</span></code> defines as the greatest integer value k, such that <code class="docutils literal notranslate"><span class="pre">k&lt;=x</span></code>, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">floor</span><span class="p">(</span><span class="mf">5.6</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">floor</span><span class="p">(</span><span class="o">-</span><span class="mf">5.6</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="mod-x-y">
 <h3>1.3.2.3. mod(x, y)<a class="headerlink" href="#mod-x-y" title="Permalink to this headline">¶</a></h3>
-<p>the modulus function <code class="docutils literal"><span class="pre">mod(x,</span> <span class="pre">y)</span></code> returns:</p>
-<div class="math">
+<p>the modulus function <code class="docutils literal notranslate"><span class="pre">mod(x,</span> <span class="pre">y)</span></code> returns:</p>
+<div class="math notranslate">
 \[x - y \cdot floor(\frac{x}{y})\]</div>
-<p>where <code class="docutils literal"><span class="pre">y</span></code> can not be zero</p>
+<p>where <code class="docutils literal notranslate"><span class="pre">y</span></code> can not be zero</p>
 </div>
 <div class="section" id="nl-lat">
 <h3>1.3.2.4. NL(lat)<a class="headerlink" href="#nl-lat" title="Permalink to this headline">¶</a></h3>
-<p>Denotes the “number of longitude zones” function, given the latitude angle <code class="docutils literal"><span class="pre">lat</span></code>. The returned integer value is constrained within <code class="docutils literal"><span class="pre">[1,</span> <span class="pre">59]</span></code>, calculated as:</p>
-<div class="math">
+<p>Denotes the “number of longitude zones” function, given the latitude angle <code class="docutils literal notranslate"><span class="pre">lat</span></code>. The returned integer value is constrained within <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">59]</span></code>, calculated as:</p>
+<div class="math notranslate">
 \[\text{NL}(lat) = floor \left( \frac{2 \pi}{\arccos(1 - \frac{1-\cos(\frac{\pi}{2 \cdot \text{NZ}})}{\cos^2(\frac{\pi}{180} \cdot \text{lat})}) } \right)\]</div>
 <p>For latitudes that are close to the equator or the poles, one of following values is returned:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lat</span> <span class="o">=</span> <span class="mi">0</span>     <span class="o">-&gt;</span>    <span class="n">NL</span> <span class="o">=</span> <span class="mi">59</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lat</span> <span class="o">=</span> <span class="mi">0</span>     <span class="o">-&gt;</span>    <span class="n">NL</span> <span class="o">=</span> <span class="mi">59</span>
 <span class="n">lat</span> <span class="o">=</span> <span class="o">+</span><span class="mi">87</span>   <span class="o">-&gt;</span>    <span class="n">NL</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">lat</span> <span class="o">=</span> <span class="o">-</span><span class="mi">87</span>   <span class="o">-&gt;</span>    <span class="n">NL</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">lat</span> <span class="o">&gt;</span> <span class="o">+</span><span class="mi">87</span>   <span class="o">-&gt;</span>    <span class="n">NL</span> <span class="o">=</span> <span class="mi">1</span>
@@ -146,12 +137,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
   </ul>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
   <h3>Related</h3>
@@ -168,7 +161,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       &copy;2018, Junzi Sun.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

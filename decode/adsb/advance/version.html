@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1.6.1. ADS-B versions &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
@@ -32,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
 
   <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 
@@ -47,40 +38,40 @@
   <div class="section" id="ads-b-versions">
 <h1>1.6.1. ADS-B versions<a class="headerlink" href="#ads-b-versions" title="Permalink to this headline">¶</a></h1>
 <p>In this advanced chapter, we are going to looking into different versions and evolution of the ADS-B.</p>
-<p>Since the beginning of ADS-B, there have been three different versions (to my knowledge) implemented. The major reason for these update is to enable more information (types of data) in ADS-B. Documentations on these versions and differences are quite far from user friendly. They are always presented in a very scattered fashion. Even the official <code class="docutils literal"><span class="pre">ICAO_9871</span></code> document is confusing to read. I am going to try my best to put the pieces together in this chapter.</p>
+<p>Since the beginning of ADS-B, there have been three different versions (to my knowledge) implemented. The major reason for these updates is to enable more information (types of data) in ADS-B. Documentations on these versions and differences are quite far from user friendly. They are always presented in a very scattered fashion. Even the official <code class="docutils literal notranslate"><span class="pre">ICAO_9871</span></code> document is confusing to read. I am going to try my best to put the pieces together in this chapter.</p>
 <p>There are three versions implemented so far, starting from Version 0, then  Version 1 around 2008 and Version 2 around 2012. Major changes in Version 1 and Version 2 are listed as follows:</p>
-<p>From <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code> to <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>:</p>
+<p>From <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">1</span></code>:</p>
 <ul class="simple">
-<li>Added <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code> 28, 19, and 31 messages<ul>
-<li><code class="docutils literal"><span class="pre">TC=28</span></code>: Aircraft status - Emergency/priority status and ACAS RA Broadcast</li>
-<li><code class="docutils literal"><span class="pre">TC=29</span></code>: Target state and status</li>
-<li><code class="docutils literal"><span class="pre">TC=31</span></code>: Operational status</li>
+<li>Added <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">Code</span></code> 28, 19, and 31 messages<ul>
+<li><code class="docutils literal notranslate"><span class="pre">TC=28</span></code>: Aircraft status - Emergency/priority status and ACAS RA Broadcast</li>
+<li><code class="docutils literal notranslate"><span class="pre">TC=29</span></code>: Target state and status</li>
+<li><code class="docutils literal notranslate"><span class="pre">TC=31</span></code>: Operational status</li>
 </ul>
 </li>
-<li>Introduced the “Navigation integrity category (<code class="docutils literal"><span class="pre">NIC</span></code>)” and “Surveillance integrity level (<code class="docutils literal"><span class="pre">SIL</span></code>)” in addition to the “Navigation accuracy category (<code class="docutils literal"><span class="pre">NAC</span></code>)” from the <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code><ul>
-<li>Type Code and an NIC Supplement bit (<code class="docutils literal"><span class="pre">NICs</span></code>) is used to define the NIC</li>
-<li>NIC Supplement bit included in <code class="docutils literal"><span class="pre">TC=31</span></code> messages</li>
+<li>Introduced the “Navigation integrity category (<code class="docutils literal notranslate"><span class="pre">NIC</span></code>)” and “Surveillance integrity level (<code class="docutils literal notranslate"><span class="pre">SIL</span></code>)” in addition to the “Navigation accuracy category (<code class="docutils literal notranslate"><span class="pre">NAC</span></code>)” from the <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">0</span></code><ul>
+<li>Type Code and an NIC Supplement bit (<code class="docutils literal notranslate"><span class="pre">NICs</span></code>) is used to define the NIC</li>
+<li>NIC Supplement bit included in <code class="docutils literal notranslate"><span class="pre">TC=31</span></code> messages</li>
 </ul>
 </li>
-<li>The ADS-B version number is now indicated in operation status message <code class="docutils literal"><span class="pre">TC=31</span></code></li>
+<li>The ADS-B version number is now indicated in operation status message <code class="docutils literal notranslate"><span class="pre">TC=31</span></code></li>
 </ul>
-<p>From <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> to <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>:</p>
+<p>From <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">2</span></code>:</p>
 <ul class="simple">
-<li>Re-defined the structure and content of <code class="docutils literal"><span class="pre">TC=28</span></code>, <code class="docutils literal"><span class="pre">TC=29</span></code>, and <code class="docutils literal"><span class="pre">TC=31</span></code> messages.</li>
+<li>Re-defined the structure and content of <code class="docutils literal notranslate"><span class="pre">TC=28</span></code>, <code class="docutils literal notranslate"><span class="pre">TC=29</span></code>, and <code class="docutils literal notranslate"><span class="pre">TC=31</span></code> messages.</li>
 <li>Introduced two additional NIC Supplement Bit</li>
-<li><code class="docutils literal"><span class="pre">NICa</span></code> is defined in operational status messages (<code class="docutils literal"><span class="pre">TC=31</span></code>)</li>
-<li><code class="docutils literal"><span class="pre">NICb</span></code> is defined in airborne position messages (<code class="docutils literal"><span class="pre">TC=9-18</span></code>)</li>
-<li><code class="docutils literal"><span class="pre">NICc</span></code> is defined in operational status messages (<code class="docutils literal"><span class="pre">TC=31</span></code>)</li>
-<li>Introduced an additional “Horizontal Containment Radius (<code class="docutils literal"><span class="pre">Rc</span></code>)” within <code class="docutils literal"><span class="pre">NIC=6</span></code> / <code class="docutils literal"><span class="pre">TC=13</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">NICa</span></code> is defined in operational status messages (<code class="docutils literal notranslate"><span class="pre">TC=31</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">NICb</span></code> is defined in airborne position messages (<code class="docutils literal notranslate"><span class="pre">TC=9-18</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">NICc</span></code> is defined in operational status messages (<code class="docutils literal notranslate"><span class="pre">TC=31</span></code>)</li>
+<li>Introduced an additional “Horizontal Containment Radius (<code class="docutils literal notranslate"><span class="pre">Rc</span></code>)” within <code class="docutils literal notranslate"><span class="pre">NIC=6</span></code> / <code class="docutils literal notranslate"><span class="pre">TC=13</span></code></li>
 </ul>
 <div class="section" id="identify-the-ads-b-version">
 <h2>1.6.1.1. Identify the ADS-B Version<a class="headerlink" href="#identify-the-ads-b-version" title="Permalink to this headline">¶</a></h2>
-<p>There are two steps to check the ADS-B version, this is due to the fact that ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code> is not included in any message.</p>
+<p>There are two steps to check the ADS-B version, this is due to the fact that ADS-B <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">0</span></code> is not included in any message.</p>
 <ol class="arabic simple">
-<li>Step 1: Check whether an aircraft is broadcasting ADS-B messages with <code class="docutils literal"><span class="pre">TC=31</span></code> at all. If no message is ever reported, it is safe to assume that the version is <code class="docutils literal"><span class="pre">Version</span> <span class="pre">0</span></code></li>
-<li>Step 2: If messages with <code class="docutils literal"><span class="pre">TC=31</span></code> are received, check the version numbers located in the 41-43 bit of the payload (or 73-75 bit of the message).</li>
+<li>Step 1: Check whether an aircraft is broadcasting ADS-B messages with <code class="docutils literal notranslate"><span class="pre">TC=31</span></code> at all. If no message is ever reported, it is safe to assume that the version is <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">0</span></code></li>
+<li>Step 2: If messages with <code class="docutils literal notranslate"><span class="pre">TC=31</span></code> are received, check the version numbers located in the 41-43 bit of the payload (or 73-75 bit of the message).</li>
 </ol>
-<p>After identifying the right ADS-B version for an aircraft (which doesn’t change often), one can decode related <code class="docutils literal"><span class="pre">TC=28</span></code>, <code class="docutils literal"><span class="pre">TC=29</span></code>, and <code class="docutils literal"><span class="pre">TC=31</span></code> messages accordingly.</p>
+<p>After identifying the right ADS-B version for an aircraft (which doesn’t change often), one can decode related <code class="docutils literal notranslate"><span class="pre">TC=28</span></code>, <code class="docutils literal notranslate"><span class="pre">TC=29</span></code>, and <code class="docutils literal notranslate"><span class="pre">TC=31</span></code> messages accordingly.</p>
 </div>
 </div>
 
@@ -128,12 +119,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
   </ul>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
   <h3>Related</h3>
@@ -150,7 +143,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       &copy;2018, Junzi Sun.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

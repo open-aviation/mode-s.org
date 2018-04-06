@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1.6.2. Aircraft Operation Status &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
@@ -32,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
 
   <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 
@@ -46,11 +37,11 @@
             
   <div class="section" id="aircraft-operation-status">
 <h1>1.6.2. Aircraft Operation Status<a class="headerlink" href="#aircraft-operation-status" title="Permalink to this headline">¶</a></h1>
-<p>Operation status message is introduced since the <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code> of ADS-B. And there are also slight differences in the structure of Aircraft Operation Messages between Version 1 and 2.</p>
+<p>Operation status message is introduced since the <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">1</span></code> of ADS-B. And there are also slight differences in the structure of Aircraft Operation Messages between Version 1 and 2.</p>
 <blockquote>
 <div>To understand about these versions, first take a look at the <a class="reference external" href="version.html">ADS-B version chapter</a>.</div></blockquote>
-<p>The operation status is transmitted with <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code> 31 (<code class="docutils literal"><span class="pre">TC=31</span></code>). The structure of the message (in <code class="docutils literal"><span class="pre">Version</span> <span class="pre">1</span></code>) is laid out as follows:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>+----------------------------------------+------+------+------+
+<p>The operation status is transmitted with <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">Code</span></code> 31 (<code class="docutils literal notranslate"><span class="pre">TC=31</span></code>). The structure of the message (in <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">1</span></code>) is laid out as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+----------------------------------------+------+------+------+
 | FIELD                                  | MSG  | MB   |N-BITS|
 +========================================+======+======+======+
 | Downlink Format = 17                   |  1   |      |  8   |
@@ -109,15 +100,15 @@
 </div>
 <p>Acronyms:</p>
 <ul class="simple">
-<li>BAQ: Barometric Altitude Quality (always set to zero for airborne message <code class="docutils literal"><span class="pre">subtype=1</span></code>)</li>
+<li>BAQ: Barometric Altitude Quality (always set to zero for airborne message <code class="docutils literal notranslate"><span class="pre">subtype=1</span></code>)</li>
 <li>HRD: Horizontal Reference Direction<ul>
 <li>0: True North</li>
 <li>1: Magnetic North</li>
 </ul>
 </li>
 </ul>
-<p>In ADS-B <code class="docutils literal"><span class="pre">Version</span> <span class="pre">2</span></code>, most part of the message remains the same, we will only address the second half of the message, where the changes have been made.</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>+----------------------------------------+------+------+------+
+<p>In ADS-B <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">2</span></code>, most part of the message remains the same, we will only address the second half of the message, where the changes have been made.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+----------------------------------------+------+------+------+
 | FIELD                                  | MSG  | MB   |N-BITS|
 +========================================+======+======+======+
 | Airborne          | Surface            |  57  |  25  |  16  |
@@ -152,7 +143,7 @@
 </div>
 <p>Acronyms:</p>
 <ul class="simple">
-<li>GVA: Geometric Vertical Accuracy - GNSS position source, 95% vertical figure of merit (<code class="docutils literal"><span class="pre">VFOM</span></code>)<ul>
+<li>GVA: Geometric Vertical Accuracy - GNSS position source, 95% vertical figure of merit (<code class="docutils literal notranslate"><span class="pre">VFOM</span></code>)<ul>
 <li>0: unknown or &gt; 150 meters</li>
 <li>1: &lt; 150 meters</li>
 <li>2: &lt; 45 meters</li>
@@ -210,12 +201,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
   </ul>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
   <h3>Related</h3>
@@ -232,7 +225,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       &copy;2018, Junzi Sun.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1.2. Aircraft Identification &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -32,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
 
   <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 
@@ -46,8 +37,8 @@
             
   <div class="section" id="aircraft-identification">
 <h1>1.2. Aircraft Identification<a class="headerlink" href="#aircraft-identification" title="Permalink to this headline">¶</a></h1>
-<p>An aircraft identification message has <code class="docutils literal"><span class="pre">DF:</span> <span class="pre">17</span> <span class="pre">or</span> <span class="pre">18</span></code>, and <code class="docutils literal"><span class="pre">TC:</span> <span class="pre">1</span> <span class="pre">to</span> <span class="pre">4</span></code>, the 56-bit <code class="docutils literal"><span class="pre">DATA</span></code> field is configured as follows:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+</span>
+<p>An aircraft identification message has <code class="docutils literal notranslate"><span class="pre">DF:</span> <span class="pre">17</span> <span class="pre">or</span> <span class="pre">18</span></code>, and <code class="docutils literal notranslate"><span class="pre">TC:</span> <span class="pre">1</span> <span class="pre">to</span> <span class="pre">4</span></code>, the 56-bit <code class="docutils literal notranslate"><span class="pre">DATA</span></code> field is configured as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+</span>
 <span class="o">|</span> <span class="n">TC</span> <span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">|</span> <span class="n">EC</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">|</span> <span class="n">C1</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">C2</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">C3</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">C4</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">C5</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">C6</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">C7</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">C8</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span>
 <span class="o">+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+</span>
 
@@ -56,41 +47,41 @@
 <span class="n">C</span><span class="o">*</span><span class="p">:</span> <span class="n">A</span> <span class="n">character</span>
 </pre></div>
 </div>
-<p>To decode characters, a lookup table is needed for mapping numbers to characters. It is defined as follows, where the <code class="docutils literal"><span class="pre">#</span></code> is not used, and <code class="docutils literal"><span class="pre">_</span></code> represents a separation.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#ABCDEFGHIJKLMNOPQRSTUVWXYZ#####_###############0123456789######</span>
+<p>To decode characters, a lookup table is needed for mapping numbers to characters. It is defined as follows, where the <code class="docutils literal notranslate"><span class="pre">#</span></code> is not used, and <code class="docutils literal notranslate"><span class="pre">_</span></code> represents a separation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#ABCDEFGHIJKLMNOPQRSTUVWXYZ#####_###############0123456789######</span>
 </pre></div>
 </div>
 <p>In summary, characters and their decimal representations are:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">-</span> <span class="n">Z</span> <span class="p">:</span>   <span class="mi">1</span> <span class="o">-</span> <span class="mi">26</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">-</span> <span class="n">Z</span> <span class="p">:</span>   <span class="mi">1</span> <span class="o">-</span> <span class="mi">26</span>
 <span class="mi">0</span> <span class="o">-</span> <span class="mi">9</span> <span class="p">:</span>  <span class="mi">48</span> <span class="o">-</span> <span class="mi">57</span>
     <span class="n">_</span> <span class="p">:</span>  <span class="mi">32</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">EC</span></code> value in combination with <code class="docutils literal"><span class="pre">TC</span></code> value defines the category of the aircraft (such as: heavy, large, small, light, glider, etc.). When <code class="docutils literal"><span class="pre">EC</span></code> is set to zeros, such information is not available.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">EC</span></code> value in combination with <code class="docutils literal notranslate"><span class="pre">TC</span></code> value defines the category of the aircraft (such as: heavy, large, small, light, glider, etc.). When <code class="docutils literal notranslate"><span class="pre">EC</span></code> is set to zeros, such information is not available.</p>
 <div class="section" id="example">
 <h2>1.2.1. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>For example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">8</span><span class="n">D4840D6202CC371C32CE0576098</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">8</span><span class="n">D4840D6202CC371C32CE0576098</span>
 </pre></div>
 </div>
 <p>The structure of the message is as follows:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>     <span class="n">DF</span><span class="o">---</span> <span class="n">CA</span><span class="o">-</span>  <span class="n">ICAO</span><span class="o">--</span>  <span class="n">DATA</span><span class="o">------------------</span>  <span class="n">PI</span><span class="o">----</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">DF</span><span class="o">---</span> <span class="n">CA</span><span class="o">-</span>  <span class="n">ICAO</span><span class="o">--</span>  <span class="n">DATA</span><span class="o">------------------</span>  <span class="n">PI</span><span class="o">----</span>
 <span class="n">HEX</span><span class="p">:</span> <span class="mi">8</span>   <span class="n">D</span>      <span class="mi">4840</span><span class="n">D6</span>  <span class="mi">2</span>   <span class="mi">0</span>     <span class="mi">2</span><span class="n">CC371C32CE0</span>  <span class="mi">576098</span>
 <span class="n">BIN</span><span class="p">:</span> <span class="mi">10001</span><span class="o">|</span><span class="mi">101</span>  <span class="o">******</span>  <span class="mi">00100</span><span class="o">|</span><span class="mi">000</span> <span class="o">************</span>  <span class="o">******</span>
 <span class="n">DEC</span><span class="p">:</span> <span class="mi">17</span>   <span class="o">|</span><span class="mi">4</span>            <span class="mi">4</span>     <span class="mi">0</span>
                         <span class="n">TC</span>    <span class="o">*</span>
 </pre></div>
 </div>
-<p>Note that <code class="docutils literal"><span class="pre">Type</span> <span class="pre">Code</span></code> is inside of the DATA frame (first 5 bits). With <code class="docutils literal"><span class="pre">DF=17</span></code> and <code class="docutils literal"><span class="pre">TC=4</span></code>, we can confirm this is an aircraft identification message. Aircraft <code class="docutils literal"><span class="pre">callsign</span></code> then can be decoded.</p>
-<p>In the previous example message, it is easy to decode the <code class="docutils literal"><span class="pre">Data</span></code> segment:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">HEX</span><span class="p">:</span> <span class="mi">20</span>         <span class="mi">2</span><span class="n">CC371C32CE0</span>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">Code</span></code> is inside of the DATA frame (first 5 bits). With <code class="docutils literal notranslate"><span class="pre">DF=17</span></code> and <code class="docutils literal notranslate"><span class="pre">TC=4</span></code>, we can confirm this is an aircraft identification message. Aircraft <code class="docutils literal notranslate"><span class="pre">callsign</span></code> then can be decoded.</p>
+<p>In the previous example message, it is easy to decode the <code class="docutils literal notranslate"><span class="pre">Data</span></code> segment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HEX</span><span class="p">:</span> <span class="mi">20</span>         <span class="mi">2</span><span class="n">CC371C32CE0</span>
 <span class="n">BIN</span><span class="p">:</span> <span class="mi">00100000</span> <span class="o">|</span> <span class="mi">001011</span> <span class="mi">001100</span> <span class="mi">001101</span> <span class="mi">110001</span> <span class="mi">110000</span> <span class="mi">110010</span> <span class="mi">110011</span> <span class="mi">100000</span>
 <span class="n">DEC</span><span class="p">:</span>          <span class="o">|</span>   <span class="mi">11</span>     <span class="mi">12</span>     <span class="mi">13</span>     <span class="mi">49</span>     <span class="mi">48</span>     <span class="mi">50</span>     <span class="mi">51</span>     <span class="mi">32</span>
 <span class="n">LTR</span><span class="p">:</span>          <span class="o">|</span>   <span class="n">K</span>      <span class="n">L</span>      <span class="n">M</span>      <span class="mi">1</span>      <span class="mi">0</span>      <span class="mi">2</span>      <span class="mi">3</span>      <span class="n">_</span>
 </pre></div>
 </div>
 <p>So the final aircraft callsign decoded is: <strong>KLM1023_</strong></p>
-<p>For detailed codes in Python, refer to the pyModeS library function: <code class="docutils literal"><span class="pre">pyModeS.adsb.callsign()</span></code></p>
+<p>For detailed codes in Python, refer to the pyModeS library function: <code class="docutils literal notranslate"><span class="pre">pyModeS.adsb.callsign()</span></code></p>
 </div>
 </div>
 
@@ -138,12 +129,14 @@ An Open access book on Mode-S/ADS-B decoding and related topics
   </ul>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
   <h3>Related</h3>
@@ -160,7 +153,7 @@ An Open access book on Mode-S/ADS-B decoding and related topics
       &copy;2018, Junzi Sun.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
