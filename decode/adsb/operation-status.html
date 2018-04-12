@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+  <meta name="author" content="Junzi Sun">
+
+
+  <title>The 1090MHz Riddle</title>
+  <style type="text/css">code{white-space: pre;}</style>
+
+
+
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <link rel="stylesheet" href="../style.css">
+
+
+<link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="d-flex flex-row align-items-end">
+	<div>
+		<h1 class="title">The 1090MHz Riddle</h1>
+		<div class="subtitle">An open-access book about decoding Mode-S and ADS-B data</div>
+	</div>
+	<div class='ml-auto chapter-nav'>
+    <div class="author">By: <strong>Junzi Sun</strong> (<a href="http://junzis.com">junzis.com</a>)</div>
+    <a href="http://mode-s.org" type="button" class="btn btn-sm btn-outline-dark btn-light">mode-s.org</a>
+    <a href="../book-the_1090mhz_riddle-junzi_sun.pdf" type="button" class="btn btn-sm btn-outline-info">Download PDF</a>
+	</div>
+</div>
+
+<hr>
+
+<div class="row">
+<div class="col-md-4 col-lg-3">
+<nav>
+  <h1>Chapters</h1>
+  <ul>
+    <li><a href="../index.html">Introduction</a></li>
+    <li><a href="../adsb.html">ADS-B</a></li>
+    <ul>
+      <li><a href="../adsb/introduction.html">Basics</a></li>
+      <li><a href="../adsb/identification.html">Aircraft Identification</a></li>
+      <li><a href="../adsb/compact-position-report.html">Compact Position Reporting</a></li>
+      <li><a href="../adsb/airborne-position.html">Airborne Position</a></li>
+      <li><a href="../adsb/airborne-velocity.html">Airborne Velocity</a></li>
+    </ul>
+    <li><a href="../adsb/advance.html">Advanced ADS-B</a></li>
+    <ul>
+      <li><a href="../adsb/version.html">ADS-B Versions</a></li>
+      <li><a href="../adsb/operation-status.html">Operation Status</a></li>
+      <li><a href="../adsb/uncertainty.html">Uncertainty and Accuracy</a></li>
+    </ul>
+    <li><a href="../ehs.html">Enhanced Mode-S</a></li>
+    <ul>
+      <li><a href="../ehs/introduction.html">Basics</a></li>
+      <li><a href="../ehs/bds20-identification.html">Aircraft Identification</a></li>
+      <li><a href="../ehs/bds40-intention.html">Aircraft Intention</a></li>
+      <li><a href="../ehs/bds50-track-n-turn.html">Track and Turn</a></li>
+      <li><a href="../ehs/bds60-airspeed.html">Airspeed and Heading</a></li>
+    </ul>
+  </ul>
+</nav>
+<hr>
+<nav id="TOC">
+<h1>In this page</h1>
+<ul>
+<li><a href="#aircraft-operation-status">Aircraft Operation Status</a></li>
+</ul>
+</nav>
+</div>
+<div class="col-md-8 col-lg-9 maintext">
+<h1 id="aircraft-operation-status">Aircraft Operation Status</h1>
+<p>Operation status message is introduced since the <code>Version 1</code> of ADS-B. And there are also slight differences in the structure of Aircraft Operation Messages between Version 1 and 2.</p>
+<blockquote>
+<p>To understand about these versions, first take a look at the <a href="version.html">ADS-B version chapter</a>.</p>
+</blockquote>
+<p>The operation status is transmitted with <code>Type Code</code> 31 (<code>TC=31</code>). The structure of the message (in <code>Version 1</code>) is laid out as follows:</p>
+<pre><code>+----------------------------------------+------+------+------+
+| FIELD                                  | MSG  | MB   |N-BITS|
++========================================+======+======+======+
+| Downlink Format = 17                   |  1   |      |  8   |
+|                                        |  8   |      |      |
++----------------------------------------+------+------+------+
+| ICAO Address                           |  9   |      |  24  |
+|                                        |  32  |      |      |
++----------------------------------------+------+------+------+
+| Type Code = 31                         |  33  |  1   |  5   |
+|                                        |  37  |  5   |      |
++----------------------------------------+------+------+------+
+| Subtype Code                           |  38  |  6   |  3   |
+|                                        |      |      |      |
+|  - 0: airborne                         |      |      |      |
+|  - 1: surface                          |      |      |      |
+|  - 2-7: reserved                       |  40  |  8   |      |
++-------------------+--------------------+------+------+------+
+|                   |                    |  41  |  9   | 16   |
+|  Airborne         |  Surface           |      |      |      |
+|  capacity class   |  capacity class    |      |      |      |
+|  codes            |  codes             |      |      |      |
+|                   |                    |  52  |  20  |      |
+|                   +--------------------+------+------+------+
+|                   |                    |  53  |  21  | (4)  |
+|                   |  Length/width      |      |      |      |
+|                   |  codes             |      |      |      |
+|                   |                    |  56  |  24  |      |
++-------------------+--------------------+------+------+------+
+| Operational mode code                  |  57  |  25  |  16  |
+|                                        |      |      |      |
+|                                        |      |      |      |
+|                                        |  72  |  40  |      |
++----------------------------------------+------+------+------+
+| ADS-B version number                   |  73  |  41  |  3   |
+|                                        |  75  |  43  |      |
++----------------------------------------+------+------+------+
+| NIC supplement bit                     |  76  |  44  |  1   |
++----------------------------------------+------+------+------+
+| NACp: Navigation accuracy category     |  77  |  45  |  4   |
+|        - position                      |  80  |  48  |      |
++-------------------+--------------------+------+------+------+
+| BAQ = 0           | Reserved           |  81  |  49  |  2   |
+|                   |                    |  82  |  50  |      |
++-------------------+--------------------+------+------+------+
+| SIL: Surveillance integrity level      |  83  |  51  |  2   |
+|                                        |  84  |  52  |      |
++-------------------+--------------------+------+------+------+
+| NIC-BARO          | TRK/HDG            |  85  |  53  |  1   |
++-------------------+--------------------+------+------+------+
+| HRD                                    |  86  |  54  |  1   |
++----------------------------------------+------+------+------+
+| Reserved                               |  87  |  55  |  2   |
+|                                        |  88  |  56  |      |
++----------------------------------------+------+------+------+</code></pre>
+<p>Acronyms:</p>
+<ul>
+<li><p>BAQ: Barometric Altitude Quality (always set to zero for airborne message <code>subtype=1</code>)</p></li>
+<li><p>HRD: Horizontal Reference Direction</p>
+<ul>
+<li><p>0: True North</p></li>
+<li><p>1: Magnetic North</p></li>
+</ul></li>
+</ul>
+<p>In ADS-B <code>Version 2</code>, most part of the message remains the same, we will only address the second half of the message, where the changes have been made.</p>
+<pre><code>+----------------------------------------+------+------+------+
+| FIELD                                  | MSG  | MB   |N-BITS|
++========================================+======+======+======+
+| Airborne          | Surface            |  57  |  25  |  16  |
+| operational       | operational        |      |      |      |
+| mode code         | mode code          |      |      |      |
+|                   |                    |  72  |  40  |      |
++-------------------+--------------------+------+------+------+
+| ADS-B version number                   |  73  |  41  |  3   |
+|                                        |  75  |  43  |      |
++----------------------------------------+------+------+------+
+| NIC supplement bit - A                 |  76  |  44  |  1   |
++----------------------------------------+------+------+------+
+| NACp: Navigation accuracy category     |  77  |  45  |  4   |
+|       - position                       |      |      |      |
+|                                        |  80  |  48  |      |
++-------------------+--------------------+------+------+------+
+| GVA               | Reserved           |  81  |  49  |  2   |
+|                   |                    |  82  |  50  |      |
++-------------------+--------------------+------+------+------+
+| SIL: Surveillance integrity level      |  83  |  51  |  2   |
+|                                        |  84  |  52  |      |
++-------------------+--------------------+------+------+------+
+| NIC-BARO          | TRK/HDG            |  85  |  53  |  1   |
++-------------------+--------------------+------+------+------+
+| HRD                                    |  86  |  54  |  1   |
++----------------------------------------+------+------+------+
+| SIL supplement bit                     |  87  |  55  |  1   |
++----------------------------------------+------+------+------+
+| Reserved                               |  88  |  56  |  1   |
++----------------------------------------+------+------+------+</code></pre>
+<p>Acronyms:</p>
+<ul>
+<li><p>GVA: Geometric Vertical Accuracy - GNSS position source, 95% vertical figure of merit (<code>VFOM</code>)</p>
+<ul>
+<li><p>0: unknown or &gt; 150 meters</p></li>
+<li><p>1: &lt; 150 meters</p></li>
+<li><p>2: &lt; 45 meters</p></li>
+<li><p>3: reserved</p></li>
+</ul></li>
+<li><p>SIL, NIC, NAC are also related to measurement uncertainty or accuracy.</p>
+<ul>
+<li><p>A lot or more details are given in <a href="uncertainty.html">the uncertainty chapter</a>.</p></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

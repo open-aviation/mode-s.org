@@ -1,148 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <meta name="author" content="Junzi Sun">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>1.4. Airborne Positions &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1.5. Airborne Velocity" href="airborne-velocity.html" />
-    <link rel="prev" title="1.3. Compact Position Reporting" href="compact-position-report.html" />
-   
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head><body>
+  <title>The 1090MHz Riddle</title>
+  <style type="text/css">code{white-space: pre;}</style>
 
-  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 
-  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="airborne-positions">
-<h1>1.4. Airborne Positions<a class="headerlink" href="#airborne-positions" title="Permalink to this headline">¶</a></h1>
-<p>An aircraft airborne position message has <code class="docutils literal notranslate"><span class="pre">Downlink</span> <span class="pre">Format:</span> <span class="pre">17</span> <span class="pre">or</span> <span class="pre">18</span></code> and <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">Code:</span> <span class="pre">from</span> <span class="pre">9</span> <span class="pre">to</span> <span class="pre">18</span></code>.</p>
-<p>Messages are composed as follows:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="17%" />
-<col width="14%" />
-<col width="14%" />
-<col width="54%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">MSG bits</th>
-<th class="head"># bits</th>
-<th class="head">Abbr</th>
-<th class="head">Content</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>1-5</td>
-<td>5</td>
-<td>DF</td>
-<td>Downlink format</td>
-</tr>
-<tr class="row-odd"><td>33-37</td>
-<td>5</td>
-<td>TC</td>
-<td>Type code</td>
-</tr>
-<tr class="row-even"><td>38-39</td>
-<td>2</td>
-<td>SS</td>
-<td>Surveillance status</td>
-</tr>
-<tr class="row-odd"><td>40</td>
-<td>1</td>
-<td>NICsb</td>
-<td>NIC supplement-B</td>
-</tr>
-<tr class="row-even"><td>41-52</td>
-<td>12</td>
-<td>ALT</td>
-<td>Altitude</td>
-</tr>
-<tr class="row-odd"><td>53</td>
-<td>1</td>
-<td>T</td>
-<td>Time</td>
-</tr>
-<tr class="row-even"><td>54</td>
-<td>1</td>
-<td>F</td>
-<td>CPR odd/even frame flag</td>
-</tr>
-<tr class="row-odd"><td>55-71</td>
-<td>17</td>
-<td>LAT-CPR</td>
-<td>Latitude in CPR format</td>
-</tr>
-<tr class="row-even"><td>72-88</td>
-<td>17</td>
-<td>LON-CPR</td>
-<td>Longitude in CPR format</td>
-</tr>
-</tbody>
-</table>
-<p>Two types of the position messages (odd and even frames) are broadcast alternately. There are two different ways to decode an airborne position base on these messages:</p>
-<ol class="arabic simple">
-<li>Unknown position, using both type of messages (aka globally unambiguous position)</li>
-<li>Knowing previous position, using only one message (aka locally unambiguous position)</li>
-</ol>
-<p>Note: The definition of functions <code class="docutils literal notranslate"><span class="pre">NL(lat)</span></code>, <code class="docutils literal notranslate"><span class="pre">floor(x)</span></code>, and <code class="docutils literal notranslate"><span class="pre">mod(x,y)</span></code> are described in the CPR chapter.</p>
-<div class="section" id="globally-unambiguous-position-decoding-with-two-messages">
-<h2>1.4.1. Globally unambiguous position (decoding with two messages)<a class="headerlink" href="#globally-unambiguous-position-decoding-with-two-messages" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="odd-or-even-message">
-<h3>1.4.1.1. odd” or “even” message?<a class="headerlink" href="#odd-or-even-message" title="Permalink to this headline">¶</a></h3>
-<p>For each frame, bit 54 determines whether it is an “odd” or “even” frame:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">Even</span> <span class="n">frame</span>
-<span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">Odd</span> <span class="n">frame</span>
-</pre></div>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <link rel="stylesheet" href="../style.css">
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="d-flex flex-row align-items-end">
+	<div>
+		<h1 class="title">The 1090MHz Riddle</h1>
+		<div class="subtitle">An open-access book about decoding Mode-S and ADS-B data</div>
+	</div>
+	<div class='ml-auto chapter-nav'>
+    <div class="author">By: <strong>Junzi Sun</strong> (<a href="http://junzis.com">junzis.com</a>)</div>
+    <a href="http://mode-s.org" type="button" class="btn btn-sm btn-outline-dark btn-light">mode-s.org</a>
+    <a href="../book-the_1090mhz_riddle-junzi_sun.pdf" type="button" class="btn btn-sm btn-outline-info">Download PDF</a>
+	</div>
 </div>
+
+<hr>
+
+<div class="row">
+<div class="col-md-4 col-lg-3">
+<nav>
+  <h1>Chapters</h1>
+  <ul>
+    <li><a href="../index.html">Introduction</a></li>
+    <li><a href="../adsb.html">ADS-B</a></li>
+    <ul>
+      <li><a href="../adsb/introduction.html">Basics</a></li>
+      <li><a href="../adsb/identification.html">Aircraft Identification</a></li>
+      <li><a href="../adsb/compact-position-report.html">Compact Position Reporting</a></li>
+      <li><a href="../adsb/airborne-position.html">Airborne Position</a></li>
+      <li><a href="../adsb/airborne-velocity.html">Airborne Velocity</a></li>
+    </ul>
+    <li><a href="../adsb/advance.html">Advanced ADS-B</a></li>
+    <ul>
+      <li><a href="../adsb/version.html">ADS-B Versions</a></li>
+      <li><a href="../adsb/operation-status.html">Operation Status</a></li>
+      <li><a href="../adsb/uncertainty.html">Uncertainty and Accuracy</a></li>
+    </ul>
+    <li><a href="../ehs.html">Enhanced Mode-S</a></li>
+    <ul>
+      <li><a href="../ehs/introduction.html">Basics</a></li>
+      <li><a href="../ehs/bds20-identification.html">Aircraft Identification</a></li>
+      <li><a href="../ehs/bds40-intention.html">Aircraft Intention</a></li>
+      <li><a href="../ehs/bds50-track-n-turn.html">Track and Turn</a></li>
+      <li><a href="../ehs/bds60-airspeed.html">Airspeed and Heading</a></li>
+    </ul>
+  </ul>
+</nav>
+<hr>
+<nav id="TOC">
+<h1>In this page</h1>
+<ul>
+<li><a href="#airborne-positions">Airborne Positions</a><ul>
+<li><a href="#globally-unambiguous-position-decoding-with-two-messages">Globally unambiguous position (decoding with two messages)</a><ul>
+<li><a href="#odd-or-even-message">odd&quot; or even message?</a></li>
+<li><a href="#the-cpr-representation-of-coordinates">The CPR representation of coordinates</a></li>
+<li><a href="#calculate-the-latitude-index-j">Calculate the latitude index j</a></li>
+<li><a href="#calculate-latitude">Calculate latitude</a></li>
+<li><a href="#check-the-latitude-zone-consistency">Check the latitude zone consistency</a></li>
+<li><a href="#calculate-longitude">Calculate longitude</a></li>
+<li><a href="#calculate-altitude">Calculate altitude</a></li>
+<li><a href="#the-final-position">The final position</a></li>
+</ul></li>
+<li><a href="#locally-unambiguous-position-decoding-with-one-message">Locally unambiguous position (decoding with one message)</a><ul>
+<li><a href="#the-reference-position">The reference position</a></li>
+<li><a href="#calculate-dlat">Calculate dLat</a></li>
+<li><a href="#calculate-the-latitude-index-j-1">Calculate the latitude indexj</a></li>
+<li><a href="#calculate-latitude-1">Calculate latitude</a></li>
+<li><a href="#calculate-dlon">Calculate dLon</a></li>
+<li><a href="#calculate-longitude-index-m">Calculate longitude index m</a></li>
+<li><a href="#calculate-longitude-1">Calculate longitude</a></li>
+<li><a href="#example">Example</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="col-md-8 col-lg-9 maintext">
+<h1 id="airborne-positions">Airborne Positions</h1>
+<p>An aircraft airborne position message has downlink format <code>17</code> (or <code>18</code>) with type code from <code>9</code> to <code>18</code></p>
+<p>Messages are composed as follows:</p>
+<pre><code>+-----------+---------+---------+----------------------------------+
+| MSG bits  | # bits  | Abbr    | Content                          |
++===========+=========+=========+==================================+
+| 1-5       | 5       | DF      | Downlink format                  |
++-----------+---------+---------+----------------------------------+
+| 33-37     | 5       | TC      | Type code                        |
++-----------+---------+---------+----------------------------------+
+| 38-39     | 2       | SS      | Surveillance status              |
++-----------+---------+---------+----------------------------------+
+| 40        | 1       | NICsb   | NIC supplement-B                 |
++-----------+---------+---------+----------------------------------+
+| 41-52     | 12      | ALT     | Altitude                         |
++-----------+---------+---------+----------------------------------+
+| 53        | 1       | T       | Time                             |
++-----------+---------+---------+----------------------------------+
+| 54        | 1       | F       | CPR odd/even frame flag          |
++-----------+---------+---------+----------------------------------+
+| 55-71     | 17      | LAT-CPR | Latitude in CPR format           |
++-----------+---------+---------+----------------------------------+
+| 72-88     | 17      | LON-CPR | Longitude in CPR format          |
++-----------+---------+---------+----------------------------------+</code></pre>
+<p>Two types of the position messages (odd and even frames) are broadcast alternately. There are two different ways to decode an airborne position base on these messages:</p>
+<ol>
+<li><p>Unknown position, using both type of messages (aka globally unambiguous position)</p></li>
+<li><p>Knowing previous position, using only one message (aka locally unambiguous position)</p></li>
+</ol>
+<p>Note: The definition of functions <code>NL(lat)</code>, <code>floor(x)</code>, and <code>mod(x,y)</code> are described in the CPR chapter.</p>
+<h2 id="globally-unambiguous-position-decoding-with-two-messages">Globally unambiguous position (decoding with two messages)</h2>
+<h3 id="odd-or-even-message">odd&quot; or even message?</h3>
+<p>For each frame, bit 54 determines whether it is an “odd” or “even” frame: :</p>
+<pre><code>0 -&gt; Even frame
+1 -&gt; Odd frame</code></pre>
 <p>For example, the two following messages are received:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>8D40621D58C382D690C8AC2863A7
+<pre><code>8D40621D58C382D690C8AC2863A7
 8D40621D58C386435CC412692AD6
 
 |    | ICAO24 |      DATA      |  CRC   |
 |----|--------|----------------|--------|
 | 8D | 40621D | 58C382D690C8AC | 2863A7 |
-| 8D | 40621D | 58C386435CC412 | 692AD6 |
-
-
-Data in binary:
-
-| DATA                                                                              |
-|===================================================================================|
-| TC    | SS | NICsb | ALT          | T | F | CPR-LAT           | CPR-LON           |
-|-------|----|-------|--------------|---|---|-------------------|-------------------|
-| 01011 | 00 | 0     | 110000111000 | 0 | 0 | 10110101101001000 | 01100100010101100 |
-| 01011 | 00 | 0     | 110000111000 | 0 | 1 | 10010000110101110 | 01100010000010010 |
-</pre></div>
-</div>
-<p>In both messages we can find <code class="docutils literal notranslate"><span class="pre">DF=17</span></code> and <code class="docutils literal notranslate"><span class="pre">TC=11</span></code>, with the same ICAO24 address <code class="docutils literal notranslate"><span class="pre">40621D</span></code>. So, those two frames are valid for decoding the positions of this aircraft. Assume the first message is the newest message received.</p>
-</div>
-<div class="section" id="the-cpr-representation-of-coordinates">
-<h3>1.4.1.2. The CPR representation of coordinates<a class="headerlink" href="#the-cpr-representation-of-coordinates" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>| F | CPR Latitude      | CPR Longitude     |
+| 8D | 40621D | 58C386435CC412 | 692AD6 |</code></pre>
+<p>The payload data in binary formation:</p>
+<pre><code>| DATA                                                                       |
+|============================================================================|
+| TC    | ... | ALT          | T | F | CPR-LAT           | CPR-LON           |
+|-------|-----|--------------|---|---|-------------------|-------------------|
+| 01011 | 000 | 110000111000 | 0 | 0 | 10110101101001000 | 01100100010101100 |
+| 01011 | 000 | 110000111000 | 0 | 1 | 10010000110101110 | 01100010000010010 |</code></pre>
+<p>In both messages we can find <code>DF=17</code> and <code>TC=11</code>, with the same ICAO24 address <code>40621D</code>. So, those two frames are valid for decoding the positions of this aircraft. Assume the first message is the newest message received.</p>
+<h3 id="the-cpr-representation-of-coordinates">The CPR representation of coordinates</h3>
+<pre><code>| F | CPR Latitude      | CPR Longitude     |
 |---|-------------------|-------------------|
-| 0 | 10110101101001000 | 01100100010101100 |  -&gt; newest frame received
+| 0 | 10110101101001000 | 01100100010101100 |  -&gt; newest
 | 1 | 10010000110101110 | 01100010000010010 |
 |---|-------------------|-------------------|
 
@@ -156,159 +167,112 @@ In decimal:
 CPR_LAT_EVEN: 93000 / 131072 -&gt; 0.7095
 CPR_LON_EVEN: 51372 / 131072 -&gt; 0.3919
 CPR_LAT_ODD:  74158 / 131072 -&gt; 0.5658
-CPR_LON_ODD:  50194 / 131072 -&gt; 0.3829
-</pre></div>
-</div>
+CPR_LON_ODD:  50194 / 131072 -&gt; 0.3829</code></pre>
 <p>Since CPR latitude and longitude are encoded in 17 bits, 131072 (2^17) is the maximum value.</p>
-</div>
-<div class="section" id="calculate-the-latitude-index-j">
-<h3>1.4.1.3. Calculate the latitude index j<a class="headerlink" href="#calculate-the-latitude-index-j" title="Permalink to this headline">¶</a></h3>
+<h3 id="calculate-the-latitude-index-j">Calculate the latitude index j</h3>
 <p>Use the following equation:</p>
-<div class="math notranslate">
-\[j = floor \left( 59 \cdot \mathrm{Lat}_\mathrm{cprEven} - 60 \cdot \mathrm{Lat}_\mathrm{cprOdd} + \frac{1}{2}  \right)\]</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">j</span> <span class="o">=</span> <span class="mi">8</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="calculate-latitude">
-<h3>1.4.1.4. Calculate latitude<a class="headerlink" href="#calculate-latitude" title="Permalink to this headline">¶</a></h3>
+<p><span class="math display">\[j = floor \left( 59 \cdot \mathrm{Lat}_\mathrm{cprEven} - 60 \cdot \mathrm{Lat}_\mathrm{cprOdd} + \frac{1}{2}  \right)\]</span></p>
+<p>where <span class="math inline">\(j\)</span> is set 8.</p>
+<h3 id="calculate-latitude">Calculate latitude</h3>
 <p>First, two constants will be used:</p>
-<div class="math notranslate">
-\[ \begin{align}\begin{aligned}\mathrm{dLat}_\mathrm{even} &amp;= \frac{360}{4 \cdot NZ} = \frac{360}{60}\\\mathrm{dLat}_\mathrm{odd} &amp;= \frac{360}{4 \cdot NZ - 1}  = \frac{360}{59}\end{aligned}\end{align} \]</div>
+<p><span class="math display">\[\begin{split}
+    \mathrm{dLat}_\mathrm{even} &amp;= \frac{360}{4 \cdot NZ} = \frac{360}{60} \\
+    \mathrm{dLat}_\mathrm{odd} &amp;= \frac{360}{4 \cdot NZ - 1}  = \frac{360}{59}
+  \end{split}\]</span></p>
 <p>Then we can use the following equations to compute the relative latitudes:</p>
-<div class="math notranslate">
-\[ \begin{align}\begin{aligned}\mathrm{Lat}_\mathrm{even} &amp;= \mathrm{dLat}_\mathrm{even} \cdot [mod(j, 60) + \mathrm{Lat}_\mathrm{cprEven}]\\\mathrm{Lat}_\mathrm{odd} &amp;= \mathrm{dLat}_\mathrm{odd} \cdot [mod(j, 59) + \mathrm{Lat}_\mathrm{cprOdd}]\end{aligned}\end{align} \]</div>
-<p>For the southern hemisphere, values will fall from 270 to 360 degrees. We need to
-make sure the latitude is within the range <code class="docutils literal notranslate"><span class="pre">[-90,</span> <span class="pre">+90]</span></code>:</p>
-<div class="math notranslate">
-\[ \begin{align}\begin{aligned}\mathrm{Lat}_\mathrm{even} &amp;= \mathrm{Lat}_\mathrm{even} - 360  \quad \text{if } (\mathrm{Lat}_\mathrm{even} \geq 270)\\\mathrm{Lat}_\mathrm{odd} &amp;= \mathrm{Lat}_\mathrm{odd} - 360  \quad \text{if } (\mathrm{Lat}_\mathrm{odd} \geq 270)\end{aligned}\end{align} \]</div>
-<p>Final latitude is chosen depending on the time stamp of the frames–the newest one is
-used:</p>
-<div class="math notranslate">
-\[\begin{split}\mathrm{Lat} =
-\begin{cases}
- \mathrm{Lat}_\mathrm{even}     &amp; \text{if } (T_\mathrm{even} \geq T_\mathrm{odd}) \\
- \mathrm{Lat}_\mathrm{odd}     &amp; \text{else}
-\end{cases}\end{split}\]</div>
-<p>In the example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Lat_EVEN</span> <span class="o">=</span> <span class="mf">52.25720214843750</span>
-<span class="n">Lat_ODD</span>  <span class="o">=</span> <span class="mf">52.26578017412606</span>
-<span class="n">Lat</span> <span class="o">=</span> <span class="n">Lat_EVEN</span> <span class="o">=</span> <span class="mf">52.25720</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="check-the-latitude-zone-consistency">
-<h3>1.4.1.5. Check the latitude zone consistency<a class="headerlink" href="#check-the-latitude-zone-consistency" title="Permalink to this headline">¶</a></h3>
-<p>Compute <code class="docutils literal notranslate"><span class="pre">NL(Lat_E)</span></code> and <code class="docutils literal notranslate"><span class="pre">NL(Lat_O)</span></code>. If not the same, two positions are located at different latitude zones. Computation of a global longitude is not
-possible. Exit the calculation and wait for new messages. If two values are the same, we proceed to longitude calculation.</p>
-</div>
-<div class="section" id="calculate-longitude">
-<h3>1.4.1.6. Calculate longitude<a class="headerlink" href="#calculate-longitude" title="Permalink to this headline">¶</a></h3>
-<p>If the even frame comes latest <code class="docutils literal notranslate"><span class="pre">T_EVEN</span> <span class="pre">&gt;</span> <span class="pre">T_ODD</span></code>:</p>
-<div class="math notranslate">
-\[ \begin{align}\begin{aligned}ni &amp;= max \left( NL(\mathrm{Lat}_\mathrm{even}), 1 \right)\\\mathrm{dLon} &amp;= \frac{360}{ni}\\m &amp;= floor \left\{ Lon_\mathrm{cprEven} \cdot [NL(\mathrm{Lat}_\mathrm{even})-1] - Lon_\mathrm{cprOdd} \cdot NL(\mathrm{Lat}_\mathrm{even}) + \frac{1}{2}  \right\}\\\mathrm{Lon} &amp;= \mathrm{dLon} \cdot \left( mod(m, ni) + Lon_\mathrm{cprEven} \right)\end{aligned}\end{align} \]</div>
-<p>In case where the odd frame comes latest <code class="docutils literal notranslate"><span class="pre">T_EVEN</span> <span class="pre">&lt;</span> <span class="pre">T_ODD</span></code>:</p>
-<div class="math notranslate">
-\[ \begin{align}\begin{aligned}ni &amp;= max \left( NL(\mathrm{Lat}_\mathrm{odd})-1, 1 \right)\\\mathrm{dLon} &amp;= \frac{360}{ni}\\m &amp;= floor \left\{ Lon_\mathrm{cprEven} \cdot [NL(\mathrm{Lat}_\mathrm{odd})-1] - Lon_\mathrm{cprOdd} \cdot NL(\mathrm{Lat}_\mathrm{odd}) + \frac{1}{2}  \right\}\\\mathrm{Lon} &amp;= \mathrm{dLon} \cdot \left( mod(m, ni) + Lon_\mathrm{cprOdd} \right)\end{aligned}\end{align} \]</div>
+<p><span class="math display">\[\begin{split}
+    \mathrm{Lat}_\mathrm{even} &amp;= \mathrm{dLat}_\mathrm{even} \cdot [mod(j, 60) + \mathrm{Lat}_\mathrm{cprEven}] \\
+    \mathrm{Lat}_\mathrm{odd} &amp;= \mathrm{dLat}_\mathrm{odd} \cdot [mod(j, 59) + \mathrm{Lat}_\mathrm{cprOdd}]
+  \end{split}\]</span></p>
+<p>For the southern hemisphere, values will fall from 270 to 360 degrees. We need to make sure the latitude is within the range <code>[-90, +90]</code>:</p>
+<p><span class="math display">\[\begin{split}
+    \mathrm{Lat}_\mathrm{even} &amp;= \mathrm{Lat}_\mathrm{even} - 360  \quad \text{if } (\mathrm{Lat}_\mathrm{even} \geq 270) \\
+    \mathrm{Lat}_\mathrm{odd} &amp;= \mathrm{Lat}_\mathrm{odd} - 360  \quad \text{if } (\mathrm{Lat}_\mathrm{odd} \geq 270)
+  \end{split}\]</span></p>
+<p>Final latitude is chosen depending on the time stamp of the frames–the newest one is used:</p>
+<p><span class="math display">\[\mathrm{Lat} =
+  \begin{cases}
+   \mathrm{Lat}_\mathrm{even}     &amp; \text{if } (T_\mathrm{even} \geq T_\mathrm{odd}) \\
+   \mathrm{Lat}_\mathrm{odd}     &amp; \text{else}
+  \end{cases}\]</span></p>
+<p>In the example: :</p>
+<pre><code>Lat_EVEN = 52.25720214843750
+Lat_ODD  = 52.26578017412606
+Lat = Lat_EVEN = 52.25720</code></pre>
+<h3 id="check-the-latitude-zone-consistency">Check the latitude zone consistency</h3>
+<p>Compute <code>NL(Lat_E)</code> and <code>NL(Lat_O)</code>. If not the same, two positions are located at different latitude zones. Computation of a global longitude is not possible. Exit the calculation and wait for new messages. If two values are the same, we proceed to longitude calculation.</p>
+<h3 id="calculate-longitude">Calculate longitude</h3>
+<p>If the even frame comes latest <code>T_EVEN &gt; T_ODD</code>:</p>
+<p><span class="math display">\[\begin{split}
+    ni &amp;= max \left( NL(\mathrm{Lat}_\mathrm{even}), 1 \right) \\
+    \mathrm{dLon} &amp;= \frac{360}{ni} \\
+    m &amp;= floor \left\{ Lon_\mathrm{cprEven} \cdot [NL(\mathrm{Lat}_\mathrm{even})-1] - Lon_\mathrm{cprOdd} \cdot NL(\mathrm{Lat}_\mathrm{even}) + \frac{1}{2}  \right\} \\
+    \mathrm{Lon} &amp;= \mathrm{dLon} \cdot \left( mod(m, ni) + Lon_\mathrm{cprEven} \right)
+  \end{split}\]</span></p>
+<p>In case where the odd frame comes latest <code>T_EVEN &lt; T_ODD</code>:</p>
+<p><span class="math display">\[\begin{split}
+    ni &amp;= max \left( NL(\mathrm{Lat}_\mathrm{odd})-1, 1 \right) \\
+    \mathrm{dLon} &amp;= \frac{360}{ni} \\
+    m &amp;= floor \left\{ Lon_\mathrm{cprEven} \cdot [NL(\mathrm{Lat}_\mathrm{odd})-1] - Lon_\mathrm{cprOdd} \cdot NL(\mathrm{Lat}_\mathrm{odd}) + \frac{1}{2}  \right\} \\
+    \mathrm{Lon} &amp;= \mathrm{dLon} \cdot \left( mod(m, ni) + Lon_\mathrm{cprOdd} \right)
+  \end{split}\]</span></p>
 <p>if the result is larger than 180 degrees:</p>
-<div class="math notranslate">
-\[\mathrm{Lon} = \mathrm{Lon} - 360  \quad \text{if } (\mathrm{Lon} \geq 180)\]</div>
-<p>In the example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Lon</span><span class="p">:</span>  <span class="mf">3.91937</span>
-</pre></div>
-</div>
-<p>Here is a Python implementation: <a class="reference external" href="https://github.com/junzis/pyModeS/blob/faf4313/pyModeS/adsb.py#L166">https://github.com/junzis/pyModeS/blob/faf4313/pyModeS/adsb.py#L166</a></p>
-</div>
-<div class="section" id="calculate-altitude">
-<h3>1.4.1.7. Calculate altitude<a class="headerlink" href="#calculate-altitude" title="Permalink to this headline">¶</a></h3>
-<p>The altitude of the aircraft is much easier to compute from the data frame. The bits in the altitude field (either odd or even frame) are as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1100001</span> <span class="mi">1</span> <span class="mi">1000</span>
-        <span class="o">^</span>
-       <span class="n">Q</span><span class="o">-</span><span class="n">bit</span>
-</pre></div>
-</div>
+<p><span class="math display">\[\mathrm{Lon} = \mathrm{Lon} - 360  \quad \text{if } (\mathrm{Lon} \geq 180)\]</span></p>
+<p>In the example: :</p>
+<pre><code>Lon:  3.91937</code></pre>
+<p>Here is a Python implementation: <a href="https://github.com/junzis/pyModeS/blob/faf4313/pyModeS/adsb.py#L166" class="uri">https://github.com/junzis/pyModeS/blob/faf4313/pyModeS/adsb.py#L166</a></p>
+<h3 id="calculate-altitude">Calculate altitude</h3>
+<p>The altitude of the aircraft is much easier to compute from the data frame. The bits in the altitude field (either odd or even frame) are as follows: :</p>
+<pre><code>1100001 1 1000
+        ^
+       Q-bit</code></pre>
 <p>This Q-bit (bit 48) indicates whether the altitude is encoded in multiples of 25 or 100 ft (0: 100 ft, 1: 25 ft).</p>
 <p>For Q = 1, we can calculate the altitude as follows:</p>
-<p>First, remove the Q-bit</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1100001</span> <span class="mi">1000</span> <span class="o">=&gt;</span> <span class="mi">1560</span> <span class="p">(</span><span class="ow">in</span> <span class="n">decimal</span><span class="p">)</span>
-</pre></div>
-</div>
+<p>First, remove the Q-bit :</p>
+<pre><code>N = 1100001 1000 =&gt; 1560 (in decimal)</code></pre>
 <p>The final altitude value will be:</p>
-<div class="math notranslate">
-\[Alt = N \cdot 25 - 1000 \quad \text{(ft.)}\]</div>
-<p>In this example, the altitude at which the aircraft is flying is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1560</span> <span class="o">*</span> <span class="mi">25</span> <span class="o">-</span> <span class="mi">1000</span> <span class="o">=</span> <span class="mi">38000</span> <span class="n">ft</span><span class="o">.</span>
-</pre></div>
-</div>
+<p><span class="math display">\[Alt = N \cdot 25 - 1000 \quad \text{(ft.)}\]</span></p>
+<p>In this example, the altitude at which the aircraft is flying is: :</p>
+<pre><code>1560 * 25 - 1000 = 38000 ft.</code></pre>
 <p>Note that the altitude has the accuracy of +/- 25 ft when the Q-bit is 1, and the value can represent altitudes from -1000 to +50175 ft.</p>
-</div>
-<div class="section" id="the-final-position">
-<h3>1.4.1.8. The final position<a class="headerlink" href="#the-final-position" title="Permalink to this headline">¶</a></h3>
-<p>Finally, we have all three components (latitude/longitude/altitude) of the aircraft position:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LAT</span><span class="p">:</span> <span class="mf">52.25720</span> <span class="p">(</span><span class="n">degrees</span> <span class="n">N</span><span class="p">)</span>
-<span class="n">LON</span><span class="p">:</span>  <span class="mf">3.91937</span> <span class="p">(</span><span class="n">degrees</span> <span class="n">E</span><span class="p">)</span>
-<span class="n">ALT</span><span class="p">:</span>    <span class="mi">38000</span> <span class="n">ft</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="locally-unambiguous-position-decoding-with-one-message">
-<h2>1.4.2. Locally unambiguous position (decoding with one message)<a class="headerlink" href="#locally-unambiguous-position-decoding-with-one-message" title="Permalink to this headline">¶</a></h2>
+<h3 id="the-final-position">The final position</h3>
+<p>Finally, we have all three components (latitude/longitude/altitude) of the aircraft position: :</p>
+<pre><code>LAT: 52.25720 (degrees N)
+LON:  3.91937 (degrees E)
+ALT:    38000 ft</code></pre>
+<h2 id="locally-unambiguous-position-decoding-with-one-message">Locally unambiguous position (decoding with one message)</h2>
 <p>This method gives the possibility of decoding aircraft using only one message knowing a reference position. This method computes the latitude index (j) and the longitude index (m) based on such reference, and can be used with either type of the messages.</p>
-<div class="section" id="the-reference-position">
-<h3>1.4.2.1. The reference position<a class="headerlink" href="#the-reference-position" title="Permalink to this headline">¶</a></h3>
+<h3 id="the-reference-position">The reference position</h3>
 <p>The reference position should be close to the actual position (eg. position of aircraft previously decoded, or the location of ADS-B antenna), and must be <strong>within a 180 NM</strong> range.</p>
-</div>
-<div class="section" id="calculate-dlat">
-<h3>1.4.2.2. Calculate dLat<a class="headerlink" href="#calculate-dlat" title="Permalink to this headline">¶</a></h3>
-<div class="math notranslate">
-\[\begin{split}dLat =
-\begin{cases}
- \frac{360}{4 \cdot NZ} = \frac{360}{60}          &amp; \text{if even message}  \\
- \frac{360}{4 \cdot NZ - 1}  = \frac{360}{59}     &amp; \text{if odd message}
-\end{cases}\end{split}\]</div>
-</div>
-<div class="section" id="id1">
-<h3>1.4.2.3. Calculate the latitude index j<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<div class="math notranslate">
-\[j = floor \left (\frac{\mathrm{Lat}_{ref}}{dLat} \right) + floor \left( \frac{mod(\mathrm{Lat}_{ref}, dLat)}{dLat}  - \mathrm{Lat}_\mathrm{cpr}  + \frac{1}{2} \right)\]</div>
-</div>
-<div class="section" id="id2">
-<h3>1.4.2.4. Calculate latitude<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<div class="math notranslate">
-\[\mathrm{Lat} = dLat \cdot (j + \mathrm{Lat}_\mathrm{cpr})\]</div>
-</div>
-<div class="section" id="calculate-dlon">
-<h3>1.4.2.5. Calculate dLon<a class="headerlink" href="#calculate-dlon" title="Permalink to this headline">¶</a></h3>
-<div class="math notranslate">
-\[\begin{split}\mathrm{dLon} =
-\begin{cases}
- \frac{360}{NL(Lat)}    &amp; \text{if } NL(Lat) &gt; 0  \\
- 360                    &amp; \text{if } NL(Lat) = 0
-\end{cases}\end{split}\]</div>
-</div>
-<div class="section" id="calculate-longitude-index-m">
-<h3>1.4.2.6. Calculate longitude index m<a class="headerlink" href="#calculate-longitude-index-m" title="Permalink to this headline">¶</a></h3>
-<div class="math notranslate">
-\[m = floor \left( \frac{Lon_{ref}}{\mathrm{dLon}} \right) + floor \left( \frac{mod(Lon_{ref}, \mathrm{dLon})}{\mathrm{dLon}}  - Lon_\mathrm{cpr}  + \frac{1}{2}  \right)\]</div>
-</div>
-<div class="section" id="id3">
-<h3>1.4.2.7. Calculate longitude<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<div class="math notranslate">
-\[Lon = \mathrm{dLon} \cdot (m + Lon_\mathrm{cpr})\]</div>
-</div>
-<div class="section" id="example">
-<h3>1.4.2.8. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<h3 id="calculate-dlat">Calculate dLat</h3>
+<p><span class="math display">\[dLat =
+  \begin{cases}
+   \frac{360}{4 \cdot NZ} = \frac{360}{60}          &amp; \text{if even message}  \\
+   \frac{360}{4 \cdot NZ - 1}  = \frac{360}{59}     &amp; \text{if odd message}
+  \end{cases}\]</span></p>
+<h3 id="calculate-the-latitude-index-j-1">Calculate the latitude indexj</h3>
+<p><span class="math display">\[j = floor \left (\frac{\mathrm{Lat}_{ref}}{dLat} \right) + floor \left( \frac{mod(\mathrm{Lat}_{ref}, dLat)}{dLat}  - \mathrm{Lat}_\mathrm{cpr}  + \frac{1}{2} \right)\]</span></p>
+<h3 id="calculate-latitude-1">Calculate latitude</h3>
+<p><span class="math display">\[\mathrm{Lat} = dLat \cdot (j + \mathrm{Lat}_\mathrm{cpr})\]</span></p>
+<h3 id="calculate-dlon">Calculate dLon</h3>
+<p><span class="math display">\[\mathrm{dLon} =
+  \begin{cases}
+   \frac{360}{NL(Lat)}    &amp; \text{if } NL(Lat) &gt; 0  \\
+   360                    &amp; \text{if } NL(Lat) = 0
+  \end{cases}\]</span></p>
+<h3 id="calculate-longitude-index-m">Calculate longitude index m</h3>
+<p><span class="math display">\[m = floor \left( \frac{Lon_{ref}}{\mathrm{dLon}} \right) + floor \left( \frac{mod(Lon_{ref}, \mathrm{dLon})}{\mathrm{dLon}}  - Lon_\mathrm{cpr}  + \frac{1}{2}  \right)\]</span></p>
+<h3 id="calculate-longitude-1">Calculate longitude</h3>
+<p><span class="math display">\[Lon = \mathrm{dLon} \cdot (m + Lon_\mathrm{cpr})\]</span></p>
+<h3 id="example">Example</h3>
 <p>For the same example message:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>8D40621D58C382D690C8AC2863A7
+<pre><code>8D40621D58C382D690C8AC2863A7
 
 Reference position:
   LAT: 52.258
-  LON:  3.918
-</pre></div>
-</div>
+  LON:  3.918</code></pre>
 <p>The structure of the message is:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>8D40621D58C382D690C8AC2863A7
+<pre><code>8D40621D58C382D690C8AC2863A7
 
 |    | ICAO24 |      DATA      |  CRC   |
 |----|--------|----------------|--------|
@@ -317,11 +281,11 @@ Reference position:
 
 Data in binary:
 
-| DATA                                                                              |
-|===================================================================================|
-| TC    | SS | NICsb | ALT          | T | F | CPR-LAT           | CPR-LON           |
-|-------|----|-------|--------------|---|---|-------------------|-------------------|
-| 01011 | 00 | 0     | 110000111000 | 0 | 0 | 10110101101001000 | 01100100010101100 |
+| DATA                                                                       |
+|============================================================================|
+| TC    | ... | ALT          | T | F | CPR-LAT           | CPR-LON           |
+|-------|-----|--------------|---|---|-------------------|-------------------|
+| 01011 | 000 | 110000111000 | 0 | 0 | 10110101101001000 | 01100100010101100 |
 
 
 CPR representation:
@@ -330,117 +294,18 @@ CPR representation:
 |---|-------------------|-------------------|
 | 0 | 10110101101001000 | 01100100010101100 |
 |---|-------------------|-------------------|
-
-In decimal:
-
-|---|-------------------|-------------------|
-| 0 | 93000             | 51372             |
+|   | 93000 / 131072    | 51372 / 131072    |
+|   | 0.7095            | 0.3919            |
 |---|-------------------|-------------------|
 
-CPR_LAT: 93000 / 131072 -&gt; 0.7095
-CPR_LON: 51372 / 131072 -&gt; 0.3919
-</pre></div>
-</div>
-<p>Run the calculation, the same result will be decoded:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">d_lat</span><span class="p">:</span>  <span class="mi">6</span>
-<span class="n">j</span><span class="p">:</span>      <span class="mi">8</span>
-<span class="n">lat</span><span class="p">:</span>    <span class="mf">52.25720</span>
-<span class="n">m</span><span class="p">:</span>      <span class="mi">0</span>
-<span class="n">d_lon</span><span class="p">:</span>  <span class="mi">10</span>
-<span class="n">lon</span><span class="p">:</span>    <span class="mf">3.91937</span>
-</pre></div>
-</div>
-</div>
+d_lat:  6
+j:      8
+lat:    52.25720
+m:      0
+d_lon:  10
+lon:    3.91937</code></pre>
 </div>
 </div>
 
-
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="logo"><a href="http://mode-s.org"> < Mode-S.org </a></div>
-<h2 class="logo"><a href="../index.html">The 1090MHz Riddle</a></h2>
-
-An Open access book on Mode-S/ADS-B decoding and related topics
-
-<br/><br/><h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../adsb.html">1. ADS-B (Automatic Dependent Surveillance – Broadcast)</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="introduction.html">1.1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="identification.html">1.2. Aircraft Identification</a></li>
-<li class="toctree-l2"><a class="reference internal" href="compact-position-report.html">1.3. Compact Position Reporting</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1.4. Airborne Positions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="airborne-velocity.html">1.5. Airborne Velocity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="advance.html">1.6. Advanced topics</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../ehs.html">2. EHS (Mode-S Enhanced Surveillance)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ehs/introduction.html">2.1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ehs/bds20-identification.html">2.2. Aircraft identification (BDS 2,0)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ehs/bds40-intention.html">2.3. Selected intention (BDS 4,0)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ehs/bds50-track-n-turn.html">2.4. Track and turn (BDS 5,0)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ehs/bds60-airspeed.html">2.5. Heading and speed (BDS 6,0)</a></li>
-</ul>
-</li>
-</ul>
-
-
-  <br/>
-  <h3>Page Source</h3>
-  <ul class="this-page-menu">
-    <!-- <li><a href="../_sources/adsb/airborne-position.rst.txt"
-           rel="nofollow">Show Source</a></li> -->
-    <li><a href="https://github.com/junzis/the-1090mhz-riddle/blob/master/adsb/airborne-position.rst"
-           rel="nofollow">Show on GitHub</a></li>
-    <li><a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/airborne-position.rst"
-           rel="nofollow">Edit on GitHub</a></li>
-  </ul>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
-  <h3>Related</h3>
-  <ul class="this-page-menu">
-    <li><a href="https://github.com/junzis/pyModeS"
-           rel="nofollow">pyModeS on GitHub</a></li>
-  </ul>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-
-    <div class="footer">
-      &copy;2018, Junzi Sun.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
-      
-      |
-      <a href="../_sources/adsb/airborne-position.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-74700456-1');
-  </script>
-
-  </body>
+</body>
 </html>

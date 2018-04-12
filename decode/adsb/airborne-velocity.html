@@ -1,51 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <meta name="author" content="Junzi Sun">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>1.5. Airborne Velocity &#8212; The 1090MHz Riddle (Decode ADS-B and Mode-S)</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1.6. Advanced topics" href="advance.html" />
-    <link rel="prev" title="1.4. Airborne Positions" href="airborne-position.html" />
-   
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head><body>
+  <title>The 1090MHz Riddle</title>
+  <style type="text/css">code{white-space: pre;}</style>
 
-  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 
-  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="airborne-velocity">
-<h1>1.5. Airborne Velocity<a class="headerlink" href="#airborne-velocity" title="Permalink to this headline">¶</a></h1>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <link rel="stylesheet" href="../style.css">
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="d-flex flex-row align-items-end">
+	<div>
+		<h1 class="title">The 1090MHz Riddle</h1>
+		<div class="subtitle">An open-access book about decoding Mode-S and ADS-B data</div>
+	</div>
+	<div class='ml-auto chapter-nav'>
+    <div class="author">By: <strong>Junzi Sun</strong> (<a href="http://junzis.com">junzis.com</a>)</div>
+    <a href="http://mode-s.org" type="button" class="btn btn-sm btn-outline-dark btn-light">mode-s.org</a>
+    <a href="../book-the_1090mhz_riddle-junzi_sun.pdf" type="button" class="btn btn-sm btn-outline-info">Download PDF</a>
+	</div>
+</div>
+
+<hr>
+
+<div class="row">
+<div class="col-md-4 col-lg-3">
+<nav>
+  <h1>Chapters</h1>
+  <ul>
+    <li><a href="../index.html">Introduction</a></li>
+    <li><a href="../adsb.html">ADS-B</a></li>
+    <ul>
+      <li><a href="../adsb/introduction.html">Basics</a></li>
+      <li><a href="../adsb/identification.html">Aircraft Identification</a></li>
+      <li><a href="../adsb/compact-position-report.html">Compact Position Reporting</a></li>
+      <li><a href="../adsb/airborne-position.html">Airborne Position</a></li>
+      <li><a href="../adsb/airborne-velocity.html">Airborne Velocity</a></li>
+    </ul>
+    <li><a href="../adsb/advance.html">Advanced ADS-B</a></li>
+    <ul>
+      <li><a href="../adsb/version.html">ADS-B Versions</a></li>
+      <li><a href="../adsb/operation-status.html">Operation Status</a></li>
+      <li><a href="../adsb/uncertainty.html">Uncertainty and Accuracy</a></li>
+    </ul>
+    <li><a href="../ehs.html">Enhanced Mode-S</a></li>
+    <ul>
+      <li><a href="../ehs/introduction.html">Basics</a></li>
+      <li><a href="../ehs/bds20-identification.html">Aircraft Identification</a></li>
+      <li><a href="../ehs/bds40-intention.html">Aircraft Intention</a></li>
+      <li><a href="../ehs/bds50-track-n-turn.html">Track and Turn</a></li>
+      <li><a href="../ehs/bds60-airspeed.html">Airspeed and Heading</a></li>
+    </ul>
+  </ul>
+</nav>
+<hr>
+<nav id="TOC">
+<h1>In this page</h1>
+<ul>
+<li><a href="#airborne-velocity">Airborne Velocity</a><ul>
+<li><a href="#subtype-1-ground-speed">Subtype 1 (Ground Speed)</a><ul>
+<li><a href="#horizontal-velocity">Horizontal Velocity</a></li>
+<li><a href="#vertical-rate">Vertical Rate</a></li>
+</ul></li>
+<li><a href="#subtype-3-airspeed">Subtype 3 (Airspeed)</a><ul>
+<li><a href="#heading">Heading</a></li>
+<li><a href="#velocity-airspeed">Velocity (Airspeed)</a></li>
+<li><a href="#vertical-rate-1">Vertical Rate</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="col-md-8 col-lg-9 maintext">
+<h1 id="airborne-velocity">Airborne Velocity</h1>
 <p>There are two different types of messages for velocities, determined by 3-bit subtype in the message. With subtype 1 and 2, surface velocity (ground speed) is reported. And in subtype 3 and 4, aircraft airspeed is reported.</p>
 <p>Type 2 and 4 are for supersonic aircraft. So, before we have another commercial supersonic aircraft flying around, you won’t see any of those types.</p>
 <p>In real world, very few of subtype 3 messages are reported. In our setup, we only received <strong>0.3%</strong> of these message with regards to subtype 1.</p>
-<p>An aircraft velocity message has <code class="docutils literal notranslate"><span class="pre">DF:</span> <span class="pre">17</span> <span class="pre">or</span> <span class="pre">18</span></code>, <code class="docutils literal notranslate"><span class="pre">TC:</span> <span class="pre">19</span></code>, and the subtype codes are represented in bits 38 to 40. Now, we can decode those messages.</p>
-<div class="section" id="subtype-1-ground-speed">
-<h2>1.5.1. Subtype 1 (Ground Speed)<a class="headerlink" href="#subtype-1-ground-speed" title="Permalink to this headline">¶</a></h2>
+<p>An aircraft velocity message has <code>DF: 17 or 18</code>, <code>TC: 19</code>, and the subtype codes are represented in bits 38 to 40. Now, we can decode those messages.</p>
+<h2 id="subtype-1-ground-speed">Subtype 1 (Ground Speed)</h2>
 <p>Subtype 1 (subsonic, ground speed), are broadcast when ground velocity information is available. The aircraft velocity contains speed and heading information. The speed and heading are also decomposed into North-South, and East-West components.</p>
 <p>For example, the following message is received:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Message: 8D485020994409940838175B284F
+<pre><code>Message: 8D485020994409940838175B284F
 
 |    | ICAO24 |      DATA      |  CRC   |
 |----|--------|----------------|--------|
@@ -53,192 +104,98 @@
 
 Convert DATA [99440994083817] into binary:
 
-|-------|-----|----|--------|-----|------|------------|------|------------|-------|------|-----------|--------|-------|---------|
-|  TC   | ST  | IC | RESV_A | NAC | S-EW | V-EW       | S-NS | V-NS       | VrSrc | S-Vr | Vr        | RESV_B | S_Dif | Dif     |
-|-------|-----|----|--------|-----|------|------------|------|------------|-------|------|-----------|--------|-------|---------|
-| 10011 | 001 | 0  | 1      | 000 | 1    | 0000001001 | 1    | 0010100000 | 0     | 1    | 000001110 | 00     | 0     | 0010111 |
-</pre></div>
-</div>
+|-------|-----|----|--------|-----|------|------------|
+|  TC   | ST  | IC | RESV_A | NAC | S-EW | V-EW       |
+|-------|-----|----|--------|-----|------|------------|
+| 10011 | 001 | 0  | 1      | 000 | 1    | 0000001001 |
+
+|------|------------|-------|------|-----------|--------|-------|---------|
+| S-NS | V-NS       | VrSrc | S-Vr | Vr        | RESV_B | S_Dif | Dif     |
+|------|------------|-------|------|-----------|--------|-------|---------|
+| 1    | 0010100000 | 0     | 1    | 000001110 | 00     | 0     | 0010111 |</code></pre>
 <p>There are quite a few parameters in the velocity message. From left to right, the number of bits indicates the following contents:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="17%" />
-<col width="17%" />
-<col width="9%" />
-<col width="12%" />
-<col width="45%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">MSG Bits</th>
-<th class="head">DATA Bits</th>
-<th class="head">Len</th>
-<th class="head">Abbr</th>
-<th class="head">Content</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>33-37</td>
-<td>1-5</td>
-<td>5</td>
-<td>TC</td>
-<td>Type code</td>
-</tr>
-<tr class="row-odd"><td>38-40</td>
-<td>6-8</td>
-<td>3</td>
-<td>ST</td>
-<td>Subtype</td>
-</tr>
-<tr class="row-even"><td>41</td>
-<td>9</td>
-<td>1</td>
-<td>IC</td>
-<td>Intent change flag</td>
-</tr>
-<tr class="row-odd"><td>42</td>
-<td>10</td>
-<td>1</td>
-<td>RESV_A</td>
-<td>Reserved-A</td>
-</tr>
-<tr class="row-even"><td>43-45</td>
-<td>11-13</td>
-<td>3</td>
-<td>NAC</td>
-<td>Velocity uncertainty (NAC)</td>
-</tr>
-<tr class="row-odd"><td>46</td>
-<td>14</td>
-<td>1</td>
-<td>S_ew</td>
-<td>East-West velocity sign</td>
-</tr>
-<tr class="row-even"><td>47-56</td>
-<td>15-24</td>
-<td>10</td>
-<td>V_ew</td>
-<td>East-West velocity</td>
-</tr>
-<tr class="row-odd"><td>57</td>
-<td>25</td>
-<td>1</td>
-<td>S_ns</td>
-<td>North-South velocity sign</td>
-</tr>
-<tr class="row-even"><td>58-67</td>
-<td>26-35</td>
-<td>10</td>
-<td>V_ns</td>
-<td>North-South velocity</td>
-</tr>
-<tr class="row-odd"><td>68</td>
-<td>36</td>
-<td>1</td>
-<td>VrSrc</td>
-<td>Vertical rate source</td>
-</tr>
-<tr class="row-even"><td>69</td>
-<td>37</td>
-<td>1</td>
-<td>S_vr</td>
-<td>Vertical rate sign</td>
-</tr>
-<tr class="row-odd"><td>70-78</td>
-<td>38-46</td>
-<td>9</td>
-<td>Vr</td>
-<td>Vertical rate</td>
-</tr>
-<tr class="row-even"><td>79-80</td>
-<td>47-48</td>
-<td>2</td>
-<td>RESV_B</td>
-<td>Reserved-B</td>
-</tr>
-<tr class="row-odd"><td>81</td>
-<td>49</td>
-<td>1</td>
-<td>S_Dif</td>
-<td>Diff from baro alt, sign</td>
-</tr>
-<tr class="row-even"><td>82-88</td>
-<td>50-66</td>
-<td>7</td>
-<td>Dif</td>
-<td>Diff from baro alt</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="horizontal-velocity">
-<h3>1.5.1.1. Horizontal Velocity<a class="headerlink" href="#horizontal-velocity" title="Permalink to this headline">¶</a></h3>
-<p>For calculating the horizontal speed and heading we need four values, East-West Velocity <code class="docutils literal notranslate"><span class="pre">V_ew</span></code>, East-West Velocity Sign <code class="docutils literal notranslate"><span class="pre">S_ew</span></code>, North-South Velocity <code class="docutils literal notranslate"><span class="pre">V_ns</span></code>, North-South Velocity Sign <code class="docutils literal notranslate"><span class="pre">S_ns</span></code>. And pay attention on the directions (signs) in the calculation.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S_ns</span><span class="p">:</span>
-    <span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">flying</span> <span class="n">North</span> <span class="n">to</span> <span class="n">South</span>
-    <span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">flying</span> <span class="n">South</span> <span class="n">to</span> <span class="n">North</span>
-<span class="n">S_ew</span><span class="p">:</span>
-    <span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">flying</span> <span class="n">East</span> <span class="n">to</span> <span class="n">West</span>
-    <span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">flying</span> <span class="n">West</span> <span class="n">to</span> <span class="n">East</span>
-</pre></div>
-</div>
-<p>The Speed (v) and heading (h) with unit <cite>knot</cite> and <cite>degree</cite> can be computed as follows:</p>
-<div class="math notranslate">
-\[\begin{split}V_{we} =
+<pre><code>+-----------+-----------+------+--------+------------------------------+
+| MSG Bits  | DATA Bits | Len  | Abbr   | Content                      |
++===========+===========+======+========+==============================+
+| 33-37     | 1-5       | 5    | TC     | Type code                    |
++-----------+-----------+------+--------+------------------------------+
+| 38-40     | 6-8       | 3    | ST     | Subtype                      |
++-----------+-----------+------+--------+------------------------------+
+| 41        | 9         | 1    | IC     | Intent change flag           |
++-----------+-----------+------+--------+------------------------------+
+| 42        | 10        | 1    | RESV_A | Reserved-A                   |
++-----------+-----------+------+--------+------------------------------+
+| 43-45     | 11-13     | 3    | NAC    | Velocity uncertainty (NAC)   |
++-----------+-----------+------+--------+------------------------------+
+| 46        | 14        | 1    | S_ew   | East-West velocity sign      |
++-----------+-----------+------+--------+------------------------------+
+| 47-56     | 15-24     | 10   | V_ew   | East-West velocity           |
++-----------+-----------+------+--------+------------------------------+
+| 57        | 25        | 1    | S_ns   | North-South velocity sign    |
++-----------+-----------+------+--------+------------------------------+
+| 58-67     | 26-35     | 10   | V_ns   | North-South velocity         |
++-----------+-----------+------+--------+------------------------------+
+| 68        | 36        | 1    | VrSrc  | Vertical rate source         |
++-----------+-----------+------+--------+------------------------------+
+| 69        | 37        | 1    | S_vr   | Vertical rate sign           |
++-----------+-----------+------+--------+------------------------------+
+| 70-78     | 38-46     | 9    | Vr     | Vertical rate                |
++-----------+-----------+------+--------+------------------------------+
+| 79-80     | 47-48     | 2    | RESV_B | Reserved-B                   |
++-----------+-----------+------+--------+------------------------------+
+| 81        | 49        | 1    | S_Dif  | Diff from baro alt, sign     |
++-----------+-----------+------+--------+------------------------------+
+| 82-88     | 50-66     | 7    | Dif    | Diff from baro alt           |
++-----------+-----------+------+--------+------------------------------+</code></pre>
+<h3 id="horizontal-velocity">Horizontal Velocity</h3>
+<p>For calculating the horizontal speed and heading we need four values, East-West Velocity <code>V_ew</code>, East-West Velocity Sign <code>S_ew</code>, North-South Velocity <code>V_ns</code>, North-South Velocity Sign <code>S_ns</code>. And pay attention on the directions (signs) in the calculation.</p>
+<pre><code>S_ns:
+    1 -&gt; flying North to South
+    0 -&gt; flying South to North
+S_ew:
+    1 -&gt; flying East to West
+    0 -&gt; flying West to East</code></pre>
+<p>The Speed (v) and heading (h) with unit knot and degree can be computed as follows:</p>
+<p><span class="math display">\[V_{we} =
 \begin{cases}
  -1 \cdot (V_{ew} - 1)    &amp; \text{if } s_{ew} = 1 \\
  V_{ew} - 1         &amp; \text{if } s_{ew} = 0
-\end{cases}\end{split}\]</div>
-<div class="math notranslate">
-\[\begin{split}V_{sn} =
+\end{cases}\]</span></p>
+<p><span class="math display">\[V_{sn} =
 \begin{cases}
  -1 \cdot (V_{ns} - 1)    &amp; \text{if } s_{ns} = 1 \\
  V_{ns} - 1         &amp; \text{if } s_{ns} = 0
-\end{cases}\end{split}\]</div>
-<div class="math notranslate">
-\[v = \sqrt{V_{we}^{2} + V_{sn}^{2}}\]</div>
-<div class="math notranslate">
-\[h = arctan2 \left( V_{we}, V_{sn} \right) \cdot \frac{360}{2\pi}  \quad \text{(deg)}\]</div>
+\end{cases}\]</span></p>
+<p><span class="math display">\[v = \sqrt{V_{we}^{2} + V_{sn}^{2}}\]</span></p>
+<p><span class="math display">\[h = arctan2 \left( V_{we}, V_{sn} \right) \cdot \frac{360}{2\pi}  \quad \text{(deg)}\]</span></p>
 <p>In case of a negative value here, we will simply add 360 degrees.</p>
-<div class="math notranslate">
-\[h = h + 360  \quad (\text{if } h &lt; 0)\]</div>
+<p><span class="math display">\[h = h + 360  \quad (\text{if } h &lt; 0)\]</span></p>
 <p>So, now we have the speed and heading of our example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">V</span><span class="o">-</span><span class="n">EW</span><span class="p">:</span> <span class="mi">0000001001</span> <span class="o">-&gt;</span> <span class="mi">9</span>
-<span class="n">S</span><span class="o">-</span><span class="n">EW</span><span class="p">:</span> <span class="mi">1</span>
-<span class="n">V</span><span class="o">-</span><span class="n">NS</span><span class="p">:</span> <span class="mi">0010100000</span> <span class="o">-&gt;</span> <span class="mi">160</span>
-<span class="n">S</span><span class="o">-</span><span class="n">NS</span><span class="p">:</span> <span class="mi">1</span>
+<pre><code>V-EW: 0000001001 -&gt; 9
+S-EW: 1
+V-NS: 0010100000 -&gt; 160
+S-NS: 1
 
-<span class="n">V_</span><span class="p">{</span><span class="n">we</span><span class="p">}</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="mi">9</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="mi">8</span>
-<span class="n">V_</span><span class="p">{</span><span class="n">sn</span><span class="p">}</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="mi">160</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="mi">159</span>
+V_{we} = - (9 - 1) = -8
+V_{sn} = - (160 - 1) = -159
 
-<span class="n">v</span> <span class="o">=</span> <span class="mf">159.20</span> <span class="p">(</span><span class="n">kt</span><span class="p">)</span>
-<span class="n">h</span> <span class="o">=</span> <span class="mf">182.88</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="vertical-rate">
-<h3>1.5.1.2. Vertical Rate<a class="headerlink" href="#vertical-rate" title="Permalink to this headline">¶</a></h3>
-<p>The direction of vertical movement of aircraft can be read from <code class="docutils literal notranslate"><span class="pre">S_vr</span></code> field, in message bit-69:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">UP</span>
-<span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">Down</span>
-</pre></div>
-</div>
-<p>The actual vertical rate <code class="docutils literal notranslate"><span class="pre">Vr</span></code> is the value of bits 70-78, minus 1, and then multiplied by 64 in <strong>feet/minute</strong> (ft/min). In our example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Vr</span><span class="o">-</span><span class="n">bits</span><span class="p">:</span> <span class="mi">000001110</span> <span class="o">=</span> <span class="mi">14</span>
-<span class="n">Vr</span><span class="p">:</span> <span class="p">(</span><span class="mi">14</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="n">x</span> <span class="mi">64</span> <span class="o">=&gt;</span> <span class="mi">832</span> <span class="n">fpm</span>
-<span class="n">S</span><span class="o">-</span><span class="n">Vr</span><span class="p">:</span> <span class="mi">0</span> <span class="o">=&gt;</span> <span class="n">Down</span> <span class="o">/</span> <span class="n">Descending</span>
-</pre></div>
-</div>
+v = 159.20 (kt)
+h = 182.88 (deg)</code></pre>
+<h3 id="vertical-rate">Vertical Rate</h3>
+<p>The direction of vertical movement of aircraft can be read from <code>S_vr</code> field, in message bit-69:</p>
+<pre><code>0 -&gt; UP
+1 -&gt; Down</code></pre>
+<p>The actual vertical rate <code>Vr</code> is the value of bits 70-78, minus 1, and then multiplied by 64 in <strong>feet/minute</strong> (ft/min). In our example:</p>
+<pre><code>Vr-bits: 000001110 = 14
+Vr: (14 - 1) x 64 =&gt; 832 fpm
+S-Vr: 0 =&gt; Down / Descending</code></pre>
 <p>So we see a descending aircraft at 832 ft/min rate of descend.</p>
 <p>The Vertical Rate Source (VrSrc) field determines if it is a measurement in barometric pressure altitude or geometric altitude:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span>  <span class="n">Baro</span><span class="o">-</span><span class="n">pressure</span> <span class="n">altitude</span> <span class="n">change</span> <span class="n">rate</span>
-<span class="mi">1</span> <span class="o">-&gt;</span>  <span class="n">Geometric</span> <span class="n">altitude</span> <span class="n">change</span> <span class="n">rate</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="subtype-3-airspeed">
-<h2>1.5.2. Subtype 3 (Airspeed)<a class="headerlink" href="#subtype-3-airspeed" title="Permalink to this headline">¶</a></h2>
+<pre><code>0 -&gt;  Baro-pressure altitude change rate
+1 -&gt;  Geometric altitude change rate</code></pre>
+<h2 id="subtype-3-airspeed">Subtype 3 (Airspeed)</h2>
 <p>Subtype 3 (subsonic, airspeed), are broadcast when ground speed information is NOT available, while airspeed is available. The structure of the message is similar to the previous one. Let’s take a close look at an example for decoding here.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Message: 8DA05F219B06B6AF189400CBC33F
+<pre><code>Message: 8DA05F219B06B6AF189400CBC33F
 
 |    | ICAO24 |      DATA      |  CRC   |
 |----|--------|----------------|--------|
@@ -246,244 +203,68 @@ Convert DATA [99440994083817] into binary:
 
 Convert DATA [9B06B6AF189400] into binary:
 
-|-------|-----|----|--------|-----|------|------------|------|------------|-------|------|-----------|--------|-------|---------|
-|  TC   | ST  | IC | RESV_A | NAC | S_hdg| Hdg        | AS-t | AS         | VrSrc | S-Vr | Vr        | RESV_B | S_Dif | Dif     |
-|-------|-----|----|--------|-----|------|------------|------|------------|-------|------|-----------|--------|-------|---------|
-| 10011 | 011 | 0  | 0      | 000 | 1    | 1010110110 | 1    | 0101111000 | 1     | 1    | 000100101 | 00     | 0     | 0000000 |
-</pre></div>
-</div>
+|-------|-----|----|--------|-----|------|------------|------|------------|
+|  TC   | ST  | IC | RESV_A | NAC | S_hdg| Hdg        | AS-t | AS         |
+|-------|-----|----|--------|-----|------|------------|------|------------|
+| 10011 | 011 | 0  | 0      | 000 | 1    | 1010110110 | 1    | 0101111000 |
+
+|-------|------|-----------|--------|-------|---------|
+| VrSrc | S-Vr | Vr        | RESV_B | S_Dif | Dif     |
+|-------|------|-----------|--------|-------|---------|
+| 1     | 1    | 000100101 | 00     | 0     | 0000000 |</code></pre>
 <p>The detail bits representations are:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="16%" />
-<col width="16%" />
-<col width="9%" />
-<col width="11%" />
-<col width="49%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">MSG Bits</th>
-<th class="head">DATA Bits</th>
-<th class="head">Len</th>
-<th class="head">Abbr</th>
-<th class="head">Content</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>33-37</td>
-<td>1-5</td>
-<td>5</td>
-<td>TC</td>
-<td>Type code</td>
-</tr>
-<tr class="row-odd"><td>38-40</td>
-<td>6-8</td>
-<td>3</td>
-<td>ST</td>
-<td>Subtype</td>
-</tr>
-<tr class="row-even"><td>41</td>
-<td>9</td>
-<td>1</td>
-<td>IC</td>
-<td>Intent change flag</td>
-</tr>
-<tr class="row-odd"><td>42</td>
-<td>10</td>
-<td>1</td>
-<td>RESV_A</td>
-<td>Reserved-A</td>
-</tr>
-<tr class="row-even"><td>43-45</td>
-<td>11-13</td>
-<td>3</td>
-<td>NAC</td>
-<td>Velocity uncertainty (NAC)</td>
-</tr>
-<tr class="row-odd"><td>46</td>
-<td>14</td>
-<td>1</td>
-<td>S_hdg</td>
-<td>Heading status</td>
-</tr>
-<tr class="row-even"><td>47-56</td>
-<td>15-24</td>
-<td>10</td>
-<td>Hdg</td>
-<td>Heading (proportion)</td>
-</tr>
-<tr class="row-odd"><td>57</td>
-<td>25</td>
-<td>1</td>
-<td>AS-t</td>
-<td>Airspeed Type</td>
-</tr>
-<tr class="row-even"><td>58-67</td>
-<td>26-35</td>
-<td>10</td>
-<td>AS</td>
-<td>Airspeed</td>
-</tr>
-<tr class="row-odd"><td>68</td>
-<td>36</td>
-<td>1</td>
-<td>VrSrc</td>
-<td>Vertical rate source</td>
-</tr>
-<tr class="row-even"><td>69</td>
-<td>37</td>
-<td>1</td>
-<td>S_vr</td>
-<td>Vertical rate sign</td>
-</tr>
-<tr class="row-odd"><td>70-78</td>
-<td>38-46</td>
-<td>9</td>
-<td>Vr</td>
-<td>Vertical rate</td>
-</tr>
-<tr class="row-even"><td>79-80</td>
-<td>47-48</td>
-<td>2</td>
-<td>RESV_B</td>
-<td>Reserved-B</td>
-</tr>
-<tr class="row-odd"><td>81</td>
-<td>49</td>
-<td>1</td>
-<td>S_Dif</td>
-<td>Difference from baro alt, sign</td>
-</tr>
-<tr class="row-even"><td>82-88</td>
-<td>50-66</td>
-<td>7</td>
-<td>Dif</td>
-<td>Difference from baro alt</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="heading">
-<h3>1.5.2.1. Heading<a class="headerlink" href="#heading" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">S_hdg</span></code> makes the status of heading data:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">heading</span> <span class="n">data</span> <span class="ow">not</span> <span class="n">available</span>
-<span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">heading</span> <span class="n">data</span> <span class="n">available</span>
-</pre></div>
-</div>
-<p>10-bits <code class="docutils literal notranslate"><span class="pre">Hdg</span></code> is the represent the proportion of the degrees of a full circle, i.e. 360 degrees. (Note: 0000000000 - 1111111111 represents 0 - 1023 )</p>
-<div class="math notranslate">
-\[heading = Decimal(Hdg) / 1024 * 360^o\]</div>
-<p>in our example</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1010110110</span> <span class="o">-&gt;</span> <span class="mi">694</span>
-<span class="n">heading</span> <span class="o">=</span> <span class="mi">694</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">360</span> <span class="o">=</span> <span class="mf">243.98</span> <span class="p">(</span><span class="n">degree</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="velocity-airspeed">
-<h3>1.5.2.2. Velocity (Airspeed)<a class="headerlink" href="#velocity-airspeed" title="Permalink to this headline">¶</a></h3>
-<p>To find out which type of the airspeed (TAS or IAS), first we need to look at the <code class="docutils literal notranslate"><span class="pre">AS-t</span></code> field:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">Indicated</span> <span class="n">Airspeed</span> <span class="p">(</span><span class="n">IAS</span><span class="p">)</span>
-<span class="mi">1</span> <span class="o">-&gt;</span> <span class="kc">True</span> <span class="n">Airspeed</span> <span class="p">(</span><span class="n">TAS</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>And then the speed is simply a binary to decimal conversion of <code class="docutils literal notranslate"><span class="pre">AS</span></code> bits (in knot). In our example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0101111000</span> <span class="o">-&gt;</span> <span class="mi">376</span> <span class="n">knot</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="id1">
-<h3>1.5.2.3. Vertical Rate<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<pre><code>+-----------+-----------+------+--------+----------------------------------+
+| MSG Bits  | DATA Bits | Len  | Abbr   | Content                          |
++===========+===========+======+========+==================================+
+| 33-37     | 1-5       | 5    | TC     | Type code                        |
++-----------+-----------+------+--------+----------------------------------+
+| 38-40     | 6-8       | 3    | ST     | Subtype                          |
++-----------+-----------+------+--------+----------------------------------+
+| 41        | 9         | 1    | IC     | Intent change flag               |
++-----------+-----------+------+--------+----------------------------------+
+| 42        | 10        | 1    | RESV_A | Reserved-A                       |
++-----------+-----------+------+--------+----------------------------------+
+| 43-45     | 11-13     | 3    | NAC    | Velocity uncertainty (NAC)       |
++-----------+-----------+------+--------+----------------------------------+
+| 46        | 14        | 1    | S_hdg  | Heading status                   |
++-----------+-----------+------+--------+----------------------------------+
+| 47-56     | 15-24     | 10   | Hdg    | Heading (proportion)             |
++-----------+-----------+------+--------+----------------------------------+
+| 57        | 25        | 1    | AS-t   | Airspeed Type                    |
++-----------+-----------+------+--------+----------------------------------+
+| 58-67     | 26-35     | 10   | AS     | Airspeed                         |
++-----------+-----------+------+--------+----------------------------------+
+| 68        | 36        | 1    | VrSrc  | Vertical rate source             |
++-----------+-----------+------+--------+----------------------------------+
+| 69        | 37        | 1    | S_vr   | Vertical rate sign               |
++-----------+-----------+------+--------+----------------------------------+
+| 70-78     | 38-46     | 9    | Vr     | Vertical rate                    |
++-----------+-----------+------+--------+----------------------------------+
+| 79-80     | 47-48     | 2    | RESV_B | Reserved-B                       |
++-----------+-----------+------+--------+----------------------------------+
+| 81        | 49        | 1    | S_Dif  | Difference from baro alt, sign   |
++-----------+-----------+------+--------+----------------------------------+
+| 82-88     | 50-66     | 7    | Dif    | Difference from baro alt         |
++-----------+-----------+------+--------+----------------------------------+</code></pre>
+<h3 id="heading">Heading</h3>
+<p><code>S_hdg</code> makes the status of heading data:</p>
+<pre><code>0 -&gt; heading data not available
+1 -&gt; heading data available</code></pre>
+<p>10-bits <code>Hdg</code> is the represent the proportion of the degrees of a full circle, i.e. 360 degrees. (Note: 0000000000 - 1111111111 represents 0 - 1023 )</p>
+<p><span class="math display">\[heading = Decimal(Hdg) / 1024 * 360^o\]</span></p>
+<p>in our example :</p>
+<pre><code>1010110110 -&gt; 694
+heading = 694 / 1024 * 360 = 243.98 (degree)</code></pre>
+<h3 id="velocity-airspeed">Velocity (Airspeed)</h3>
+<p>To find out which type of the airspeed (TAS or IAS), first we need to look at the <code>AS-t</code> field:</p>
+<pre><code>0 -&gt; Indicated Airspeed (IAS)
+1 -&gt; True Airspeed (TAS)</code></pre>
+<p>And then the speed is simply a binary to decimal conversion of <code>AS</code> bits (in knot). In our example:</p>
+<pre><code>0101111000 -&gt; 376 knot</code></pre>
+<h3 id="vertical-rate-1">Vertical Rate</h3>
 <p>The vertical rate decoding remains the same as subtype 1.</p>
 </div>
 </div>
-</div>
 
-
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="logo"><a href="http://mode-s.org"> < Mode-S.org </a></div>
-<h2 class="logo"><a href="../index.html">The 1090MHz Riddle</a></h2>
-
-An Open access book on Mode-S/ADS-B decoding and related topics
-
-<br/><br/><h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../adsb.html">1. ADS-B (Automatic Dependent Surveillance – Broadcast)</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="introduction.html">1.1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="identification.html">1.2. Aircraft Identification</a></li>
-<li class="toctree-l2"><a class="reference internal" href="compact-position-report.html">1.3. Compact Position Reporting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="airborne-position.html">1.4. Airborne Positions</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1.5. Airborne Velocity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="advance.html">1.6. Advanced topics</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../ehs.html">2. EHS (Mode-S Enhanced Surveillance)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ehs/introduction.html">2.1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ehs/bds20-identification.html">2.2. Aircraft identification (BDS 2,0)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ehs/bds40-intention.html">2.3. Selected intention (BDS 4,0)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ehs/bds50-track-n-turn.html">2.4. Track and turn (BDS 5,0)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ehs/bds60-airspeed.html">2.5. Heading and speed (BDS 6,0)</a></li>
-</ul>
-</li>
-</ul>
-
-
-  <br/>
-  <h3>Page Source</h3>
-  <ul class="this-page-menu">
-    <!-- <li><a href="../_sources/adsb/airborne-velocity.rst.txt"
-           rel="nofollow">Show Source</a></li> -->
-    <li><a href="https://github.com/junzis/the-1090mhz-riddle/blob/master/adsb/airborne-velocity.rst"
-           rel="nofollow">Show on GitHub</a></li>
-    <li><a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/airborne-velocity.rst"
-           rel="nofollow">Edit on GitHub</a></li>
-  </ul>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>  <br/>
-  <h3>Related</h3>
-  <ul class="this-page-menu">
-    <li><a href="https://github.com/junzis/pyModeS"
-           rel="nofollow">pyModeS on GitHub</a></li>
-  </ul>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-
-    <div class="footer">
-      &copy;2018, Junzi Sun.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
-      
-      |
-      <a href="../_sources/adsb/airborne-velocity.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-74700456-1');
-  </script>
-
-  </body>
+</body>
 </html>
