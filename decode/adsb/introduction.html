@@ -18,6 +18,9 @@
 
 
 <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+  integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous">
+</script>
 
 </head>
 <body>
@@ -31,8 +34,16 @@
 	</div>
 	<div class='ml-auto chapter-nav'>
     <div class="author">By: <strong>Junzi Sun</strong> (<a href="http://junzis.com">junzis.com</a>)</div>
-    <a href="http://mode-s.org" type="button" class="btn btn-sm btn-outline-dark btn-light">mode-s.org</a>
-    <a href="../book-the_1090mhz_riddle-junzi_sun.pdf" type="button" class="btn btn-sm btn-outline-info">Download PDF</a>
+
+    <a href="http://mode-s.org" type="button"
+        class="btn btn-sm btn-outline-dark btn-light">
+      <i class="fas fa-angle-double-left"></i> mode-s.org
+    </a>
+
+    <a href="../book-the_1090mhz_riddle-junzi_sun.pdf"
+        type="button" class="btn btn-sm btn-outline-info">
+      <i class="far fa-file-pdf"></i> Download PDF
+    </a>
 	</div>
 </div>
 
@@ -70,6 +81,12 @@
 </nav>
 <hr>
 <nav id="TOC">
+
+<div class="float-right">
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/introduction.tex"
+    class='btn btn-sm btn-outline-danger'> <i class="fab fa-github-alt"></i> Edit</a>
+</div>
+
 <h1>In this page</h1>
 <ul>
 <li><a href="#introduction">ADS-B Basics</a><ul>
@@ -82,6 +99,12 @@
 </nav>
 </div>
 <div class="col-md-8 col-lg-9 maintext">
+
+<div class="float-right">
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/introduction.tex"
+    class='btn btn-sm btn-outline-danger'> <i class="fas fa-edit"></i> Recommend edits</a>
+</div>
+
 <h1 id="introduction">ADS-B Basics</h1>
 <h2 id="message-structure">Message structure</h2>
 <p>An ADS-B message is 112 bits long, and consists of 5 parts.</p>
@@ -145,7 +168,13 @@ DEC  |  17    5   |              | [4] ...............  |
 +----------+-----------------------------------------+
 | 20 - 22  | Airborne position (w/ GNSS Height)      |
 +----------+-----------------------------------------+
-| 23 - 31  | Reserved for other uses                 |
+| 23 - 27  | Reserved*                               |
++----------+-----------------------------------------+
+| 28       | Aircraft status                         |
++----------+-----------------------------------------+
+| 29       | Target state and status information     |
++----------+-----------------------------------------+
+| 31       | Aircraft operation status               |
 +----------+-----------------------------------------+</code></pre>
 <h2 id="ads-b-checksum">ADS-B Checksum</h2>
 <p>ADS-B uses a cyclic redundancy check to validate the correctness of the received message, where the last 24 bits are the parity bits. The following pseudo-code describes the CRC process:</p>
@@ -165,6 +194,7 @@ IF CRC not 0:
 <p>A comprehensive documentation on Mode-S parity coding can be found:</p>
 <pre><code>Gertz, Jeffrey L. Fundamentals of mode s parity coding. No. ATC-117.
 MASSACHUSETTS INST OF TECH LEXINGTON LINCOLN LAB, 1984. APA</code></pre>
+
 </div>
 </div>
 

@@ -18,6 +18,9 @@
 
 
 <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+  integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous">
+</script>
 
 </head>
 <body>
@@ -31,8 +34,16 @@
 	</div>
 	<div class='ml-auto chapter-nav'>
     <div class="author">By: <strong>Junzi Sun</strong> (<a href="http://junzis.com">junzis.com</a>)</div>
-    <a href="http://mode-s.org" type="button" class="btn btn-sm btn-outline-dark btn-light">mode-s.org</a>
-    <a href="../book-the_1090mhz_riddle-junzi_sun.pdf" type="button" class="btn btn-sm btn-outline-info">Download PDF</a>
+
+    <a href="http://mode-s.org" type="button"
+        class="btn btn-sm btn-outline-dark btn-light">
+      <i class="fas fa-angle-double-left"></i> mode-s.org
+    </a>
+
+    <a href="../book-the_1090mhz_riddle-junzi_sun.pdf"
+        type="button" class="btn btn-sm btn-outline-info">
+      <i class="far fa-file-pdf"></i> Download PDF
+    </a>
 	</div>
 </div>
 
@@ -70,6 +81,12 @@
 </nav>
 <hr>
 <nav id="TOC">
+
+<div class="float-right">
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/identification.tex"
+    class='btn btn-sm btn-outline-danger'> <i class="fab fa-github-alt"></i> Edit</a>
+</div>
+
 <h1>In this page</h1>
 <ul>
 <li><a href="#aircraft-identification">Aircraft Identification</a><ul>
@@ -79,6 +96,12 @@
 </nav>
 </div>
 <div class="col-md-8 col-lg-9 maintext">
+
+<div class="float-right">
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/identification.tex"
+    class='btn btn-sm btn-outline-danger'> <i class="fas fa-edit"></i> Recommend edits</a>
+</div>
+
 <h1 id="aircraft-identification">Aircraft Identification</h1>
 <p>An aircraft identification message has <code>DF: 17 or 18</code>, and <code>TC: 1 to 4</code>, the 56-bit <code>DATA</code> field is configured as follows:</p>
 <pre><code>+------+------+------+------+------+------+------+------+------+------+
@@ -112,6 +135,7 @@ DEC:          |   11     12     13     49     48     50     51     32
 LTR:          |   K      L      M      1      0      2      3      _</code></pre>
 <p>So the final aircraft callsign decoded is: <code>KLM1023</code></p>
 <p>For detailed codes in Python, refer to the pyModeS library function: <code>pyModeS.adsb.callsign()</code></p>
+
 </div>
 </div>
 

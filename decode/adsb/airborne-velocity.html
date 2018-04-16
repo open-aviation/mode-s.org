@@ -19,6 +19,9 @@
   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
 
 <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+  integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous">
+</script>
 
 </head>
 <body>
@@ -32,8 +35,16 @@
 	</div>
 	<div class='ml-auto chapter-nav'>
     <div class="author">By: <strong>Junzi Sun</strong> (<a href="http://junzis.com">junzis.com</a>)</div>
-    <a href="http://mode-s.org" type="button" class="btn btn-sm btn-outline-dark btn-light">mode-s.org</a>
-    <a href="../book-the_1090mhz_riddle-junzi_sun.pdf" type="button" class="btn btn-sm btn-outline-info">Download PDF</a>
+
+    <a href="http://mode-s.org" type="button"
+        class="btn btn-sm btn-outline-dark btn-light">
+      <i class="fas fa-angle-double-left"></i> mode-s.org
+    </a>
+
+    <a href="../book-the_1090mhz_riddle-junzi_sun.pdf"
+        type="button" class="btn btn-sm btn-outline-info">
+      <i class="far fa-file-pdf"></i> Download PDF
+    </a>
 	</div>
 </div>
 
@@ -71,6 +82,12 @@
 </nav>
 <hr>
 <nav id="TOC">
+
+<div class="float-right">
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/airborne-velocity.tex"
+    class='btn btn-sm btn-outline-danger'> <i class="fab fa-github-alt"></i> Edit</a>
+</div>
+
 <h1>In this page</h1>
 <ul>
 <li><a href="#airborne-velocity">Airborne Velocity</a><ul>
@@ -88,6 +105,12 @@
 </nav>
 </div>
 <div class="col-md-8 col-lg-9 maintext">
+
+<div class="float-right">
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/airborne-velocity.tex"
+    class='btn btn-sm btn-outline-danger'> <i class="fas fa-edit"></i> Recommend edits</a>
+</div>
+
 <h1 id="airborne-velocity">Airborne Velocity</h1>
 <p>There are two different types of messages for velocities, determined by 3-bit subtype in the message. With subtype 1 and 2, surface velocity (ground speed) is reported. And in subtype 3 and 4, aircraft airspeed is reported.</p>
 <p>Type 2 and 4 are for supersonic aircraft. So, before we have another commercial supersonic aircraft flying around, you won’t see any of those types.</p>
@@ -263,6 +286,7 @@ heading = 694 / 1024 * 360 = 243.98 (degree)</code></pre>
 <pre><code>0101111000 -&gt; 376 knot</code></pre>
 <h3 id="vertical-rate-1">Vertical Rate</h3>
 <p>The vertical rate decoding remains the same as subtype 1.</p>
+
 </div>
 </div>
 

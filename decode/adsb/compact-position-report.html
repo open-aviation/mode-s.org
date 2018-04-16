@@ -19,6 +19,9 @@
   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
 
 <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+  integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous">
+</script>
 
 </head>
 <body>
@@ -32,8 +35,16 @@
 	</div>
 	<div class='ml-auto chapter-nav'>
     <div class="author">By: <strong>Junzi Sun</strong> (<a href="http://junzis.com">junzis.com</a>)</div>
-    <a href="http://mode-s.org" type="button" class="btn btn-sm btn-outline-dark btn-light">mode-s.org</a>
-    <a href="../book-the_1090mhz_riddle-junzi_sun.pdf" type="button" class="btn btn-sm btn-outline-info">Download PDF</a>
+
+    <a href="http://mode-s.org" type="button"
+        class="btn btn-sm btn-outline-dark btn-light">
+      <i class="fas fa-angle-double-left"></i> mode-s.org
+    </a>
+
+    <a href="../book-the_1090mhz_riddle-junzi_sun.pdf"
+        type="button" class="btn btn-sm btn-outline-info">
+      <i class="far fa-file-pdf"></i> Download PDF
+    </a>
 	</div>
 </div>
 
@@ -71,6 +82,12 @@
 </nav>
 <hr>
 <nav id="TOC">
+
+<div class="float-right">
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/compact-position-report.tex"
+    class='btn btn-sm btn-outline-danger'> <i class="fab fa-github-alt"></i> Edit</a>
+</div>
+
 <h1>In this page</h1>
 <ul>
 <li><a href="#compact-position-reporting">Compact Position Reporting</a><ul>
@@ -86,6 +103,12 @@
 </nav>
 </div>
 <div class="col-md-8 col-lg-9 maintext">
+
+<div class="float-right">
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/compact-position-report.tex"
+    class='btn btn-sm btn-outline-danger'> <i class="fas fa-edit"></i> Recommend edits</a>
+</div>
+
 <h1 id="compact-position-reporting">Compact Position Reporting</h1>
 <p>The position information in ADS-B messages is encoded in a compact position reporting (CPR) format. The general idea behind CPR is to be able to encode more coordinate decimals using less bits. It is achieved by trading global position ambiguity and time with local position accuracy.</p>
 <h2 id="example">Example</h2>
@@ -123,6 +146,7 @@ lat = +87   -&gt;    NL = 2
 lat = -87   -&gt;    NL = 2
 lat &gt; +87   -&gt;    NL = 1
 lat &lt; -87   -&gt;    NL = 1</code></pre>
+
 </div>
 </div>
 

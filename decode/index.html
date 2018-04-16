@@ -18,6 +18,9 @@
 
 
 <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+  integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous">
+</script>
 
 </head>
 <body>
@@ -31,8 +34,16 @@
 	</div>
 	<div class='ml-auto chapter-nav'>
     <div class="author">By: <strong>Junzi Sun</strong> (<a href="http://junzis.com">junzis.com</a>)</div>
-    <a href="http://mode-s.org" type="button" class="btn btn-sm btn-outline-dark btn-light">mode-s.org</a>
-    <a href="book-the_1090mhz_riddle-junzi_sun.pdf" type="button" class="btn btn-sm btn-outline-info">Download PDF</a>
+
+    <a href="http://mode-s.org" type="button"
+        class="btn btn-sm btn-outline-dark btn-light">
+      <i class="fas fa-angle-double-left"></i> mode-s.org
+    </a>
+
+    <a href="book-the_1090mhz_riddle-junzi_sun.pdf"
+        type="button" class="btn btn-sm btn-outline-info">
+      <i class="far fa-file-pdf"></i> Download PDF
+    </a>
 	</div>
 </div>
 
@@ -70,6 +81,12 @@
 </nav>
 <hr>
 <nav id="TOC">
+
+<div class="float-right">
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/index.tex"
+    class='btn btn-sm btn-outline-danger'> <i class="fab fa-github-alt"></i> Edit</a>
+</div>
+
 <h1>In this page</h1>
 <ul>
 <li><a href="#preface">Preface</a></li>
@@ -83,6 +100,12 @@
 </nav>
 </div>
 <div class="col-md-8 col-lg-9 maintext">
+
+<div class="float-right">
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/index.tex"
+    class='btn btn-sm btn-outline-danger'> <i class="fas fa-edit"></i> Recommend edits</a>
+</div>
+
 <h1 id="preface" class="unnumbered">Preface</h1>
 <p>Begun with a frustration on the lack of technical public information on ADS-B and Mode-S in the year 2015, I created a live online document to record my understanding of ADS-B data. Previously, this was known as <a href="http://adsb-decode-guide.readthedocs.org/">“ADS-B Decoding Guide”</a> project. Together with the tutorial, we also developed its related Python library, the <a href="https://github.com/junzis/pyModeS">pyModeS</a>. With time, I received many feedbacks, compliments, and contributions from open-source community users.</p>
 <p>Since the beginning of 2017, the interests of tapping into Enhanced Mode-S (EHS) data brought us a whole new chapter of Mode-S inference and decoding into the pyModeS. This also enriches the “ADS-B” guide. With the advance in this area, I am planning to compile a more comprehensive online book to cover both ADS-B and Mode-S decoding and related topic.</p>
@@ -130,6 +153,7 @@
 <li><p><a href="https://github.com/antirez/dump1090">Dump1090 Project</a></p></li>
 <li><p><a href="http://www.lll.lu/~edward/edward/adsb/VerySimpleADSBreceiver.html">A Very Simple ADSB Receiver</a></p></li>
 </ul>
+
 </div>
 </div>
 
