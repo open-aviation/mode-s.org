@@ -80,18 +80,16 @@
     </ul>
   </ul>
 </nav>
+
 <hr>
 <nav id="TOC">
-
 <div class="float-right">
   <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/compact-position-report.tex"
     class='btn btn-sm btn-outline-danger'> <i class="fab fa-github-alt"></i> Edit</a>
 </div>
-
 <h1>In this page</h1>
 <ul>
 <li><a href="#compact-position-reporting">Compact Position Reporting</a><ul>
-<li><a href="#example">Example</a></li>
 <li><a href="#the-cpr-and-functions">The CPR and functions</a><ul>
 <li><a href="#nz">NZ</a></li>
 <li><a href="#floorx">floor(x)</a></li>
@@ -101,7 +99,10 @@
 </ul></li>
 </ul>
 </nav>
+
 </div>
+
+
 <div class="col-md-8 col-lg-9 maintext">
 
 <div class="float-right">
@@ -111,7 +112,6 @@
 
 <h1 id="compact-position-reporting">Compact Position Reporting</h1>
 <p>The position information in ADS-B messages is encoded in a compact position reporting (CPR) format. The general idea behind CPR is to be able to encode more coordinate decimals using less bits. It is achieved by trading global position ambiguity and time with local position accuracy.</p>
-<h2 id="example">Example</h2>
 <p>An easy example to understand the principle behind CPR:</p>
 <p>Imaging the world is constructed by 16 grid, which we have divided into two levels, each level is encoded with two bits. Higher levels in color are <code>00</code> (yellow), <code>01</code> (blue), <code>10</code> (red), <code>11</code> (green). And within each color grid, the lower levels are also encoded similarly.</p>
 <p>Then each grid can be represented as 4 digits from <code>0000</code> to <code>1111</code>. Now, we want to describe the movement indicated as the arrows in the green grids <code>1100 -&gt; 1101</code>, but we only have 3 bits to encode each position.</p>
@@ -130,7 +130,7 @@
 <h3 id="nz">NZ</h3>
 <p>Number of geographic latitude zones between equator and a pole. It is set to <code>NZ = 15</code> for Mode-S CPR encoding.</p>
 <h3 id="floorx">floor(x)</h3>
-<p>the floor function <code>floor(x)</code> defines as the greatest integer value k, such that <code>k&lt;=x</code>, for example: :</p>
+<p>the floor function <code>floor(x)</code> defines as the greatest integer value k, such that <code>k&lt;=x</code>, for example:</p>
 <pre><code>floor(5.6) = 5
 floor(-5.6) = -6</code></pre>
 <h3 id="modx-y">mod(x, y)</h3>
@@ -140,12 +140,18 @@ floor(-5.6) = -6</code></pre>
 <h3 id="nllat">NL(lat)</h3>
 <p>Denotes the “number of longitude zones” function, given the latitude angle <code>lat</code>. The returned integer value is constrained within <code>[1, 59]</code>, calculated as:</p>
 <p><span class="math display">\[\text{NL}(lat) = floor \left( \frac{2 \pi}{\arccos(1 - \frac{1-\cos(\frac{\pi}{2 \cdot \text{NZ}})}{\cos^2(\frac{\pi}{180} \cdot \text{lat})}) } \right)\]</span></p>
-<p>For latitudes that are close to the equator or the poles, one of following values is returned: :</p>
+<p>For latitudes that are close to the equator or the poles, one of following values is returned:</p>
 <pre><code>lat = 0     -&gt;    NL = 59
 lat = +87   -&gt;    NL = 2
 lat = -87   -&gt;    NL = 2
 lat &gt; +87   -&gt;    NL = 1
 lat &lt; -87   -&gt;    NL = 1</code></pre>
+
+<footer class="mastfoot">
+  <div class="text-right">
+    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+  </div>
+</footer>
 
 </div>
 </div>

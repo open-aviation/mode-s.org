@@ -79,14 +79,13 @@
     </ul>
   </ul>
 </nav>
+
 <hr>
 <nav id="TOC">
-
 <div class="float-right">
   <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/version.tex"
     class='btn btn-sm btn-outline-danger'> <i class="fab fa-github-alt"></i> Edit</a>
 </div>
-
 <h1>In this page</h1>
 <ul>
 <li><a href="#ads-b-versions">ADS-B versions</a><ul>
@@ -94,7 +93,10 @@
 </ul></li>
 </ul>
 </nav>
+
 </div>
+
+
 <div class="col-md-8 col-lg-9 maintext">
 
 <div class="float-right">
@@ -136,7 +138,13 @@
 <li><p>Step 1: Check whether an aircraft is broadcasting ADS-B messages with <code>TC=31</code> at all. If no message is ever reported, it is safe to assume that the version is <code>Version 0</code></p></li>
 <li><p>Step 2: If messages with <code>TC=31</code> are received, check the version numbers located in the 41-43 bit of the payload (or 73-75 bit of the message).</p></li>
 </ol>
-<p>After identifying the right ADS-B version for an aircraft (which doesn’t change often), one can decode related <code>TC=28</code>, <code>TC=29</code>, and <code>TC=31</code> messages accordingly.</p>
+<p>After identifying the right ADS-B version for an aircraft (which does not change often), one can decode related <code>TC=28</code>, <code>TC=29</code>, and <code>TC=31</code> messages accordingly.</p>
+
+<footer class="mastfoot">
+  <div class="text-right">
+    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+  </div>
+</footer>
 
 </div>
 </div>

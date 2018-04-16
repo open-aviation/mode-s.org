@@ -80,14 +80,13 @@
     </ul>
   </ul>
 </nav>
+
 <hr>
 <nav id="TOC">
-
 <div class="float-right">
   <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/airborne-velocity.tex"
     class='btn btn-sm btn-outline-danger'> <i class="fab fa-github-alt"></i> Edit</a>
 </div>
-
 <h1>In this page</h1>
 <ul>
 <li><a href="#airborne-velocity">Airborne Velocity</a><ul>
@@ -103,7 +102,10 @@
 </ul></li>
 </ul>
 </nav>
+
 </div>
+
+
 <div class="col-md-8 col-lg-9 maintext">
 
 <div class="float-right">
@@ -136,40 +138,126 @@ Convert DATA [99440994083817] into binary:
 | S-NS | V-NS       | VrSrc | S-Vr | Vr        | RESV_B | S_Dif | Dif     |
 |------|------------|-------|------|-----------|--------|-------|---------|
 | 1    | 0010100000 | 0     | 1    | 000001110 | 00     | 0     | 0010111 |</code></pre>
-<p>There are quite a few parameters in the velocity message. From left to right, the number of bits indicates the following contents:</p>
-<pre><code>+-----------+-----------+------+--------+------------------------------+
-| MSG Bits  | DATA Bits | Len  | Abbr   | Content                      |
-+===========+===========+======+========+==============================+
-| 33-37     | 1-5       | 5    | TC     | Type code                    |
-+-----------+-----------+------+--------+------------------------------+
-| 38-40     | 6-8       | 3    | ST     | Subtype                      |
-+-----------+-----------+------+--------+------------------------------+
-| 41        | 9         | 1    | IC     | Intent change flag           |
-+-----------+-----------+------+--------+------------------------------+
-| 42        | 10        | 1    | RESV_A | Reserved-A                   |
-+-----------+-----------+------+--------+------------------------------+
-| 43-45     | 11-13     | 3    | NAC    | Velocity uncertainty (NAC)   |
-+-----------+-----------+------+--------+------------------------------+
-| 46        | 14        | 1    | S_ew   | East-West velocity sign      |
-+-----------+-----------+------+--------+------------------------------+
-| 47-56     | 15-24     | 10   | V_ew   | East-West velocity           |
-+-----------+-----------+------+--------+------------------------------+
-| 57        | 25        | 1    | S_ns   | North-South velocity sign    |
-+-----------+-----------+------+--------+------------------------------+
-| 58-67     | 26-35     | 10   | V_ns   | North-South velocity         |
-+-----------+-----------+------+--------+------------------------------+
-| 68        | 36        | 1    | VrSrc  | Vertical rate source         |
-+-----------+-----------+------+--------+------------------------------+
-| 69        | 37        | 1    | S_vr   | Vertical rate sign           |
-+-----------+-----------+------+--------+------------------------------+
-| 70-78     | 38-46     | 9    | Vr     | Vertical rate                |
-+-----------+-----------+------+--------+------------------------------+
-| 79-80     | 47-48     | 2    | RESV_B | Reserved-B                   |
-+-----------+-----------+------+--------+------------------------------+
-| 81        | 49        | 1    | S_Dif  | Diff from baro alt, sign     |
-+-----------+-----------+------+--------+------------------------------+
-| 82-88     | 50-66     | 7    | Dif    | Diff from baro alt           |
-+-----------+-----------+------+--------+------------------------------+</code></pre>
+<p>There are quite a few parameters in the velocity message. From left to right, the number of bits indicates the contents in following Table [tb:adsb-v-bits-st-1]</p>
+<table>
+<caption>Airborne velocity message bits explained - Subtype 1<span data-label="tb:adsb-v-bits-st-1"></span></caption>
+<thead>
+<tr class="header">
+<th align="left">MSG Bits</th>
+<th align="left">Data Bits</th>
+<th align="left">Len</th>
+<th align="left">Abbr</th>
+<th align="left">Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">33 - 37</td>
+<td align="left">1 - 5</td>
+<td align="left">5</td>
+<td align="left">TC</td>
+<td align="left">Type code</td>
+</tr>
+<tr class="even">
+<td align="left">38 - 40</td>
+<td align="left">6 - 8</td>
+<td align="left">3</td>
+<td align="left">ST</td>
+<td align="left">Subtype</td>
+</tr>
+<tr class="odd">
+<td align="left">41</td>
+<td align="left">9</td>
+<td align="left">1</td>
+<td align="left">IC</td>
+<td align="left">Intent change flag</td>
+</tr>
+<tr class="even">
+<td align="left">42</td>
+<td align="left">10</td>
+<td align="left">1</td>
+<td align="left">RESV_A</td>
+<td align="left">Reserved-A</td>
+</tr>
+<tr class="odd">
+<td align="left">43 - 45</td>
+<td align="left">11 - 13</td>
+<td align="left">3</td>
+<td align="left">NAC</td>
+<td align="left">Velocity uncertainty (NAC)</td>
+</tr>
+<tr class="even">
+<td align="left">46</td>
+<td align="left">14</td>
+<td align="left">1</td>
+<td align="left">S_ew</td>
+<td align="left">East-West velocity sign</td>
+</tr>
+<tr class="odd">
+<td align="left">47 - 56</td>
+<td align="left">15 - 24</td>
+<td align="left">10</td>
+<td align="left">V_ew</td>
+<td align="left">East-West velocity</td>
+</tr>
+<tr class="even">
+<td align="left">57</td>
+<td align="left">25</td>
+<td align="left">1</td>
+<td align="left">S_ns</td>
+<td align="left">North-South velocity sign</td>
+</tr>
+<tr class="odd">
+<td align="left">58 - 67</td>
+<td align="left">26 - 35</td>
+<td align="left">10</td>
+<td align="left">V_ns</td>
+<td align="left">North-South velocity</td>
+</tr>
+<tr class="even">
+<td align="left">68</td>
+<td align="left">36</td>
+<td align="left">1</td>
+<td align="left">VrSrc</td>
+<td align="left">Vertical rate source</td>
+</tr>
+<tr class="odd">
+<td align="left">69</td>
+<td align="left">37</td>
+<td align="left">1</td>
+<td align="left">S_vr</td>
+<td align="left">Vertical rate sign</td>
+</tr>
+<tr class="even">
+<td align="left">70 - 78</td>
+<td align="left">38 - 46</td>
+<td align="left">9</td>
+<td align="left">Vr</td>
+<td align="left">Vertical rate</td>
+</tr>
+<tr class="odd">
+<td align="left">79 - 80</td>
+<td align="left">47 - 48</td>
+<td align="left">2</td>
+<td align="left">RESV_B</td>
+<td align="left">Reserved-B</td>
+</tr>
+<tr class="even">
+<td align="left">81</td>
+<td align="left">49</td>
+<td align="left">1</td>
+<td align="left">S_Dif</td>
+<td align="left">Diff from baro alt, sign</td>
+</tr>
+<tr class="odd">
+<td align="left">82 - 88</td>
+<td align="left">50 - 66</td>
+<td align="left">7</td>
+<td align="left">Dif</td>
+<td align="left">Diff from baro alt</td>
+</tr>
+</tbody>
+</table>
 <h3 id="horizontal-velocity">Horizontal Velocity</h3>
 <p>For calculating the horizontal speed and heading we need four values, East-West Velocity <code>V_ew</code>, East-West Velocity Sign <code>S_ew</code>, North-South Velocity <code>V_ns</code>, North-South Velocity Sign <code>S_ns</code>. And pay attention on the directions (signs) in the calculation.</p>
 <pre><code>S_ns:
@@ -235,40 +323,126 @@ Convert DATA [9B06B6AF189400] into binary:
 | VrSrc | S-Vr | Vr        | RESV_B | S_Dif | Dif     |
 |-------|------|-----------|--------|-------|---------|
 | 1     | 1    | 000100101 | 00     | 0     | 0000000 |</code></pre>
-<p>The detail bits representations are:</p>
-<pre><code>+-----------+-----------+------+--------+----------------------------------+
-| MSG Bits  | DATA Bits | Len  | Abbr   | Content                          |
-+===========+===========+======+========+==================================+
-| 33-37     | 1-5       | 5    | TC     | Type code                        |
-+-----------+-----------+------+--------+----------------------------------+
-| 38-40     | 6-8       | 3    | ST     | Subtype                          |
-+-----------+-----------+------+--------+----------------------------------+
-| 41        | 9         | 1    | IC     | Intent change flag               |
-+-----------+-----------+------+--------+----------------------------------+
-| 42        | 10        | 1    | RESV_A | Reserved-A                       |
-+-----------+-----------+------+--------+----------------------------------+
-| 43-45     | 11-13     | 3    | NAC    | Velocity uncertainty (NAC)       |
-+-----------+-----------+------+--------+----------------------------------+
-| 46        | 14        | 1    | S_hdg  | Heading status                   |
-+-----------+-----------+------+--------+----------------------------------+
-| 47-56     | 15-24     | 10   | Hdg    | Heading (proportion)             |
-+-----------+-----------+------+--------+----------------------------------+
-| 57        | 25        | 1    | AS-t   | Airspeed Type                    |
-+-----------+-----------+------+--------+----------------------------------+
-| 58-67     | 26-35     | 10   | AS     | Airspeed                         |
-+-----------+-----------+------+--------+----------------------------------+
-| 68        | 36        | 1    | VrSrc  | Vertical rate source             |
-+-----------+-----------+------+--------+----------------------------------+
-| 69        | 37        | 1    | S_vr   | Vertical rate sign               |
-+-----------+-----------+------+--------+----------------------------------+
-| 70-78     | 38-46     | 9    | Vr     | Vertical rate                    |
-+-----------+-----------+------+--------+----------------------------------+
-| 79-80     | 47-48     | 2    | RESV_B | Reserved-B                       |
-+-----------+-----------+------+--------+----------------------------------+
-| 81        | 49        | 1    | S_Dif  | Difference from baro alt, sign   |
-+-----------+-----------+------+--------+----------------------------------+
-| 82-88     | 50-66     | 7    | Dif    | Difference from baro alt         |
-+-----------+-----------+------+--------+----------------------------------+</code></pre>
+<p>The details on all data bits are described in following Table [tb:adsb-v-bits-st-3]:</p>
+<table>
+<caption>Airborne velocity message bits explained - Subtype 3<span data-label="tb:adsb-v-bits-st-3"></span></caption>
+<thead>
+<tr class="header">
+<th align="left">MSG Bits</th>
+<th align="left">DATA Bits</th>
+<th align="left">Len</th>
+<th align="left">Abbr</th>
+<th align="left">Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">33 - 37</td>
+<td align="left">1 - 5</td>
+<td align="left">5</td>
+<td align="left">TC</td>
+<td align="left">Type code</td>
+</tr>
+<tr class="even">
+<td align="left">38 - 40</td>
+<td align="left">6 - 8</td>
+<td align="left">3</td>
+<td align="left">ST</td>
+<td align="left">Subtype</td>
+</tr>
+<tr class="odd">
+<td align="left">41</td>
+<td align="left">9</td>
+<td align="left">1</td>
+<td align="left">IC</td>
+<td align="left">Intent change flag</td>
+</tr>
+<tr class="even">
+<td align="left">42</td>
+<td align="left">10</td>
+<td align="left">1</td>
+<td align="left">RESV_A</td>
+<td align="left">Reserved-A</td>
+</tr>
+<tr class="odd">
+<td align="left">43 - 45</td>
+<td align="left">11 - 13</td>
+<td align="left">3</td>
+<td align="left">NAC</td>
+<td align="left">Velocity uncertainty (NAC)</td>
+</tr>
+<tr class="even">
+<td align="left">46</td>
+<td align="left">14</td>
+<td align="left">1</td>
+<td align="left">S_hdg</td>
+<td align="left">Heading status</td>
+</tr>
+<tr class="odd">
+<td align="left">47 - 56</td>
+<td align="left">15 - 24</td>
+<td align="left">10</td>
+<td align="left">Hdg</td>
+<td align="left">Heading (proportion)</td>
+</tr>
+<tr class="even">
+<td align="left">57</td>
+<td align="left">25</td>
+<td align="left">1</td>
+<td align="left">AS-t</td>
+<td align="left">Airspeed Type</td>
+</tr>
+<tr class="odd">
+<td align="left">58 - 67</td>
+<td align="left">26 - 35</td>
+<td align="left">10</td>
+<td align="left">AS</td>
+<td align="left">Airspeed</td>
+</tr>
+<tr class="even">
+<td align="left">68</td>
+<td align="left">36</td>
+<td align="left">1</td>
+<td align="left">VrSrc</td>
+<td align="left">Vertical rate source</td>
+</tr>
+<tr class="odd">
+<td align="left">69</td>
+<td align="left">37</td>
+<td align="left">1</td>
+<td align="left">S_vr</td>
+<td align="left">Vertical rate sign</td>
+</tr>
+<tr class="even">
+<td align="left">70 - 78</td>
+<td align="left">38 - 46</td>
+<td align="left">9</td>
+<td align="left">Vr</td>
+<td align="left">Vertical rate</td>
+</tr>
+<tr class="odd">
+<td align="left">79 - 80</td>
+<td align="left">47 - 48</td>
+<td align="left">2</td>
+<td align="left">RESV_B</td>
+<td align="left">Reserved-B</td>
+</tr>
+<tr class="even">
+<td align="left">81</td>
+<td align="left">49</td>
+<td align="left">1</td>
+<td align="left">S_Dif</td>
+<td align="left">Difference from baro alt, sign</td>
+</tr>
+<tr class="odd">
+<td align="left">82 - 88</td>
+<td align="left">50 - 66</td>
+<td align="left">7</td>
+<td align="left">Dif</td>
+<td align="left">Difference from baro alt</td>
+</tr>
+</tbody>
+</table>
 <h3 id="heading">Heading</h3>
 <p><code>S_hdg</code> makes the status of heading data:</p>
 <pre><code>0 -&gt; heading data not available
@@ -286,6 +460,12 @@ heading = 694 / 1024 * 360 = 243.98 (degree)</code></pre>
 <pre><code>0101111000 -&gt; 376 knot</code></pre>
 <h3 id="vertical-rate-1">Vertical Rate</h3>
 <p>The vertical rate decoding remains the same as subtype 1.</p>
+
+<footer class="mastfoot">
+  <div class="text-right">
+    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+  </div>
+</footer>
 
 </div>
 </div>

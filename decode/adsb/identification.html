@@ -79,22 +79,22 @@
     </ul>
   </ul>
 </nav>
+
 <hr>
 <nav id="TOC">
-
 <div class="float-right">
   <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/identification.tex"
     class='btn btn-sm btn-outline-danger'> <i class="fab fa-github-alt"></i> Edit</a>
 </div>
-
 <h1>In this page</h1>
 <ul>
-<li><a href="#aircraft-identification">Aircraft Identification</a><ul>
-<li><a href="#example">Example</a></li>
-</ul></li>
+<li><a href="#aircraft-identification">Aircraft Identification</a></li>
 </ul>
 </nav>
+
 </div>
+
+
 <div class="col-md-8 col-lg-9 maintext">
 
 <div class="float-right">
@@ -113,28 +113,33 @@ EC: Emitter category
 C*: A character</code></pre>
 <p>To decode characters, a lookup table is needed for mapping numbers to characters. It is defined as follows, where the <code>#</code> is not used, and <code>_</code> represents a separation.</p>
 <pre><code>#ABCDEFGHIJKLMNOPQRSTUVWXYZ#####_###############0123456789######</code></pre>
-<p>In summary, characters and their decimal representations are: :</p>
+<p>In summary, characters and their decimal representations are:</p>
 <pre><code>A - Z :   1 - 26
 0 - 9 :  48 - 57
     _ :  32</code></pre>
 <p>The <code>EC</code> value in combination with <code>TC</code> value defines the category of the aircraft (such as: heavy, large, small, light, glider, etc.). When <code>EC</code> is set to zeros, such information is not available.</p>
-<h2 id="example">Example</h2>
-<p>For example: :</p>
+<p>For example:</p>
 <pre><code>8D4840D6202CC371C32CE0576098</code></pre>
-<p>The structure of the message is as follows: :</p>
+<p>The structure of the message is as follows:</p>
 <pre><code>     DF... CA.  ICAO..  DATA..................  PI....
 HEX: 8   D      4840D6  2   0     2CC371C32CE0  576098
 BIN: 10001 101  ******  00100 000 ************  ******
 DEC: 17    4            4     0
                         TC    *</code></pre>
 <p>Note that <code>Type Code</code> is inside of the DATA frame (first 5 bits). With <code>DF=17</code> and <code>TC=4</code>, we can confirm this is an aircraft identification message. Aircraft <code>callsign</code> then can be decoded.</p>
-<p>In the previous example message, it is easy to decode the <code>Data</code> segment: :</p>
+<p>In the previous example message, it is easy to decode the <code>Data</code> segment:</p>
 <pre><code>HEX: 20         2CC371C32CE0
 BIN: 00100000 | 001011 001100 001101 110001 110000 110010 110011 100000
 DEC:          |   11     12     13     49     48     50     51     32
 LTR:          |   K      L      M      1      0      2      3      _</code></pre>
 <p>So the final aircraft callsign decoded is: <code>KLM1023</code></p>
 <p>For detailed codes in Python, refer to the pyModeS library function: <code>pyModeS.adsb.callsign()</code></p>
+
+<footer class="mastfoot">
+  <div class="text-right">
+    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+  </div>
+</footer>
 
 </div>
 </div>

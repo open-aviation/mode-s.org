@@ -80,19 +80,18 @@
     </ul>
   </ul>
 </nav>
+
 <hr>
 <nav id="TOC">
-
 <div class="float-right">
   <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/adsb/airborne-position.tex"
     class='btn btn-sm btn-outline-danger'> <i class="fab fa-github-alt"></i> Edit</a>
 </div>
-
 <h1>In this page</h1>
 <ul>
 <li><a href="#airborne-positions">Airborne Positions</a><ul>
 <li><a href="#globally-unambiguous-position-decoding-with-two-messages">Globally unambiguous position (decoding with two messages)</a><ul>
-<li><a href="#odd-or-even-message">odd&quot; or even message?</a></li>
+<li><a href="#odd-or-even-message">odd or even message?</a></li>
 <li><a href="#the-cpr-representation-of-coordinates">The CPR representation of coordinates</a></li>
 <li><a href="#calculate-the-latitude-index-j">Calculate the latitude index j</a></li>
 <li><a href="#calculate-latitude">Calculate latitude</a></li>
@@ -114,7 +113,10 @@
 </ul></li>
 </ul>
 </nav>
+
 </div>
+
+
 <div class="col-md-8 col-lg-9 maintext">
 
 <div class="float-right">
@@ -124,28 +126,74 @@
 
 <h1 id="airborne-positions">Airborne Positions</h1>
 <p>An aircraft airborne position message has downlink format <code>17</code> (or <code>18</code>) with type code from <code>9</code> to <code>18</code></p>
-<p>Messages are composed as follows:</p>
-<pre><code>+-----------+---------+---------+----------------------------------+
-| MSG bits  | # bits  | Abbr    | Content                          |
-+===========+=========+=========+==================================+
-| 1-5       | 5       | DF      | Downlink format                  |
-+-----------+---------+---------+----------------------------------+
-| 33-37     | 5       | TC      | Type code                        |
-+-----------+---------+---------+----------------------------------+
-| 38-39     | 2       | SS      | Surveillance status              |
-+-----------+---------+---------+----------------------------------+
-| 40        | 1       | NICsb   | NIC supplement-B                 |
-+-----------+---------+---------+----------------------------------+
-| 41-52     | 12      | ALT     | Altitude                         |
-+-----------+---------+---------+----------------------------------+
-| 53        | 1       | T       | Time                             |
-+-----------+---------+---------+----------------------------------+
-| 54        | 1       | F       | CPR odd/even frame flag          |
-+-----------+---------+---------+----------------------------------+
-| 55-71     | 17      | LAT-CPR | Latitude in CPR format           |
-+-----------+---------+---------+----------------------------------+
-| 72-88     | 17      | LON-CPR | Longitude in CPR format          |
-+-----------+---------+---------+----------------------------------+</code></pre>
+<p>Messages are composed as shown in following Table [tb:adsb-pos-bits]</p>
+<table>
+<caption>Airborne position message bits explained<span data-label="tb:adsb-pos-bits"></span></caption>
+<thead>
+<tr class="header">
+<th align="left">Bits</th>
+<th align="left">N-bit</th>
+<th align="left">Abbr</th>
+<th align="left">Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1 - 5</td>
+<td align="left">5</td>
+<td align="left">DF</td>
+<td align="left">Downlink format</td>
+</tr>
+<tr class="even">
+<td align="left">33 - 37</td>
+<td align="left">5</td>
+<td align="left">TC</td>
+<td align="left">Type code</td>
+</tr>
+<tr class="odd">
+<td align="left">38 - 39</td>
+<td align="left">2</td>
+<td align="left">SS</td>
+<td align="left">Surveillance status</td>
+</tr>
+<tr class="even">
+<td align="left">40</td>
+<td align="left">1</td>
+<td align="left">NICsb</td>
+<td align="left">NIC supplement-B</td>
+</tr>
+<tr class="odd">
+<td align="left">41 - 52</td>
+<td align="left">12</td>
+<td align="left">ALT</td>
+<td align="left">Altitude</td>
+</tr>
+<tr class="even">
+<td align="left">53</td>
+<td align="left">1</td>
+<td align="left">T</td>
+<td align="left">Time</td>
+</tr>
+<tr class="odd">
+<td align="left">54</td>
+<td align="left">1</td>
+<td align="left">F</td>
+<td align="left">CPR odd/even frame flag</td>
+</tr>
+<tr class="even">
+<td align="left">55 - 71</td>
+<td align="left">17</td>
+<td align="left">LAT-CPR</td>
+<td align="left">Latitude in CPR format</td>
+</tr>
+<tr class="odd">
+<td align="left">72 - 88</td>
+<td align="left">17</td>
+<td align="left">LON-CPR</td>
+<td align="left">Longitude in CPR format</td>
+</tr>
+</tbody>
+</table>
 <p>Two types of the position messages (odd and even frames) are broadcast alternately. There are two different ways to decode an airborne position base on these messages:</p>
 <ol>
 <li><p>Unknown position, using both type of messages (aka globally unambiguous position)</p></li>
@@ -153,8 +201,8 @@
 </ol>
 <p>Note: The definition of functions <code>NL(lat)</code>, <code>floor(x)</code>, and <code>mod(x,y)</code> are described in the CPR chapter.</p>
 <h2 id="globally-unambiguous-position-decoding-with-two-messages">Globally unambiguous position (decoding with two messages)</h2>
-<h3 id="odd-or-even-message">odd&quot; or even message?</h3>
-<p>For each frame, bit 54 determines whether it is an “odd” or “even” frame: :</p>
+<h3 id="odd-or-even-message">odd or even message?</h3>
+<p>For each frame, bit 54 determines whether it is an odd or even frame:</p>
 <pre><code>0 -&gt; Even frame
 1 -&gt; Odd frame</code></pre>
 <p>For example, the two following messages are received:</p>
@@ -191,7 +239,7 @@ CPR_LAT_EVEN: 93000 / 131072 -&gt; 0.7095
 CPR_LON_EVEN: 51372 / 131072 -&gt; 0.3919
 CPR_LAT_ODD:  74158 / 131072 -&gt; 0.5658
 CPR_LON_ODD:  50194 / 131072 -&gt; 0.3829</code></pre>
-<p>Since CPR latitude and longitude are encoded in 17 bits, 131072 (2^17) is the maximum value.</p>
+<p>Since CPR latitude and longitude are encoded in 17 bits, 131072 (<span class="math inline">\(2^17\)</span>) is the maximum value.</p>
 <h3 id="calculate-the-latitude-index-j">Calculate the latitude index j</h3>
 <p>Use the following equation:</p>
 <p><span class="math display">\[j = floor \left( 59 \cdot \mathrm{Lat}_\mathrm{cprEven} - 60 \cdot \mathrm{Lat}_\mathrm{cprOdd} + \frac{1}{2}  \right)\]</span></p>
@@ -212,13 +260,13 @@ CPR_LON_ODD:  50194 / 131072 -&gt; 0.3829</code></pre>
     \mathrm{Lat}_\mathrm{even} &amp;= \mathrm{Lat}_\mathrm{even} - 360  \quad \text{if } (\mathrm{Lat}_\mathrm{even} \geq 270) \\
     \mathrm{Lat}_\mathrm{odd} &amp;= \mathrm{Lat}_\mathrm{odd} - 360  \quad \text{if } (\mathrm{Lat}_\mathrm{odd} \geq 270)
   \end{split}\]</span></p>
-<p>Final latitude is chosen depending on the time stamp of the frames–the newest one is used:</p>
+<p>Final latitude is chosen depending on the time stamp of the frames, the newest one, is used:</p>
 <p><span class="math display">\[\mathrm{Lat} =
   \begin{cases}
    \mathrm{Lat}_\mathrm{even}     &amp; \text{if } (T_\mathrm{even} \geq T_\mathrm{odd}) \\
    \mathrm{Lat}_\mathrm{odd}     &amp; \text{else}
   \end{cases}\]</span></p>
-<p>In the example: :</p>
+<p>In the example:</p>
 <pre><code>Lat_EVEN = 52.25720214843750
 Lat_ODD  = 52.26578017412606
 Lat = Lat_EVEN = 52.25720</code></pre>
@@ -241,11 +289,11 @@ Lat = Lat_EVEN = 52.25720</code></pre>
   \end{split}\]</span></p>
 <p>if the result is larger than 180 degrees:</p>
 <p><span class="math display">\[\mathrm{Lon} = \mathrm{Lon} - 360  \quad \text{if } (\mathrm{Lon} \geq 180)\]</span></p>
-<p>In the example: :</p>
+<p>In the example:</p>
 <pre><code>Lon:  3.91937</code></pre>
 <p>Here is a Python implementation: <a href="https://github.com/junzis/pyModeS/blob/faf4313/pyModeS/adsb.py#L166" class="uri">https://github.com/junzis/pyModeS/blob/faf4313/pyModeS/adsb.py#L166</a></p>
 <h3 id="calculate-altitude">Calculate altitude</h3>
-<p>The altitude of the aircraft is much easier to compute from the data frame. The bits in the altitude field (either odd or even frame) are as follows: :</p>
+<p>The altitude of the aircraft is much easier to compute from the data frame. The bits in the altitude field (either odd or even frame) are as follows:</p>
 <pre><code>1100001 1 1000
         ^
        Q-bit</code></pre>
@@ -255,11 +303,11 @@ Lat = Lat_EVEN = 52.25720</code></pre>
 <pre><code>N = 1100001 1000 =&gt; 1560 (in decimal)</code></pre>
 <p>The final altitude value will be:</p>
 <p><span class="math display">\[Alt = N \cdot 25 - 1000 \quad \text{(ft.)}\]</span></p>
-<p>In this example, the altitude at which the aircraft is flying is: :</p>
+<p>In this example, the altitude at which the aircraft is flying is:</p>
 <pre><code>1560 * 25 - 1000 = 38000 ft.</code></pre>
 <p>Note that the altitude has the accuracy of +/- 25 ft when the Q-bit is 1, and the value can represent altitudes from -1000 to +50175 ft.</p>
 <h3 id="the-final-position">The final position</h3>
-<p>Finally, we have all three components (latitude/longitude/altitude) of the aircraft position: :</p>
+<p>Finally, we have all three components (latitude/longitude/altitude) of the aircraft position:</p>
 <pre><code>LAT: 52.25720 (degrees N)
 LON:  3.91937 (degrees E)
 ALT:    38000 ft</code></pre>
@@ -327,6 +375,12 @@ lat:    52.25720
 m:      0
 d_lon:  10
 lon:    3.91937</code></pre>
+
+<footer class="mastfoot">
+  <div class="text-right">
+    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+  </div>
+</footer>
 
 </div>
 </div>
