@@ -115,19 +115,19 @@
 <pre><code>DF20 - 10100
 DF21 - 10101</code></pre>
 <p>The message is structured as follows, where the digit represents the number of binary digits:</p>
-<pre><code>+--------+--------+--------+--------+---------+---------+------------+
-|  DF 5  |  FS 3  |  DR 5  |  UM 6  |  AC 13  |  MB 56  |  AP/DP 24  |
-+-----------------+--------+----------------------------+------------+
-|   &lt;---------+      32 bits      +--------&gt;  |
+<pre><code>+--------+--------+--------+--------+------------+---------+------------+
+|  DF 5  |  FS 3  |  DR 5  |  UM 6  |  AC/ID 13  |  MB 56  |  AP/DP 24  |
++-----------------+--------+--------+------------+---------+------------+
+|   &lt;---------+        32 bits       +--------&gt;  |
 
 
 DF:     downlink format
 FS:     flight status
 DR:     downlink request
 UM:     utility message
-ID:     identity
+AC/ID:  altitude code (DF20) or identity (DF21)
 MB:     message, Comm-B
-AP/DP:  address/parity or data/parity</code></pre>
+AP/DP:  address parity or data parity</code></pre>
 <p>Except for the DF, the first 32 bits do not contain useful information to decode the message. The exact definitions can be found in ICAO annex 10 (Aeronautical Telecommunications).</p>
 <h2 id="parity-and-icao-address-recovery">Parity and ICAO address recovery</h2>
 <p>Unlike ADS-B, the ICAO address is not broadcast along with the EHS messages. We will have to “decode” the ICAO address before decoding other information, and ICAO is hidden in the message and checksum.</p>
