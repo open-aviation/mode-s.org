@@ -131,7 +131,8 @@
 <caption>Airborne position message bits explained<span data-label="tb:adsb-pos-bits"></span></caption>
 <thead>
 <tr class="header">
-<th align="left">Bits</th>
+<th align="left">Data Bits</th>
+<th align="left">MSG Bits</th>
 <th align="left">N-bit</th>
 <th align="left">Abbr</th>
 <th align="left">Content</th>
@@ -139,55 +140,57 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">1 - 5</td>
-<td align="left">5</td>
-<td align="left">DF</td>
-<td align="left">Downlink format</td>
-</tr>
-<tr class="even">
 <td align="left">33 - 37</td>
+<td align="left">1 - 5</td>
 <td align="left">5</td>
 <td align="left">TC</td>
 <td align="left">Type code</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">38 - 39</td>
+<td align="left">6 - 7</td>
 <td align="left">2</td>
 <td align="left">SS</td>
 <td align="left">Surveillance status</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">40</td>
+<td align="left">8</td>
 <td align="left">1</td>
 <td align="left">NICsb</td>
 <td align="left">NIC supplement-B</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">41 - 52</td>
+<td align="left">9 - 20</td>
 <td align="left">12</td>
 <td align="left">ALT</td>
 <td align="left">Altitude</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">53</td>
+<td align="left">21</td>
 <td align="left">1</td>
 <td align="left">T</td>
 <td align="left">Time</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">54</td>
+<td align="left">22</td>
 <td align="left">1</td>
 <td align="left">F</td>
 <td align="left">CPR odd/even frame flag</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">55 - 71</td>
+<td align="left">23 - 39</td>
 <td align="left">17</td>
 <td align="left">LAT-CPR</td>
 <td align="left">Latitude in CPR format</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">72 - 88</td>
+<td align="left">40 - 56</td>
 <td align="left">17</td>
 <td align="left">LON-CPR</td>
 <td align="left">Longitude in CPR format</td>
