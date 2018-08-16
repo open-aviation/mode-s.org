@@ -93,7 +93,7 @@
 <li><a href="#parity-and-icao-address-recovery">Parity and ICAO address recovery</a><ul>
 <li><a href="#address-parity">Address Parity</a></li>
 </ul></li>
-<li><a href="#bds-comm-b-data-selector">BDS (Comm-B Data Selector)</a></li>
+<li><a href="#bds-comm-b-data-selector">BDS (Binary Data Selector)</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -133,7 +133,7 @@ AP/DP:  address parity or data parity</code></pre>
 <p>Unlike ADS-B, the ICAO address is not broadcast along with the EHS messages. We will have to “decode” the ICAO address before decoding other information, and ICAO is hidden in the message and checksum.</p>
 <p>Mode-S uses two types of parity checksum Address Parity (AP) and Data Parity (DP). Majority of the time Address Parity is used.</p>
 <h3 id="address-parity">Address Parity</h3>
-<p>For AP, the message parity field is produced by XOR ICAO with message data CRC checksum. So, to recover the ICAO bits, simply reversing the XOR process will work, shown as follows:</p>
+<p>For AP, the message parity field is produced by XOR-ing the ICAO address with the message data CRC checksum. So, to recover the ICAO address, simply reversing the XOR process will work, shown as follows:</p>
 <pre><code>+-------------------------------+  +--------------------+
 |   DATA FIELD (32 OR 88 BIT)   |  |    PARITY BITS     |
 +--------------+----------------+  +--------------------+
@@ -156,8 +156,8 @@ Parity:                             F24177
 Encode data:  CE2CA7
 
 ICAO:    [F24177] XOR [CE2CA7] =&gt; [3C6DD0]</code></pre>
-<p>For the implementation of the CRC encoder, refer to the pyModeS library <code>pyModeS.util.crc(msg, encode=True)</code></p>
-<h2 id="bds-comm-b-data-selector">BDS (Comm-B Data Selector)</h2>
+<p>For the implementation of the CRC encoder, refer to the pyModeS library <code>pyModeS.common.crc(msg, encode=True)</code></p>
+<h2 id="bds-comm-b-data-selector">BDS (Binary Data Selector)</h2>
 <p>In simple words, BDS is a number (usually a 2-digit hexadecimal) that defines the type of message we are looking at. Both ADS-B messages and other types of Mods-S messages are all assigned their distinctive BDS number. However, it is <strong>nowhere</strong> to be found in the messages.</p>
 <p>When SSR interrogates an aircraft, a BDS code is included in the request message (Uplink Format - UF 4, 5, 20, or 21). This BDS code is then used by the aircraft transponder to register the type of message to be sent. But when the downlink message is transmitted, its BDS code is not included in the message (because the SSR knows what kind of message it requested). Good news for them, but challenges for us.</p>
 <p>Here are some BDS codes that we are interested in, where additional parameters about an aircraft can be found:</p>

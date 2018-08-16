@@ -117,7 +117,7 @@
 +=======================================+======+======+
 | Status                                |  1   |  1   |
 +---------------------------------------+------+------+
-| Sign, 1 -&gt; left wing down             |  1   |  1   |
+| Sign, 1 -&gt; Use two&#39;s complement       |  1   |  1   |
 +---------------------------------------+------+------+
 | Roll angle                            |  3   |  9   |
 |                                       |      |      |
@@ -127,7 +127,7 @@
 +---------------------------------------+------+------+
 | Status                                |  12  |  1   |
 +---------------------------------------+------+------+
-| Sign, 1 -&gt; west                       |  13  |  1   |
+| Sign, 1 -&gt; Use two&#39;s complement       |  13  |  1   |
 +---------------------------------------+------+------+
 | True track angle                      |  14  |  10  |
 |                                       |      |      |
@@ -145,7 +145,7 @@
 +---------------------------------------+------+------+
 | Status                                |  35  |  1   |
 +---------------------------------------+------+------+
-| Sign, 1 -&gt; negative value             |  36  |  1   |
+| Sign, 1 -&gt; Use two&#39;s complement       |  36  |  1   |
 +---------------------------------------+------+------+
 | Track angle rate                      |  37  |  9   |
 |                                       |      |      |
@@ -161,6 +161,9 @@
 |                                       |      |      |
 | LSB: 2 knots                          |  56  |      |
 +---------------------------------------+------+------+</code></pre>
+<p>When a parameter is signed (SIGN = 1), the two’s complement should be used to calculate the value. The value can be calculated as follows:</p>
+<pre><code>(-2**{Number of bits parameter} + value) * LSB.</code></pre>
+<p>The number of bits for roll angle and track rate is 9, and for true track angle 10. An example calculation with a signed parameter is given in (Airspeed and Heading) <a href="https://mode-s.org/decode/ehs/bds60-airspeed.html" class="uri">https://mode-s.org/decode/ehs/bds60-airspeed.html</a>.</p>
 <p>An example:</p>
 <pre><code>MSG:  A000139381951536E024D4CCF6B5
 MB:           81951536E024D4
@@ -169,18 +172,18 @@ MB:           81951536E024D4
 MB BIN:   1 0 000001100 1 0 1010001010 1 0011011011 1 0 000000100 1 0011010100
 ---------------------------------------------------------------------------------
 STATUS:   1
-SIGN:       +
+SIGN:       0
 ROLL:         12 (x45/256)
 ---------------------------------------------------------------------------------
 STATUS:                 1
-SIGN:                     +
+SIGN:                     0
 TRACK ANGLE:                650 (x90/512)
 ---------------------------------------------------------------------------------
 STATUS:                                1
 GROUND SPEED:                            219 (x2)
 ---------------------------------------------------------------------------------
 STATUS:                                             1
-SIGN:                                                +
+SIGN:                                                0
 TRACK ANGLE RATE:                                      4 (x8/256)
 ---------------------------------------------------------------------------------
 STATUS:                                                           1

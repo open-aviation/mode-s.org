@@ -197,9 +197,9 @@
 </tr>
 </tbody>
 </table>
-<p>Two types of the position messages (odd and even frames) are broadcast alternately. There are two different ways to decode an airborne position base on these messages:</p>
+<p>Two types of the position messages (odd and even frames) are broadcast alternately. There are two different ways to decode an airborne position based on these messages:</p>
 <ol>
-<li><p>Unknown position, using both type of messages (aka globally unambiguous position)</p></li>
+<li><p>Unknown position, using both types of messages (aka globally unambiguous position)</p></li>
 <li><p>Knowing previous position, using only one message (aka locally unambiguous position)</p></li>
 </ol>
 <p>Note: The definition of functions <code>NL(lat)</code>, <code>floor(x)</code>, and <code>mod(x,y)</code> are described in the CPR chapter.</p>
@@ -216,7 +216,7 @@
 |----|--------|----------------|--------|
 | 8D | 40621D | 58C382D690C8AC | 2863A7 |
 | 8D | 40621D | 58C386435CC412 | 692AD6 |</code></pre>
-<p>The payload data in binary formation:</p>
+<p>The payload data in binary format:</p>
 <pre><code>| DATA                                                                       |
 |============================================================================|
 | TC    | ... | ALT          | T | F | CPR-LAT           | CPR-LON           |
@@ -242,7 +242,7 @@ CPR_LAT_EVEN: 93000 / 131072 -&gt; 0.7095
 CPR_LON_EVEN: 51372 / 131072 -&gt; 0.3919
 CPR_LAT_ODD:  74158 / 131072 -&gt; 0.5658
 CPR_LON_ODD:  50194 / 131072 -&gt; 0.3829</code></pre>
-<p>Since CPR latitude and longitude are encoded in 17 bits, 131072 (<span class="math inline">\(2^17\)</span>) is the maximum value.</p>
+<p>Since CPR latitude and longitude are encoded in 17 bits, 131072 (<span class="math inline">\(2^{17}\)</span>) is the maximum value.</p>
 <h3 id="calculate-the-latitude-index-j">Calculate the latitude index j</h3>
 <p>Use the following equation:</p>
 <p><span class="math display">\[j = floor \left( 59 \cdot \mathrm{Lat}_\mathrm{cprEven} - 60 \cdot \mathrm{Lat}_\mathrm{cprOdd} + \frac{1}{2}  \right)\]</span></p>
