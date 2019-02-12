@@ -103,7 +103,7 @@
 <li><a href="#locally-unambiguous-position-decoding-with-one-message">Locally unambiguous position (decoding with one message)</a><ul>
 <li><a href="#the-reference-position">The reference position</a></li>
 <li><a href="#calculate-dlat">Calculate dLat</a></li>
-<li><a href="#calculate-the-latitude-index-j-1">Calculate the latitude indexj</a></li>
+<li><a href="#calculate-the-latitude-index-j-1">Calculate the latitude index j</a></li>
 <li><a href="#calculate-latitude-1">Calculate latitude</a></li>
 <li><a href="#calculate-dlon">Calculate dLon</a></li>
 <li><a href="#calculate-longitude-index-m">Calculate longitude index m</a></li>
@@ -321,18 +321,24 @@ ALT:    38000 ft</code></pre>
 <h3 id="calculate-dlat">Calculate dLat</h3>
 <p><span class="math display">\[dLat =
   \begin{cases}
-   \frac{360}{4 \cdot NZ} = \frac{360}{60}          &amp; \text{if even message}  \\
-   \frac{360}{4 \cdot NZ - 1}  = \frac{360}{59}     &amp; \text{if odd message}
+   \frac{360}{4 \cdot NZ} = \frac{360}{60}          &amp; \text{for even message}  \\
+   \frac{360}{4 \cdot NZ - 1}  = \frac{360}{59}     &amp; \text{for odd message}
   \end{cases}\]</span></p>
-<h3 id="calculate-the-latitude-index-j-1">Calculate the latitude indexj</h3>
+<h3 id="calculate-the-latitude-index-j-1">Calculate the latitude index j</h3>
 <p><span class="math display">\[j = floor \left (\frac{\mathrm{Lat}_{ref}}{dLat} \right) + floor \left( \frac{mod(\mathrm{Lat}_{ref}, dLat)}{dLat}  - \mathrm{Lat}_\mathrm{cpr}  + \frac{1}{2} \right)\]</span></p>
 <h3 id="calculate-latitude-1">Calculate latitude</h3>
 <p><span class="math display">\[\mathrm{Lat} = dLat \cdot (j + \mathrm{Lat}_\mathrm{cpr})\]</span></p>
 <h3 id="calculate-dlon">Calculate dLon</h3>
+<p>For even message:</p>
 <p><span class="math display">\[\mathrm{dLon} =
   \begin{cases}
    \frac{360}{NL(Lat)}    &amp; \text{if } NL(Lat) &gt; 0  \\
    360                    &amp; \text{if } NL(Lat) = 0
+  \end{cases}\]</span></p>
+<p>For odd message: <span class="math display">\[\mathrm{dLon} =
+  \begin{cases}
+   \frac{360}{NL(Lat)-1}    &amp; \text{if } NL(Lat) - 1 &gt; 0  \\
+   360                    &amp; \text{if } NL(Lat) - 1 = 0
   \end{cases}\]</span></p>
 <h3 id="calculate-longitude-index-m">Calculate longitude index m</h3>
 <p><span class="math display">\[m = floor \left( \frac{Lon_{ref}}{\mathrm{dLon}} \right) + floor \left( \frac{mod(Lon_{ref}, \mathrm{dLon})}{\mathrm{dLon}}  - Lon_\mathrm{cpr}  + \frac{1}{2}  \right)\]</span></p>
