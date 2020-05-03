@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyModeS.decoder.bds.bds06 &mdash; pyModeS  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="pyModeS  documentation" href="../../../../index.html"/>
+        <link rel="up" title="pyModeS.decoder.bds" href="../bds.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> pyModeS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Core modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.adsb.html">pyModeS.decoder.adsb module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.commb.html">pyModeS.decoder.commb module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ADS-B messages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds05.html">pyModeS.decoder.bds.bds05 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds06.html">pyModeS.decoder.bds.bds06 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds08.html">pyModeS.decoder.bds.bds08 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds09.html">pyModeS.decoder.bds.bds09 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ELS - elementary surveillance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds10.html">pyModeS.decoder.bds.bds10 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds17.html">pyModeS.decoder.bds.bds17 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds20.html">pyModeS.decoder.bds.bds20 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds30.html">pyModeS.decoder.bds.bds30 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">EHS - enhanced surveillance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds40.html">pyModeS.decoder.bds.bds40 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds50.html">pyModeS.decoder.bds.bds50 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds60.html">pyModeS.decoder.bds.bds60 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MRAR / MHR</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds44.html">pyModeS.decoder.bds.bds44 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds45.html">pyModeS.decoder.bds.bds45 module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pyModeS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../decoder.html">pyModeS.decoder</a> &raquo;</li>
+        
+          <li><a href="../bds.html">pyModeS.decoder.bds</a> &raquo;</li>
+        
+      <li>pyModeS.decoder.bds.bds06</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyModeS.decoder.bds.bds06</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ------------------------------------------</span>
+<span class="c1">#   BDS 0,6</span>
+<span class="c1">#   ADS-B TC=5-8</span>
+<span class="c1">#   Surface movment</span>
+<span class="c1"># ------------------------------------------</span>
+
+<span class="kn">from</span> <span class="nn">pyModeS</span> <span class="kn">import</span> <span class="n">common</span>
+
+
+<div class="viewcode-block" id="surface_position"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds06.html#pyModeS.decoder.bds.bds06.surface_position">[docs]</a><span class="k">def</span> <span class="nf">surface_position</span><span class="p">(</span><span class="n">msg0</span><span class="p">,</span> <span class="n">msg1</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">lat_ref</span><span class="p">,</span> <span class="n">lon_ref</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decode surface position from a pair of even and odd position message,</span>
+<span class="sd">    the lat/lon of receiver must be provided to yield the correct solution.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg0 (string): even message (28 hexdigits)</span>
+<span class="sd">        msg1 (string): odd message (28 hexdigits)</span>
+<span class="sd">        t0 (int): timestamps for the even message</span>
+<span class="sd">        t1 (int): timestamps for the odd message</span>
+<span class="sd">        lat_ref (float): latitude of the receiver</span>
+<span class="sd">        lon_ref (float): longitude of the receiver</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (float, float): (latitude, longitude) of the aircraft</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">msgbin0</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">msg0</span><span class="p">)</span>
+    <span class="n">msgbin1</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">msg1</span><span class="p">)</span>
+
+    <span class="c1"># 131072 is 2^17, since CPR lat and lon are 17 bits each.</span>
+    <span class="n">cprlat_even</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">msgbin0</span><span class="p">[</span><span class="mi">54</span><span class="p">:</span><span class="mi">71</span><span class="p">])</span> <span class="o">/</span> <span class="mf">131072.0</span>
+    <span class="n">cprlon_even</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">msgbin0</span><span class="p">[</span><span class="mi">71</span><span class="p">:</span><span class="mi">88</span><span class="p">])</span> <span class="o">/</span> <span class="mf">131072.0</span>
+    <span class="n">cprlat_odd</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">msgbin1</span><span class="p">[</span><span class="mi">54</span><span class="p">:</span><span class="mi">71</span><span class="p">])</span> <span class="o">/</span> <span class="mf">131072.0</span>
+    <span class="n">cprlon_odd</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">msgbin1</span><span class="p">[</span><span class="mi">71</span><span class="p">:</span><span class="mi">88</span><span class="p">])</span> <span class="o">/</span> <span class="mf">131072.0</span>
+
+    <span class="n">air_d_lat_even</span> <span class="o">=</span> <span class="mf">90.0</span> <span class="o">/</span> <span class="mi">60</span>
+    <span class="n">air_d_lat_odd</span> <span class="o">=</span> <span class="mf">90.0</span> <span class="o">/</span> <span class="mi">59</span>
+
+    <span class="c1"># compute latitude index &#39;j&#39;</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mi">59</span> <span class="o">*</span> <span class="n">cprlat_even</span> <span class="o">-</span> <span class="mi">60</span> <span class="o">*</span> <span class="n">cprlat_odd</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="c1"># solution for north hemisphere</span>
+    <span class="n">lat_even_n</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">air_d_lat_even</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span> <span class="o">%</span> <span class="mi">60</span> <span class="o">+</span> <span class="n">cprlat_even</span><span class="p">))</span>
+    <span class="n">lat_odd_n</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">air_d_lat_odd</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span> <span class="o">%</span> <span class="mi">59</span> <span class="o">+</span> <span class="n">cprlat_odd</span><span class="p">))</span>
+
+    <span class="c1"># solution for north hemisphere</span>
+    <span class="n">lat_even_s</span> <span class="o">=</span> <span class="n">lat_even_n</span> <span class="o">-</span> <span class="mf">90.0</span>
+    <span class="n">lat_odd_s</span> <span class="o">=</span> <span class="n">lat_odd_n</span> <span class="o">-</span> <span class="mf">90.0</span>
+
+    <span class="c1"># chose which solution corrispondes to receiver location</span>
+    <span class="n">lat_even</span> <span class="o">=</span> <span class="n">lat_even_n</span> <span class="k">if</span> <span class="n">lat_ref</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">lat_even_s</span>
+    <span class="n">lat_odd</span> <span class="o">=</span> <span class="n">lat_odd_n</span> <span class="k">if</span> <span class="n">lat_ref</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">lat_odd_s</span>
+
+    <span class="c1"># check if both are in the same latidude zone, rare but possible</span>
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">cprNL</span><span class="p">(</span><span class="n">lat_even</span><span class="p">)</span> <span class="o">!=</span> <span class="n">common</span><span class="o">.</span><span class="n">cprNL</span><span class="p">(</span><span class="n">lat_odd</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># compute ni, longitude index m, and longitude</span>
+    <span class="k">if</span> <span class="n">t0</span> <span class="o">&gt;</span> <span class="n">t1</span><span class="p">:</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="n">lat_even</span>
+        <span class="n">nl</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">cprNL</span><span class="p">(</span><span class="n">lat_even</span><span class="p">)</span>
+        <span class="n">ni</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">cprNL</span><span class="p">(</span><span class="n">lat_even</span><span class="p">)</span> <span class="o">-</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">cprlon_even</span> <span class="o">*</span> <span class="p">(</span><span class="n">nl</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">cprlon_odd</span> <span class="o">*</span> <span class="n">nl</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="p">(</span><span class="mf">90.0</span> <span class="o">/</span> <span class="n">ni</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">%</span> <span class="n">ni</span> <span class="o">+</span> <span class="n">cprlon_even</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="n">lat_odd</span>
+        <span class="n">nl</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">cprNL</span><span class="p">(</span><span class="n">lat_odd</span><span class="p">)</span>
+        <span class="n">ni</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">cprNL</span><span class="p">(</span><span class="n">lat_odd</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">cprlon_even</span> <span class="o">*</span> <span class="p">(</span><span class="n">nl</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">cprlon_odd</span> <span class="o">*</span> <span class="n">nl</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="p">(</span><span class="mf">90.0</span> <span class="o">/</span> <span class="n">ni</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">%</span> <span class="n">ni</span> <span class="o">+</span> <span class="n">cprlon_odd</span><span class="p">)</span>
+
+    <span class="c1"># four possible longitude solutions</span>
+    <span class="n">lons</span> <span class="o">=</span> <span class="p">[</span><span class="n">lon</span><span class="p">,</span> <span class="n">lon</span> <span class="o">+</span> <span class="mf">90.0</span><span class="p">,</span> <span class="n">lon</span> <span class="o">+</span> <span class="mf">180.0</span><span class="p">,</span> <span class="n">lon</span> <span class="o">+</span> <span class="mf">270.0</span><span class="p">]</span>
+
+    <span class="c1"># make sure lons are between -180 and 180</span>
+    <span class="n">lons</span> <span class="o">=</span> <span class="p">[(</span><span class="n">l</span> <span class="o">+</span> <span class="mi">180</span><span class="p">)</span> <span class="o">%</span> <span class="mi">360</span> <span class="o">-</span> <span class="mi">180</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lons</span><span class="p">]</span>
+
+    <span class="c1"># the closest solution to receiver is the correct one</span>
+    <span class="n">dls</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">lon_ref</span> <span class="o">-</span> <span class="n">l</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lons</span><span class="p">]</span>
+    <span class="n">imin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">dls</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">)</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="n">lons</span><span class="p">[</span><span class="n">imin</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="surface_position_with_ref"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds06.html#pyModeS.decoder.bds.bds06.surface_position_with_ref">[docs]</a><span class="k">def</span> <span class="nf">surface_position_with_ref</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">lat_ref</span><span class="p">,</span> <span class="n">lon_ref</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decode surface position with only one message,</span>
+<span class="sd">    knowing reference nearby location, such as previously calculated location,</span>
+<span class="sd">    ground station, or airport location, etc. The reference position shall</span>
+<span class="sd">    be with in 45NM of the true position.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): even message (28 hexdigits)</span>
+<span class="sd">        lat_ref: previous known latitude</span>
+<span class="sd">        lon_ref: previous known longitude</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (float, float): (latitude, longitude) of the aircraft</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">mb</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">msg</span><span class="p">)[</span><span class="mi">32</span><span class="p">:]</span>
+
+    <span class="n">cprlat</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">mb</span><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">39</span><span class="p">])</span> <span class="o">/</span> <span class="mf">131072.0</span>
+    <span class="n">cprlon</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">mb</span><span class="p">[</span><span class="mi">39</span><span class="p">:</span><span class="mi">56</span><span class="p">])</span> <span class="o">/</span> <span class="mf">131072.0</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mb</span><span class="p">[</span><span class="mi">21</span><span class="p">])</span>
+    <span class="n">d_lat</span> <span class="o">=</span> <span class="mf">90.0</span> <span class="o">/</span> <span class="mi">59</span> <span class="k">if</span> <span class="n">i</span> <span class="k">else</span> <span class="mf">90.0</span> <span class="o">/</span> <span class="mi">60</span>
+
+    <span class="n">j</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">lat_ref</span> <span class="o">/</span> <span class="n">d_lat</span><span class="p">)</span> <span class="o">+</span> <span class="n">common</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span>
+        <span class="mf">0.5</span> <span class="o">+</span> <span class="p">((</span><span class="n">lat_ref</span> <span class="o">%</span> <span class="n">d_lat</span><span class="p">)</span> <span class="o">/</span> <span class="n">d_lat</span><span class="p">)</span> <span class="o">-</span> <span class="n">cprlat</span>
+    <span class="p">)</span>
+
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">d_lat</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="n">cprlat</span><span class="p">)</span>
+
+    <span class="n">ni</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">cprNL</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="o">-</span> <span class="n">i</span>
+
+    <span class="k">if</span> <span class="n">ni</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">d_lon</span> <span class="o">=</span> <span class="mf">90.0</span> <span class="o">/</span> <span class="n">ni</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">d_lon</span> <span class="o">=</span> <span class="mf">90.0</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">lon_ref</span> <span class="o">/</span> <span class="n">d_lon</span><span class="p">)</span> <span class="o">+</span> <span class="n">common</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span>
+        <span class="mf">0.5</span> <span class="o">+</span> <span class="p">((</span><span class="n">lon_ref</span> <span class="o">%</span> <span class="n">d_lon</span><span class="p">)</span> <span class="o">/</span> <span class="n">d_lon</span><span class="p">)</span> <span class="o">-</span> <span class="n">cprlon</span>
+    <span class="p">)</span>
+
+    <span class="n">lon</span> <span class="o">=</span> <span class="n">d_lon</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="n">cprlon</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="surface_velocity"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds06.html#pyModeS.decoder.bds.bds06.surface_velocity">[docs]</a><span class="k">def</span> <span class="nf">surface_velocity</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decode surface velocity from a surface position message</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+<span class="sd">        source (boolean): Include direction and vertical rate sources in return. Default to False.</span>
+<span class="sd">            If set to True, the function will return six value instead of four.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int, float, int, string, [string], [string]: Four or six parameters, including:</span>
+<span class="sd">            - Speed (kt)</span>
+<span class="sd">            - Angle (degree), ground track</span>
+<span class="sd">            - Vertical rate, always 0</span>
+<span class="sd">            - Speed type (&#39;GS&#39; for ground speed, &#39;AS&#39; for airspeed)</span>
+<span class="sd">            - [Optional] Direction source (&#39;TRUE_NORTH&#39;)</span>
+<span class="sd">            - [Optional] Vertical rate source (None)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="ow">or</span> <span class="n">common</span><span class="o">.</span><span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: Not a surface message, expecting 5&lt;TC&lt;8&quot;</span> <span class="o">%</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">mb</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">msg</span><span class="p">)[</span><span class="mi">32</span><span class="p">:]</span>
+
+    <span class="c1"># ground track</span>
+    <span class="n">trk_status</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mb</span><span class="p">[</span><span class="mi">12</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">trk_status</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">trk</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">mb</span><span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">20</span><span class="p">])</span> <span class="o">*</span> <span class="mf">360.0</span> <span class="o">/</span> <span class="mf">128.0</span>
+        <span class="n">trk</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">trk</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">trk</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># ground movement / speed</span>
+    <span class="n">mov</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">mb</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">12</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">mov</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">mov</span> <span class="o">&gt;</span> <span class="mi">124</span><span class="p">:</span>
+        <span class="n">spd</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">elif</span> <span class="n">mov</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">spd</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">mov</span> <span class="o">==</span> <span class="mi">124</span><span class="p">:</span>
+        <span class="n">spd</span> <span class="o">=</span> <span class="mi">175</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">movs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">124</span><span class="p">]</span>
+        <span class="n">kts</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.125</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">175</span><span class="p">]</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">movs</span><span class="p">)</span> <span class="k">if</span> <span class="n">m</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">mov</span><span class="p">)</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="p">(</span><span class="n">kts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">kts</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">movs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">movs</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">spd</span> <span class="o">=</span> <span class="n">kts</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">mov</span> <span class="o">-</span> <span class="n">movs</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">step</span>
+        <span class="n">spd</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">spd</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">source</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">spd</span><span class="p">,</span> <span class="n">trk</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;GS&quot;</span><span class="p">,</span> <span class="s2">&quot;TRUE_NORTH&quot;</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">spd</span><span class="p">,</span> <span class="n">trk</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;GS&quot;</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Junzi Sun.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

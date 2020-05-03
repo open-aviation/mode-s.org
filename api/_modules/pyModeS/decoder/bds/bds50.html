@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyModeS.decoder.bds.bds50 &mdash; pyModeS  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="pyModeS  documentation" href="../../../../index.html"/>
+        <link rel="up" title="pyModeS.decoder.bds" href="../bds.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> pyModeS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Core modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.adsb.html">pyModeS.decoder.adsb module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.commb.html">pyModeS.decoder.commb module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ADS-B messages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds05.html">pyModeS.decoder.bds.bds05 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds06.html">pyModeS.decoder.bds.bds06 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds08.html">pyModeS.decoder.bds.bds08 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds09.html">pyModeS.decoder.bds.bds09 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ELS - elementary surveillance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds10.html">pyModeS.decoder.bds.bds10 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds17.html">pyModeS.decoder.bds.bds17 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds20.html">pyModeS.decoder.bds.bds20 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds30.html">pyModeS.decoder.bds.bds30 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">EHS - enhanced surveillance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds40.html">pyModeS.decoder.bds.bds40 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds50.html">pyModeS.decoder.bds.bds50 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds60.html">pyModeS.decoder.bds.bds60 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MRAR / MHR</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds44.html">pyModeS.decoder.bds.bds44 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds45.html">pyModeS.decoder.bds.bds45 module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pyModeS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../decoder.html">pyModeS.decoder</a> &raquo;</li>
+        
+          <li><a href="../bds.html">pyModeS.decoder.bds</a> &raquo;</li>
+        
+      <li>pyModeS.decoder.bds.bds50</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyModeS.decoder.bds.bds50</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ------------------------------------------</span>
+<span class="c1"># BDS 5,0</span>
+<span class="c1"># Track and turn report</span>
+<span class="c1"># ------------------------------------------</span>
+
+<span class="kn">from</span> <span class="nn">pyModeS</span> <span class="kn">import</span> <span class="n">common</span>
+
+
+<div class="viewcode-block" id="is50"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds50.html#pyModeS.decoder.bds.bds50.is50">[docs]</a><span class="k">def</span> <span class="nf">is50</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check if a message is likely to be BDS code 5,0</span>
+<span class="sd">    (Track and turn report)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True or False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">allzeros</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+
+    <span class="c1"># status bit 1, 12, 24, 35, 46</span>
+
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">wrongstatus</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">wrongstatus</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">23</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">wrongstatus</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">34</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">wrongstatus</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">45</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">wrongstatus</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">56</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="n">roll</span> <span class="o">=</span> <span class="n">roll50</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">roll</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">roll</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="n">gs</span> <span class="o">=</span> <span class="n">gs50</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">gs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">gs</span> <span class="o">&gt;</span> <span class="mi">600</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="n">tas</span> <span class="o">=</span> <span class="n">tas50</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">tas</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">tas</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">gs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">tas</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">tas</span> <span class="o">-</span> <span class="n">gs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="roll50"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds50.html#pyModeS.decoder.bds.bds50.roll50">[docs]</a><span class="k">def</span> <span class="nf">roll50</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Roll angle, BDS 5,0 message</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: angle in degrees,</span>
+<span class="sd">               negative-&gt;left wing down, positive-&gt;right wing down</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">sign</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># 1 -&gt; left wing down</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">11</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">sign</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="o">-</span> <span class="mi">512</span>
+
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">value</span> <span class="o">*</span> <span class="mf">45.0</span> <span class="o">/</span> <span class="mf">256.0</span>  <span class="c1"># degree</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="trk50"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds50.html#pyModeS.decoder.bds.bds50.trk50">[docs]</a><span class="k">def</span> <span class="nf">trk50</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;True track angle, BDS 5,0 message</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: angle in degrees to true north (from 0 to 360)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">sign</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">12</span><span class="p">])</span>  <span class="c1"># 1 -&gt; west</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">23</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">sign</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="o">-</span> <span class="mi">1024</span>
+
+    <span class="n">trk</span> <span class="o">=</span> <span class="n">value</span> <span class="o">*</span> <span class="mf">90.0</span> <span class="o">/</span> <span class="mf">512.0</span>
+
+    <span class="c1"># convert from [-180, 180] to [0, 360]</span>
+    <span class="k">if</span> <span class="n">trk</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">trk</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">+</span> <span class="n">trk</span>
+
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">trk</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="gs50"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds50.html#pyModeS.decoder.bds.bds50.gs50">[docs]</a><span class="k">def</span> <span class="nf">gs50</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Ground speed, BDS 5,0 message</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: ground speed in knots</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">23</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">spd</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">24</span><span class="p">:</span><span class="mi">34</span><span class="p">])</span> <span class="o">*</span> <span class="mi">2</span>  <span class="c1"># kts</span>
+    <span class="k">return</span> <span class="n">spd</span></div>
+
+
+<div class="viewcode-block" id="rtrk50"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds50.html#pyModeS.decoder.bds.bds50.rtrk50">[docs]</a><span class="k">def</span> <span class="nf">rtrk50</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Track angle rate, BDS 5,0 message</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: angle rate in degrees/second</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">34</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">36</span><span class="p">:</span><span class="mi">45</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;111111111&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">sign</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">35</span><span class="p">])</span>  <span class="c1"># 1 -&gt; negative value, two&#39;s complement</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">36</span><span class="p">:</span><span class="mi">45</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">sign</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="o">-</span> <span class="mi">512</span>
+
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">value</span> <span class="o">*</span> <span class="mf">8.0</span> <span class="o">/</span> <span class="mf">256.0</span>  <span class="c1"># degree / sec</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="tas50"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds50.html#pyModeS.decoder.bds.bds50.tas50">[docs]</a><span class="k">def</span> <span class="nf">tas50</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Aircraft true airspeed, BDS 5,0 message</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: true airspeed in knots</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">45</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">tas</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">46</span><span class="p">:</span><span class="mi">56</span><span class="p">])</span> <span class="o">*</span> <span class="mi">2</span>  <span class="c1"># kts</span>
+    <span class="k">return</span> <span class="n">tas</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Junzi Sun.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,775 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyModeS.decoder.adsb &mdash; pyModeS  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="pyModeS  documentation" href="../../../index.html"/>
+        <link rel="up" title="pyModeS.decoder" href="../decoder.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> pyModeS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Core modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.adsb.html">pyModeS.decoder.adsb module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.commb.html">pyModeS.decoder.commb module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ADS-B messages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds05.html">pyModeS.decoder.bds.bds05 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds06.html">pyModeS.decoder.bds.bds06 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds08.html">pyModeS.decoder.bds.bds08 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds09.html">pyModeS.decoder.bds.bds09 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ELS - elementary surveillance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds10.html">pyModeS.decoder.bds.bds10 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds17.html">pyModeS.decoder.bds.bds17 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds20.html">pyModeS.decoder.bds.bds20 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds30.html">pyModeS.decoder.bds.bds30 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">EHS - enhanced surveillance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds40.html">pyModeS.decoder.bds.bds40 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds50.html">pyModeS.decoder.bds.bds50 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds60.html">pyModeS.decoder.bds.bds60 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MRAR / MHR</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds44.html">pyModeS.decoder.bds.bds44 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds45.html">pyModeS.decoder.bds.bds45 module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyModeS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../decoder.html">pyModeS.decoder</a> &raquo;</li>
+        
+      <li>pyModeS.decoder.adsb</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyModeS.decoder.adsb</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;ADS-B module.</span>
+
+<span class="sd">The ADS-B module also imports functions from the following modules:</span>
+
+<span class="sd">- pyModeS.decoder.bds.bds05: ``airborne_position()``, ``airborne_position_with_ref()``, ``altitude()``</span>
+<span class="sd">- pyModeS.decoder.bds.bds06: ``surface_position()``, ``surface_position_with_ref()``, ``surface_velocity()``</span>
+<span class="sd">- pyModeS.decoder.bds.bds08: ``category()``, ``callsign()``</span>
+<span class="sd">- pyModeS.decoder.bds.bds09: ``airborne_velocity()``, ``altitude_diff()``</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">pyModeS</span> <span class="k">as</span> <span class="nn">pms</span>
+
+<span class="kn">from</span> <span class="nn">pyModeS</span> <span class="kn">import</span> <span class="n">common</span>
+
+<span class="kn">from</span> <span class="nn">pyModeS.decoder</span> <span class="kn">import</span> <span class="n">uncertainty</span>
+
+<span class="c1"># from pyModeS.decoder.bds import bds05, bds06, bds09</span>
+<span class="kn">from</span> <span class="nn">pyModeS.decoder.bds.bds05</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">airborne_position</span><span class="p">,</span>
+    <span class="n">airborne_position_with_ref</span><span class="p">,</span>
+    <span class="n">altitude</span> <span class="k">as</span> <span class="n">altitude05</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pyModeS.decoder.bds.bds06</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">surface_position</span><span class="p">,</span>
+    <span class="n">surface_position_with_ref</span><span class="p">,</span>
+    <span class="n">surface_velocity</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pyModeS.decoder.bds.bds08</span> <span class="kn">import</span> <span class="n">category</span><span class="p">,</span> <span class="n">callsign</span>
+<span class="kn">from</span> <span class="nn">pyModeS.decoder.bds.bds09</span> <span class="kn">import</span> <span class="n">airborne_velocity</span><span class="p">,</span> <span class="n">altitude_diff</span>
+
+
+<div class="viewcode-block" id="df"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.df">[docs]</a><span class="k">def</span> <span class="nf">df</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">common</span><span class="o">.</span><span class="n">df</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="icao"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.icao">[docs]</a><span class="k">def</span> <span class="nf">icao</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">common</span><span class="o">.</span><span class="n">icao</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="typecode"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.typecode">[docs]</a><span class="k">def</span> <span class="nf">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">common</span><span class="o">.</span><span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="position"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.position">[docs]</a><span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="n">msg0</span><span class="p">,</span> <span class="n">msg1</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">lat_ref</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lon_ref</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decode surface or airborne position from a pair of even and odd</span>
+<span class="sd">    position messages.</span>
+
+<span class="sd">    Note, that to decode surface position using the position message pair,</span>
+<span class="sd">    the reference position has to be provided.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg0 (string): even message (28 hexdigits)</span>
+<span class="sd">        msg1 (string): odd message (28 hexdigits)</span>
+<span class="sd">        t0 (int): timestamps for the even message</span>
+<span class="sd">        t1 (int): timestamps for the odd message</span>
+<span class="sd">        lat_ref (float): latitude of reference position</span>
+<span class="sd">        lon_ref (float): longitude of reference position</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (float, float): (latitude, longitude) of the aircraft</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tc0</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg0</span><span class="p">)</span>
+    <span class="n">tc1</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="mi">5</span> <span class="o">&lt;=</span> <span class="n">tc0</span> <span class="o">&lt;=</span> <span class="mi">8</span> <span class="ow">and</span> <span class="mi">5</span> <span class="o">&lt;=</span> <span class="n">tc1</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">lat_ref</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">lon_ref</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">&quot;Surface position encountered, a reference position&quot;</span>
+                <span class="s2">&quot; lat/lon required. Location of receiver can be used.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">surface_position</span><span class="p">(</span><span class="n">msg0</span><span class="p">,</span> <span class="n">msg1</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">lat_ref</span><span class="p">,</span> <span class="n">lon_ref</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="mi">9</span> <span class="o">&lt;=</span> <span class="n">tc0</span> <span class="o">&lt;=</span> <span class="mi">18</span> <span class="ow">and</span> <span class="mi">9</span> <span class="o">&lt;=</span> <span class="n">tc1</span> <span class="o">&lt;=</span> <span class="mi">18</span><span class="p">:</span>
+        <span class="c1"># Airborne position with barometric height</span>
+        <span class="k">return</span> <span class="n">airborne_position</span><span class="p">(</span><span class="n">msg0</span><span class="p">,</span> <span class="n">msg1</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="mi">20</span> <span class="o">&lt;=</span> <span class="n">tc0</span> <span class="o">&lt;=</span> <span class="mi">22</span> <span class="ow">and</span> <span class="mi">20</span> <span class="o">&lt;=</span> <span class="n">tc1</span> <span class="o">&lt;=</span> <span class="mi">22</span><span class="p">:</span>
+        <span class="c1"># Airborne position with GNSS height</span>
+        <span class="k">return</span> <span class="n">airborne_position</span><span class="p">(</span><span class="n">msg0</span><span class="p">,</span> <span class="n">msg1</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Incorrect or inconsistent message types&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="position_with_ref"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.position_with_ref">[docs]</a><span class="k">def</span> <span class="nf">position_with_ref</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">lat_ref</span><span class="p">,</span> <span class="n">lon_ref</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decode position with only one message.</span>
+
+<span class="sd">    A reference position is required, which can be previously</span>
+<span class="sd">    calculated location, ground station, or airport location.</span>
+<span class="sd">    The function works with both airborne and surface position messages.</span>
+<span class="sd">    The reference position shall be with in 180NM (airborne) or 45NM (surface)</span>
+<span class="sd">    of the true position.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): even message (28 hexdigits)</span>
+<span class="sd">        lat_ref: previous known latitude</span>
+<span class="sd">        lon_ref: previous known longitude</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (float, float): (latitude, longitude) of the aircraft</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="mi">5</span> <span class="o">&lt;=</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">surface_position_with_ref</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">lat_ref</span><span class="p">,</span> <span class="n">lon_ref</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="mi">9</span> <span class="o">&lt;=</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="mi">18</span> <span class="ow">or</span> <span class="mi">20</span> <span class="o">&lt;=</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="mi">22</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">airborne_position_with_ref</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">lat_ref</span><span class="p">,</span> <span class="n">lon_ref</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;incorrect or inconsistent message types&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="altitude"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.altitude">[docs]</a><span class="k">def</span> <span class="nf">altitude</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decode aircraft altitude.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: altitude in feet</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tc</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="ow">or</span> <span class="n">tc</span> <span class="o">==</span> <span class="mi">19</span> <span class="ow">or</span> <span class="n">tc</span> <span class="o">&gt;</span> <span class="mi">22</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: Not a position message&quot;</span> <span class="o">%</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">tc</span> <span class="o">&gt;=</span> <span class="mi">5</span> <span class="ow">and</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="c1"># surface position, altitude 0</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># airborn position</span>
+        <span class="k">return</span> <span class="n">altitude05</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="velocity"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.velocity">[docs]</a><span class="k">def</span> <span class="nf">velocity</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the speed, heading, and vertical rate (handles both airborne or surface message).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+<span class="sd">        source (boolean): Include direction and vertical rate sources in return. Default to False.</span>
+<span class="sd">            If set to True, the function will return six value instead of four.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int, float, int, string, [string], [string]: Four or six parameters, including:</span>
+<span class="sd">            - Speed (kt)</span>
+<span class="sd">            - Angle (degree), either ground track or heading</span>
+<span class="sd">            - Vertical rate (ft/min)</span>
+<span class="sd">            - Speed type (&#39;GS&#39; for ground speed, &#39;AS&#39; for airspeed)</span>
+<span class="sd">            - [Optional] Direction source (&#39;TRUE_NORTH&#39; or &#39;MAGENTIC_NORTH&#39;)</span>
+<span class="sd">            - [Optional] Vertical rate source (&#39;BARO&#39; or &#39;GNSS&#39;)</span>
+
+<span class="sd">        For surface messages, vertical rate and its respective sources are set to None.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="mi">5</span> <span class="o">&lt;=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">surface_velocity</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">source</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">==</span> <span class="mi">19</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">airborne_velocity</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">source</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;incorrect or inconsistent message types, expecting 4&lt;TC&lt;9 or TC=19&quot;</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="speed_heading"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.speed_heading">[docs]</a><span class="k">def</span> <span class="nf">speed_heading</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get speed and ground track (or heading) from the velocity message</span>
+<span class="sd">    (handles both airborne or surface message)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (int, float): speed (kt), ground track or heading (degree)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">spd</span><span class="p">,</span> <span class="n">trk_or_hdg</span><span class="p">,</span> <span class="n">rocd</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">velocity</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">spd</span><span class="p">,</span> <span class="n">trk_or_hdg</span></div>
+
+
+<div class="viewcode-block" id="oe_flag"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.oe_flag">[docs]</a><span class="k">def</span> <span class="nf">oe_flag</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check the odd/even flag. Bit 54, 0 for even, 1 for odd.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        int: 0 or 1, for even or odd frame</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">msgbin</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">msgbin</span><span class="p">[</span><span class="mi">53</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="version"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.version">[docs]</a><span class="k">def</span> <span class="nf">version</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;ADS-B Version</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string, TC = 31</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: version number</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tc</span> <span class="o">!=</span> <span class="mi">31</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: Not a status operation message, expecting TC = 31&quot;</span> <span class="o">%</span> <span class="n">msg</span>
+        <span class="p">)</span>
+
+    <span class="n">msgbin</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">msgbin</span><span class="p">[</span><span class="mi">72</span><span class="p">:</span><span class="mi">75</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">version</span></div>
+
+
+<div class="viewcode-block" id="nuc_p"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.nuc_p">[docs]</a><span class="k">def</span> <span class="nf">nuc_p</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate NUCp, Navigation Uncertainty Category - Position (ADS-B version 1)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string,</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: Horizontal Protection Limit</span>
+<span class="sd">        int: 95% Containment Radius - Horizontal (meters)</span>
+<span class="sd">        int: 95% Containment Radius - Vertical (meters)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="ow">or</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">22</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: Not a surface position message (5&lt;TC&lt;8), </span><span class="se">\</span>
+<span class="s2">            airborne position message (8&lt;TC&lt;19), </span><span class="se">\</span>
+<span class="s2">            or airborne position with GNSS height (20&lt;TC&lt;22)&quot;</span>
+            <span class="o">%</span> <span class="n">msg</span>
+        <span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">NUCp</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">TC_NUCp_lookup</span><span class="p">[</span><span class="n">tc</span><span class="p">]</span>
+        <span class="n">HPL</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NUCp</span><span class="p">[</span><span class="n">NUCp</span><span class="p">][</span><span class="s2">&quot;HPL&quot;</span><span class="p">]</span>
+        <span class="n">RCu</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NUCp</span><span class="p">[</span><span class="n">NUCp</span><span class="p">][</span><span class="s2">&quot;RCu&quot;</span><span class="p">]</span>
+        <span class="n">RCv</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NUCp</span><span class="p">[</span><span class="n">NUCp</span><span class="p">][</span><span class="s2">&quot;RCv&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">HPL</span><span class="p">,</span> <span class="n">RCu</span><span class="p">,</span> <span class="n">RCv</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span>
+
+    <span class="k">if</span> <span class="n">tc</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">]:</span>
+        <span class="n">RCv</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span>
+
+    <span class="k">return</span> <span class="n">HPL</span><span class="p">,</span> <span class="n">RCu</span><span class="p">,</span> <span class="n">RCv</span></div>
+
+
+<div class="viewcode-block" id="nuc_v"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.nuc_v">[docs]</a><span class="k">def</span> <span class="nf">nuc_v</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate NUCv, Navigation Uncertainty Category - Velocity (ADS-B version 1)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string,</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int or string: 95% Horizontal Velocity Error</span>
+<span class="sd">        int or string: 95% Vertical Velocity Error</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tc</span> <span class="o">!=</span> <span class="mi">19</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: Not an airborne velocity message, expecting TC = 19&quot;</span> <span class="o">%</span> <span class="n">msg</span>
+        <span class="p">)</span>
+
+    <span class="n">msgbin</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">NUCv</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">msgbin</span><span class="p">[</span><span class="mi">42</span><span class="p">:</span><span class="mi">45</span><span class="p">])</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">HVE</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NUCv</span><span class="p">[</span><span class="n">NUCv</span><span class="p">][</span><span class="s2">&quot;HVE&quot;</span><span class="p">]</span>
+        <span class="n">VVE</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NUCv</span><span class="p">[</span><span class="n">NUCv</span><span class="p">][</span><span class="s2">&quot;VVE&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">HVE</span><span class="p">,</span> <span class="n">VVE</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span>
+
+    <span class="k">return</span> <span class="n">HVE</span><span class="p">,</span> <span class="n">VVE</span></div>
+
+
+<div class="viewcode-block" id="nic_v1"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.nic_v1">[docs]</a><span class="k">def</span> <span class="nf">nic_v1</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">NICs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate NIC, navigation integrity category, for ADS-B version 1</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+<span class="sd">        NICs (int or string): NIC supplement</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int or string: Horizontal Radius of Containment</span>
+<span class="sd">        int or string: Vertical Protection Limit</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="ow">or</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">22</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: Not a surface position message (5&lt;TC&lt;8), </span><span class="se">\</span>
+<span class="s2">            airborne position message (8&lt;TC&lt;19), </span><span class="se">\</span>
+<span class="s2">            or airborne position with GNSS height (20&lt;TC&lt;22)&quot;</span>
+            <span class="o">%</span> <span class="n">msg</span>
+        <span class="p">)</span>
+
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">NIC</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">TC_NICv1_lookup</span><span class="p">[</span><span class="n">tc</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">NIC</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">NIC</span> <span class="o">=</span> <span class="n">NIC</span><span class="p">[</span><span class="n">NICs</span><span class="p">]</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">Rc</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NICv1</span><span class="p">[</span><span class="n">NIC</span><span class="p">][</span><span class="n">NICs</span><span class="p">][</span><span class="s2">&quot;Rc&quot;</span><span class="p">]</span>
+        <span class="n">VPL</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NICv1</span><span class="p">[</span><span class="n">NIC</span><span class="p">][</span><span class="n">NICs</span><span class="p">][</span><span class="s2">&quot;VPL&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">Rc</span><span class="p">,</span> <span class="n">VPL</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span>
+
+    <span class="k">return</span> <span class="n">Rc</span><span class="p">,</span> <span class="n">VPL</span></div>
+
+
+<div class="viewcode-block" id="nic_v2"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.nic_v2">[docs]</a><span class="k">def</span> <span class="nf">nic_v2</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">NICa</span><span class="p">,</span> <span class="n">NICbc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate NIC, navigation integrity category, for ADS-B version 2</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+<span class="sd">        NICa (int or string): NIC supplement - A</span>
+<span class="sd">        NICbc (int or srting): NIC supplement - B or C</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int or string: Horizontal Radius of Containment</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="ow">or</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">22</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: Not a surface position message (5&lt;TC&lt;8), </span><span class="se">\</span>
+<span class="s2">            airborne position message (8&lt;TC&lt;19), </span><span class="se">\</span>
+<span class="s2">            or airborne position with GNSS height (20&lt;TC&lt;22)&quot;</span>
+            <span class="o">%</span> <span class="n">msg</span>
+        <span class="p">)</span>
+
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">NIC</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">TC_NICv2_lookup</span><span class="p">[</span><span class="n">tc</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="mi">20</span> <span class="o">&lt;=</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="mi">22</span><span class="p">:</span>
+        <span class="n">NICs</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">NICs</span> <span class="o">=</span> <span class="n">NICa</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">NICbc</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">NIC</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">NIC</span> <span class="o">=</span> <span class="n">NIC</span><span class="p">[</span><span class="n">NICs</span><span class="p">]</span>
+
+        <span class="n">Rc</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NICv2</span><span class="p">[</span><span class="n">NIC</span><span class="p">][</span><span class="n">NICs</span><span class="p">][</span><span class="s2">&quot;Rc&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">Rc</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span>
+
+    <span class="k">return</span> <span class="n">Rc</span></div>
+
+
+<div class="viewcode-block" id="nic_s"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.nic_s">[docs]</a><span class="k">def</span> <span class="nf">nic_s</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Obtain NIC supplement bit, TC=31 message</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: NICs number (0 or 1)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tc</span> <span class="o">!=</span> <span class="mi">31</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: Not a status operation message, expecting TC = 31&quot;</span> <span class="o">%</span> <span class="n">msg</span>
+        <span class="p">)</span>
+
+    <span class="n">msgbin</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">nic_s</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">msgbin</span><span class="p">[</span><span class="mi">75</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">nic_s</span></div>
+
+
+<div class="viewcode-block" id="nic_a_c"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.nic_a_c">[docs]</a><span class="k">def</span> <span class="nf">nic_a_c</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Obtain NICa/c, navigation integrity category supplements a and c</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (int, int): NICa and NICc number (0 or 1)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tc</span> <span class="o">!=</span> <span class="mi">31</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: Not a status operation message, expecting TC = 31&quot;</span> <span class="o">%</span> <span class="n">msg</span>
+        <span class="p">)</span>
+
+    <span class="n">msgbin</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">nic_a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">msgbin</span><span class="p">[</span><span class="mi">75</span><span class="p">])</span>
+    <span class="n">nic_c</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">msgbin</span><span class="p">[</span><span class="mi">51</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">nic_a</span><span class="p">,</span> <span class="n">nic_c</span></div>
+
+
+<div class="viewcode-block" id="nic_b"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.nic_b">[docs]</a><span class="k">def</span> <span class="nf">nic_b</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Obtain NICb, navigation integrity category supplement-b</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: NICb number (0 or 1)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tc</span> <span class="o">&lt;</span> <span class="mi">9</span> <span class="ow">or</span> <span class="n">tc</span> <span class="o">&gt;</span> <span class="mi">18</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: Not a airborne position message, expecting 8&lt;TC&lt;19&quot;</span> <span class="o">%</span> <span class="n">msg</span>
+        <span class="p">)</span>
+
+    <span class="n">msgbin</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">nic_b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">msgbin</span><span class="p">[</span><span class="mi">39</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">nic_b</span></div>
+
+
+<div class="viewcode-block" id="nac_p"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.nac_p">[docs]</a><span class="k">def</span> <span class="nf">nac_p</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate NACp, Navigation Accuracy Category - Position</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string, TC = 29 or 31</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int or string: 95% horizontal accuracy bounds, Estimated Position Uncertainty</span>
+<span class="sd">        int or string: 95% vertical accuracy bounds, Vertical Estimated Position Uncertainty</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">29</span><span class="p">,</span> <span class="mi">31</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: Not a target state and status message, </span><span class="se">\</span>
+<span class="s2">                           or operation status message, expecting TC = 29 or 31&quot;</span>
+            <span class="o">%</span> <span class="n">msg</span>
+        <span class="p">)</span>
+
+    <span class="n">msgbin</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tc</span> <span class="o">==</span> <span class="mi">29</span><span class="p">:</span>
+        <span class="n">NACp</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">msgbin</span><span class="p">[</span><span class="mi">71</span><span class="p">:</span><span class="mi">75</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">tc</span> <span class="o">==</span> <span class="mi">31</span><span class="p">:</span>
+        <span class="n">NACp</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">msgbin</span><span class="p">[</span><span class="mi">76</span><span class="p">:</span><span class="mi">80</span><span class="p">])</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">EPU</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NACp</span><span class="p">[</span><span class="n">NACp</span><span class="p">][</span><span class="s2">&quot;EPU&quot;</span><span class="p">]</span>
+        <span class="n">VEPU</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NACp</span><span class="p">[</span><span class="n">NACp</span><span class="p">][</span><span class="s2">&quot;VEPU&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">EPU</span><span class="p">,</span> <span class="n">VEPU</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span>
+
+    <span class="k">return</span> <span class="n">EPU</span><span class="p">,</span> <span class="n">VEPU</span></div>
+
+
+<div class="viewcode-block" id="nac_v"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.nac_v">[docs]</a><span class="k">def</span> <span class="nf">nac_v</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate NACv, Navigation Accuracy Category - Velocity</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string, TC = 19</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int or string: 95% horizontal accuracy bounds for velocity, Horizontal Figure of Merit</span>
+<span class="sd">        int or string: 95% vertical accuracy bounds for velocity, Vertical Figure of Merit</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tc</span> <span class="o">!=</span> <span class="mi">19</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: Not an airborne velocity message, expecting TC = 19&quot;</span> <span class="o">%</span> <span class="n">msg</span>
+        <span class="p">)</span>
+
+    <span class="n">msgbin</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">NACv</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">msgbin</span><span class="p">[</span><span class="mi">42</span><span class="p">:</span><span class="mi">45</span><span class="p">])</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">HFOMr</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NACv</span><span class="p">[</span><span class="n">NACv</span><span class="p">][</span><span class="s2">&quot;HFOMr&quot;</span><span class="p">]</span>
+        <span class="n">VFOMr</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NACv</span><span class="p">[</span><span class="n">NACv</span><span class="p">][</span><span class="s2">&quot;VFOMr&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">HFOMr</span><span class="p">,</span> <span class="n">VFOMr</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span>
+
+    <span class="k">return</span> <span class="n">HFOMr</span><span class="p">,</span> <span class="n">VFOMr</span></div>
+
+
+<div class="viewcode-block" id="sil"><a class="viewcode-back" href="../../../pyModeS.decoder.adsb.html#pyModeS.decoder.adsb.sil">[docs]</a><span class="k">def</span> <span class="nf">sil</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">version</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate SIL, Surveillance Integrity Level</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string with TC = 29, 31</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int or string: Probability of exceeding Horizontal Radius of Containment RCu</span>
+<span class="sd">        int or string: Probability of exceeding Vertical Integrity Containment Region VPL</span>
+<span class="sd">        string: SIL supplement based on per &quot;hour&quot; or &quot;sample&quot;, or &#39;unknown&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">29</span><span class="p">,</span> <span class="mi">31</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: Not a target state and status message, </span><span class="se">\</span>
+<span class="s2">                           or operation status message, expecting TC = 29 or 31&quot;</span>
+            <span class="o">%</span> <span class="n">msg</span>
+        <span class="p">)</span>
+
+    <span class="n">msgbin</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tc</span> <span class="o">==</span> <span class="mi">29</span><span class="p">:</span>
+        <span class="n">SIL</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">msgbin</span><span class="p">[</span><span class="mi">76</span><span class="p">:</span><span class="mi">78</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">tc</span> <span class="o">==</span> <span class="mi">31</span><span class="p">:</span>
+        <span class="n">SIL</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">msgbin</span><span class="p">[</span><span class="mi">82</span><span class="p">:</span><span class="mi">84</span><span class="p">])</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">PE_RCu</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">SIL</span><span class="p">[</span><span class="n">SIL</span><span class="p">][</span><span class="s2">&quot;PE_RCu&quot;</span><span class="p">]</span>
+        <span class="n">PE_VPL</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">SIL</span><span class="p">[</span><span class="n">SIL</span><span class="p">][</span><span class="s2">&quot;PE_VPL&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">PE_RCu</span><span class="p">,</span> <span class="n">PE_VPL</span> <span class="o">=</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">uncertainty</span><span class="o">.</span><span class="n">NA</span>
+
+    <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;unknown&quot;</span>
+
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">tc</span> <span class="o">==</span> <span class="mi">29</span><span class="p">:</span>
+            <span class="n">SIL_SUP</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">msgbin</span><span class="p">[</span><span class="mi">39</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">tc</span> <span class="o">==</span> <span class="mi">31</span><span class="p">:</span>
+            <span class="n">SIL_SUP</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">msgbin</span><span class="p">[</span><span class="mi">86</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">SIL_SUP</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;hour&quot;</span>
+        <span class="k">elif</span> <span class="n">SIL_SUP</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;sample&quot;</span>
+
+    <span class="k">return</span> <span class="n">PE_RCu</span><span class="p">,</span> <span class="n">PE_VPL</span><span class="p">,</span> <span class="n">base</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Junzi Sun.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

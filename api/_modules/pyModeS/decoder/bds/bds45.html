@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyModeS.decoder.bds.bds45 &mdash; pyModeS  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="pyModeS  documentation" href="../../../../index.html"/>
+        <link rel="up" title="pyModeS.decoder.bds" href="../bds.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> pyModeS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Core modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.adsb.html">pyModeS.decoder.adsb module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.commb.html">pyModeS.decoder.commb module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ADS-B messages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds05.html">pyModeS.decoder.bds.bds05 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds06.html">pyModeS.decoder.bds.bds06 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds08.html">pyModeS.decoder.bds.bds08 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds09.html">pyModeS.decoder.bds.bds09 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ELS - elementary surveillance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds10.html">pyModeS.decoder.bds.bds10 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds17.html">pyModeS.decoder.bds.bds17 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds20.html">pyModeS.decoder.bds.bds20 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds30.html">pyModeS.decoder.bds.bds30 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">EHS - enhanced surveillance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds40.html">pyModeS.decoder.bds.bds40 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds50.html">pyModeS.decoder.bds.bds50 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds60.html">pyModeS.decoder.bds.bds60 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MRAR / MHR</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds44.html">pyModeS.decoder.bds.bds44 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pyModeS.decoder.bds.bds45.html">pyModeS.decoder.bds.bds45 module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pyModeS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../decoder.html">pyModeS.decoder</a> &raquo;</li>
+        
+          <li><a href="../bds.html">pyModeS.decoder.bds</a> &raquo;</li>
+        
+      <li>pyModeS.decoder.bds.bds45</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyModeS.decoder.bds.bds45</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ------------------------------------------</span>
+<span class="c1"># BDS 4,5</span>
+<span class="c1"># Meteorological hazard report</span>
+<span class="c1"># ------------------------------------------</span>
+
+<span class="kn">from</span> <span class="nn">pyModeS</span> <span class="kn">import</span> <span class="n">common</span>
+
+
+<div class="viewcode-block" id="is45"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds45.html#pyModeS.decoder.bds.bds45.is45">[docs]</a><span class="k">def</span> <span class="nf">is45</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check if a message is likely to be BDS code 4,5.</span>
+
+<span class="sd">    Meteorological hazard report</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True or False</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">allzeros</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+
+    <span class="c1"># status bit 1, 4, 7, 10, 13, 16, 27, 39</span>
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">wrongstatus</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">wrongstatus</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">wrongstatus</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">wrongstatus</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">wrongstatus</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">wrongstatus</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">26</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">wrongstatus</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">38</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">wrongstatus</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">51</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="c1"># reserved</span>
+    <span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">51</span><span class="p">:</span><span class="mi">56</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">temp45</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">temp</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">temp</span> <span class="o">&gt;</span> <span class="mi">60</span> <span class="ow">or</span> <span class="n">temp</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">80</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="turb45"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds45.html#pyModeS.decoder.bds.bds45.turb45">[docs]</a><span class="k">def</span> <span class="nf">turb45</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Turbulence.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: Turbulence level. 0=NIL, 1=Light, 2=Moderate, 3=Severe</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">turb</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">turb</span></div>
+
+
+<div class="viewcode-block" id="ws45"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds45.html#pyModeS.decoder.bds.bds45.ws45">[docs]</a><span class="k">def</span> <span class="nf">ws45</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Wind shear.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: Wind shear level. 0=NIL, 1=Light, 2=Moderate, 3=Severe</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">ws</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">ws</span></div>
+
+
+<div class="viewcode-block" id="mb45"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds45.html#pyModeS.decoder.bds.bds45.mb45">[docs]</a><span class="k">def</span> <span class="nf">mb45</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Microburst.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: Microburst level. 0=NIL, 1=Light, 2=Moderate, 3=Severe</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">mb</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">9</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">mb</span></div>
+
+
+<div class="viewcode-block" id="ic45"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds45.html#pyModeS.decoder.bds.bds45.ic45">[docs]</a><span class="k">def</span> <span class="nf">ic45</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Icing.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: Icing level. 0=NIL, 1=Light, 2=Moderate, 3=Severe</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">ic</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">12</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">ic</span></div>
+
+
+<div class="viewcode-block" id="wv45"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds45.html#pyModeS.decoder.bds.bds45.wv45">[docs]</a><span class="k">def</span> <span class="nf">wv45</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Wake vortex.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: Wake vortex level. 0=NIL, 1=Light, 2=Moderate, 3=Severe</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">ws</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">15</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">ws</span></div>
+
+
+<div class="viewcode-block" id="temp45"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds45.html#pyModeS.decoder.bds.bds45.temp45">[docs]</a><span class="k">def</span> <span class="nf">temp45</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Static air temperature.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: tmeperature in Celsius degree</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+
+    <span class="n">sign</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">16</span><span class="p">])</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">17</span><span class="p">:</span><span class="mi">26</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">sign</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="o">-</span> <span class="mi">512</span>
+
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">value</span> <span class="o">*</span> <span class="mf">0.25</span>  <span class="c1"># celsius</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">temp</span></div>
+
+
+<div class="viewcode-block" id="p45"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds45.html#pyModeS.decoder.bds.bds45.p45">[docs]</a><span class="k">def</span> <span class="nf">p45</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Average static pressure.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: static pressure in hPa</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">26</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">27</span><span class="p">:</span><span class="mi">38</span><span class="p">])</span>  <span class="c1"># hPa</span>
+    <span class="k">return</span> <span class="n">p</span></div>
+
+
+<div class="viewcode-block" id="rh45"><a class="viewcode-back" href="../../../../pyModeS.decoder.bds.bds45.html#pyModeS.decoder.bds.bds45.rh45">[docs]</a><span class="k">def</span> <span class="nf">rh45</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Radio height.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg (str): 28 hexdigits string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: radio height in ft</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">hex2bin</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">38</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">rh</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">bin2int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">39</span><span class="p">:</span><span class="mi">51</span><span class="p">])</span> <span class="o">*</span> <span class="mi">16</span>
+    <span class="k">return</span> <span class="n">rh</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Junzi Sun.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

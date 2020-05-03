@@ -1,0 +1,612 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyModeS.decoder.adsb module &mdash; pyModeS  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="pyModeS  documentation" href="index.html"/>
+        <link rel="next" title="pyModeS.decoder.commb module" href="pyModeS.decoder.commb.html"/>
+        <link rel="prev" title="Welcome to pyModeS documentation!" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyModeS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Core modules</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pyModeS.decoder.adsb module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyModeS.decoder.commb.html">pyModeS.decoder.commb module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ADS-B messages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyModeS.decoder.bds.bds05.html">pyModeS.decoder.bds.bds05 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyModeS.decoder.bds.bds06.html">pyModeS.decoder.bds.bds06 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyModeS.decoder.bds.bds08.html">pyModeS.decoder.bds.bds08 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyModeS.decoder.bds.bds09.html">pyModeS.decoder.bds.bds09 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ELS - elementary surveillance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyModeS.decoder.bds.bds10.html">pyModeS.decoder.bds.bds10 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyModeS.decoder.bds.bds17.html">pyModeS.decoder.bds.bds17 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyModeS.decoder.bds.bds20.html">pyModeS.decoder.bds.bds20 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyModeS.decoder.bds.bds30.html">pyModeS.decoder.bds.bds30 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">EHS - enhanced surveillance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyModeS.decoder.bds.bds40.html">pyModeS.decoder.bds.bds40 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyModeS.decoder.bds.bds50.html">pyModeS.decoder.bds.bds50 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyModeS.decoder.bds.bds60.html">pyModeS.decoder.bds.bds60 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MRAR / MHR</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyModeS.decoder.bds.bds44.html">pyModeS.decoder.bds.bds44 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyModeS.decoder.bds.bds45.html">pyModeS.decoder.bds.bds45 module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyModeS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>pyModeS.decoder.adsb module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pyModeS.decoder.adsb.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyModeS.decoder.adsb">
+<span id="pymodes-decoder-adsb-module"></span><h1>pyModeS.decoder.adsb module<a class="headerlink" href="#module-pyModeS.decoder.adsb" title="Permalink to this headline">¶</a></h1>
+<p>ADS-B module.</p>
+<p>The ADS-B module also imports functions from the following modules:</p>
+<ul class="simple">
+<li><p>pyModeS.decoder.bds.bds05: <code class="docutils literal notranslate"><span class="pre">airborne_position()</span></code>, <code class="docutils literal notranslate"><span class="pre">airborne_position_with_ref()</span></code>, <code class="docutils literal notranslate"><span class="pre">altitude()</span></code></p></li>
+<li><p>pyModeS.decoder.bds.bds06: <code class="docutils literal notranslate"><span class="pre">surface_position()</span></code>, <code class="docutils literal notranslate"><span class="pre">surface_position_with_ref()</span></code>, <code class="docutils literal notranslate"><span class="pre">surface_velocity()</span></code></p></li>
+<li><p>pyModeS.decoder.bds.bds08: <code class="docutils literal notranslate"><span class="pre">category()</span></code>, <code class="docutils literal notranslate"><span class="pre">callsign()</span></code></p></li>
+<li><p>pyModeS.decoder.bds.bds09: <code class="docutils literal notranslate"><span class="pre">airborne_velocity()</span></code>, <code class="docutils literal notranslate"><span class="pre">altitude_diff()</span></code></p></li>
+</ul>
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.altitude">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">altitude</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#altitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.altitude" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode aircraft altitude.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – 28 hexdigits string</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>altitude in feet</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.df">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">df</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#df"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.df" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.icao">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">icao</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#icao"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.icao" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.nac_p">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">nac_p</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#nac_p"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.nac_p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate NACp, Navigation Accuracy Category - Position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – 28 hexdigits string, TC = 29 or 31</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>95% horizontal accuracy bounds, Estimated Position Uncertainty
+int or string: 95% vertical accuracy bounds, Vertical Estimated Position Uncertainty</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.nac_v">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">nac_v</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#nac_v"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.nac_v" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate NACv, Navigation Accuracy Category - Velocity</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – 28 hexdigits string, TC = 19</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>95% horizontal accuracy bounds for velocity, Horizontal Figure of Merit
+int or string: 95% vertical accuracy bounds for velocity, Vertical Figure of Merit</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.nic_a_c">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">nic_a_c</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#nic_a_c"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.nic_a_c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtain NICa/c, navigation integrity category supplements a and c</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – 28 hexdigits string</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>NICa and NICc number (0 or 1)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(int, int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.nic_b">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">nic_b</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#nic_b"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.nic_b" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtain NICb, navigation integrity category supplement-b</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – 28 hexdigits string</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>NICb number (0 or 1)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.nic_s">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">nic_s</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#nic_s"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.nic_s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtain NIC supplement bit, TC=31 message</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – 28 hexdigits string</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>NICs number (0 or 1)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.nic_v1">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">nic_v1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="n">NICs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#nic_v1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.nic_v1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate NIC, navigation integrity category, for ADS-B version 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> (<em>str</em>) – 28 hexdigits string</p></li>
+<li><p><strong>NICs</strong> (<em>int</em><em> or </em><em>string</em>) – NIC supplement</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Horizontal Radius of Containment
+int or string: Vertical Protection Limit</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.nic_v2">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">nic_v2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="n">NICa</span></em>, <em class="sig-param"><span class="n">NICbc</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#nic_v2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.nic_v2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate NIC, navigation integrity category, for ADS-B version 2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> (<em>str</em>) – 28 hexdigits string</p></li>
+<li><p><strong>NICa</strong> (<em>int</em><em> or </em><em>string</em>) – NIC supplement - A</p></li>
+<li><p><strong>NICbc</strong> (<em>int</em><em> or </em><em>srting</em>) – NIC supplement - B or C</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Horizontal Radius of Containment</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.nuc_p">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">nuc_p</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#nuc_p"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.nuc_p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate NUCp, Navigation Uncertainty Category - Position (ADS-B version 1)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – 28 hexdigits string,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Horizontal Protection Limit
+int: 95% Containment Radius - Horizontal (meters)
+int: 95% Containment Radius - Vertical (meters)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.nuc_v">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">nuc_v</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#nuc_v"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.nuc_v" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate NUCv, Navigation Uncertainty Category - Velocity (ADS-B version 1)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – 28 hexdigits string,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>95% Horizontal Velocity Error
+int or string: 95% Vertical Velocity Error</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.oe_flag">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">oe_flag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#oe_flag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.oe_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the odd/even flag. Bit 54, 0 for even, 1 for odd.
+:param msg: 28 hexdigits string
+:type msg: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>0 or 1, for even or odd frame</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.position">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">position</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg0</span></em>, <em class="sig-param"><span class="n">msg1</span></em>, <em class="sig-param"><span class="n">t0</span></em>, <em class="sig-param"><span class="n">t1</span></em>, <em class="sig-param"><span class="n">lat_ref</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">lon_ref</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode surface or airborne position from a pair of even and odd
+position messages.</p>
+<p>Note, that to decode surface position using the position message pair,
+the reference position has to be provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg0</strong> (<em>string</em>) – even message (28 hexdigits)</p></li>
+<li><p><strong>msg1</strong> (<em>string</em>) – odd message (28 hexdigits)</p></li>
+<li><p><strong>t0</strong> (<em>int</em>) – timestamps for the even message</p></li>
+<li><p><strong>t1</strong> (<em>int</em>) – timestamps for the odd message</p></li>
+<li><p><strong>lat_ref</strong> (<em>float</em>) – latitude of reference position</p></li>
+<li><p><strong>lon_ref</strong> (<em>float</em>) – longitude of reference position</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(latitude, longitude) of the aircraft</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(float, float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.position_with_ref">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">position_with_ref</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="n">lat_ref</span></em>, <em class="sig-param"><span class="n">lon_ref</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#position_with_ref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.position_with_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode position with only one message.</p>
+<p>A reference position is required, which can be previously
+calculated location, ground station, or airport location.
+The function works with both airborne and surface position messages.
+The reference position shall be with in 180NM (airborne) or 45NM (surface)
+of the true position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> (<em>str</em>) – even message (28 hexdigits)</p></li>
+<li><p><strong>lat_ref</strong> – previous known latitude</p></li>
+<li><p><strong>lon_ref</strong> – previous known longitude</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(latitude, longitude) of the aircraft</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(float, float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.sil">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">sil</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="n">version</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#sil"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.sil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate SIL, Surveillance Integrity Level</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – 28 hexdigits string with TC = 29, 31</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Probability of exceeding Horizontal Radius of Containment RCu
+int or string: Probability of exceeding Vertical Integrity Containment Region VPL
+string: SIL supplement based on per “hour” or “sample”, or ‘unknown’</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.speed_heading">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">speed_heading</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#speed_heading"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.speed_heading" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get speed and ground track (or heading) from the velocity message
+(handles both airborne or surface message)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – 28 hexdigits string</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>speed (kt), ground track or heading (degree)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(int, float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.typecode">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">typecode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#typecode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.typecode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.velocity">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">velocity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="n">source</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#velocity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the speed, heading, and vertical rate (handles both airborne or surface message).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> (<em>str</em>) – 28 hexdigits string</p></li>
+<li><p><strong>source</strong> (<em>boolean</em>) – Include direction and vertical rate sources in return. Default to False.
+If set to True, the function will return six value instead of four.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Four or six parameters, including:</dt><dd><ul class="simple">
+<li><p>Speed (kt)</p></li>
+<li><p>Angle (degree), either ground track or heading</p></li>
+<li><p>Vertical rate (ft/min)</p></li>
+<li><p>Speed type (‘GS’ for ground speed, ‘AS’ for airspeed)</p></li>
+<li><p>[Optional] Direction source (‘TRUE_NORTH’ or ‘MAGENTIC_NORTH’)</p></li>
+<li><p>[Optional] Vertical rate source (‘BARO’ or ‘GNSS’)</p></li>
+</ul>
+</dd>
+</dl>
+<p>For surface messages, vertical rate and its respective sources are set to None.</p>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int, float, int, string, [string], [string]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyModeS.decoder.adsb.version">
+<code class="sig-prename descclassname">pyModeS.decoder.adsb.</code><code class="sig-name descname">version</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyModeS/decoder/adsb.html#version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyModeS.decoder.adsb.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>ADS-B Version</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – 28 hexdigits string, TC = 31</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>version number</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyModeS.decoder.commb.html" class="btn btn-neutral float-right" title="pyModeS.decoder.commb module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to pyModeS documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Junzi Sun.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

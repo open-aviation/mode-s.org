@@ -1,0 +1,526 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyModeS.streamer.decode &mdash; pyModeS  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="pyModeS  documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> pyModeS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Core modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.adsb.html">pyModeS.decoder.adsb module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.commb.html">pyModeS.decoder.commb module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ADS-B messages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds05.html">pyModeS.decoder.bds.bds05 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds06.html">pyModeS.decoder.bds.bds06 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds08.html">pyModeS.decoder.bds.bds08 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds09.html">pyModeS.decoder.bds.bds09 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ELS - elementary surveillance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds10.html">pyModeS.decoder.bds.bds10 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds17.html">pyModeS.decoder.bds.bds17 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds20.html">pyModeS.decoder.bds.bds20 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds30.html">pyModeS.decoder.bds.bds30 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">EHS - enhanced surveillance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds40.html">pyModeS.decoder.bds.bds40 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds50.html">pyModeS.decoder.bds.bds50 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds60.html">pyModeS.decoder.bds.bds60 module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MRAR / MHR</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds44.html">pyModeS.decoder.bds.bds44 module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyModeS.decoder.bds.bds45.html">pyModeS.decoder.bds.bds45 module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyModeS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pyModeS.streamer.decode</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyModeS.streamer.decode</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">pyModeS</span> <span class="k">as</span> <span class="nn">pms</span>
+
+
+<div class="viewcode-block" id="Decode"><a class="viewcode-back" href="../../../pyModeS.streamer.decode.html#pyModeS.streamer.decode.Decode">[docs]</a><span class="k">class</span> <span class="nc">Decode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latlon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dumpto</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">acs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">latlon</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lat0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">latlon</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lon0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">latlon</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lat0</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lon0</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache_timeout</span> <span class="o">=</span> <span class="mi">60</span>  <span class="c1"># seconds</span>
+
+        <span class="k">if</span> <span class="n">dumpto</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">dumpto</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dumpto</span> <span class="o">=</span> <span class="n">dumpto</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dumpto</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Decode.process_raw"><a class="viewcode-back" href="../../../pyModeS.streamer.decode.html#pyModeS.streamer.decode.Decode.process_raw">[docs]</a>    <span class="k">def</span> <span class="nf">process_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adsb_ts</span><span class="p">,</span> <span class="n">adsb_msg</span><span class="p">,</span> <span class="n">commb_ts</span><span class="p">,</span> <span class="n">commb_msg</span><span class="p">,</span> <span class="n">tnow</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;process a chunk of adsb and commb messages received in the same</span>
+<span class="sd">        time period.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">tnow</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">tnow</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">tnow</span>
+
+        <span class="n">local_updated_acs_buffer</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">output_buffer</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># process adsb message</span>
+        <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">msg</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">adsb_ts</span><span class="p">,</span> <span class="n">adsb_msg</span><span class="p">):</span>
+            <span class="n">icao</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">icao</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">tc</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">typecode</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">icao</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;live&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;call&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;alt&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;gs&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;trk&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;roc&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;tas&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;roll&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;rtrk&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;ias&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;mach&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;hdg&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;ver&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;HPL&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;RCu&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;RCv&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;HVE&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;VVE&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;Rc&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;VPL&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;EPU&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;VEPU&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;HFOMr&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;VFOMr&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;PE_RCu&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;PE_VPL&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="p">}</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;t&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;live&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="n">cs</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">callsign</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;call&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cs</span>
+                <span class="n">output_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">icao</span><span class="p">,</span> <span class="s2">&quot;cs&quot;</span><span class="p">,</span> <span class="n">cs</span><span class="p">])</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="mi">5</span> <span class="o">&lt;=</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">tc</span> <span class="o">==</span> <span class="mi">19</span><span class="p">):</span>
+                <span class="n">vdata</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">velocity</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">vdata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="n">spd</span><span class="p">,</span> <span class="n">trk</span><span class="p">,</span> <span class="n">roc</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">vdata</span>
+                <span class="k">if</span> <span class="n">tag</span> <span class="o">!=</span> <span class="s2">&quot;GS&quot;</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">spd</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">trk</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+                    <span class="k">continue</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;gs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spd</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;trk&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trk</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;roc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">roc</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;tv&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
+
+                <span class="n">output_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">icao</span><span class="p">,</span> <span class="s2">&quot;gs&quot;</span><span class="p">,</span> <span class="n">spd</span><span class="p">])</span>
+                <span class="n">output_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">icao</span><span class="p">,</span> <span class="s2">&quot;trk&quot;</span><span class="p">,</span> <span class="n">trk</span><span class="p">])</span>
+                <span class="n">output_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">icao</span><span class="p">,</span> <span class="s2">&quot;roc&quot;</span><span class="p">,</span> <span class="n">roc</span><span class="p">])</span>
+
+            <span class="k">if</span> <span class="mi">5</span> <span class="o">&lt;=</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="mi">18</span><span class="p">:</span>
+                <span class="n">oe</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">oe_flag</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="n">oe</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;t&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">oe</span><span class="p">)]</span> <span class="o">=</span> <span class="n">t</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;tpos&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">])</span> <span class="ow">and</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;tpos&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">180</span><span class="p">):</span>
+                    <span class="c1"># use single message decoding</span>
+                    <span class="n">rlat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;lat&quot;</span><span class="p">]</span>
+                    <span class="n">rlon</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;lon&quot;</span><span class="p">]</span>
+                    <span class="n">latlon</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">position_with_ref</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">rlat</span><span class="p">,</span> <span class="n">rlon</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="p">(</span>
+                    <span class="p">(</span><span class="s2">&quot;t0&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">])</span>
+                    <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;t1&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">])</span>
+                    <span class="ow">and</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;t0&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;t1&quot;</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>
+                <span class="p">):</span>
+                    <span class="c1"># use multi message decoding</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">latlon</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">position</span><span class="p">(</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;t0&quot;</span><span class="p">],</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;t1&quot;</span><span class="p">],</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">lat0</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">lon0</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="k">except</span><span class="p">:</span>
+                        <span class="c1"># mix of surface and airborne position message</span>
+                        <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">latlon</span> <span class="o">=</span> <span class="kc">None</span>
+
+                <span class="k">if</span> <span class="n">latlon</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;tpos&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;lat&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">latlon</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;lon&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">latlon</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+                    <span class="n">alt</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">altitude</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;alt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">alt</span>
+
+                    <span class="n">output_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">icao</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="n">latlon</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+                    <span class="n">output_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">icao</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">,</span> <span class="n">latlon</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+                    <span class="n">output_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">icao</span><span class="p">,</span> <span class="s2">&quot;alt&quot;</span><span class="p">,</span> <span class="n">alt</span><span class="p">])</span>
+
+                    <span class="n">local_updated_acs_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">icao</span><span class="p">)</span>
+
+            <span class="c1"># Uncertainty &amp; accuracy</span>
+            <span class="n">ac</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="mi">9</span> <span class="o">&lt;=</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="mi">18</span><span class="p">:</span>
+                <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;nic_bc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">nic_b</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="mi">5</span> <span class="o">&lt;=</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="mi">9</span> <span class="o">&lt;=</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="mi">18</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="mi">20</span> <span class="o">&lt;=</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="mi">22</span><span class="p">):</span>
+                <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;HPL&quot;</span><span class="p">],</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;RCu&quot;</span><span class="p">],</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;RCv&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">nuc_p</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">ac</span><span class="p">[</span><span class="s2">&quot;ver&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;nic_s&quot;</span> <span class="ow">in</span> <span class="n">ac</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+                    <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;Rc&quot;</span><span class="p">],</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;VPL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">nic_v1</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;nic_s&quot;</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="p">(</span>
+                    <span class="p">(</span><span class="n">ac</span><span class="p">[</span><span class="s2">&quot;ver&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;nic_a&quot;</span> <span class="ow">in</span> <span class="n">ac</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                    <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;nic_bc&quot;</span> <span class="ow">in</span> <span class="n">ac</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                <span class="p">):</span>
+                    <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;Rc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">nic_v2</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;nic_a&quot;</span><span class="p">],</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;nic_bc&quot;</span><span class="p">])</span>
+
+            <span class="k">if</span> <span class="n">tc</span> <span class="o">==</span> <span class="mi">19</span><span class="p">:</span>
+                <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;HVE&quot;</span><span class="p">],</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;VVE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">nuc_v</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;ver&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>
+                    <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;HFOMr&quot;</span><span class="p">],</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;VFOMr&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">nac_v</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">tc</span> <span class="o">==</span> <span class="mi">29</span><span class="p">:</span>
+                <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;PE_RCu&quot;</span><span class="p">],</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;PE_VPL&quot;</span><span class="p">],</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;base&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">sil</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;ver&quot;</span><span class="p">])</span>
+                <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;EPU&quot;</span><span class="p">],</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;VEPU&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">nac_p</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">tc</span> <span class="o">==</span> <span class="mi">31</span><span class="p">:</span>
+                <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;ver&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">version</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;EPU&quot;</span><span class="p">],</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;VEPU&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">nac_p</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;PE_RCu&quot;</span><span class="p">],</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;PE_VPL&quot;</span><span class="p">],</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;sil_base&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">sil</span><span class="p">(</span>
+                    <span class="n">msg</span><span class="p">,</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;ver&quot;</span><span class="p">]</span>
+                <span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;ver&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;nic_s&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">nic_s</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;ver&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;nic_a&quot;</span><span class="p">],</span> <span class="n">ac</span><span class="p">[</span><span class="s2">&quot;nic_bc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">adsb</span><span class="o">.</span><span class="n">nic_a_c</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="c1"># process commb message</span>
+        <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">msg</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">commb_ts</span><span class="p">,</span> <span class="n">commb_msg</span><span class="p">):</span>
+            <span class="n">icao</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">icao</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">icao</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;live&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+            <span class="n">bds</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">bds</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">bds</span> <span class="o">==</span> <span class="s2">&quot;BDS50&quot;</span><span class="p">:</span>
+                <span class="n">roll50</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">commb</span><span class="o">.</span><span class="n">roll50</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">trk50</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">commb</span><span class="o">.</span><span class="n">trk50</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">rtrk50</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">commb</span><span class="o">.</span><span class="n">rtrk50</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">gs50</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">commb</span><span class="o">.</span><span class="n">gs50</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">tas50</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">commb</span><span class="o">.</span><span class="n">tas50</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;t50&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
+                <span class="k">if</span> <span class="n">tas50</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;tas&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tas50</span>
+                    <span class="n">output_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">icao</span><span class="p">,</span> <span class="s2">&quot;tas50&quot;</span><span class="p">,</span> <span class="n">tas50</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">roll50</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;roll&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">roll50</span>
+                    <span class="n">output_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">icao</span><span class="p">,</span> <span class="s2">&quot;roll50&quot;</span><span class="p">,</span> <span class="n">roll50</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">rtrk50</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;rtrk&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rtrk50</span>
+                    <span class="n">output_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">icao</span><span class="p">,</span> <span class="s2">&quot;rtrk50&quot;</span><span class="p">,</span> <span class="n">rtrk50</span><span class="p">])</span>
+
+                <span class="k">if</span> <span class="n">trk50</span><span class="p">:</span>
+                    <span class="n">output_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">icao</span><span class="p">,</span> <span class="s2">&quot;trk50&quot;</span><span class="p">,</span> <span class="n">trk50</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">gs50</span><span class="p">:</span>
+                    <span class="n">output_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">icao</span><span class="p">,</span> <span class="s2">&quot;gs50&quot;</span><span class="p">,</span> <span class="n">gs50</span><span class="p">])</span>
+
+            <span class="k">elif</span> <span class="n">bds</span> <span class="o">==</span> <span class="s2">&quot;BDS60&quot;</span><span class="p">:</span>
+                <span class="n">ias60</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">commb</span><span class="o">.</span><span class="n">ias60</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">hdg60</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">commb</span><span class="o">.</span><span class="n">hdg60</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">mach60</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">commb</span><span class="o">.</span><span class="n">mach60</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">roc60baro</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">commb</span><span class="o">.</span><span class="n">vr60baro</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">roc60ins</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">commb</span><span class="o">.</span><span class="n">vr60ins</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">ias60</span> <span class="ow">or</span> <span class="n">hdg60</span> <span class="ow">or</span> <span class="n">mach60</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;t60&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
+                <span class="k">if</span> <span class="n">ias60</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;ias&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ias60</span>
+                <span class="k">if</span> <span class="n">hdg60</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;hdg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hdg60</span>
+                <span class="k">if</span> <span class="n">mach60</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;mach&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mach60</span>
+
+                <span class="k">if</span> <span class="n">roc60baro</span><span class="p">:</span>
+                    <span class="n">output_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">icao</span><span class="p">,</span> <span class="s2">&quot;roc60baro&quot;</span><span class="p">,</span> <span class="n">roc60baro</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">roc60ins</span><span class="p">:</span>
+                    <span class="n">output_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">icao</span><span class="p">,</span> <span class="s2">&quot;roc60ins&quot;</span><span class="p">,</span> <span class="n">roc60ins</span><span class="p">])</span>
+
+        <span class="c1"># clear up old data</span>
+        <span class="k">for</span> <span class="n">icao</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">][</span><span class="s2">&quot;live&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache_timeout</span><span class="p">:</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">acs</span><span class="p">[</span><span class="n">icao</span><span class="p">]</span>
+                <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dumpto</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dh</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">_%H&quot;</span><span class="p">))</span>
+            <span class="n">fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dumpto</span> <span class="o">+</span> <span class="s2">&quot;/pymodes_dump_</span><span class="si">%s</span><span class="s2">.csv&quot;</span> <span class="o">%</span> <span class="n">dh</span>
+            <span class="n">output_buffer</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                <span class="n">writer</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">output_buffer</span><span class="p">)</span>
+
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Decode.get_aircraft"><a class="viewcode-back" href="../../../pyModeS.streamer.decode.html#pyModeS.streamer.decode.Decode.get_aircraft">[docs]</a>    <span class="k">def</span> <span class="nf">get_aircraft</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;all aircraft that are stored in memory&quot;&quot;&quot;</span>
+        <span class="n">acs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acs</span>
+        <span class="k">return</span> <span class="n">acs</span></div>
+
+<div class="viewcode-block" id="Decode.run"><a class="viewcode-back" href="../../../pyModeS.streamer.decode.html#pyModeS.streamer.decode.Decode.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_pipe_out</span><span class="p">,</span> <span class="n">ac_pipe_in</span><span class="p">,</span> <span class="n">exception_queue</span><span class="p">):</span>
+        <span class="n">local_buffer</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">while</span> <span class="n">raw_pipe_out</span><span class="o">.</span><span class="n">poll</span><span class="p">():</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">raw_pipe_out</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+                    <span class="n">local_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">local_buffer</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">process_raw</span><span class="p">(</span>
+                        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;adsb_ts&quot;</span><span class="p">],</span>
+                        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;adsb_msg&quot;</span><span class="p">],</span>
+                        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;commb_ts&quot;</span><span class="p">],</span>
+                        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;commb_msg&quot;</span><span class="p">],</span>
+                    <span class="p">)</span>
+                <span class="n">local_buffer</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="n">acs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aircraft</span><span class="p">()</span>
+                <span class="n">ac_pipe_in</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">acs</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">tb</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()</span>
+                <span class="n">exception_queue</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">e</span><span class="p">,</span> <span class="n">tb</span><span class="p">))</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Junzi Sun.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
