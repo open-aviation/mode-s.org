@@ -63,7 +63,7 @@
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Preface</a></li>
+    <li><a href="../../index.html">Home</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -173,7 +173,7 @@
 <td style="text-align: left;">33-88</td>
 <td style="text-align: left;">56</td>
 <td style="text-align: left;">ME</td>
-<td style="text-align: left;">Payload message</td>
+<td style="text-align: left;">Message, extended squitter</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">(33-37)</td>
@@ -430,40 +430,40 @@ pms.tell(&quot;8D4840D6202CC371C32CE0576098&quot;)</code></pre>
 <p>For Target states and Operational status messages, when there is a change in some key parameters, the transmission is changed to a higher rate for approximately 24 seconds.</p>
 <h2 id="ads-b-versions">ADS-B versions</h2>
 <p>In this section, we are going to look into different versions and the evolution of ADS-B.</p>
-<p>Since start of ADS-B until now, there have been three different implementation versions. The major reason for these updates is to include more information (types of data) in ADS-B. The documentation available on these versions and differences is quite far from user friendly and generally presented in a very scattered fashion. Even the official <code>ICAO_9871</code> document is confusing to read. Here, I am going to put the pieces of scattered information together.</p>
-<p>There are three versions implemented so far, starting from version 0, then version 1 around 2008, and version 2 around 2012. Major changes in version 1 and version 2 are listed as follows:</p>
+<p>Since ADS-B was first introduced, there have been three different versions of implementations. The main reason for these updates is to include more information (types of data) in ADS-B. The documentation available on these versions and differences is quite far from user friendly. The official ICAO 9871 document <span class="citation" data-cites="icao9871v1"></span> is confusing to read. In this section, I have put the difference pieces of scattered information together.</p>
+<p>There are three versions implemented so far, starting from <code>version 0</code>. The <code>version 1</code> is introduced around 2008, and the <code>version 2</code> is introduced around 2012. Major changes in <code>version 1</code> and <code>version 2</code> are listed as follows:</p>
 <h3 id="from-version-0-to-1">From version 0 to 1</h3>
 <p>The changes introduced in version 1 are summarized as follows:</p>
 <ul>
 <li><p>Added Type Code 28 and 31 messages.</p>
 <ul>
-<li><p><code>TC=28</code>: Aircraft status - Emergency/priority status and ACAS RA Broadcast.</p></li>
-<li><p><code>TC=31</code>: Operational status.</p></li>
+<li><p>TC=28: Aircraft status - Emergency/priority status and ACAS RA Broadcast.</p></li>
+<li><p>TC=31: Operational status.</p></li>
 </ul></li>
 <li><p>Removed the <em>Navigational uncertainty categories</em> (NUC). Introduced the <em>Navigation integrity category</em> (NIC) and <em>Surveillance integrity level</em> (SIL).</p>
 <ul>
 <li><p>Type Code and a NIC Supplement bit (NICs) are used to define the NIC.</p></li>
-<li><p>NIC Supplement bit included in operation status message (<code>TC=31</code>).</p></li>
+<li><p>NIC Supplement bit included in operation status message (TC=31).</p></li>
 </ul></li>
-<li><p>The ADS-B version number is now indicated in operation status message (<code>TC=31</code>).</p></li>
+<li><p>The ADS-B version number is now indicated in operation status message (TC=31).</p></li>
 </ul>
 <h3 id="from-version-1-to-2">From version 1 to 2</h3>
 <p>The changes introduced in version 2 are summarized as follows:</p>
 <ul>
-<li><p>Re-defined the structure and content of <code>TC=28</code> and <code>TC=31</code> messages.</p></li>
+<li><p>Re-defined the structure and content of TC=28 and TC=31 messages.</p></li>
 <li><p>Introduced two additional NIC supplement bits.</p></li>
-<li><p><code>NICa</code> is defined in operational status messages. (<code>TC=31</code>)</p></li>
-<li><p><code>NICb</code> is defined in airborne position messages. (<code>TC=9-18</code>)</p></li>
-<li><p><code>NICc</code> is defined in operational status messages. (<code>TC=31</code>)</p></li>
-<li><p>Introduced an additional <em>Horizontal Containment Radius</em> (Rc) level within <code>NIC=6</code> of the airborne position message (<code>TC=13</code>).</p></li>
+<li><p><code>NICa</code> is defined in operational status messages. (TC=31)</p></li>
+<li><p><code>NICb</code> is defined in airborne position messages. (TC=9-18)</p></li>
+<li><p><code>NICc</code> is defined in operational status messages. (TC=31)</p></li>
+<li><p>Introduced an additional <em>Horizontal Containment Radius</em> (Rc) level within NIC=6 of the airborne position message (TC=13).</p></li>
 </ul>
 <h3 id="identification-of-the-ads-b-version">Identification of the ADS-B Version</h3>
 <p>There are two steps to check the ADS-B version. This is because ADS-B <code>Version 0</code> is not included in any message.</p>
 <ol>
-<li><p>Step 1: Check whether an aircraft is broadcasting ADS-B messages with <code>TC=31</code> at all. If no message is ever reported, it is safe to assume that the version is <code>Version 0</code>.</p></li>
-<li><p>Step 2: If messages with <code>TC=31</code> are received, check the version numbers located in the 41-43 bit of the payload (or 73-75 bit of the message).</p></li>
+<li><p>Step 1: Check whether an aircraft is broadcasting ADS-B messages with TC=31 at all. If no message is ever reported, it is safe to assume that the version is <code>Version 0</code>.</p></li>
+<li><p>Step 2: If messages with TC=31 are received, check the version numbers located in the bits 41-43 in ME (or bits 73-75 in the message).</p></li>
 </ol>
-<p>After identifying the correct ADS-B version for an aircraft (which does not change often), one can decode related <code>TC=28</code> and <code>TC=31</code> messages accordingly.</p>
+<p>After identifying the correct ADS-B version for an aircraft (which does not change often), one can decode related TC=28 and TC=31 messages accordingly.</p>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>

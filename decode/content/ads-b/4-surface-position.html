@@ -64,7 +64,7 @@
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Preface</a></li>
+    <li><a href="../../index.html">Home</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -108,7 +108,7 @@
 <li><a href="#movement">Movement</a></li>
 <li><a href="#ground-track">Ground track</a></li>
 <li><a href="#position">Position</a></li>
-<li><a href="#example">Example</a>
+<li><a href="#decoding-example">Decoding example</a>
 <ul>
 <li><a href="#globally-unambiguous-decoding">Globally unambiguous decoding</a></li>
 <li><a href="#locally-unambiguous-decoding">Locally unambiguous decoding</a></li>
@@ -130,7 +130,7 @@
 
 <h1 id="surface-position">Surface position</h1>
 <p>When an aircraft is on the ground, a different type of message is used to broadcast its position information. Unlike the airborne position message, the surface position message also includes the speed of the aircraft. Since no altitude information needs to be transmitted, this provides extra bits for extra information, such as speed and track angle.</p>
-<p>The surface position message has the Type Code from 5 to 8, which also represents the level of uncertainties in the position. And the structure of the surface position message payload is shown as follows:</p>
+<p>The surface position message has the Type Code from 5 to 8, which also represents the level of uncertainties in the position. And the structure of the surface position message ME field is shown as follows:</p>
 <pre><code>+-------+--------+------+--------+------+------+-------------+-------------+
 | TC, 5 | MOV, 7 | S, 1 | TRK, 7 | T, 1 | F, 1 | LAT-CPR, 17 | LON-CPR, 17 |
 +-------+--------+------+--------+------+------+-------------+-------------+</code></pre>
@@ -322,14 +322,14 @@
 <p>When employing locally unambiguous decoding, the reference position needs to be within 45 nautical miles of the actual location. Commonly, the positions of the airport is used.</p>
 <p>With the equations from section <a href="#sec:cpr_airborne_global_lat" data-reference-type="ref" data-reference="sec:cpr_airborne_global_lat">[sec:cpr_airborne_global_lat]</a>, the solution refers to the latitude located at the northern hemisphere. We need to compute a southern hemisphere solution by subtracting this value with 90 degrees. The final correct latitude is the one that is closet to the reference position.</p>
 <p>Similarly, with the equations from section <a href="#sec:cpr_airborne_global_lon" data-reference-type="ref" data-reference="sec:cpr_airborne_global_lon">[sec:cpr_airborne_global_lon]</a>, the solution refers only the longitude in the 0 to 90 degrees quadrant. We need to compute the other three possible solutions by adding 90, 180, and 270 degrees. The final correct longitude is also the one that is closet to the reference position.</p>
-<h2 id="example">Example</h2>
+<h2 id="decoding-example">Decoding example</h2>
 <h3 id="globally-unambiguous-decoding">Globally unambiguous decoding</h3>
 <p>First, we decode the location using globally unambiguous decoding. The following example contains an even/odd pair of surface position messages:</p>
 <pre><code>8C4841753AAB238733C8CD4020B1
 8C4841753A8A35323FAEBDAC702D    (most recent)</code></pre>
-<p>Based on the ADS-B message structure, we can identify the ICAO address and message payload data as follows:</p>
+<p>Based on the ADS-B message structure, we can identify the ICAO address and message ME field as follows:</p>
 <pre><code>+----+--------+----------------+--------+
-|    | ICAO   |      Data      |  PI    |
+|    | ICAO   |       ME       |  PI    |
 +----+--------+----------------+--------+
 | 8C | 484175 | 3AAB238733C8CD | 4020B1 |
 | 8C | 484175 | 3A8A35323FAEBD | AC702D |

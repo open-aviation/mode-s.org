@@ -64,7 +64,7 @@
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../index.html">Preface</a></li>
+    <li><a href="../index.html">Home</a></li>
     <li><a href="../content/introduction.html">1. Introduction</a></li>
     <li><a href="../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -151,9 +151,9 @@
 </figure>
 <p>The monopole antenna and the dipole antenna both are half-wavelength (<span class="math inline">\(\lambda/2\)</span>) antennas with a total conductor length of 13.75 cm. The ground plan antenna is a quarter-wavelength (<span class="math inline">\(\lambda/4\)</span>) antenna, where the main pole is 6.875 cm.</p>
 <p>For a remote installation where the antenna is far from the receiver (i.e. long coaxial cable between the antenna and receiver), the high-frequency signal of Mode S can attenuate quickly. When the signal has arrived at the receiver end, the signal to noise ratio can become quite high. To overcome this limitation, an active antenna may be used.</p>
-<p>The active antenna has a low-noise amplifier integrated at the antenna side. Sometimes, it also includes a band-pass filter that is designed for 1090 MHz. The active antenna requires additional powering. Power is commonly supplied through a bias-tee device (Figure <a href="#fig:biastee" data-reference-type="ref" data-reference="fig:biastee">1.4</a>) connected at the receiver end, which is on the left-hand side of the diagram. On the right-hand side, the radio frequency is mixed with the DC component, which allows the electronic circuit to be powered close to the receiver end.</p>
+<p>The active antenna (see Figure <a href="#fig:biastee_active_antenna" data-reference-type="ref" data-reference="fig:biastee_active_antenna">1.4</a>) has a low-noise amplifier integrated at the antenna side. Sometimes, it also includes a band-pass filter that is designed for 1090 MHz. The active antenna requires additional powering. Power is commonly supplied through a bias-tee device connected at the receiver end, which is on the left-hand side of the diagram. On the right-hand side, the radio frequency is mixed with the DC component, which allows the electronic circuit to be powered close to the receiver end.</p>
 <figure>
-<img src="../figures/b25f328fbda1427ab9353e9f7098abb72db509d4.png" id="fig:biastee" /><figcaption aria-hidden="true">Bias-tee diagram</figcaption>
+<img src="../figures/96625d8d1a640149ab57b07be456c23c906b0fa2.png" id="fig:biastee_active_antenna" /><figcaption aria-hidden="true">Diagram of an active antenna powered through a bias-tee</figcaption>
 </figure>
 <h2 id="receiver">Receiver</h2>
 <p>Many modern Mode S receivers are built using software-defined radio (SDR). An SDR usually can be tuned to a wide range of radio frequencies. The user can conveniently select the center frequency of the receiver and the sampling rate, as well as defined the bandwidth of the onboard low-pass filter if it is supported.</p>

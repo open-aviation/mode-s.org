@@ -64,7 +64,7 @@
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Preface</a></li>
+    <li><a href="../../index.html">Home</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -105,7 +105,7 @@
 <ul>
 <li><a href="#chap:airborn-position">Airborne position</a>
 <ul>
-<li><a href="#a-over-simplified-example">A over-simplified example</a></li>
+<li><a href="#an-over-simplified-example">An over-simplified example</a></li>
 <li><a href="#compact-position-reporting">Compact position reporting</a>
 <ul>
 <li><a href="#cpr-zones">CPR zones</a></li>
@@ -115,14 +115,14 @@
 <ul>
 <li><a href="#sec:cpr_airborne_global_lat">Calculation of latitude</a></li>
 <li><a href="#sec:cpr_airborne_global_lon">Calculation of longitude</a></li>
-<li><a href="#example">Example</a></li>
+<li><a href="#decoding-example">Decoding example</a></li>
 </ul></li>
 <li><a href="#locally-unambiguous-position-decoding">Locally unambiguous position decoding</a>
 <ul>
 <li><a href="#the-reference-position">The reference position</a></li>
 <li><a href="#calculation-of-latitude">Calculation of latitude</a></li>
 <li><a href="#calculation-of-longitude">Calculation of longitude</a></li>
-<li><a href="#example-1">Example</a></li>
+<li><a href="#decoding-example-1">Decoding example</a></li>
 </ul></li>
 <li><a href="#altitude-decoding">Altitude decoding</a>
 <ul>
@@ -146,11 +146,11 @@
 
 <h1 id="chap:airborn-position">Airborne position</h1>
 <p>The aircraft airborne position message is used to broadcast the position and altitude of the aircraft. It has the Type Code from 9 to 18 or from 20 to 22. When Type Code is from 9 to 18, the encoded altitude represents the barometric altitude of the aircraft. When the Type Code is from 20 to 22, the encoded altitude contains the GNSS altitude of the aircraft. The Type Code value is related to the uncertainties in the position, which will be discussed in a later chapter.</p>
-<p>The structure of the ADS-B airborne position message payload is shown as follows:</p>
+<p>The structure of the ADS-B airborne position message ME field is shown as follows:</p>
 <pre><code>+-------+-------+--------+---------+------+------+-------------+-------------+
 | TC, 5 | SS, 2 | SAF, 1 | ALT, 12 | T, 1 | F, 1 | LAT-CPR, 17 | LON-CPR, 17 |
 +-------+-------+--------+---------+------+------+-------------+-------------+</code></pre>
-<p>There are eight fields in the message payload, and the details of all fields are listed in Table <a href="#tb:adsb-air-pos-fields" data-reference-type="ref" data-reference="tb:adsb-air-pos-fields">1.1</a>.</p>
+<p>There are eight fields, and the details of all fields are listed in Table <a href="#tb:adsb-air-pos-fields" data-reference-type="ref" data-reference="tb:adsb-air-pos-fields">1.1</a>.</p>
 <div id="tb:adsb-air-pos-fields">
 <table>
 <caption>Airborne position message structure</caption>
@@ -285,7 +285,7 @@
 <li><p><strong>Locally unambiguous position decoding</strong>: Knowing a reference position from previous sets of messages, using only one message for the decoding.</p></li>
 </ol>
 <p>The position information in ADS-B messages is encoded in a compact position reporting (CPR) format. The general idea behind CPR is to encode more coordinate decimals using fewer bits. The CPR offers a trade-off between global position ambiguity and local position accuracy.</p>
-<h2 id="a-over-simplified-example">A over-simplified example</h2>
+<h2 id="an-over-simplified-example">An over-simplified example</h2>
 <p>First of all, we will use a simple example to explain the basic ideas behind the CPR position encoding. CPR divides 2D space into two different grids. Two message types are used to encode the positions with different grids.</p>
 <p>In the following simple example, we want to encode position <span class="math inline">\((9, 7)\)</span> in a <span class="math inline">\(16\times16\)</span> discrete world. Normally, this would require 4 bits each to encode the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates, which is <span class="math inline">\((1001, 0111)\)</span>.</p>
 <p>In the simple "CPR" algorithm, we first define two different grids. The even grid has a size of <span class="math inline">\(4\times4\)</span>, while the odd grid has a size of <span class="math inline">\(5\times5\)</span>. The is illustrated in Figure <a href="#fig:cpr_simple_1" data-reference-type="ref" data-reference="fig:cpr_simple_1">1.1</a>.</p>
@@ -393,13 +393,13 @@ lat &lt; -87   -&gt;    NL = 1</code></pre>
   \end{cases}\]</span></p>
 <p>It is worth noting that the longitudes in position messages are between 0 and 360 degrees. We often need to convert them to the range between -180 and 180 degrees, which is consistent with aviation conventions. We can convert them as:</p>
 <p><span class="math display">\[\mathrm{lon} = \mathrm{lon} - 360,  \quad \text{if}~\mathrm{lon} \ge 180\]</span></p>
-<h3 id="example">Example</h3>
+<h3 id="decoding-example">Decoding example</h3>
 <p>The example contains two position messages that are received within 10 seconds. The first message is the most recent position message transmitted by the aircraft.</p>
 <pre><code>8D40621D58C382D690C8AC2863A7   (most recent)
 8D40621D58C386435CC412692AD6</code></pre>
-<p>Following the common ADS-B message structure, we can identify the ICAO address and payload as follows:</p>
+<p>Following the common ADS-B message structure, we can identify the ICAO address and ME field as follows:</p>
 <pre><code>+----+--------+----------------+--------+
-|    | ICAO   |      Data      |  PI    |
+|    | ICAO   |       ME       |  PI    |
 +----+--------+----------------+--------+
 | 8D | 40621D | 58C382D690C8AC | 2863A7 |
 | 8D | 40621D | 58C386435CC412 | 692AD6 |
@@ -471,7 +471,7 @@ position = pms.adsb.position(msg0, msg1, t0, t1)</code></pre>
 <p><span class="math display">\[m = floor \left( \frac{\mathrm{lon}_\mathrm{ref}}{\mathrm{dLon}} \right) + floor \left( \frac{mod(\mathrm{lon}_\mathrm{ref}, \mathrm{dLon})}{\mathrm{dLon}}  - \mathrm{lon}_\mathrm{cpr}  + \frac{1}{2}  \right)\]</span></p>
 <p>Knowing the longitude zone index, the longitude of the new position is:</p>
 <p><span class="math display">\[\mathrm{lon} = \mathrm{dLon} \cdot (m + \mathrm{lon}_\mathrm{cpr})\]</span></p>
-<h3 id="example-1">Example</h3>
+<h3 id="decoding-example-1">Decoding example</h3>
 <p>Next, we illustrate the decoding process of the messages from the previous example with a reference position. The message and the reference position are as follows:</p>
 <pre><code>Message: 8D40621D58C382D690C8AC2863A7
 Data:            58C382D690C8AC

@@ -64,7 +64,7 @@
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Preface</a></li>
+    <li><a href="../../index.html">Home</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -200,19 +200,19 @@
 </table>
 </div>
 <p>Each quality indicator also relates to a set of parameters that express the exact amount of uncertainties, errors, or probabilities. In Table <a href="#tb:uncertainty-parameters" data-reference-type="ref" data-reference="tb:uncertainty-parameters">[tb:uncertainty-parameters]</a>, these parameters are listed.</p>
-<p><span>|l|l|l|</span> <strong></strong> &amp; <strong>Parameter</strong> &amp;<br />
-&amp; Horizontal protection limit &amp; HPL<br />
+<p><span>|l|p<span>8cm</span>|l|</span> <strong></strong> &amp; <strong>Parameter</strong> &amp;<br />
+NUCp (V0) &amp; Horizontal protection limit &amp; HPL<br />
 &amp; 95% containment radius on horizontal position error &amp; RCxy<br />
 &amp; 95% containment radius on vertical position error &amp; RCz<br />
-&amp; Horizontal velocity error (95%) &amp; HVE<br />
+NUCr (V0) &amp; Horizontal velocity error (95%) &amp; HVE<br />
 &amp; Vertical velocity error (95%) &amp; VVE<br />
-&amp; &amp; EPU<br />
-&amp; &amp; VEPU<br />
-&amp; Horizontal figure of merit (95% horizontal accuracy - v) &amp; HFOMr<br />
+NACp (V1,2) &amp; Estimated position uncertainty (95% horizontal accuracy - p). a.k.a. horizontal figure of merit (HFOM) in GNSS &amp; EPU<br />
+&amp; Vertical estimated position uncertainty (95% vertical accuracy - p). a.k.a. vertical figure of merit (VHPM) in GNSS &amp; VEPU<br />
+NACv (V1,2) &amp; Horizontal figure of merit (95% horizontal accuracy - v) &amp; HFOMr<br />
 &amp; Vertical figure of merit (95% horizontal accuracy - v) &amp; VFOMr<br />
-&amp; Horizontal containment radius limit &amp; RC<br />
+NIC (V1,2) &amp; Horizontal containment radius limit &amp; RC<br />
 &amp; Vertical protection limit &amp; VPL<br />
-&amp; Probability of exceeding horizontal containment radius &amp; P-RC<br />
+SIL (V1,2) &amp; Probability of exceeding horizontal containment radius &amp; P-RC<br />
 &amp; Probability of exceeding vertical integrity containment region &amp; P-VPL<br />
 </p>
 <p>These parameters are identified by different bits from different messages. Due to the evolution of ADS-B versions, the definitions can also differ. In order to correctly obtain these parameters, the version of ADS-B transponder used must be identified. This can be based on the logic explained in chapter <a href="#chap:adsb-basic" data-reference-type="ref" data-reference="chap:adsb-basic">[chap:adsb-basic]</a>.</p>
@@ -442,9 +442,9 @@
 </tbody>
 </table>
 </div>
-<p>It is worth noting that, in the case of airborne position with GNSS height (<code>TC=20-22</code>), HPL and RCxy are defined with slight differences compared to other types of position messages. In addition, the containment radius for the vertical position (<code>RCv</code>) is also defined in this message. This is possible because the altitude is obtained from GNSS sources.</p>
+<p>It is worth noting that, in the case of airborne position with GNSS height (TC=20-22), HPL and RCxy are defined with slight differences compared to other types of position messages. In addition, the containment radius for the vertical position (<code>RCv</code>) is also defined in this message. This is possible because the altitude is obtained from GNSS sources.</p>
 <h3 id="navigation-uncertainty-category---rate-nucr">Navigation uncertainty category - rate (NUCr)</h3>
-<p>The Navigation Uncertainty Category - rate (NUCr) is used to indicate the uncertainty of the horizontal and vertical speeds. The bits representing NUCr can be found in the airborne velocity message (TC=19). The NUCr is located at message bit 43-45 (or payload bit 11-13), which defines the 95% of the error in horizontal and vertical speed as shown in Table <a href="#tb:nucr-params" data-reference-type="ref" data-reference="tb:nucr-params">1.6</a>.</p>
+<p>The Navigation Uncertainty Category - rate (NUCr) is used to indicate the uncertainty of the horizontal and vertical speeds. The bits representing NUCr can be found in the airborne velocity message (TC=19). The NUCr is located at message bit 43-45 (or ME bit 11-13), which defines the 95% of the error in horizontal and vertical speed as shown in Table <a href="#tb:nucr-params" data-reference-type="ref" data-reference="tb:nucr-params">1.6</a>.</p>
 <div id="tb:nucr-params">
 <table>
 <caption>NUCr parameters and their values</caption>
@@ -488,7 +488,7 @@
 <p>In ADS-B version 1, the uncertainty category is removed, replaced by the accuracy category and the integrity category. Both NUCp and NUCr from version 0 do not exist in version 1. New indicators introduced in version 1 are NACp, NACv, NIC, and SIL.</p>
 <h3 id="navigation-integrity-category-nic">Navigation integrity category (NIC)</h3>
 <p>NIC is designed to replace NUCp from version 0, but with more levels included. Like NUCp in version 0, the Navigation Integrity Category (NIC) is related to the Type Code. However, Type Code and NIC do not have a one-to-one mapping relationship. With more levels defined, a supplemental bit is required to distinguish two levels represented by some of the same Type Codes.</p>
-<p>The NIC Supplement bit (NICs) is introduced in the operation status messages (TC=31) and located at the message bit 76 (or payload bit 44). The relationship between TC, NIC, and Rc are listed in Table <a href="#tb:nic-params-v1" data-reference-type="ref" data-reference="tb:nic-params-v1">1.7</a>.</p>
+<p>The NIC Supplement bit (NICs) is introduced in the operation status messages (TC=31) and located at the message bit 76 (or ME bit 44). The relationship between TC, NIC, and Rc are listed in Table <a href="#tb:nic-params-v1" data-reference-type="ref" data-reference="tb:nic-params-v1">1.7</a>.</p>
 <div id="tb:nic-params-v1">
 <table>
 <caption>NIC parameters and their values (version 1)</caption>
@@ -532,10 +532,10 @@
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">8</td>
 <td style="text-align: left;">&lt;0.1 NM (185 m)</td>
+<td style="text-align: left;">N/A</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">8</td>
@@ -567,10 +567,10 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">8</td>
 <td style="text-align: left;">&lt;0.1 NM (185 m)</td>
+<td style="text-align: left;">N/A</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">12</td>
@@ -582,16 +582,16 @@
 <tr class="even">
 <td style="text-align: left;">13</td>
 <td style="text-align: left;">0</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">6</td>
 <td style="text-align: left;">&lt;0.5 NM (926 m)</td>
 <td style="text-align: left;">N/A</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">1</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">&lt;0.6 NM (1111 m)</td>
+<td style="text-align: left;">N/A</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">14</td>
@@ -616,10 +616,10 @@
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">2</td>
 <td style="text-align: left;">&lt;8 NM (14.8 km)</td>
+<td style="text-align: left;">N/A</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">17</td>
@@ -660,7 +660,7 @@
 </table>
 </div>
 <h3 id="navigation-accuracy-category---position-nacp">Navigation accuracy category - position (NACp)</h3>
-<p>NACp is introduced in ADS-B version 1 as a complementary indicator of NIC. The NACp can be obtained from the operational status message, message frame bits 77-80 (or payload bits 45-48).</p>
+<p>NACp is introduced in ADS-B version 1 as a complementary indicator of NIC. The NACp can be obtained from the operational status message, message frame bits 77-80 (or ME bits 45-48).</p>
 <p>With NACp, the 95% horizontal and vertical accuracy bounds can be determined. They are the estimated position uncertainty (EPU) and the vertical estimated position uncertainty (EPU), which are also known as the horizontal figure of merit (HFOM) and the vertical figure of merit (VFOM) in GNSS.</p>
 <p>EPU and Rc in NIC have the following relationship:</p>
 <p><span class="math display">\[\begin{split}
@@ -827,8 +827,8 @@
 <p>In version 2, NIC levels can be obtained with three additional supplement bits named NIC supplement bit A (NICa), NIC supplement bit B (NICb), and NIC supplement bit C (NICc). These bits can be found as follows:</p>
 <ul>
 <li><p>NICa is located in the operational status message (TC=31) (message bit 76 or ME bit 44), which is the same as in ADS-B version 1.</p></li>
-<li><p>NICb is located in the airborne position message (TC=9-18), message bit 40 or payload bit 8), where the Single Antenna Flag was located in previous ADS-B versions.</p></li>
-<li><p>NICc is also located in the operational status message (TC=31) (message bit 52 or payload bit 20).</p></li>
+<li><p>NICb is located in the airborne position message (TC=9-18), message bit 40 or ME bit 8), where the Single Antenna Flag was located in previous ADS-B versions.</p></li>
+<li><p>NICc is also located in the operational status message (TC=31) (message bit 52 or ME bit 20).</p></li>
 </ul>
 <p>With these supplemental bits and the Type Code, the NIC value in version 2 can be calculated. NIC values and their related Rc values are shown in Table <a href="#tb:nic-params-v2" data-reference-type="ref" data-reference="tb:nic-params-v2">1.11</a>.</p>
 <div id="tb:nic-params-v2">
@@ -871,11 +871,11 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">N/A</td>
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">8</td>
+<td style="text-align: left;">&lt;0.1 NM (185 m)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">8</td>
@@ -887,27 +887,27 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">1</td>
 <td style="text-align: left;">N/A</td>
 <td style="text-align: left;">0</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">&lt;0.3 NM (556 m)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">N/A</td>
 <td style="text-align: left;">1</td>
 <td style="text-align: left;"></td>
+<td style="text-align: left;">&lt;0.6 NM (1111 m)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">N/A</td>
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">0</td>
+<td style="text-align: left;">&gt;0.6 NM or unknown</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">9</td>
@@ -935,11 +935,11 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">N/A</td>
 <td style="text-align: left;">8</td>
+<td style="text-align: left;">&lt;0.1 NM (185 m)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">12</td>
@@ -954,24 +954,24 @@
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">1</td>
 <td style="text-align: left;">N/A</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">6</td>
 <td style="text-align: left;">&lt;0.3 NM (556 m)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">N/A</td>
 <td style="text-align: left;"></td>
+<td style="text-align: left;">&lt;0.5 NM (926 m)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">1</td>
 <td style="text-align: left;">1</td>
 <td style="text-align: left;">N/A</td>
 <td style="text-align: left;"></td>
+<td style="text-align: left;">&lt;0.6 NM (1111 m)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">14</td>
@@ -999,11 +999,11 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">0</td>
 <td style="text-align: left;">N/A</td>
 <td style="text-align: left;">2</td>
+<td style="text-align: left;">&lt;8 NM (14.8 km)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">17</td>

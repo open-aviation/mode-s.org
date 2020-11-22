@@ -64,7 +64,7 @@
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Preface</a></li>
+    <li><a href="../../index.html">Home</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -107,7 +107,7 @@
 <ul>
 <li><a href="#bds-codes-identification-logics">BDS codes identification logics</a></li>
 <li><a href="#identification-of-bsd-50-and-60">Identification of BSD 5,0 and 6,0</a></li>
-<li><a href="#examples">Examples</a></li>
+<li><a href="#decoding-examples">Decoding examples</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -152,9 +152,9 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">10-14</td>
 <td style="text-align: left;">Reserved</td>
+<td style="text-align: left;">All zeros</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">1,7</td>
@@ -164,9 +164,9 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">29-56</td>
 <td style="text-align: left;">Reserved</td>
+<td style="text-align: left;">All zeros</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2,0</td>
@@ -176,9 +176,9 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">9-56</td>
 <td style="text-align: left;">Callsign</td>
+<td style="text-align: left;">Only contains 0-9, A-Z, or space</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3,0</td>
@@ -188,15 +188,15 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">29-30</td>
 <td style="text-align: left;">Threat type</td>
+<td style="text-align: left;">Not equal to <code>11</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">16-22</td>
 <td style="text-align: left;">ACAS</td>
+<td style="text-align: left;">less than 48</td>
 </tr>
 </tbody>
 </table>
@@ -221,57 +221,57 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">14 : 15-26</td>
 <td style="text-align: left;">FMS selected altitude</td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">27 : 28-39</td>
 <td style="text-align: left;">Barometric pressure</td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">40 - 47</td>
 <td style="text-align: left;">Reserved</td>
+<td style="text-align: left;">All zeros</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">52 - 53</td>
 <td style="text-align: left;">Reserved</td>
+<td style="text-align: left;">All zeros</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">5,0</td>
 <td style="text-align: left;">1 : 2-11</td>
 <td style="text-align: left;">Roll angle</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">Between -50 and 50 degrees</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">12 : 13-23</td>
 <td style="text-align: left;">True track angle</td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">24 : 25-34</td>
 <td style="text-align: left;">Ground speed</td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">Between 0 and 600 kt</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
@@ -283,13 +283,13 @@
 <td style="text-align: left;"></td>
 <td style="text-align: left;">45 : 46-56</td>
 <td style="text-align: left;">True airspeed</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">Between 0 and 500 kt</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">6,0</td>
@@ -299,51 +299,51 @@
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">13 : 14-23</td>
 <td style="text-align: left;">Indicated airspeed</td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">Between 0 and 500 kt</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">24 : 25-34</td>
 <td style="text-align: left;">Mach number</td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">Between 0 and 1</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">35 : 36-45</td>
 <td style="text-align: left;">Barometric vertical rate</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">Between -6000 and 6000 fpm</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">46 : 47-56</td>
 <td style="text-align: left;">Inertial vertical rate</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">Between -6000 and 6000 fpm</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
@@ -368,15 +368,15 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">5 : 6-23</td>
 <td style="text-align: left;">Wind speed / direction</td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">speed less than 250 kt</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
@@ -392,51 +392,51 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">4 : 5-6</td>
 <td style="text-align: left;">Wind shear</td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">7 : 8-9</td>
 <td style="text-align: left;">Microburst</td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">10 : 11-12</td>
 <td style="text-align: left;">Icing</td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">13 : 14-15</td>
 <td style="text-align: left;">Wake vortex</td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">16 : 17-26</td>
 <td style="text-align: left;">Static air temperature</td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">Between -80 and 60<span class="math inline">\(^\circ\)</span>C</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">27 : 28-28</td>
 <td style="text-align: left;">Static pressure</td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;">39 : 40-51</td>
 <td style="text-align: left;">Radio height</td>
+<td style="text-align: left;">Status consistent</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
@@ -455,7 +455,7 @@
 <li><p>Assuming the message is BDS 6,0, convert the Mach number to calibrated airspeed based on altitude code under ISA condition <span class="citation" data-cites="young2017"></span>. The difference between calibrated airspeed and indicated airspeed should not be too large.</p></li>
 </ul>
 <p>If the previous logic does not eliminate one of the two possibilities, we need to make use of the information collected in ADS-B (if available) to verify the information. ADS-B data from the same aircraft can be used as a reference, to check whether the speed from the assumed message type agrees with the ground speed from ADS-B. The details of this process is described in <span class="citation" data-cites="sun2019pymodes"></span>. Wind information can also be taken into consideration to make the identification more accurate.</p>
-<h2 id="examples">Examples</h2>
+<h2 id="decoding-examples">Decoding examples</h2>
 <p>The basic BDS code identification logic is relatively simple. It checks all criteria from all message types and decides whether all but one BDS code can be eliminated. In this example section, we are only going to show how a message with both possibilities of BDS 5,0 and BDS 6,0 can be identified.</p>
 <p>In Figure <a href="#fig:bds_bds_infer_example_1" data-reference-type="ref" data-reference="fig:bds_bds_infer_example_1">1.1</a>, the identification of a DF=20 message is shown.</p>
 <figure>
