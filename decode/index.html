@@ -29,8 +29,8 @@
 
 <div class="d-flex flex-row align-items-end">
 	<div>
-		<h1 class="title">The 1090MHz Riddle</h1>
-		<div class="subtitle">An open-access book about decoding Mode-S and ADS-B data</div>
+		<h1 class="title">The 1090 Megahertz Riddle</h1>
+		<div class="subtitle">A Guide to Decoding and Interpreting ADS-B and Mode S Signals</div>
 	</div>
 	<div class='ml-auto chapter-nav'>
     <div class="author">By: <strong>Junzi Sun</strong> (<a href="http://junzis.com">junzis.com</a>)</div>
@@ -52,30 +52,39 @@
 <div class="row">
 <div class="col-md-4 col-lg-3">
 <nav>
-  <h1>Chapters</h1>
+  <h1>Book chapters</h1>
   <ul>
-    <li><a href="index.html">Introduction</a></li>
-    <li><a href="adsb.html">ADS-B</a></li>
+    <li><a href="index.html">Preface</a></li>
+    <li><a href="content/introduction.html">1. Introduction</a></li>
+    <li><a href="content/quickstart.html">2. Quick start</a></li>
+    <li>ADS-B</li>
     <ul>
-      <li><a href="adsb/introduction.html">Basics</a></li>
-      <li><a href="adsb/identification.html">Aircraft Identification</a></li>
-      <li><a href="adsb/compact-position-report.html">Compact Position Reporting</a></li>
-      <li><a href="adsb/airborne-position.html">Airborne Position</a></li>
-      <li><a href="adsb/airborne-velocity.html">Airborne Velocity</a></li>
+      <li><a href="content/ads-b/1-basics.html">3. ADS-B basics</a></li>
+      <li><a href="content/ads-b/2-identification.html">4. Aircraft Identification</a></li>
+      <li><a href="content/ads-b/3-airborne-position.html">5. Airborne Position</a></li>
+      <li><a href="content/ads-b/4-surface-position.html">6. Surface Position</a></li>
+      <li><a href="content/ads-b/5-airborne-velocity.html">7. Airborne Velocity</a></li>
+      <li><a href="content/ads-b/6-operation-status.html">8. Operation Status</a></li>
+      <li><a href="content/ads-b/7-uncertainty.html">9. Uncertainty</a></li>
+      <li><a href="content/ads-b/8-error-control.html">10. Error Control</a></li>
     </ul>
-    <li><a href="adsb/advance.html">Advanced ADS-B</a></li>
+    <li>Mode S</li>
     <ul>
-      <li><a href="adsb/version.html">ADS-B Versions</a></li>
-      <li><a href="adsb/operation-status.html">Operation Status</a></li>
-      <li><a href="adsb/uncertainty.html">Uncertainty and Accuracy</a></li>
+      <li><a href="content/mode-s/1-basics.html">11. Mode S basics</a></li>
+      <li><a href="content/mode-s/2-allcall.html">12. All-call reply</a></li>
+      <li><a href="content/mode-s/3-surveillance.html">13. Surveillance reply</a></li>
+      <li><a href="content/mode-s/4-acas.html">14. ACAS</a></li>
+      <li><a href="content/mode-s/5-commb.html">15. Comm-B replies</a></li>
+      <li><a href="content/mode-s/6-els.html">16. Elementary surveillance</a></li>
+      <li><a href="content/mode-s/7-ehs.html">17. Enhanced surveillance</a></li>
+      <li><a href="content/mode-s/8-meteo.html">18. Meteorological services</a></li>
+      <li><a href="content/mode-s/9-inference.html">19. BDS code inference</a></li>
     </ul>
-    <li><a href="ehs.html">Enhanced Mode-S</a></li>
+    <li><a href="content/conclusion.html">20. Conclusion</a></li>
+    <li>Related</li>
     <ul>
-      <li><a href="ehs/introduction.html">Basics</a></li>
-      <li><a href="ehs/bds20-identification.html">Aircraft Identification</a></li>
-      <li><a href="ehs/bds40-intention.html">Aircraft Intention</a></li>
-      <li><a href="ehs/bds50-track-n-turn.html">Track and Turn</a></li>
-      <li><a href="ehs/bds60-airspeed.html">Airspeed and Heading</a></li>
+      <li><a href="misc/about.html">About the author</a></li>
+      <li><a href="misc/ack.html">Acknowledgements</a></li>
     </ul>
   </ul>
 </nav>
@@ -89,12 +98,7 @@
 <h1>In this page</h1>
 <ul>
 <li><a href="#preface">Preface</a></li>
-<li><a href="#about-the-book">About the book</a><ul>
-<li><a href="#related-resources">Related resources</a></li>
-<li><a href="#contributors">Contributors</a></li>
-<li><a href="#contact">Contact</a></li>
-<li><a href="#references">References</a></li>
-</ul></li>
+<li><a href="#about-the-author">About the Author</a></li>
 </ul>
 </nav>
 
@@ -108,53 +112,20 @@
     class='btn btn-sm btn-outline-danger'> <i class="fas fa-edit"></i> Recommend edits</a>
 </div>
 
-<h1 id="preface" class="unnumbered">Preface</h1>
-<p>Begun with a frustration on the lack of technical public information on ADS-B and Mode-S in the year 2015, I created a live online document to record my understanding of ADS-B data. Previously, this was known as <a href="http://adsb-decode-guide.readthedocs.org/">“ADS-B Decoding Guide”</a> project. Together with the tutorial, we also developed its related Python library, the <a href="https://github.com/junzis/pyModeS">pyModeS</a>. With time, I received many feedbacks, compliments, and contributions from open-source community users.</p>
-<p>Since the beginning of 2017, the interests of tapping into Mode-S Enhanced Surveillance (EHS) data brought us a whole new chapter of Mode-S inference and decoding into the pyModeS. This also enriches the “ADS-B” guide. With the advance in this area, I am planning to compile a more comprehensive online book to cover both ADS-B and Mode-S decoding and related topic.</p>
-<p>That’s the starting of this new repository. I am also starting to host the online book on my own server to allow more flexibility of editing and publishing. You can read the most up-to-date book on <a href="http://mode-s.org">mode-s.org</a>.</p>
-<p>Oh, it is still GNU GPL. It was great to see the pull requests from different contributors previously. I am looking forward to seeing more comments and pulls from the community. Enjoy!</p>
-<h1 id="about-the-book">About the book</h1>
-<h2 id="related-resources">Related resources</h2>
-<p>This guide document is shared on GitHub and mode-s.org. Please feel free to help us improving it.</p>
-<p>Links to this guide document:</p>
-<ul>
-<li><p>(Rst source) <a href="https://github.com/junzis/the-1090mhz-riddle" class="uri">https://github.com/junzis/the-1090mhz-riddle</a></p></li>
-<li><p>(Live book) <a href="http://mode-s.org" class="uri">http://mode-s.org</a></p></li>
-</ul>
-<p>You can download the pyModeS tool from GitHub, which is a Python implementation of all (and more) message types described here:</p>
-<ul>
-<li><p>(GitHub) <a href="https://github.com/junzis/pyModeS" class="uri">https://github.com/junzis/pyModeS</a></p></li>
-</ul>
-<h2 id="contributors">Contributors</h2>
-<p>From TU Delft:</p>
-<ul>
-<li><p>Junzi Sun, PhD Candidate, TU Delft</p></li>
-<li><p>Huy Vû, Master Student, TU Delft</p></li>
-<li><p>Jacco Hoekstra, Prof.dr.ir, TU Delft</p></li>
-<li><p>Joost EllerBroek, Dr.ir, TU Delft</p></li>
-</ul>
-<p>From GitHub community:</p>
-<ul>
-<li><p><a href="https://github.com/junzis/the-1090mhz-riddle/graphs/contributors" class="uri">https://github.com/junzis/the-1090mhz-riddle/graphs/contributors</a></p></li>
-</ul>
-<h2 id="contact">Contact</h2>
-<p>Since the start of the this project, I have received many questions by email. However, the best way to post your questions is using the <strong>GitHub Issues</strong>. This way, your questions and my answers can help others as well:</p>
-<ul>
-<li><p>Related with this book: <a href="https://github.com/junzis/the-1090mhz-riddle/issues" class="uri">https://github.com/junzis/the-1090mhz-riddle/issues</a></p></li>
-<li><p>Related with pyModeS: <a href="https://github.com/junzis/pyModes/issues" class="uri">https://github.com/junzis/pyModes/issues</a></p></li>
-</ul>
-<p>Anyhow, still feel free to drop me a messages at: <strong>j.sun-1<span>[</span>at<span>]</span>tudelft.nl</strong></p>
-<h2 id="references">References</h2>
-<ul>
-<li><p>Technical Provisions for Mode S Services and Extended Squitter. International Civil Aviation Organization, 2008.</p></li>
-<li><p>Technical Provisions for Mode S Services and Extended Squitter, 2nd Edition. International Civil Aviation Organization, 2012.</p></li>
-<li><p>Annex 10 to the Convention on International Civil Aviation, Aeronautical Telecommunications. International Civil Aviation Organization, 2002.</p></li>
-<li><p>Minimum Operational Performance Standards for 1090 MHz Extended Squitter (DO-260B), RTCA, 2009</p></li>
-<li><p>Elementary surveillance (els) and enhanced surveillance (ehs) validation via mode s secondary radar surveillance, Project Report ATC-337, Lincoln Lab., MIT, 2008.</p></li>
-<li><p>Fundamentals of mode s parity coding, tech. rep., Massachusetts Institute of Technology, Lincoln Laboratory, 1984.</p></li>
-<li><p><a href="https://github.com/antirez/dump1090">Dump1090 Project</a></p></li>
-<li><p><a href="http://www.lll.lu/~edward/edward/adsb/VerySimpleADSBreceiver.html">A Very Simple ADSB Receiver</a></p></li>
-</ul>
+<h1 class="unnumbered" id="preface">Preface</h1>
+<p>This book provides a practical guide to decoding ADS-B and other types of common Mode S messages. It consolidates the information from various ICAO documentation and other literature to provide readers easy access to key knowledge of Mode S and ADS-B and related topics. In this book, examples and sample Python code are used extensively to explain the decoding process.</p>
+<p>Back in 2015, I joined TU Delft to undertake PhD research on analyzing and modeling aircraft performance using open aircraft surveillance data. ADS-B data served as my primary data source.</p>
+<p>Frustrated with the lack of open literature on ADS-B and Mode S, I created a live online project to document my experience in decoding ADS-B data, the <em>ADS-B Decoding Guide</em>. As the guide grew in popularity, I started to receive questions, feedback, suggestions from the research community all over the world. These inputs greatly helped me to fix and improve the content of the decoding guide.</p>
+<p>At the same time, I also started to incorporate Mode S Enhanced Surveillance data into my research, which required me to further develop tools for inferring and decoding new types of messages. At the same time, I created more content for the <em>ADS-B Decoding Guide</em>. Due to the increasing interest expressed and demand from readers, I started writing a more comprehensive book focused on the decoding practice of the data, which was the starting point of this book.</p>
+<p>Alongside the book, I also created a Python library, pyModeS, which welcomed contributions from GitHub users from all over the world. Over the past years, the evolution of pyModeS proceeded more quickly than the updating of the book.</p>
+<p>In 2019, I completed my PhD and continued as a faculty member in the aerospace engineering faculty of TU Delft. By then, I had time to reflect on aircraft surveillance data from a new perspective and determined that much of the book content could be updated.</p>
+<p>The result is this text, which is both the second edition of <em>the 1090 Megahertz Riddle</em> and one of the first books published under the TU Delft’s OPEN publishing initiative. The book is published as open access book, under the CC-BY-NC-SA 4.0 license. The LaTeX source of the book is also shared on GitHub, where comments and pull requests are greatly appreciated.</p>
+<p>Junzi Sun<br />
+Delft, the Netherlands<br />
+November, 2020</p>
+<h1 class="unnumbered" id="about-the-author">About the Author</h1>
+<p>Junzi Sun is an assistant professor at TU Delft, currently working in the CNS/ATM group of the Aerospace Engineering Faculty. He is passionate about open-source, open science, and making air transportation more sustainable.</p>
+<p>He was born in China and completed his bachelor’s degree in telecommunication at Beijing University of Posts and Telecommunications. Then, he moved to Europe and obtained his master’s degree in aerospace engineering at Polytechnic University of Catalonia. After that, he worked in Spain and France for a few years before continuing his doctoral research in the Netherlands, where he obtained his Ph.D. degree and currently works and lives.</p>
 
 <footer class="mastfoot">
   <div class="text-right">

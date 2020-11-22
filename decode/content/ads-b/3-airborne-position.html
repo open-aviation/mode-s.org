@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+  <meta name="author" content="Junzi Sun">
+
+
+  <title>The 1090MHz Riddle</title>
+  <style type="text/css">code{white-space: pre;}</style>
+
+
+
+  <link rel="stylesheet" href="../../bootstrap.min.css">
+  <link rel="stylesheet" href="../../style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+
+<link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+  integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous">
+</script>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="d-flex flex-row align-items-end">
+	<div>
+		<h1 class="title">The 1090 Megahertz Riddle</h1>
+		<div class="subtitle">A Guide to Decoding and Interpreting ADS-B and Mode S Signals</div>
+	</div>
+	<div class='ml-auto chapter-nav'>
+    <div class="author">By: <strong>Junzi Sun</strong> (<a href="http://junzis.com">junzis.com</a>)</div>
+
+    <a href="http://mode-s.org" type="button"
+        class="btn btn-sm btn-outline-dark btn-light">
+      <i class="fas fa-angle-double-left"></i> mode-s.org
+    </a>
+
+    <a href="../../book-the_1090mhz_riddle-junzi_sun.pdf"
+        type="button" class="btn btn-sm btn-outline-info">
+      <i class="far fa-file-pdf"></i> Download PDF
+    </a>
+	</div>
+</div>
+
+<hr>
+
+<div class="row">
+<div class="col-md-4 col-lg-3">
+<nav>
+  <h1>Book chapters</h1>
+  <ul>
+    <li><a href="../../index.html">Preface</a></li>
+    <li><a href="../../content/introduction.html">1. Introduction</a></li>
+    <li><a href="../../content/quickstart.html">2. Quick start</a></li>
+    <li>ADS-B</li>
+    <ul>
+      <li><a href="../../content/ads-b/1-basics.html">3. ADS-B basics</a></li>
+      <li><a href="../../content/ads-b/2-identification.html">4. Aircraft Identification</a></li>
+      <li><a href="../../content/ads-b/3-airborne-position.html">5. Airborne Position</a></li>
+      <li><a href="../../content/ads-b/4-surface-position.html">6. Surface Position</a></li>
+      <li><a href="../../content/ads-b/5-airborne-velocity.html">7. Airborne Velocity</a></li>
+      <li><a href="../../content/ads-b/6-operation-status.html">8. Operation Status</a></li>
+      <li><a href="../../content/ads-b/7-uncertainty.html">9. Uncertainty</a></li>
+      <li><a href="../../content/ads-b/8-error-control.html">10. Error Control</a></li>
+    </ul>
+    <li>Mode S</li>
+    <ul>
+      <li><a href="../../content/mode-s/1-basics.html">11. Mode S basics</a></li>
+      <li><a href="../../content/mode-s/2-allcall.html">12. All-call reply</a></li>
+      <li><a href="../../content/mode-s/3-surveillance.html">13. Surveillance reply</a></li>
+      <li><a href="../../content/mode-s/4-acas.html">14. ACAS</a></li>
+      <li><a href="../../content/mode-s/5-commb.html">15. Comm-B replies</a></li>
+      <li><a href="../../content/mode-s/6-els.html">16. Elementary surveillance</a></li>
+      <li><a href="../../content/mode-s/7-ehs.html">17. Enhanced surveillance</a></li>
+      <li><a href="../../content/mode-s/8-meteo.html">18. Meteorological services</a></li>
+      <li><a href="../../content/mode-s/9-inference.html">19. BDS code inference</a></li>
+    </ul>
+    <li><a href="../../content/conclusion.html">20. Conclusion</a></li>
+    <li>Related</li>
+    <ul>
+      <li><a href="../../misc/about.html">About the author</a></li>
+      <li><a href="../../misc/ack.html">Acknowledgements</a></li>
+    </ul>
+  </ul>
+</nav>
+
+<hr>
+<nav id="TOC">
+<div class="float-right">
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/content/ads-b/3-airborne-position.tex"
+    class='btn btn-sm btn-outline-danger'> <i class="fab fa-github-alt"></i> Edit</a>
+</div>
+<h1>In this page</h1>
+<ul>
+<li><a href="#chap:airborn-position">Airborne position</a>
+<ul>
+<li><a href="#a-over-simplified-example">A over-simplified example</a></li>
+<li><a href="#compact-position-reporting">Compact position reporting</a>
+<ul>
+<li><a href="#cpr-zones">CPR zones</a></li>
+<li><a href="#core-functions-and-parameters">Core functions and parameters</a></li>
+</ul></li>
+<li><a href="#globally-unambiguous-position-decoding">Globally unambiguous position decoding</a>
+<ul>
+<li><a href="#sec:cpr_airborne_global_lat">Calculation of latitude</a></li>
+<li><a href="#sec:cpr_airborne_global_lon">Calculation of longitude</a></li>
+<li><a href="#example">Example</a></li>
+</ul></li>
+<li><a href="#locally-unambiguous-position-decoding">Locally unambiguous position decoding</a>
+<ul>
+<li><a href="#the-reference-position">The reference position</a></li>
+<li><a href="#calculation-of-latitude">Calculation of latitude</a></li>
+<li><a href="#calculation-of-longitude">Calculation of longitude</a></li>
+<li><a href="#example-1">Example</a></li>
+</ul></li>
+<li><a href="#altitude-decoding">Altitude decoding</a>
+<ul>
+<li><a href="#barometric-altitude">Barometric altitude</a></li>
+<li><a href="#gnss-height">GNSS height</a></li>
+</ul></li>
+<li><a href="#verification-of-decoded-positions">Verification of decoded positions</a></li>
+</ul></li>
+</ul>
+</nav>
+
+</div>
+
+
+<div class="col-md-8 col-lg-9 maintext">
+
+<div class="float-right">
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/content/ads-b/3-airborne-position.tex"
+    class='btn btn-sm btn-outline-danger'> <i class="fas fa-edit"></i> Recommend edits</a>
+</div>
+
+<h1 id="chap:airborn-position">Airborne position</h1>
+<p>The aircraft airborne position message is used to broadcast the position and altitude of the aircraft. It has the Type Code from 9 to 18 or from 20 to 22. When Type Code is from 9 to 18, the encoded altitude represents the barometric altitude of the aircraft. When the Type Code is from 20 to 22, the encoded altitude contains the GNSS altitude of the aircraft. The Type Code value is related to the uncertainties in the position, which will be discussed in a later chapter.</p>
+<p>The structure of the ADS-B airborne position message payload is shown as follows:</p>
+<pre><code>+-------+-------+--------+---------+------+------+-------------+-------------+
+| TC, 5 | SS, 2 | SAF, 1 | ALT, 12 | T, 1 | F, 1 | LAT-CPR, 17 | LON-CPR, 17 |
++-------+-------+--------+---------+------+------+-------------+-------------+</code></pre>
+<p>There are eight fields in the message payload, and the details of all fields are listed in Table <a href="#tb:adsb-air-pos-fields" data-reference-type="ref" data-reference="tb:adsb-air-pos-fields">1.1</a>.</p>
+<div id="tb:adsb-air-pos-fields">
+<table>
+<caption>Airborne position message structure</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>FIELD</strong></th>
+<th style="text-align: left;"><strong></strong></th>
+<th style="text-align: left;"><strong>MSG</strong></th>
+<th style="text-align: left;"><strong>ME</strong></th>
+<th style="text-align: left;"><strong>BITS</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Type Code</td>
+<td style="text-align: left;">TC</td>
+<td style="text-align: left;">33-37</td>
+<td style="text-align: left;">1-5</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">  9-18: with barometric altitude</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">  20-22: with GNSS altitude</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Surveillance status</td>
+<td style="text-align: left;">SS</td>
+<td style="text-align: left;">38-39</td>
+<td style="text-align: left;">6-7</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">  0: No condition</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">  1: Permanent alert</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">  2: Temporary alert</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">  3: SPI condition</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Single antenna flag</td>
+<td style="text-align: left;">SAF</td>
+<td style="text-align: left;">40</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Encoded altitude</td>
+<td style="text-align: left;">ALT</td>
+<td style="text-align: left;">41-52</td>
+<td style="text-align: left;">9-20</td>
+<td style="text-align: left;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Time</td>
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">53</td>
+<td style="text-align: left;">21</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CPR Format</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">54</td>
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">  0: even frame</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">  1: odd frame</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Encoded latitude</td>
+<td style="text-align: left;">LAR-CPR</td>
+<td style="text-align: left;">55-71</td>
+<td style="text-align: left;">23-39</td>
+<td style="text-align: left;">17</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Encoded longitude</td>
+<td style="text-align: left;">LON-CPR</td>
+<td style="text-align: left;">72-88</td>
+<td style="text-align: left;">40-56</td>
+<td style="text-align: left;">17</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>It is important to emphasize that the encoded latitude and longitude are not the actual latitude and longitude values. Instead, the position information is encoded in a Compact Position Reporting (CPR) format, which requires fewer bits to encode positions with higher resolution. Two types of position messages (identified by the odd and even frame flag) are broadcast alternately. There are two different ways to decode an airborne position based on these messages:</p>
+<ol>
+<li><p><strong>Globally unambiguous position decoding</strong>: Without a known position to start with, using both types of messages to decode the position.</p></li>
+<li><p><strong>Locally unambiguous position decoding</strong>: Knowing a reference position from previous sets of messages, using only one message for the decoding.</p></li>
+</ol>
+<p>The position information in ADS-B messages is encoded in a compact position reporting (CPR) format. The general idea behind CPR is to encode more coordinate decimals using fewer bits. The CPR offers a trade-off between global position ambiguity and local position accuracy.</p>
+<h2 id="a-over-simplified-example">A over-simplified example</h2>
+<p>First of all, we will use a simple example to explain the basic ideas behind the CPR position encoding. CPR divides 2D space into two different grids. Two message types are used to encode the positions with different grids.</p>
+<p>In the following simple example, we want to encode position <span class="math inline">\((9, 7)\)</span> in a <span class="math inline">\(16\times16\)</span> discrete world. Normally, this would require 4 bits each to encode the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates, which is <span class="math inline">\((1001, 0111)\)</span>.</p>
+<p>In the simple "CPR" algorithm, we first define two different grids. The even grid has a size of <span class="math inline">\(4\times4\)</span>, while the odd grid has a size of <span class="math inline">\(5\times5\)</span>. The is illustrated in Figure <a href="#fig:cpr_simple_1" data-reference-type="ref" data-reference="fig:cpr_simple_1">1.1</a>.</p>
+<figure>
+<img src="../../figures/a86ae7179bbada65de6a7bd0639dbb7b47856644.png" id="fig:cpr_simple_1" /><figcaption aria-hidden="true">Simplified CPR position coding (encoding)</figcaption>
+</figure>
+<p>With these two grids, we can encode the local positions within each grid systems, which are <span class="math inline">\((1,3)\)</span> and <span class="math inline">\((4,2)\)</span> respectively. Now, the position can be encoded only using 3 bits.</p>
+<p>When the odd and even messages are received, each message alone has different possible global positions, which are shown in Figure <a href="#fig:cpr_simple_2" data-reference-type="ref" data-reference="fig:cpr_simple_2">1.2</a>.</p>
+<figure>
+<img src="../../figures/2621f1efedc79392158e7afd0601dfe80217abf3.png" id="fig:cpr_simple_2" /><figcaption aria-hidden="true">Simplified CPR position coding (all position possiilities)</figcaption>
+</figure>
+<p>Combining the possible positions from both even and odd messages, we can recover the global position where the solutions from both grids overlap with each other. This is shown in Figure <a href="#fig:cpr_simple_3" data-reference-type="ref" data-reference="fig:cpr_simple_3">1.3</a>.</p>
+<figure>
+<img src="../../figures/ba4b73e2914e2f7a8283e7070dc64b68c339d8c2.png" id="fig:cpr_simple_3" /><figcaption aria-hidden="true">Simplified CPR position coding (final global position)</figcaption>
+</figure>
+<h2 id="compact-position-reporting">Compact position reporting</h2>
+<h3 id="cpr-zones">CPR zones</h3>
+<p>The actual CPR algorithm is more sophisticated. First of all, more zones are defined. There are 15 latitude zones defined for each hemisphere. Up to 59 longitude zones are used, and the number of longitude zones is different at different altitudes.</p>
+<p>In Figure <a href="#fig:cpr_lat_zones" data-reference-type="ref" data-reference="fig:cpr_lat_zones">1.5</a>, the latitude zones are illustrated. The solid and dashed lines represent the latitude zone size of even and odd messages.</p>
+<p><img src="../../figures/7d4aa985c70cda622744ab2663b93cf5ff10da0d.png" title="fig:" id="fig:cpr_lat_zones" /><br />
+<img src="../../figures/0caacb9d2073e394957876acd803a3e3e686e71c.png" title="fig:" id="fig:cpr_lat_zones" /></p>
+<p>In Figure <a href="#fig:cpr_lon_zones" data-reference-type="ref" data-reference="fig:cpr_lon_zones">1.7</a>, the latitude zones are illustrated. On the right-hand side of the figure is a zoomed-in view of the grid of northern Europe. The black and gray lines represent the longitude zone size of even and odd messages. We can see that the number of longitude zones (and the sizes) also differs depending on the latitude.</p>
+<p><img src="../../figures/d377155b5fcabdd0ebe0fb7de952649284f62f0a.png" title="fig:" id="fig:cpr_lon_zones" /><br />
+<img src="../../figures/a370857824fb55ff350954dc06a6304fc4b77e11.png" title="fig:" id="fig:cpr_lon_zones" /></p>
+<p>To report a position, the fractions of latitude and longitude in respective zones are encoded using 17 bits. These bits are transmitted in the position messages.</p>
+<h3 id="core-functions-and-parameters">Core functions and parameters</h3>
+<p>To decode the CPR positions, we first introduce relevant parameters and common functions.</p>
+<h4 id="nz">Nz</h4>
+<p><span class="math inline">\(N_Z\)</span> represents the number of latitude zones between the equator and a pole. In Mode S, <span class="math inline">\(N_Z\)</span> is defined to be 15.</p>
+<h4 id="floorx">floor(x)</h4>
+<p>The floor function <span class="math inline">\(floor(x)\)</span> returns the greatest integer value <span class="math inline">\(k\)</span>, where <span class="math inline">\(k \le x\)</span>. For example:</p>
+<p><span class="math display">\[\begin{split}
+    floor(5.6) &amp;= 5 \\
+    floor(-5.6) &amp;= -6
+  \end{split}\]</span></p>
+<h4 id="modx-y">mod(x, y)</h4>
+<p>The modulo function is defined as:</p>
+<p><span class="math display">\[mod(x,y) = x - y \cdot floor \left( \frac{x}{y} \right), \qquad y \ne 0\]</span></p>
+<h4 id="nllat---longitude-zone-number">NL(lat) - Longitude zone number</h4>
+<p>Given the latitude, this function yields the number of longitude zones between 1 and 59. The function is expressed as:</p>
+<p><span class="math display">\[\mathrm{NL}(\mathrm{lat}) = floor \left\{ \dfrac{2 \pi}{\arccos \left[ 1 - \dfrac{1-\cos \left( \dfrac{\pi}{2~N_Z} \right)}{\cos^2\left(\dfrac{\pi}{180} \cdot \mathrm{lat} \right)} \right] } \right\}\]</span></p>
+<p>For latitudes that are close to the equator or the poles, one of following values is returned:</p>
+<pre><code>lat = 0     -&gt;    NL = 59
+lat = +87   -&gt;    NL = 2
+lat = -87   -&gt;    NL = 2
+lat &gt; +87   -&gt;    NL = 1
+lat &lt; -87   -&gt;    NL = 1</code></pre>
+<h2 id="globally-unambiguous-position-decoding">Globally unambiguous position decoding</h2>
+<h3 id="sec:cpr_airborne_global_lat">Calculation of latitude</h3>
+<p>In each position message, bit 54 determines whether it is an odd or even type. indicates an even message, while indicates an odd message.</p>
+<p>Bits 55-71 and bits 72-88 represent the fractions of the latitude and longitude within the latitude and longitude grid, denoted as <span class="math inline">\(\mathrm{lat}_\mathrm{cpr}\)</span> and <span class="math inline">\(\mathrm{lon}_\mathrm{cpr}\)</span>:</p>
+<p><span class="math display">\[\begin{split}
+      \mathrm{lat}_\mathrm{cpr} &amp;= \frac{N_{cpr,lat}}{2^{17}} \\
+    \mathrm{lon}_\mathrm{cpr} &amp;= \frac{N_{cpr,lon}}{2^{17}}
+  \end{split}\]</span></p>
+<p>For even and odd messages, the latitude zone sizes are defined as follows:</p>
+<p><span class="math display">\[\begin{split}
+  \mathrm{dLat}_\mathrm{even} &amp;= \frac{360^\circ}{4 N_Z} \\
+  \mathrm{dLat}_\mathrm{odd} &amp;= \frac{360^\circ}{4 N_Z - 1}
+\end{split}\]</span></p>
+<p>To decode the latitude, first, use the following equation to calculate the latitude zone index, denoted as <span class="math inline">\(j\)</span>:</p>
+<p><span class="math display">\[j = floor \left( 59 \cdot \mathrm{lat}_\mathrm{cpr, even} - 60 \cdot \mathrm{lat}_\mathrm{cpr,odd} + \frac{1}{2}  \right)\]</span></p>
+<p>Based on both even and odd frames, two latitudes are computed as follows:</p>
+<p><span class="math display">\[\begin{split}
+    \mathrm{lat}_\mathrm{even} &amp;= \mathrm{dLat}_\mathrm{even} \Big( mod(j, 60) + \mathrm{lat}_\mathrm{cpr, even} \Big) \\
+    \mathrm{lat}_\mathrm{odd} &amp;= \mathrm{dLat}_\mathrm{odd} \Big( mod(j, 59) + \mathrm{lat}_\mathrm{cpr,odd} \Big)
+  \end{split}\]</span></p>
+<p>For the southern hemisphere, values returned from previous equations range from 270 to 360 degrees. Hence, we need to make sure the latitude is within the range of <span class="math inline">\([-90, +90]\)</span> by applying the following equations:</p>
+<p><span class="math display">\[\begin{split}
+    \mathrm{lat}_\mathrm{even} = \mathrm{lat}_\mathrm{even} - 360,  \quad &amp;\text{if}~\mathrm{lat}_\mathrm{even} \ge 270 \\
+    \mathrm{lat}_\mathrm{odd} = \mathrm{lat}_\mathrm{odd} - 360,  \quad &amp;\text{if}~\mathrm{lat}_\mathrm{odd} \ge 270
+  \end{split}\]</span></p>
+<p>Before proceeding to the longitude calculation, we need to compute <span class="math inline">\(\mathrm{NL}(\mathrm{lat}_\mathrm{even})\)</span> and <span class="math inline">\(\mathrm{NL}(\mathrm{lat}_\mathrm{odd})\)</span> to check if both values are the same. If not, this means the pair of messages are from different longitude zones, and it is not possible to compute the correct global position.</p>
+<p>In this case, decoding should be stopped, and it is necessary to wait for a pair of messages that are from the same latitude zone. This situation happens when aircraft are flying across the boundaries of longitude zones.</p>
+<p>The final latitude is chosen according to the time stamps of the messages as:</p>
+<p><span class="math display">\[\mathrm{lat} =
+  \begin{cases}
+   \mathrm{lat}_\mathrm{even}     &amp; \text{if}~T_\mathrm{even} \ge T_\mathrm{odd} \\
+   \mathrm{lat}_\mathrm{odd}     &amp; \text{otherwise}
+  \end{cases}\]</span></p>
+<p>where the current latitude is the more recent of these two latitudes.</p>
+<h3 id="sec:cpr_airborne_global_lon">Calculation of longitude</h3>
+<p>First, the longitude index, <span class="math inline">\(m\)</span>, can be calculated as:</p>
+<p><span class="math display">\[m = floor \left( \mathrm{lon}_\mathrm{cpr, even} \cdot \Big[ \mathrm{NL}(\mathrm{lat})-1 \Big] - \mathrm{lon}_\mathrm{cpr,odd} \cdot \mathrm{NL}(\mathrm{lat}) + \frac{1}{2}  \right)\]</span></p>
+<p>We also need to calculate the longitude zone size, which is dependent on the latitude. For even and odd messages, the number of longitude zones is defined as:</p>
+<p><span class="math display">\[\begin{split}
+  n_\mathrm{even} &amp;= max[\mathrm{NL}(\mathrm{lat}), 1] \\
+  n_\mathrm{odd} &amp;= max[\mathrm{NL}(\mathrm{lat}-1), 1]
+\end{split}\]</span></p>
+<p>The longitude zone sizes are defined as follows:</p>
+<p><span class="math display">\[\begin{split}
+  \mathrm{dLon}_\mathrm{even} &amp;= \frac{360^\circ}{n_\mathrm{even}} \\
+  \mathrm{dLon}_\mathrm{odd} &amp;= \frac{360^\circ}{n_\mathrm{odd}}
+\end{split}\]</span></p>
+<p>Then, the longitude is calculated as:</p>
+<p><span class="math display">\[\begin{split}
+  \mathrm{lon}_\mathrm{even} &amp;= \mathrm{dLon}_\mathrm{even} \Big[ mod(m, n_\mathrm{even}) + \mathrm{lon}_\mathrm{cpr,even} \Big] \\
+  \mathrm{lon}_\mathrm{odd} &amp;= \mathrm{dLon}_\mathrm{odd} \Big[ mod(m, n_\mathrm{odd}) + \mathrm{lon}_\mathrm{cpr,odd} \Big]
+  \end{split}\]</span></p>
+<p>Similarly, the final longitude is chosen according to the time stamps of the messages as:</p>
+<p><span class="math display">\[\mathrm{lon} =
+  \begin{cases}
+   \mathrm{lon}_\mathrm{even}     &amp; \text{if}~T_\mathrm{even} \ge T_\mathrm{odd} \\
+   \mathrm{lon}_\mathrm{odd}     &amp; \text{otherwise}
+  \end{cases}\]</span></p>
+<p>It is worth noting that the longitudes in position messages are between 0 and 360 degrees. We often need to convert them to the range between -180 and 180 degrees, which is consistent with aviation conventions. We can convert them as:</p>
+<p><span class="math display">\[\mathrm{lon} = \mathrm{lon} - 360,  \quad \text{if}~\mathrm{lon} \ge 180\]</span></p>
+<h3 id="example">Example</h3>
+<p>The example contains two position messages that are received within 10 seconds. The first message is the most recent position message transmitted by the aircraft.</p>
+<pre><code>8D40621D58C382D690C8AC2863A7   (most recent)
+8D40621D58C386435CC412692AD6</code></pre>
+<p>Following the common ADS-B message structure, we can identify the ICAO address and payload as follows:</p>
+<pre><code>+----+--------+----------------+--------+
+|    | ICAO   |      Data      |  PI    |
++----+--------+----------------+--------+
+| 8D | 40621D | 58C382D690C8AC | 2863A7 |
+| 8D | 40621D | 58C386435CC412 | 692AD6 |
++----+--------+----------------+--------+</code></pre>
+<p>We can covert the message data into binary format:</p>
+<pre><code>+-------+-----+--------------+---+---+-------------------+-------------------+
+| TC    |     | ALT          | T | F | CPR-LAT           | CPR-LON           |
++-------+-----+--------------+---+---+-------------------+-------------------+
+| 01011 | 000 | 110000111000 | 0 | 0 | 10110101101001000 | 01100100010101100 |
+| 01011 | 000 | 110000111000 | 0 | 1 | 10010000110101110 | 01100010000010010 |
++-------+-----+--------------+---+---+-------------------+-------------------+</code></pre>
+<p>It is possible to extract the encoded CPR latitude and longitude binary and convert them to decimal format. Then, these values are divided by the <span class="math inline">\(2^{17}\)</span>, representing the fractions of the positions within the latitude and longitude grids:</p>
+<p><span class="math display">\[\begin{split}
+    \mathrm{lat}_\mathrm{cpr,even} &amp;= \frac{93000}{2^{17}} \\
+    \mathrm{lon}_\mathrm{cpr,even} &amp;= \frac{51372}{2^{17}} \\
+    \mathrm{lat}_\mathrm{cpr,odd} &amp;=  \frac{74158}{2^{17}} \\
+    \mathrm{lon}_\mathrm{cpr,odd} &amp;=  \frac{50194}{2^{17}}
+  \end{split}\]</span></p>
+<p>We can calculate the latitude index, <span class="math inline">\(j\)</span>, as:</p>
+<p><span class="math display">\[j = floor \left( 59 \times \frac{93000}{2^{17}} - 60 \times \frac{51372}{2^{17}} + \frac{1}{2}  \right) = 8\]</span></p>
+<p>Then, we can decode the latitudes from both even and odd messages:</p>
+<p><span class="math display">\[\begin{split}
+    \mathrm{lat}_\mathrm{even} &amp;= \frac{360}{4 \times 15} \Big[ mod(8, 60) + \frac{93000}{2^{17}} \Big] = 52.25720214843750 \\
+    \mathrm{lat}_\mathrm{odd} &amp;= \frac{360}{4 \times 15 - 1} \Big[ mod(8, 59) + \frac{74158}{2^{17}} \Big] = 52.26578017412606
+  \end{split}\]</span></p>
+<p>After validating the longitude zone of both messages:</p>
+<p><span class="math display">\[\begin{split}
+    \mathrm{NL}(\mathrm{lat}_\mathrm{even}) &amp;= \mathrm{NL}(52.25720214843750) = 36 \\
+    \mathrm{NL}(\mathrm{lat}_\mathrm{odd}) &amp;= \mathrm{NL}(52.26578017412606) = 36
+  \end{split}\]</span></p>
+<p>we can continue to calculate the global position. Since the even message is the most recent message, the latitude is:</p>
+<p><span class="math display">\[\mathrm{lat} = \mathrm{lat}_\mathrm{even} = 52.25720214843750\]</span></p>
+<p>The final longitude (based on the even message) is calculated as:</p>
+<p><span class="math display">\[\begin{aligned}
+  m &amp;= floor \left( \frac{51372}{2^{17}} \times (36-1) - \frac{50194}{2^{17}} \times 36 + \frac{1}{2}  \right) = 0\\
+  n &amp;= max \Big( 36-0, 1 \Big) = 36\\
+    \mathrm{lon} &amp;= \frac{360}{36} \Big[ mod(0, 36) + \frac{51372}{2^{17}} \Big] = 3.91937255859375\end{aligned}\]</span></p>
+<p><span>Try it out</span> Using <code>pyModeS</code>, we can perform the previous calculation of globally unambiguous position as:</p>
+<pre><code>import pyModeS as pms
+
+msg0 = &quot;8D40621D58C382D690C8AC2863A7&quot;
+msg1 = &quot;8D40621D58C386435CC412692AD6&quot;
+t0 = 1457996402
+t1 = 1457996400
+
+position = pms.adsb.position(msg0, msg1, t0, t1)</code></pre>
+<h2 id="locally-unambiguous-position-decoding">Locally unambiguous position decoding</h2>
+<p>Previously, a globally unambiguous position has been decoded using a pair of odd and even messages. In this part, we will discuss how to decode the ADS-B position with one message and a previous reference position that is obtained using globally unambiguous decoding.</p>
+<p>This method offers the possibility to continuous decode aircraft using only one message. It computes the latitude index (j) and the longitude index (m) based on this existing reference position and can be applied to both odd and even messages.</p>
+<h3 id="the-reference-position">The reference position</h3>
+<p>The reference position should be close to the actual position, which must be within a 180 NM range. For example, this can be the position of aircraft that is decoded in the previous update. The range limitation is to ensure the consistency of the latitude and longitude zones between the reference position and decoding position. The reference position is denoted as (<span class="math inline">\(\mathrm{lat}_\mathrm{ref}\)</span>, <span class="math inline">\(\mathrm{lon}_\mathrm{ref}\)</span>).</p>
+<h3 id="calculation-of-latitude">Calculation of latitude</h3>
+<p>Denote <span class="math inline">\(i\)</span> as the value dependent on the type of the message:</p>
+<p><span class="math display">\[i =
+  \begin{cases}
+    0, \quad \text{even message} \\
+    1, \quad \text{odd message}
+  \end{cases}\]</span></p>
+<p>The latitude zone size is different depending on the message type:</p>
+<p><span class="math display">\[\mathrm{dLat} = \frac{360}{4n_z-i}\]</span></p>
+<p>Then, the latitude zone index, <span class="math inline">\(j\)</span>, is calculated as:</p>
+<p><span class="math display">\[j = floor \left( \frac{\mathrm{lat}_\mathrm{ref}}{\mathrm{dLat}} \right) + floor \left[ \frac{mod(\mathrm{lat}_\mathrm{ref}, \mathrm{dLat})}{\mathrm{dLat}}  - \mathrm{lat}_\mathrm{cpr}  + \frac{1}{2} \right]\]</span></p>
+<p>Knowing the latitude zone index, the latitude of the new position is:</p>
+<p><span class="math display">\[\mathrm{lat} = \mathrm{dLat} \cdot (j + \mathrm{lat}_\mathrm{cpr})\]</span></p>
+<h3 id="calculation-of-longitude">Calculation of longitude</h3>
+<p>Next, we can calculate the increment of the longitude per zone based on the decoded latitude, which is dependent on both message type and latitude:</p>
+<p><span class="math display">\[\mathrm{dLon} = \frac{360}{max\Big( \mathrm{NL}(\mathrm{lat})-i, 1 \Big)}\]</span></p>
+<p>Then, the longitude zone index, <span class="math inline">\(m\)</span>, is calculated as:</p>
+<p><span class="math display">\[m = floor \left( \frac{\mathrm{lon}_\mathrm{ref}}{\mathrm{dLon}} \right) + floor \left( \frac{mod(\mathrm{lon}_\mathrm{ref}, \mathrm{dLon})}{\mathrm{dLon}}  - \mathrm{lon}_\mathrm{cpr}  + \frac{1}{2}  \right)\]</span></p>
+<p>Knowing the longitude zone index, the longitude of the new position is:</p>
+<p><span class="math display">\[\mathrm{lon} = \mathrm{dLon} \cdot (m + \mathrm{lon}_\mathrm{cpr})\]</span></p>
+<h3 id="example-1">Example</h3>
+<p>Next, we illustrate the decoding process of the messages from the previous example with a reference position. The message and the reference position are as follows:</p>
+<pre><code>Message: 8D40621D58C382D690C8AC2863A7
+Data:            58C382D690C8AC
+
+Reference position: (52.258, 3.918)</code></pre>
+<p>We can easily covert the message data to binary:</p>
+<pre><code>+-------+-----+--------------+-----------------------------------------------+
+| TC    |     | ALT          | T | F | CPR-LAT           | CPR-LON           |
+|-------+-----+--------------+---+---+-------------------+-------------------|
+| 01011 | 000 | 110000111000 | 0 | 0 | 10110101101001000 | 01100100010101100 |
++-------+-----+--------------+---+---+-------------------+-------------------+
+|       |     |              |   |   | 93000             | 51372             |
++-------+-----+--------------+---+---+-------------------+-------------------+</code></pre>
+<p>First, since this is an even message (<span class="math inline">\(i=0\)</span>), we can calculate the latitude as follows:</p>
+<p><span class="math display">\[\begin{aligned}
+  \mathrm{dLat} &amp;= \frac{360}{4 \times 15 - 0} = 6 \\
+  j &amp;= floor \left( \frac{52.258}{6} \right) + floor \left[ \frac{mod(52.258, 6)}{6} - \frac{93000}{2^{17}}  + \frac{1}{2} \right] = 8 \\
+  \mathrm{lat} &amp;= 6 \times \left( 8 + \frac{93000}{2^{17}} \right) = 52.2572021484375\end{aligned}\]</span></p>
+<p>Next, the longitude can be calculated as follows:</p>
+<p><span class="math display">\[\begin{aligned}
+  \mathrm{dLon} &amp;= \frac{360}{max \Big( \mathrm{NL}(\mathrm{lat}_\mathrm{even})-0, 1 \Big)} = \frac{360}{max(36, 1)} = 10 \\
+  m &amp;= floor \left( \frac{3.918}{10} \right) + floor \left( \frac{mod(3.918, 10)}{10} - \frac{51372}{2^{17}}  + \frac{1}{2}  \right) = 0 \\
+  \mathrm{lon} &amp;= 10 \times \left(0 + \frac{51372}{2^{17}} \right) = 3.91937255859375\end{aligned}\]</span></p>
+<p><span>Try it out</span> Using <code>pyModeS</code>, we can perform the previous locally unambiguous position calculation as:</p>
+<pre><code>import pyModeS as pms
+
+msg = &quot;8D40621D58C382D690C8AC2863A7&quot;
+lat_ref = 52.258
+lon_ref = 3.918
+
+position = pms.adsb.position_with_ref(msg, lat_ref, lon_ref)</code></pre>
+<h2 id="altitude-decoding">Altitude decoding</h2>
+<p>The altitude of the aircraft can be decoded with one position message, regardless of it being an even or odd type. However, depending on the type code of the messages, the altitudes are decoded differently. In Table <a href="#tb:adsb-tc" data-reference-type="ref" data-reference="tb:adsb-tc">[tb:adsb-tc]</a> from chapter <a href="#chap:adsb-basic" data-reference-type="ref" data-reference="chap:adsb-basic">[chap:adsb-basic]</a>, two different types of altitudes are shown. They are:</p>
+<ul>
+<li><p><strong>TC=9-18</strong>: Airborne position, with barometric altitude encoded (in feet)</p></li>
+<li><p><strong>TC=20-22</strong>: Airborne position, with GNSS Height encoded (in meters)</p></li>
+</ul>
+<h3 id="barometric-altitude">Barometric altitude</h3>
+<p>For barometric altitude (TC between 9 and 18), the 8th bit of the 12-bit altitude field is the <em>Q bit</em>. It indicates whether the altitude is encoded with an increment of 25 ft or 100 ft.</p>
+<p>When <span class="math inline">\(Q=1\)</span>, the altitude is encoded with a 25 ft increment. Removing the Q-bit, the altitude shall be the multiple of 25 ft minus 1000 ft:</p>
+<p><span class="math display">\[h = 25 ~ N - 1000 \quad \text{(ft)}\]</span></p>
+<p>For example, based the example message in the previous section, the 12 bits in the altitude field can be read as follows:</p>
+<pre><code>1100001 1 1000
+        ^
+       Q-bit</code></pre>
+<p>Once the Q-bit is removed, the decimal representation of the remaining bits is 1560:</p>
+<pre><code>11000011000 -&gt; 1560</code></pre>
+<p>The altitude of the aircraft becomes:</p>
+<p><span class="math display">\[1560 \times 25 - 1000 = 38000 \quad \text{(ft)}\]</span></p>
+<p>In the case where the altitude is higher than 50175 ft, a 100 ft increment is used. In this situation, the Q bit is set to , and the rest of the bits are encoded using Gray code.</p>
+<p>It is worth noting that when all bits of the altitude fields are zeros, the altitude information is not available or not valid.</p>
+<h3 id="gnss-height">GNSS height</h3>
+<p>When the position message has the Type Code from 20 to 22, the 12-bit altitude field is used for the encoding of the GNSS height. The GNSS height is derived from the global positioning satellites, and the decimal value of all 12 bits translates into the height of aircraft in meters.</p>
+<p><span>Try it out</span> Using <code>pyModeS</code>, we can perform the altitude decoding as:</p>
+<pre><code>import pyModeS as pms
+
+msg = &quot;8D40621D58C382D690C8AC2863A7&quot;
+
+altitude = pms.adsb.altitude(msg)</code></pre>
+<h2 id="verification-of-decoded-positions">Verification of decoded positions</h2>
+<p>It is recommended to perform a <em>reasonable test</em> to validate the decoded position. There are a couple of ways to perform such a reasonable test:</p>
+<ol>
+<li><p>The first approach is to use the receiver position. The decoded position should not exceed the coverage of the receiver. See chapter <a href="#chap:quickstart" data-reference-type="ref" data-reference="chap:quickstart">[chap:quickstart]</a>, Figure <a href="#fig:max_range_curve" data-reference-type="ref" data-reference="fig:max_range_curve">[fig:max_range_curve]</a>.</p></li>
+<li><p>A further test is to use more than one pair of different messages to produce multiple globally unambiguous positions. Then, the distance between these positions can be used to examine whether the decoded positions are reasonable.</p></li>
+</ol>
+<p>If the decoded position fails the reasonable tests, it should be discarded.</p>
+
+<footer class="mastfoot">
+  <div class="text-right">
+    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+  </div>
+</footer>
+
+</div>
+</div>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-74700456-1');
+</script>
+
+</body>
+</html>

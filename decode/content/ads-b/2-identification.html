@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+  <meta name="author" content="Junzi Sun">
+
+
+  <title>The 1090MHz Riddle</title>
+  <style type="text/css">code{white-space: pre;}</style>
+
+
+
+  <link rel="stylesheet" href="../../bootstrap.min.css">
+  <link rel="stylesheet" href="../../style.css">
+
+
+<link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+  integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous">
+</script>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="d-flex flex-row align-items-end">
+	<div>
+		<h1 class="title">The 1090 Megahertz Riddle</h1>
+		<div class="subtitle">A Guide to Decoding and Interpreting ADS-B and Mode S Signals</div>
+	</div>
+	<div class='ml-auto chapter-nav'>
+    <div class="author">By: <strong>Junzi Sun</strong> (<a href="http://junzis.com">junzis.com</a>)</div>
+
+    <a href="http://mode-s.org" type="button"
+        class="btn btn-sm btn-outline-dark btn-light">
+      <i class="fas fa-angle-double-left"></i> mode-s.org
+    </a>
+
+    <a href="../../book-the_1090mhz_riddle-junzi_sun.pdf"
+        type="button" class="btn btn-sm btn-outline-info">
+      <i class="far fa-file-pdf"></i> Download PDF
+    </a>
+	</div>
+</div>
+
+<hr>
+
+<div class="row">
+<div class="col-md-4 col-lg-3">
+<nav>
+  <h1>Book chapters</h1>
+  <ul>
+    <li><a href="../../index.html">Preface</a></li>
+    <li><a href="../../content/introduction.html">1. Introduction</a></li>
+    <li><a href="../../content/quickstart.html">2. Quick start</a></li>
+    <li>ADS-B</li>
+    <ul>
+      <li><a href="../../content/ads-b/1-basics.html">3. ADS-B basics</a></li>
+      <li><a href="../../content/ads-b/2-identification.html">4. Aircraft Identification</a></li>
+      <li><a href="../../content/ads-b/3-airborne-position.html">5. Airborne Position</a></li>
+      <li><a href="../../content/ads-b/4-surface-position.html">6. Surface Position</a></li>
+      <li><a href="../../content/ads-b/5-airborne-velocity.html">7. Airborne Velocity</a></li>
+      <li><a href="../../content/ads-b/6-operation-status.html">8. Operation Status</a></li>
+      <li><a href="../../content/ads-b/7-uncertainty.html">9. Uncertainty</a></li>
+      <li><a href="../../content/ads-b/8-error-control.html">10. Error Control</a></li>
+    </ul>
+    <li>Mode S</li>
+    <ul>
+      <li><a href="../../content/mode-s/1-basics.html">11. Mode S basics</a></li>
+      <li><a href="../../content/mode-s/2-allcall.html">12. All-call reply</a></li>
+      <li><a href="../../content/mode-s/3-surveillance.html">13. Surveillance reply</a></li>
+      <li><a href="../../content/mode-s/4-acas.html">14. ACAS</a></li>
+      <li><a href="../../content/mode-s/5-commb.html">15. Comm-B replies</a></li>
+      <li><a href="../../content/mode-s/6-els.html">16. Elementary surveillance</a></li>
+      <li><a href="../../content/mode-s/7-ehs.html">17. Enhanced surveillance</a></li>
+      <li><a href="../../content/mode-s/8-meteo.html">18. Meteorological services</a></li>
+      <li><a href="../../content/mode-s/9-inference.html">19. BDS code inference</a></li>
+    </ul>
+    <li><a href="../../content/conclusion.html">20. Conclusion</a></li>
+    <li>Related</li>
+    <ul>
+      <li><a href="../../misc/about.html">About the author</a></li>
+      <li><a href="../../misc/ack.html">Acknowledgements</a></li>
+    </ul>
+  </ul>
+</nav>
+
+<hr>
+<nav id="TOC">
+<div class="float-right">
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/content/ads-b/2-identification.tex"
+    class='btn btn-sm btn-outline-danger'> <i class="fab fa-github-alt"></i> Edit</a>
+</div>
+<h1>In this page</h1>
+<ul>
+<li><a href="#aircraft-identification-and-category">Aircraft identification and category</a>
+<ul>
+<li><a href="#identification-call-sign">Identification (call sign)</a></li>
+<li><a href="#wake-vortex-category">Wake vortex category</a></li>
+<li><a href="#example">Example</a></li>
+</ul></li>
+</ul>
+</nav>
+
+</div>
+
+
+<div class="col-md-8 col-lg-9 maintext">
+
+<div class="float-right">
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/content/ads-b/2-identification.tex"
+    class='btn btn-sm btn-outline-danger'> <i class="fas fa-edit"></i> Recommend edits</a>
+</div>
+
+<h1 id="aircraft-identification-and-category">Aircraft identification and category</h1>
+<p>Within the group of ADS-B messages, the <em>Aircraft Identification and Category</em> message is designed to broadcast the identification (also known as the <em>callsign</em>), and the wake vortex category of the aircraft.</p>
+<p>In this message, the Type Code can be from 1 to 4. The 56-bit message payload consists of 10 parts and is structured as follows:</p>
+<pre><code>+------+------+------+------+------+------+------+------+------+------+
+| TC,5 | CA,3 | C1,6 | C2,6 | C3,6 | C4,6 | C5,6 | C6,6 | C7,6 | C8,6 |
++------+------+------+------+------+------+------+------+------+------+
+
+TC: Type code
+CA: Aircraft category
+C*: A character</code></pre>
+<p>Here, number 6 represents the number of bits used to encode each of the characters.</p>
+<h2 id="identification-call-sign">Identification (call sign)</h2>
+<p>The aircraft identification included in the message is the callsign. Be aware that callsign is not a unique identifier of an aircraft, since different aircraft flying the same route at different times would share the same callsign.</p>
+<p>The last 8 fields in the previous structure diagram represent the callsign characters. In order to decode each character, a lookup table is needed to map the corresponding decimal number (represented in binary code) to each character.</p>
+<p>The character mapping is shown as follows:</p>
+<pre><code>#ABCDEFGHIJKLMNOPQRSTUVWXYZ##### ###############0123456789######</code></pre>
+<p>Firstly, the <code>#</code> symbols represent characters that are not used. In summary, characters and their decimal representations are as follows, where <code>␣</code> symbol refers to a space character.</p>
+<pre><code>A - Z :   1 - 26
+0 - 9 :  48 - 57
+    ␣ :  32</code></pre>
+<p>If you are familiar with the ASCII (American Standard Code for Information Interchange) code, it is easy to identify that a callsign character is encoded using the lower 6 bits of the same character in ASCII.</p>
+<h2 id="wake-vortex-category">Wake vortex category</h2>
+<p>The <code>CA</code> value in combination with <code>TC</code> value defines the wake vortex category of the aircraft. Note ADS-B has its own definition of wake categories, which is different from the common ICAO wake turbulence category definition. In Table <a href="#tb:adsb_id_wake_category" data-reference-type="ref" data-reference="tb:adsb_id_wake_category">1.1</a>, the definitions and related <code>TC</code> and <code>CA</code> codes are indicated.</p>
+<div id="tb:adsb_id_wake_category">
+<table>
+<caption>Wake vortex in ADS-B identification and category message</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>TC</strong></th>
+<th style="text-align: left;"><strong>CA</strong></th>
+<th style="text-align: left;"><strong>Category</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">ANY</td>
+<td style="text-align: left;">Reserved</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ANY</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">No category information</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Surface emergency vehicle</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Surface service vehicle</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">4 - 7</td>
+<td style="text-align: left;">Ground obstruction</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Glider, sailplane</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Lighter-than-air</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Parachutist, skydiver</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Ultralight, hang-glider, paraglider</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Reserved</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Unmanned aerial vehicle</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">Space or transatmospheric vehicle</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Light (less than 7000 kg)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Medium 1 (between 7000 kg and 34000 kg)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Medium 2 (between 34000 kg to 136000 kg)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">High vortex aircraft</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Heavy (larger than 136000 kg)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">High performance (&gt;5 g acceleration) and high speed (&gt;400 kt)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">Rotocraft</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="example">Example</h2>
+<p>Let us use the following raw message as an example for decoding:</p>
+<pre><code>8D4840D6202CC371C32CE0576098</code></pre>
+<p>The message payload is:</p>
+<pre><code>HEX: 202CC371C32CE0
+BIN: 00100000001011001100001101110001110000110010110011100000</code></pre>
+<p>The structure of the payload can be decomposed as follows:</p>
+<pre><code>+-----+---+------+------+------+------+------+------+------+------+
+|00100|000|001011|001100|001101|110001|110000|110010|110011|100000|
++-----+---+------+------+------+------+------+------+------+------+
+|TC   |CA |11    |12    |13    |49    |48    |50    |51    |32    |
++-----+---+------+------+------+------+------+------+------+------+
+|4    |0  |K     |L     |M     |1     |0     |2     |3     |_     |
++-----+---+------+------+------+------+------+------+------+------+</code></pre>
+<p>With <code>TC=4</code>, we can confirm it is an identification and category message. The decoded identity (callsign) of the aircraft is <code>KLM1023</code> (with the trailing space ignored). With <code>CA=0</code>, we can see that the aircraft did not transmit any information on the wake vortex category.</p>
+<p><span>Try it out</span> Using <code>pyModeS</code>, we can decode the callsign as follows:</p>
+<pre><code>import pyModeS as pms
+
+category = pms.adsb.category(&quot;8D4840D6202CC371C32CE0576098&quot;)
+callsign = pms.adsb.callsign(&quot;8D4840D6202CC371C32CE0576098&quot;)</code></pre>
+
+<footer class="mastfoot">
+  <div class="text-right">
+    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+  </div>
+</footer>
+
+</div>
+</div>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74700456-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-74700456-1');
+</script>
+
+</body>
+</html>
