@@ -122,7 +122,7 @@
 </div>
 
 <h1 id="aircraft-identification-and-category">Aircraft identification and category</h1>
-<p>Within the group of ADS-B messages, the <em>Aircraft Identification and Category</em> message is designed to broadcast the identification (also known as the <em>callsign</em>), and the wake vortex category of the aircraft.</p>
+<p>Within the group of ADS-B messages, the <em>Aircraft Identification and Category</em> message is designed to broadcast the identification (also known as the ‘callsign’), and the wake vortex category of the aircraft.</p>
 <p>In this message, the Type Code can be from 1 to 4. The 56-bit ME filed consists of 10 parts and is structured as follows:</p>
 <pre><code>+------+------+------+------+------+------+------+------+------+------+
 | TC,5 | CA,3 | C1,6 | C2,6 | C3,6 | C4,6 | C5,6 | C6,6 | C7,6 | C8,6 |
@@ -134,16 +134,16 @@ C*: A character</code></pre>
 <p>Here, number 6 represents the number of bits used to encode each of the characters.</p>
 <h2 id="identification-call-sign">Identification (call sign)</h2>
 <p>The aircraft identification included in the message is the callsign. Be aware that callsign is not a unique identifier of an aircraft, since different aircraft flying the same route at different times would share the same callsign.</p>
-<p>The last 8 fields in the previous structure diagram represent the callsign characters. In order to decode each character, a lookup table is needed to map the corresponding decimal number (represented in binary code) to each character.</p>
+<p>The last eight fields in the previous structure diagram represent the callsign characters. In order to decode each character, a lookup table is needed to map the corresponding decimal number (represented in binary code) to each character.</p>
 <p>The character mapping is shown as follows:</p>
 <pre><code>#ABCDEFGHIJKLMNOPQRSTUVWXYZ##### ###############0123456789######</code></pre>
-<p>Firstly, the <code>#</code> symbols represent characters that are not used. In summary, characters and their decimal representations are as follows, where <code>␣</code> symbol refers to a space character.</p>
+<p>Firstly, the <code>#</code> symbols represent characters that are not used. In summary, characters and their decimal representations are as follows, where the <code>␣</code> symbol refers to a space character.</p>
 <pre><code>A - Z :   1 - 26
 0 - 9 :  48 - 57
     ␣ :  32</code></pre>
-<p>If you are familiar with the ASCII (American Standard Code for Information Interchange) code, it is easy to identify that a callsign character is encoded using the lower 6 bits of the same character in ASCII.</p>
+<p>If you are familiar with the ASCII (American Standard Code for Information Interchange) code, it is easy to identify that a callsign character is encoded using the lower six bits of the same character in ASCII.</p>
 <h2 id="wake-vortex-category">Wake vortex category</h2>
-<p>The <code>CA</code> value in combination with <code>TC</code> value defines the wake vortex category of the aircraft. Note ADS-B has its own definition of wake categories, which is different from the common ICAO wake turbulence category definition. In Table <a href="#tb:adsb_id_wake_category" data-reference-type="ref" data-reference="tb:adsb_id_wake_category">1.1</a>, the definitions and related <code>TC</code> and <code>CA</code> codes are indicated.</p>
+<p>The <code>CA</code> value in combination with <code>TC</code> value defines the wake vortex category of the aircraft. Table <a href="#tb:adsb_id_wake_category" data-reference-type="ref" data-reference="tb:adsb_id_wake_category">1.1</a> lists the definitions and related <code>TC</code> and <code>CA</code> codes.</p>
 <div id="tb:adsb_id_wake_category">
 <table>
 <caption>Wake vortex in ADS-B identification and category message</caption>
@@ -177,7 +177,7 @@ C*: A character</code></pre>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2</td>
-<td style="text-align: left;">4 - 7</td>
+<td style="text-align: left;">4–7</td>
 <td style="text-align: left;">Ground obstruction</td>
 </tr>
 <tr class="even">
@@ -248,11 +248,17 @@ C*: A character</code></pre>
 <tr class="odd">
 <td style="text-align: left;">4</td>
 <td style="text-align: left;">7</td>
-<td style="text-align: left;">Rotocraft</td>
+<td style="text-align: left;">Rotorcraft</td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>Note ADS-B has its own definition of wake categories, which is different from the ICAO wake turbulence category definition commonly used in aviation. The relationships of ICAO wake turbulence category (WTC) and ADS-B wake vortex category are:</p>
+<ul>
+<li><p>ICAO WTC L (Light) is equivalent to ADS-B (TC=4, CA=1).</p></li>
+<li><p>ICAO WTC M (Medium) is equivalent to ADS-B (TC=4, CA=2 or CA=3).</p></li>
+<li><p>ICAO WTC H (Heavy) or J (Super) is equivalent to ADS-B (TC=4, CA=5).</p></li>
+</ul>
 <h2 id="decoding-example">Decoding example</h2>
 <p>Let us use the following raw message as an example for decoding:</p>
 <pre><code>8D4840D6202CC371C32CE0576098</code></pre>
@@ -268,11 +274,14 @@ BIN: 00100000001011001100001101110001110000110010110011100000</code></pre>
 |4    |0  |K     |L     |M     |1     |0     |2     |3     |_     |
 +-----+---+------+------+------+------+------+------+------+------+</code></pre>
 <p>With <code>TC=4</code>, we can confirm it is an identification and category message. The decoded identity (callsign) of the aircraft is <code>KLM1023</code> (with the trailing space ignored). With <code>CA=0</code>, we can see that the aircraft did not transmit any information on the wake vortex category.</p>
-<p><span>Try it out</span> Using <code>pyModeS</code>, we can decode the callsign as follows:</p>
+<p><span>Try it out</span> Using pyModeS, we can decode the callsign as follows:</p>
 <pre><code>import pyModeS as pms
 
-category = pms.adsb.category(&quot;8D4840D6202CC371C32CE0576098&quot;)
-callsign = pms.adsb.callsign(&quot;8D4840D6202CC371C32CE0576098&quot;)</code></pre>
+pms.adsb.category(&quot;8D4840D6202CC371C32CE0576098&quot;)
+# Output: 0
+
+pms.adsb.callsign(&quot;8D4840D6202CC371C32CE0576098&quot;)
+# Output: KLM1023_</code></pre>
 
 <footer class="mastfoot">
   <div class="text-right">

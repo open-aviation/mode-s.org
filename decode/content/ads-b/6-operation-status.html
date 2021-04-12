@@ -122,10 +122,9 @@
 </div>
 
 <h1 id="aircraft-operation-status">Aircraft operation status</h1>
-<p>The aircraft operational status message is designed to provide various information on an aircraft. The message has been defined in all ADS-B versions. But in practice, it is not implemented in ADS-B version 0. In ADS-B version 0, the structures include information related to aircraft operational capabilities and status for different stages of the flight. From version 1 onward, the operational status includes more information, such as ADS-B version, accuracy, and integrity indicators.</p>
-<p>The operation status message is transmitted with Type Code 31 (<code>TC=31</code>). The structures of this message type differ significantly over different ADS-B versions.</p>
+<p>The aircraft operational status message is designed to provide various information on an aircraft. It is transmitted with Type Code 31 (<code>TC=31</code>). The structures of this message type differ significantly over different ADS-B versions. The message has been defined in all ADS-B versions. But in practice, it is not implemented in ADS-B version 0. From version 1 onward, the operational status includes more information, such as ADS-B version, accuracy, and integrity indicators.</p>
 <h2 id="version-0">Version 0</h2>
-<p>In version 0, the structure of the message is shown in Table <a href="#tb:adsb-operational-status-v0" data-reference-type="ref" data-reference="tb:adsb-operational-status-v0">1.1</a>. Two main blocks contain the status information, which includes operational capabilities (16 bits) and operational status (16 bits). Each block contains 4 parameters, and each parameter is encoded with 4 bits.</p>
+<p>In version 0, the structure of the message is shown in Table <a href="#tb:adsb-operational-status-v0" data-reference-type="ref" data-reference="tb:adsb-operational-status-v0">1.1</a>. Two main blocks contain the status information, which includes operational capabilities (16 bits) and operational status (16 bits). Each block contains four parameters, and each parameter is encoded with 4 bits.</p>
 <div id="tb:adsb-operational-status-v0">
 <table>
 <caption>Aircraft operational status (Version 0)</caption>
@@ -142,86 +141,86 @@
 <tr class="odd">
 <td style="text-align: left;">Type code = 31 (Binary: 11111)</td>
 <td style="text-align: center;">TC</td>
-<td style="text-align: center;">33-37</td>
-<td style="text-align: center;">1-5</td>
+<td style="text-align: center;">33–37</td>
+<td style="text-align: center;">1–5</td>
 <td style="text-align: center;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Sub-type code = 0 (Binary: 000)</td>
 <td style="text-align: center;">ST</td>
-<td style="text-align: center;">38-40</td>
-<td style="text-align: center;">6-8</td>
+<td style="text-align: center;">38–40</td>
+<td style="text-align: center;">6–8</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Enroute operational capabilities</td>
 <td style="text-align: center;">CC4</td>
-<td style="text-align: center;">41-44</td>
-<td style="text-align: center;">9-12</td>
+<td style="text-align: center;">41–44</td>
+<td style="text-align: center;">9–12</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Terminal area operational capabilities</td>
 <td style="text-align: center;">CC3</td>
-<td style="text-align: center;">45-48</td>
-<td style="text-align: center;">13-16</td>
+<td style="text-align: center;">45–48</td>
+<td style="text-align: center;">13–16</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Approach/landing operational capabilities</td>
 <td style="text-align: center;">CC2</td>
-<td style="text-align: center;">49-52</td>
-<td style="text-align: center;">17-21</td>
+<td style="text-align: center;">49–52</td>
+<td style="text-align: center;">17–21</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Surface operational capabilities</td>
 <td style="text-align: center;">CC1</td>
-<td style="text-align: center;">53-56</td>
-<td style="text-align: center;">22-24</td>
+<td style="text-align: center;">53–56</td>
+<td style="text-align: center;">22–24</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Enroute operational status</td>
 <td style="text-align: center;">OM4</td>
-<td style="text-align: center;">57-60</td>
-<td style="text-align: center;">25-28</td>
+<td style="text-align: center;">57–60</td>
+<td style="text-align: center;">25–28</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Terminal area operational status</td>
 <td style="text-align: center;">OM3</td>
-<td style="text-align: center;">61-64</td>
-<td style="text-align: center;">29-32</td>
+<td style="text-align: center;">61–64</td>
+<td style="text-align: center;">29–32</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Approach/landing operational status</td>
 <td style="text-align: center;">OM2</td>
-<td style="text-align: center;">65-68</td>
-<td style="text-align: center;">33-36</td>
+<td style="text-align: center;">65–68</td>
+<td style="text-align: center;">33–36</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Surface operational status</td>
 <td style="text-align: center;">OM1</td>
-<td style="text-align: center;">69-72</td>
-<td style="text-align: center;">36-39</td>
+<td style="text-align: center;">69–72</td>
+<td style="text-align: center;">36–39</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">73-88</td>
-<td style="text-align: center;">41-56</td>
+<td style="text-align: center;">73–88</td>
+<td style="text-align: center;">41–56</td>
 <td style="text-align: center;">16</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>However, even all the parameter fields are defined. All <code>CC</code> and bits are reserved in the third and fourth blocks according to <span class="citation" data-cites="icao9871v1"></span>, which eventually made the definitions un-usable for version 0 transponders. As version 0 transponders do not transmit any operation status messages, the absence of TC=31 messages can help identify transponder version 0, which is discussed in chapter <a href="#chap:adsb-basic" data-reference-type="ref" data-reference="chap:adsb-basic">[chap:adsb-basic]</a>.</p>
+<p>However, even though all the parameter fields are defined, all <code>CC</code> and bits are reserved in the third and fourth blocks according to <span class="citation" data-cites="icao9871v1"></span>, which eventually made the definitions unusable for version 0 transponders. As version 0 transponders do not transmit any operation status messages, the absence of TC=31 messages can help identify transponder version 0, which is discussed in Chapter <a href="#chap:adsb-basic" data-reference-type="ref" data-reference="chap:adsb-basic">[chap:adsb-basic]</a>.</p>
 <h2 id="version-1">Version 1</h2>
-<p>From version 1 onward, the operational status report is implemented and broadcast by the transponder. In Table <a href="#tb:adsb-operational-status-v1" data-reference-type="ref" data-reference="tb:adsb-operational-status-v1">1.2</a>, the structure of operational message in version 1 is defined.</p>
+<p>From version 1 onward, the operational status report is implemented and broadcast by the transponder. Table <a href="#tb:adsb-operational-status-v1" data-reference-type="ref" data-reference="tb:adsb-operational-status-v1">1.2</a> lists the structure of operational message in version 1.</p>
 <div id="tb:adsb-operational-status-v1">
 <table>
 <caption>Aircraft operational status (Version 1)</caption>
@@ -238,19 +237,19 @@
 <tr class="odd">
 <td style="text-align: left;"><strong>Type code = 31</strong> (Binary: 11111)</td>
 <td style="text-align: center;">TC</td>
-<td style="text-align: center;">33-37</td>
-<td style="text-align: center;">1-5</td>
+<td style="text-align: center;">33–37</td>
+<td style="text-align: center;">1–5</td>
 <td style="text-align: center;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Sub-type code</strong></td>
 <td style="text-align: center;">ST</td>
-<td style="text-align: center;">38-40</td>
-<td style="text-align: center;">6-8</td>
+<td style="text-align: center;">38–40</td>
+<td style="text-align: center;">6–8</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">0: airborne, 1: surface, 2-7: reserved</td>
+<td style="text-align: left;">0: airborne, 1: surface, 2–7: reserved</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -259,8 +258,8 @@
 <tr class="even">
 <td style="text-align: left;"><strong>Capacity class codes</strong></td>
 <td style="text-align: center;">CC</td>
-<td style="text-align: center;">41-56</td>
-<td style="text-align: center;">9-24</td>
+<td style="text-align: center;">41–56</td>
+<td style="text-align: center;">9–24</td>
 <td style="text-align: center;">16</td>
 </tr>
 <tr class="odd">
@@ -287,15 +286,15 @@
 <tr class="even">
 <td style="text-align: left;"><strong>Operational mode codes</strong></td>
 <td style="text-align: center;">OM</td>
-<td style="text-align: center;">57-72</td>
-<td style="text-align: center;">25-40</td>
+<td style="text-align: center;">57–72</td>
+<td style="text-align: center;">25–40</td>
 <td style="text-align: center;">16</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>ADS-B version number</strong></td>
 <td style="text-align: center;">Ver</td>
-<td style="text-align: center;">73-75</td>
-<td style="text-align: center;">41-43</td>
+<td style="text-align: center;">73–75</td>
+<td style="text-align: center;">41–43</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
@@ -313,7 +312,7 @@
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2-7: Reserved</td>
+<td style="text-align: left;">2–7: Reserved</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -329,15 +328,15 @@
 <tr class="even">
 <td style="text-align: left;"><strong>Navigational accuracy category - position</strong></td>
 <td style="text-align: center;">NACp</td>
-<td style="text-align: center;">77-80</td>
-<td style="text-align: center;">45-48</td>
+<td style="text-align: center;">77–80</td>
+<td style="text-align: center;">45–48</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>ST=0: Barometric altitude quality</strong></td>
 <td style="text-align: center;">BAQ</td>
-<td style="text-align: center;">81-82</td>
-<td style="text-align: center;">49-50</td>
+<td style="text-align: center;">81–82</td>
+<td style="text-align: center;">49–50</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="even">
@@ -350,8 +349,8 @@
 <tr class="odd">
 <td style="text-align: left;"><strong>Surveillance integrity level</strong></td>
 <td style="text-align: center;">SIL</td>
-<td style="text-align: center;">83-84</td>
-<td style="text-align: center;">51-52</td>
+<td style="text-align: center;">83–84</td>
+<td style="text-align: center;">51–52</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="even">
@@ -378,15 +377,15 @@
 <tr class="odd">
 <td style="text-align: left;"><strong>Reserved</strong></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">87-88</td>
-<td style="text-align: center;">55-56</td>
+<td style="text-align: center;">87–88</td>
+<td style="text-align: center;">55–56</td>
 <td style="text-align: center;">2</td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>Bits 73 to 86, which are unused in the previous version, are now defined with new parameters. These parameters include ADS-B version number and various indicators related to the accuracy of the state measurements broadcast by the aircraft in other types of ADS-B messages.</p>
-<p>It is worth noting that the definitions of some fields with the sub-type of the message, which differentiate between airborne status messages and surface status messages.</p>
+<p>It is worth noting that the definition of sub-types for some fields allow us to differentiate between airborne status messages and surface status messages.</p>
 <h2 id="version-2">Version 2</h2>
 <p>Compared to the previous update, the changes in the operational status report from version 1 to 2 are minimal. Several fields are renamed and a SIL supplement bit is added to bit-87. The structure is shown in Table <a href="#tb:adsb-operational-status-v2" data-reference-type="ref" data-reference="tb:adsb-operational-status-v2">1.3</a>.</p>
 <div id="tb:adsb-operational-status-v2">
@@ -405,15 +404,15 @@
 <tr class="odd">
 <td style="text-align: left;"><strong>Type code = 31</strong> (Binary: 11111)</td>
 <td style="text-align: center;">TC</td>
-<td style="text-align: center;">33-37</td>
-<td style="text-align: center;">1-5</td>
+<td style="text-align: center;">33–37</td>
+<td style="text-align: center;">1–5</td>
 <td style="text-align: center;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Sub-type code</strong></td>
 <td style="text-align: center;">ST</td>
-<td style="text-align: center;">38-40</td>
-<td style="text-align: center;">6-8</td>
+<td style="text-align: center;">38–40</td>
+<td style="text-align: center;">6–8</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="odd">
@@ -433,8 +432,8 @@
 <tr class="odd">
 <td style="text-align: left;"><strong>Capacity class codes</strong></td>
 <td style="text-align: center;">CC</td>
-<td style="text-align: center;">41-56</td>
-<td style="text-align: center;">9-24</td>
+<td style="text-align: center;">41–56</td>
+<td style="text-align: center;">9–24</td>
 <td style="text-align: center;">16</td>
 </tr>
 <tr class="even">
@@ -461,8 +460,8 @@
 <tr class="odd">
 <td style="text-align: left;"><strong>Operational mode codes</strong></td>
 <td style="text-align: center;">OM</td>
-<td style="text-align: center;">57-72</td>
-<td style="text-align: center;">25-40</td>
+<td style="text-align: center;">57–72</td>
+<td style="text-align: center;">25–40</td>
 <td style="text-align: center;">16</td>
 </tr>
 <tr class="even">
@@ -482,8 +481,8 @@
 <tr class="even">
 <td style="text-align: left;"><strong>ADS-B version number</strong></td>
 <td style="text-align: center;">Ver</td>
-<td style="text-align: center;">73-75</td>
-<td style="text-align: center;">41-43</td>
+<td style="text-align: center;">73–75</td>
+<td style="text-align: center;">41–43</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="odd">
@@ -508,7 +507,7 @@
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">3-7: Reserved</td>
+<td style="text-align: left;">3–7: Reserved</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -524,15 +523,15 @@
 <tr class="even">
 <td style="text-align: left;"><strong>Navigational accuracy category - position</strong></td>
 <td style="text-align: center;">NACp</td>
-<td style="text-align: center;">77-80</td>
-<td style="text-align: center;">45-48</td>
+<td style="text-align: center;">77–80</td>
+<td style="text-align: center;">45–48</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>ST=0: Geometric vertical accuracy</strong></td>
 <td style="text-align: center;">GVA</td>
-<td style="text-align: center;">81-82</td>
-<td style="text-align: center;">49-50</td>
+<td style="text-align: center;">81–82</td>
+<td style="text-align: center;">49–50</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="even">
@@ -545,8 +544,8 @@
 <tr class="odd">
 <td style="text-align: left;"><strong>Source integrity level</strong></td>
 <td style="text-align: center;">SIL</td>
-<td style="text-align: center;">83-84</td>
-<td style="text-align: center;">51-52</td>
+<td style="text-align: center;">83–84</td>
+<td style="text-align: center;">51–52</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="even">

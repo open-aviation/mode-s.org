@@ -108,10 +108,16 @@
 <li><a href="#background">Background</a></li>
 <li><a href="#acas-with-mode-c-transponders">ACAS with Mode C transponders</a></li>
 <li><a href="#acas-with-mode-s-transponders">ACAS with Mode S transponders</a></li>
-<li><a href="#message-fields-of-acas-coordination-messages">Message fields of ACAS coordination messages</a>
+<li><a href="#acas-coordination-interrogation">ACAS coordination interrogation</a>
 <ul>
-<li><a href="#mu-u-definition">MU (U-definition)</a></li>
-<li><a href="#mv-v-definition">MV (V-definition)</a></li>
+<li><a href="#uds30">UDS=3,0</a></li>
+<li><a href="#sec:acas_ra">UDS=3,1</a></li>
+<li><a href="#uds32">UDS=3,2</a></li>
+</ul></li>
+<li><a href="#acas-coordination-reply">ACAS coordination reply</a>
+<ul>
+<li><a href="#vds30">VDS=3,0</a></li>
+<li><a href="#other-vds">Other VDS</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -137,13 +143,14 @@
 </ul>
 <p>This chapter will focus on ACAS II. The ACAS II is a system that utilizes the aircraft transponder, which interrogates the Mode C and Mode S transponders of nearby aircraft. When threats are detected, corresponding alerts are given to the pilots.</p>
 <p>Currently, the most common implementation of ACAS II is <em>Traffic alert and Collision Avoidance System</em> (TCAS) II version 7.1, which was initiated by EUROCONTROL. It has been mandatory for aircraft in Europe since 2015. ACAS II works independently of the navigation system, FMS, and ATC. No input from these systems is considered for producing the alerts.</p>
+<p><span>Note</span> In the future, a new system developed by FAA, called ‘ACAS X’, is expected to replace the current ACAS II. It makes use of dynamic programming to generate resolution advisories and offers four performance capability variants for different air traffic scenarios. <span class="citation" data-cites="chomik2016"></span></p>
 <p>In ACAS II, TA and RA are triggered when certain thresholds to the closest point of approach (CPA) are passed. The thresholds depend on the altitude, speed, and heading of the aircraft. The examples of the TA and RA regions are illustrated in Figure <a href="#fig:acas_regions" data-reference-type="ref" data-reference="fig:acas_regions">1.1</a>.</p>
 <figure>
 <img src="../../figures/1d9fb738fd38d9eb846430aedce5443e22f69e38.png" id="fig:acas_regions" /><figcaption aria-hidden="true">Example of an ACAS protection volume in horizontal and vertical directions (between FL50 and FL100)</figcaption>
 </figure>
 <h2 id="acas-with-mode-c-transponders">ACAS with Mode C transponders</h2>
-<p>ACAS system uses Mod C only all-call interrogation (see Figure <a href="#fig:mode_s_inter_mode" data-reference-type="ref" data-reference="fig:mode_s_inter_mode">[fig:mode_s_inter_mode]</a> in chapter <a href="#chap:intro" data-reference-type="ref" data-reference="chap:intro">[chap:intro]</a>) to detect aircraft that are only equipped with Mode A/C transponders. In this case, the ACAS system initiates a sequence of interrogations with increasing power.</p>
-<p>The interrogation pulse is slightly different from a Mode A/C-only all-call interrogation. A special <span class="math inline">\(S_1\)</span> pulse (also known as "whisper-shout") is designed to reduce interference. The <span class="math inline">\(S_1\)</span> pulse is inserted 2 <span class="math inline">\(\mu s\)</span> (<span class="math inline">\(\pm 0.15 \mu s\)</span>) before the <span class="math inline">\(P_1\)</span> pulse.</p>
+<p>The ACAS system uses Mode C only all-call interrogation to detect aircraft that are only equipped with Mode A/C transponders. In this case, the ACAS system initiates a sequence of interrogations with increasing power.</p>
+<p>The interrogation pulse is slightly different from a Mode A/C-only all-call interrogation. A special <span class="math inline">\(S_1\)</span> pulse (also known as ‘whisper-shout’) is designed to reduce interference. The <span class="math inline">\(S_1\)</span> pulse is inserted 2 s (<span class="math inline">\(\pm 0.15 \mu s\)</span>) before the <span class="math inline">\(P_1\)</span> pulse.</p>
 <p>The reply should be sent with the following rules:</p>
 <ul>
 <li><p>With both <span class="math inline">\(S_1\)</span> and <span class="math inline">\(P_1\)</span> above the minimum triggering level (MTL), no reply will be generated.</p></li>
@@ -152,20 +159,20 @@
 <li><p>With <span class="math inline">\(P_1\)</span> at MTL and <span class="math inline">\(S_1\)</span> at MTL - 6 dB, the transponder will respond to 90% of the interrogations.</p></li>
 </ul>
 <h2 id="acas-with-mode-s-transponders">ACAS with Mode S transponders</h2>
-<p>For Mode S transponders, ACAS system employs a three-phase process, which includes the phases of <em>detection</em>, <em>surveillance</em>, and <em>coordination</em>.</p>
-<p>For the detection phase, ACAS passively listens to Mode S only all-call replies (DF=11). These all-call replies are usually generated as a result of ground SSR interrogations or as spontaneous replies. In this process, aircraft with Mode S transponders in the vicinity are discovered. ACAS may also listen to extended squitter messages (Downlink Format 17, ADS-B) to detect other aircraft.</p>
-<p>Once an aircraft is determined to be within the ACAS surveillance range, and within 10,000 ft of the own ACAS aircraft, ACAS will initiate a short air-air interrogation (UF=11) to acquire the range. The interrogation rate is defined as:</p>
+<p>For Mode S transponders, the ACAS system employs a three-phase process, which includes the phases of <em>detection</em>, <em>surveillance</em>, and <em>coordination</em>.</p>
+<p>For the detection phase, ACAS passively listens to Mode S only all-call replies (DF=11). These all-call replies are usually generated as a result of ground SSR interrogations, or created by spontaneous acquisition squitter (broadcast of DF=11 message with interrogator code ). In this process, aircraft with Mode S transponders in the vicinity are discovered. ACAS may also listen to extended squitter messages (Downlink Format 17, ADS-B) to detect other aircraft.</p>
+<p>Once another aircraft is determined to be within the ACAS surveillance range, and within 10,000 ft of the own aircraft<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, ACAS will initiate a short air-air interrogation (UF=0) to acquire the range. The interrogation rate is defined as:</p>
 <ul>
-<li><p>Once every five cycles: when the target aircraft maintains in the surveillance range.</p></li>
+<li><p>Once every five cycles: when the target aircraft remains in the surveillance range.</p></li>
 <li><p>Once every cycle: when the target aircraft is within 3 NM or with time to closest approach less than 60 s.</p></li>
 </ul>
 <p>The surveillance interrogation is stopped when all the following conditions are met:</p>
 <ul>
-<li><p>A reply (DF=11) is received</p></li>
+<li><p>A reply (DF=0) is received</p></li>
 <li><p>Both aircraft are below 18,000 ft.</p></li>
 <li><p>Target aircraft is more than 3 NM and 60 s away from the closest point of approach.</p></li>
 </ul>
-<p>In Tables <a href="#tb:acas_uf_0" data-reference-type="ref" data-reference="tb:acas_uf_0">1.1</a> and <a href="#tb:acas_df_0" data-reference-type="ref" data-reference="tb:acas_df_0">1.2</a>, fields for ACAS surveillance interrogation and reply messages are listed.</p>
+<p>Tables <a href="#tb:acas_uf_0" data-reference-type="ref" data-reference="tb:acas_uf_0">1.1</a> and <a href="#tb:acas_df_0" data-reference-type="ref" data-reference="tb:acas_df_0">1.2</a> lists the fields for ACAS surveillance interrogation and reply messages.</p>
 <div id="tb:acas_uf_0">
 <table>
 <caption>ACAS surveillance interrogation (uplink), UF=0</caption>
@@ -181,13 +188,13 @@
 <tr class="odd">
 <td style="text-align: left;">Uplink Format</td>
 <td style="text-align: left;">UF</td>
-<td style="text-align: left;">1-5</td>
+<td style="text-align: left;">1–5</td>
 <td style="text-align: left;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">6-8</td>
+<td style="text-align: left;">6–8</td>
 <td style="text-align: left;">3</td>
 </tr>
 <tr class="odd">
@@ -199,7 +206,7 @@
 <tr class="even">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">10-13</td>
+<td style="text-align: left;">10–13</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="odd">
@@ -211,19 +218,19 @@
 <tr class="even">
 <td style="text-align: left;">Data selector</td>
 <td style="text-align: left;">DS</td>
-<td style="text-align: left;">15-22</td>
+<td style="text-align: left;">15–22</td>
 <td style="text-align: left;">8</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">23-32</td>
+<td style="text-align: left;">23–32</td>
 <td style="text-align: left;">10</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Address parity</td>
 <td style="text-align: left;">AP</td>
-<td style="text-align: left;">33-56</td>
+<td style="text-align: left;">33–56</td>
 <td style="text-align: left;">24</td>
 </tr>
 </tbody>
@@ -244,7 +251,7 @@
 <tr class="odd">
 <td style="text-align: left;">Downlink Format</td>
 <td style="text-align: left;">DF</td>
-<td style="text-align: left;">1-5</td>
+<td style="text-align: left;">1–5</td>
 <td style="text-align: left;">5</td>
 </tr>
 <tr class="even">
@@ -268,37 +275,37 @@
 <tr class="odd">
 <td style="text-align: left;">Sensitivity level</td>
 <td style="text-align: left;">SL</td>
-<td style="text-align: left;">9-11</td>
+<td style="text-align: left;">9–11</td>
 <td style="text-align: left;">3</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">12-13</td>
+<td style="text-align: left;">12–13</td>
 <td style="text-align: left;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Reply information</td>
 <td style="text-align: left;">RI</td>
-<td style="text-align: left;">14-17</td>
+<td style="text-align: left;">14–17</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">18-19</td>
+<td style="text-align: left;">18–19</td>
 <td style="text-align: left;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Altitude code</td>
 <td style="text-align: left;">AC</td>
-<td style="text-align: left;">20-32</td>
+<td style="text-align: left;">20–32</td>
 <td style="text-align: left;">13</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Address parity</td>
 <td style="text-align: left;">AP</td>
-<td style="text-align: left;">33-56</td>
+<td style="text-align: left;">33–56</td>
 <td style="text-align: left;">24</td>
 </tr>
 </tbody>
@@ -320,13 +327,13 @@
 <tr class="odd">
 <td style="text-align: left;">Uplink Format</td>
 <td style="text-align: left;">UF</td>
-<td style="text-align: left;">1-5</td>
+<td style="text-align: left;">1–5</td>
 <td style="text-align: left;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">6-8</td>
+<td style="text-align: left;">6–8</td>
 <td style="text-align: left;">3</td>
 </tr>
 <tr class="odd">
@@ -338,7 +345,7 @@
 <tr class="even">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">10-13</td>
+<td style="text-align: left;">10–13</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="odd">
@@ -350,19 +357,19 @@
 <tr class="even">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">15-32</td>
+<td style="text-align: left;">15–32</td>
 <td style="text-align: left;">18</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Message, U</td>
 <td style="text-align: left;">MU</td>
-<td style="text-align: left;">33-88</td>
+<td style="text-align: left;">33–88</td>
 <td style="text-align: left;">56</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Address parity</td>
 <td style="text-align: left;">AP</td>
-<td style="text-align: left;">33-56</td>
+<td style="text-align: left;">33–56</td>
 <td style="text-align: left;">24</td>
 </tr>
 </tbody>
@@ -383,7 +390,7 @@
 <tr class="odd">
 <td style="text-align: left;">Downlink Format</td>
 <td style="text-align: left;">DF</td>
-<td style="text-align: left;">1-5</td>
+<td style="text-align: left;">1–5</td>
 <td style="text-align: left;">5</td>
 </tr>
 <tr class="even">
@@ -395,76 +402,75 @@
 <tr class="odd">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">7-8</td>
+<td style="text-align: left;">7–8</td>
 <td style="text-align: left;">2</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Sensitivity level</td>
 <td style="text-align: left;">SL</td>
-<td style="text-align: left;">9-11</td>
+<td style="text-align: left;">9–11</td>
 <td style="text-align: left;">3</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">12-13</td>
+<td style="text-align: left;">12–13</td>
 <td style="text-align: left;">2</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Reply information</td>
 <td style="text-align: left;">RI</td>
-<td style="text-align: left;">14-17</td>
+<td style="text-align: left;">14–17</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">18-19</td>
+<td style="text-align: left;">18–19</td>
 <td style="text-align: left;">2</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Altitude code</td>
 <td style="text-align: left;">AC</td>
-<td style="text-align: left;">20-32</td>
+<td style="text-align: left;">20–32</td>
 <td style="text-align: left;">13</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Message, V</td>
 <td style="text-align: left;">MV</td>
-<td style="text-align: left;">33-88</td>
+<td style="text-align: left;">33–88</td>
 <td style="text-align: left;">56</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Address parity</td>
 <td style="text-align: left;">AP</td>
-<td style="text-align: left;">89-112</td>
+<td style="text-align: left;">89–112</td>
 <td style="text-align: left;">24</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Specific fields in above messages are defined as follows:</p>
+<p>Specific fields in the above mentioned messages are defined as follows:</p>
 <ul>
-<li><p><em>Reply length (RL)</em>: 1 bit, defines the required reply format: requires a reply with DF=0, while requires reply with DF=16.</p></li>
-<li><p><em>Acquisition (AQ)</em>: 1 bit, contains code that controls the content of RI field in the reply.</p></li>
-<li><p><em>Data selector (DS)</em>: 8 bits, indicates the BDS code of the MV content in reply with DF=16.</p></li>
-<li><p><em>Vertical status (VS)</em>: 1 bit, indicates whether the aircraft is airborne () or on the ground ().</p></li>
-<li><p><em>Cross-link capability (CC)</em>: 1 bit, refers to the capability of reply DF=16 upon request of UF=0. When this 1-bit field is set to , the cross-link is supported. Otherwise, the field is set to .</p></li>
-<li><p><em>Sensitivity level (SL)</em>: 3 bits, represents the sensitivity level of the ACAS system. indicates the ACAS is inoperative. Other values indicate the sensitivity level.</p></li>
-<li><p><em>Reply information (RI)</em>: 4 bits, indicates the type of reply to interrogating aircraft. For ACAS message, valid values are 0 and from 2 to 4. Other values are not part of the ACAS:</p>
+<li><p><em>Reply length (RL)</em>: 1 bit, it defines the required reply format: requires a reply with DF=0, while requires reply with DF=16.</p></li>
+<li><p><em>Acquisition (AQ)</em>: 1 bit, it contains code that controls the content of RI field in the reply.</p></li>
+<li><p><em>Data selector (DS)</em>: 8 bits, it indicates the BDS code of the MV content in reply with DF=16.</p></li>
+<li><p><em>Vertical status (VS)</em>: 1 bit, it indicates whether the aircraft is airborne () or on the ground ().</p></li>
+<li><p><em>Cross-link capability (CC)</em>: 1 bit, it refers to the capability of reply DF=16 upon request of UF=0. When this 1-bit field is set to , the cross-link is supported. Otherwise, the field is set to .</p></li>
+<li><p><em>Sensitivity level (SL)</em>: 3 bits, it represents the sensitivity level of the ACAS system. indicates the ACAS is inoperative. Other values indicate the sensitivity level.</p></li>
+<li><p><em>Reply information (RI)</em>: 4 bits, it indicates the type of reply to interrogating aircraft. For ACAS message, valid values are 0 and from 2 to 4. Other values are not part of the ACAS:</p>
 <blockquote>
 <p><code>0000</code>: No operating ACAS<br />
 <code>0010</code>: ACAS with resolution capability inhibited<br />
 <code>0011</code>: ACAS with vertical-only resolution capability<br />
 <code>0111</code>: ACAS with vertical and horizontal resolution capability</p>
 </blockquote></li>
-<li><p><em>Altitude Code (AC)</em>: 13 bits, encodes the altitude of the aircraft. It can be decoded according to section <a href="#sec:alt_code" data-reference-type="ref" data-reference="sec:alt_code">[sec:alt_code]</a>.</p></li>
+<li><p><em>Altitude Code (AC)</em>: 13 bits, it encodes the altitude of the aircraft. It can be decoded according to section <a href="#sec:alt_code" data-reference-type="ref" data-reference="sec:alt_code">[sec:alt_code]</a>.</p></li>
 </ul>
-<h2 id="message-fields-of-acas-coordination-messages">Message fields of ACAS coordination messages</h2>
-<p>Message U-definition (MU) and Message V-definition (MV) are transmitted in ACAS coordination interrogation and reply messages, respectively. MU is used to transit resolution, ACAS broadcast, and RA broadcast. MV is used for reply purposes.</p>
-<h3 id="mu-u-definition">MU (U-definition)</h3>
-<h4 id="mu-of-acas-resolution-message">MU of ACAS resolution message</h4>
-<p>When ACAS resolution information is transmitted in the UF=16 message, the first 8 bits of MU, U-definition subfields (UDS), is set to <code>0011 0000</code> (UDS=3,0). The corresponding fields are indicated in Table <a href="#tb:acas_mu_uds30" data-reference-type="ref" data-reference="tb:acas_mu_uds30">1.5</a>.</p>
+<h2 id="acas-coordination-interrogation">ACAS coordination interrogation</h2>
+<p>Message U-definition (MU) is transmitted in ACAS coordination interrogation. MU is used to transit resolution, ACAS broadcast, and RA broadcast.</p>
+<h3 id="uds30">UDS=3,0</h3>
+<p>When ACAS resolution information is transmitted in the UF=16 message, the first 8 bits of MU, U-definition subfields (UDS), are set to <code>0011 0000</code> (UDS=3,0). The corresponding fields are indicated in Table <a href="#tb:acas_mu_uds30" data-reference-type="ref" data-reference="tb:acas_mu_uds30">1.5</a>.</p>
 <div id="tb:acas_mu_uds30">
 <table>
 <caption>UF=16, MU for ACAS resolution messages, UDS=3,0</caption>
@@ -481,15 +487,15 @@
 <tr class="odd">
 <td style="text-align: left;">U-definition subfield 1 [0011]</td>
 <td style="text-align: left;">UDS1</td>
-<td style="text-align: left;">33-36</td>
-<td style="text-align: left;">1-4</td>
+<td style="text-align: left;">33–36</td>
+<td style="text-align: left;">1–4</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">U-definition subfield 2 [0000]</td>
 <td style="text-align: left;">UDS2</td>
-<td style="text-align: left;">37-40</td>
-<td style="text-align: left;">5-8</td>
+<td style="text-align: left;">37–40</td>
+<td style="text-align: left;">5–8</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="odd">
@@ -509,66 +515,66 @@
 <tr class="odd">
 <td style="text-align: left;">Cancel vertical RAC</td>
 <td style="text-align: left;">CVC</td>
-<td style="text-align: left;">43-44</td>
-<td style="text-align: left;">11-12</td>
+<td style="text-align: left;">43–44</td>
+<td style="text-align: left;">11–12</td>
 <td style="text-align: left;">2</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Vertical RAC</td>
 <td style="text-align: left;">VRC</td>
-<td style="text-align: left;">45-46</td>
-<td style="text-align: left;">13-14</td>
+<td style="text-align: left;">45–46</td>
+<td style="text-align: left;">13–14</td>
 <td style="text-align: left;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Cancel Horizontal RAC</td>
 <td style="text-align: left;">CHC</td>
-<td style="text-align: left;">47-49</td>
-<td style="text-align: left;">15-17</td>
+<td style="text-align: left;">47–49</td>
+<td style="text-align: left;">15–17</td>
 <td style="text-align: left;">3</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Horizontal RAC</td>
 <td style="text-align: left;">HRC</td>
-<td style="text-align: left;">50-52</td>
-<td style="text-align: left;">18-20</td>
+<td style="text-align: left;">50–52</td>
+<td style="text-align: left;">18–20</td>
 <td style="text-align: left;">3</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">53-55</td>
-<td style="text-align: left;">21-23</td>
+<td style="text-align: left;">53–55</td>
+<td style="text-align: left;">21–23</td>
 <td style="text-align: left;">3</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Horizontal sense bits</td>
 <td style="text-align: left;">HSB</td>
-<td style="text-align: left;">56-60</td>
-<td style="text-align: left;">24-28</td>
+<td style="text-align: left;">56–60</td>
+<td style="text-align: left;">24–28</td>
 <td style="text-align: left;">5</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Vertical sense bits</td>
 <td style="text-align: left;">VSB</td>
-<td style="text-align: left;">61-64</td>
-<td style="text-align: left;">29-32</td>
+<td style="text-align: left;">61–64</td>
+<td style="text-align: left;">29–32</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Aircraft address</td>
 <td style="text-align: left;">MID</td>
-<td style="text-align: left;">65-88</td>
-<td style="text-align: left;">33-56</td>
+<td style="text-align: left;">65–88</td>
+<td style="text-align: left;">33–56</td>
 <td style="text-align: left;">24</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>The significance of fields are listed as follows:</p>
+<p>These fields can be interpreted as follows:</p>
 <ul>
 <li><p><em>Multiple threat bit (MTB)</em>: 1 bit, indicates whether multiple threats are present.</p></li>
-<li><p><em>Vertical RAC <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (VRC)</em>: 2 bits, contains vertical resolution advisory complement information:</p>
+<li><p><em>Vertical RAC <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (VRC)</em>: 2 bits, contains vertical resolution advisory complement information:</p>
 <blockquote>
 <p><code>00</code>: No vertical RAC information<br />
 <code>01</code>: Do not pass below<br />
@@ -602,8 +608,8 @@
 <li><p><em>Vertical sense bits (VSB)</em>: 4 bits, uses Hamming code with an extra parity bit to detect errors (up to 3 bits) in CVC and VRC fields.</p></li>
 <li><p><em>Aircraft address (MID)</em>: 24 bits, contains the 24-bits aircraft transponder address of the interrogating ACAS aircraft.</p></li>
 </ul>
-<h4 id="sec:acas_ra">MU of RA broadcast message</h4>
-<p>When UF=16 is used for RA broadcast, UDS is set to <code>0011 0001</code> (UDS=3,1). The corresponding fields are indicated in Table <a href="#tb:acas_mu_uds31" data-reference-type="ref" data-reference="tb:acas_mu_uds31">1.6</a>.</p>
+<h3 id="sec:acas_ra">UDS=3,1</h3>
+<p>When UF=16 is used for RA broadcast, UDS is set to <code>0011 0001</code> (UDS=3,1). The corresponding fields are described in Table <a href="#tb:acas_mu_uds31" data-reference-type="ref" data-reference="tb:acas_mu_uds31">1.6</a>.</p>
 <div id="tb:acas_mu_uds31">
 <table>
 <caption>UF=16, MU for RA broadcast, UDS=3,1</caption>
@@ -620,29 +626,29 @@
 <tr class="odd">
 <td style="text-align: left;">U-definition subfield 1 [0011]</td>
 <td style="text-align: left;">UDS1</td>
-<td style="text-align: left;">33-36</td>
-<td style="text-align: left;">1-4</td>
+<td style="text-align: left;">33–36</td>
+<td style="text-align: left;">1–4</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">U-definition subfield 2 [0001]</td>
 <td style="text-align: left;">UDS2</td>
-<td style="text-align: left;">37-40</td>
-<td style="text-align: left;">5-8</td>
+<td style="text-align: left;">37–40</td>
+<td style="text-align: left;">5–8</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Active RAs</td>
 <td style="text-align: left;">ARA</td>
-<td style="text-align: left;">41-54</td>
-<td style="text-align: left;">9-22</td>
+<td style="text-align: left;">41–54</td>
+<td style="text-align: left;">9–22</td>
 <td style="text-align: left;">14</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">RAC’s record</td>
 <td style="text-align: left;">RAC</td>
-<td style="text-align: left;">55-58</td>
-<td style="text-align: left;">23-26</td>
+<td style="text-align: left;">55–58</td>
+<td style="text-align: left;">23–26</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="odd">
@@ -662,28 +668,28 @@
 <tr class="odd">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">61-62</td>
-<td style="text-align: left;">29-30</td>
+<td style="text-align: left;">61–62</td>
+<td style="text-align: left;">29–30</td>
 <td style="text-align: left;">2</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Mode A identity code</td>
 <td style="text-align: left;">AID</td>
-<td style="text-align: left;">63-75</td>
-<td style="text-align: left;">31-43</td>
+<td style="text-align: left;">63–75</td>
+<td style="text-align: left;">31–43</td>
 <td style="text-align: left;">13</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Mode C altitude code</td>
 <td style="text-align: left;">CAC</td>
-<td style="text-align: left;">76-88</td>
-<td style="text-align: left;">44-56</td>
+<td style="text-align: left;">76–88</td>
+<td style="text-align: left;">44–56</td>
 <td style="text-align: left;">13</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>The significance of fields are listed as follows:</p>
+<p>These fields can be interpreted as follows:</p>
 <ul>
 <li><p><em>Active RA (ARA)</em>: 14 bits, indicates the resolution advisory characteristics. It has to be interpreted together with the MTB field.</p>
 <ul>
@@ -695,7 +701,7 @@ Bit 44: RA is increased rate () or not ()<br />
 Bit 45: RA is a sense reversal () or not ()<br />
 Bit 46: RA is altitude crossing () or not ()<br />
 Bit 47: RA is positive () or vertical speed limit ()<br />
-Bit 48-54: Reserved for ACAS III</p>
+Bit 48–54: Reserved for ACAS III</p>
 </blockquote></li>
 <li><p>When ARA first bit (MSG bit 41) is and MTE is :</p>
 <blockquote>
@@ -705,7 +711,7 @@ Bit 44: RA requires a correction in the downward sense () or not ()<br />
 Bit 45: RA requires a positive descent () or not ()<br />
 Bit 46: RA requires a crossing () or not ()<br />
 Bit 47: RA is a sense reversal () or not ()<br />
-Bit 48-54: Reserved for ACAS III</p>
+Bit 48–54: Reserved for ACAS III</p>
 </blockquote></li>
 <li><p>When ARA first bit (MSG bit 41) is and MTE is , no vertical RA is generated.</p></li>
 </ul></li>
@@ -716,12 +722,12 @@ Bit 56: Do not pass above<br />
 Bit 57: Do not pass left<br />
 Bit 58: Do not pass right</p>
 </blockquote></li>
-<li><p><em>RA terminated indicator (RAT)</em>: 1 bit, indicates whether ACAS is currently generating RA in the ARA field or RA in the ARA field has been terminated.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p></li>
+<li><p><em>RA terminated indicator (RAT)</em>: 1 bit, indicates whether ACAS is currently generating RA in the ARA field or RA in the ARA field has been terminated.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p></li>
 <li><p><em>Multiple threat encounter (MTE)</em>: 1 bit, indicates whether multiple threats are currently being processed by the ACAS resolution. When MTE is set to , either one threat is being processed (ARA bit 41 sets to ) or no threat is being processed (ARA bit 41 sets to ). When MTE is set to , multiple threats are being processed.</p></li>
 <li><p><em>Mode A identity code (AID)</em>: 13 bits, contains the Mode A identity code (sqwake code) of the reporting aircraft. It can be decoded according to section <a href="#sec:id_code" data-reference-type="ref" data-reference="sec:id_code">[sec:id_code]</a>.</p></li>
 <li><p><em>Mode C altitude code (CAC)</em>: 13 bits, contains the Mode C altitude code reporting aircraft. It can be decoded according to section <a href="#sec:alt_code" data-reference-type="ref" data-reference="sec:alt_code">[sec:alt_code]</a>.</p></li>
 </ul>
-<h4 id="mu-of-acas-broadcast-message">MU of ACAS broadcast message</h4>
+<h3 id="uds32">UDS=3,2</h3>
 <p>When UF=16 is used for ACAS broadcast, UDS is set to <code>0011 0010</code> (UDS=3,2). The corresponding fields are indicated in Table <a href="#tb:acas_mu_uds32" data-reference-type="ref" data-reference="tb:acas_mu_uds32">1.7</a>.</p>
 <div id="tb:acas_mu_uds32">
 <table>
@@ -739,36 +745,38 @@ Bit 58: Do not pass right</p>
 <tr class="odd">
 <td style="text-align: left;">U-definition subfield 1 [0011]</td>
 <td style="text-align: left;">UDS1</td>
-<td style="text-align: left;">33-36</td>
-<td style="text-align: left;">1-4</td>
+<td style="text-align: left;">33–36</td>
+<td style="text-align: left;">1–4</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">U-definition subfield 2 [0010]</td>
 <td style="text-align: left;">UDS2</td>
-<td style="text-align: left;">37-40</td>
-<td style="text-align: left;">5-8</td>
+<td style="text-align: left;">37–40</td>
+<td style="text-align: left;">5–8</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">41-64</td>
-<td style="text-align: left;">9-32</td>
+<td style="text-align: left;">41–64</td>
+<td style="text-align: left;">9–32</td>
 <td style="text-align: left;">24</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Aircraft address</td>
 <td style="text-align: left;">MID</td>
-<td style="text-align: left;">65-8</td>
-<td style="text-align: left;">33-56</td>
+<td style="text-align: left;">65–8</td>
+<td style="text-align: left;">33–56</td>
 <td style="text-align: left;">24</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>The only information that is broadcast in the MU of this message is the 24-bit transponder address of the interrogating aircraft.</p>
-<h3 id="mv-v-definition">MV (V-definition)</h3>
+<p>The only information that is broadcast in the MU of this message is the 24-bit transponder address of the interrogating aircraft. Its purpose is to inform other aircraft about ACAS capability of the broadcasting aircraft.</p>
+<h2 id="acas-coordination-reply">ACAS coordination reply</h2>
+<p>Message V-definition (MV) is transmitted in ACAS coordination reply message.</p>
+<h3 id="vds30">VDS=3,0</h3>
 <p>Similar to MU in the UF=16 message, MV in the DF=16 message contains a few common fields. The corresponding fields are indicated in Table <a href="#tb:acas_mv_vds30" data-reference-type="ref" data-reference="tb:acas_mv_vds30">1.8</a>.</p>
 <div id="tb:acas_mv_vds30">
 <table>
@@ -778,7 +786,7 @@ Bit 58: Do not pass right</p>
 <th style="text-align: left;"><strong>FIELD</strong></th>
 <th style="text-align: left;"><strong></strong></th>
 <th style="text-align: left;"><strong>MSG</strong></th>
-<th style="text-align: left;"><strong>MU</strong></th>
+<th style="text-align: left;"><strong>MV</strong></th>
 <th style="text-align: left;"><strong>BITS</strong></th>
 </tr>
 </thead>
@@ -786,29 +794,29 @@ Bit 58: Do not pass right</p>
 <tr class="odd">
 <td style="text-align: left;">V-definition subfield 1 [0011]</td>
 <td style="text-align: left;">VDS1</td>
-<td style="text-align: left;">33-36</td>
-<td style="text-align: left;">1-4</td>
+<td style="text-align: left;">33–36</td>
+<td style="text-align: left;">1–4</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">V-definition subfield 2 [0001]</td>
+<td style="text-align: left;">V-definition subfield 2 [0000]</td>
 <td style="text-align: left;">VDS2</td>
-<td style="text-align: left;">37-40</td>
-<td style="text-align: left;">5-8</td>
+<td style="text-align: left;">37–40</td>
+<td style="text-align: left;">5–8</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Active RAs</td>
 <td style="text-align: left;">ARA</td>
-<td style="text-align: left;">41-54</td>
-<td style="text-align: left;">9-22</td>
+<td style="text-align: left;">41–54</td>
+<td style="text-align: left;">9–22</td>
 <td style="text-align: left;">14</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">RAC’s record</td>
 <td style="text-align: left;">RAC</td>
-<td style="text-align: left;">55-58</td>
-<td style="text-align: left;">23-26</td>
+<td style="text-align: left;">55–58</td>
+<td style="text-align: left;">23–26</td>
 <td style="text-align: left;">4</td>
 </tr>
 <tr class="odd">
@@ -828,19 +836,23 @@ Bit 58: Do not pass right</p>
 <tr class="odd">
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">61-88</td>
-<td style="text-align: left;">29-56</td>
+<td style="text-align: left;">61–88</td>
+<td style="text-align: left;">29–56</td>
 <td style="text-align: left;">28</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>We can see that the structure of the MV fields is similar to MU fields of RA broadcast (UDS=3,1) from Table <a href="#tb:acas_mu_uds31" data-reference-type="ref" data-reference="tb:acas_mu_uds31">1.6</a>. The interpretations of these fields are also the same as in section <a href="#sec:acas_ra" data-reference-type="ref" data-reference="sec:acas_ra">1.4.1.2</a>.</p>
+<p>We can see that the structure of the MV fields is similar to MU fields of RA broadcast (UDS=3,1) from Table <a href="#tb:acas_mu_uds31" data-reference-type="ref" data-reference="tb:acas_mu_uds31">1.6</a>. The interpretations of these fields are also the same as in section <a href="#sec:acas_ra" data-reference-type="ref" data-reference="sec:acas_ra">1.4.2</a>.</p>
+<h3 id="other-vds">Other VDS</h3>
+<p>When the first eight bits are not <code>0011 0000</code>, the MV field contain the Ground-initiated Comm-B information that was requested in DS field of uplink (UF=0) in Table <a href="#tb:acas_uf_0" data-reference-type="ref" data-reference="tb:acas_uf_0">1.1</a>. Comm-B will be explained in the next chapter.</p>
+<p>It is worth noting that the DS value is not transmitted in the MV field. Thus, it is difficult for us to know what data is contained in the MV field for VDS other than <code>3,0</code>.</p>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>RAC: Resolution Advisory Complement<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>The Mode S transponder is still required to report RA 18 seconds after it is terminated by ACAS. Hence, the RAT field is used.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>This can be acquired through existing DF=0 and DF=4 replies, or through active interrogations<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>RAC: Resolution Advisory Complement<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>The Mode S transponder is still required to report RA 18 seconds after it is terminated by ACAS. Hence, the RAT field is used.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

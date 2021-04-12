@@ -102,7 +102,7 @@
 <nav id="TOC">
 <h1>In this page</h1>
 <ul>
-<li><a href="#chap:comm-b">Comm-B replies</a>
+<li><a href="#chap:comm-b">Comm-B</a>
 <ul>
 <li><a href="#structure">Structure</a></li>
 <li><a href="#bds">BDS</a></li>
@@ -120,9 +120,9 @@
     class='btn btn-sm btn-outline-dark'> <i class="fas fa-edit"></i> Recommend edits</a>
 </div>
 
-<h1 id="chap:comm-b">Comm-B replies</h1>
+<h1 id="chap:comm-b">Comm-B</h1>
 <p>Comm-B messages count for a large portion of the Mode S selective interrogation responses. The message can have a downlink format of either 20 or 21, depending on whether the aircraft identity code or altitude code is included in the message.</p>
-<p>Comm-B protocol supports many different types of messages (up to 255). Several important surveillance services utilize some of the Comm-B message types (see Figure <a href="#fig:mode_s_services" data-reference-type="ref" data-reference="fig:mode_s_services">[fig:mode_s_services]</a> from the Chapter <a href="#chap:intro" data-reference-type="ref" data-reference="chap:intro">[chap:intro]</a>). In this book, we are mainly interested in three types of services, which are Mode S Elementary Surveillance (ELS), Mode S Enhanced Surveillance (EHS), and Meteorological information. By decoding these messages, we can discover some additional information regarding an aircraft.</p>
+<p>Comm-B protocol supports many different types of messages (up to 255). Several important surveillance services utilize some of the Comm-B message types (see Figure <a href="#fig:mode_s_services" data-reference-type="ref" data-reference="fig:mode_s_services">[fig:mode_s_services]</a> from Chapter <a href="#chap:intro" data-reference-type="ref" data-reference="chap:intro">[chap:intro]</a>). In this book, we are mainly interested in three types of services, which are Mode S Elementary Surveillance (ELS), Mode S Enhanced Surveillance (EHS), and Meteorological information. By decoding these messages, we can discover some additional information regarding an aircraft.</p>
 <h2 id="structure">Structure</h2>
 <p>Comm-B messages have similar structures as surveillance replies (DF=4/5). The structures are shown in the Tables <a href="#tb:df_20_structure" data-reference-type="ref" data-reference="tb:df_20_structure">1.1</a> and <a href="#tb:df_21_structure" data-reference-type="ref" data-reference="tb:df_21_structure">1.2</a>.</p>
 <div id="tb:df_20_structure">
@@ -140,43 +140,43 @@
 <tr class="odd">
 <td style="text-align: left;">Downlink format</td>
 <td style="text-align: left;">DF</td>
-<td style="text-align: left;">1-5</td>
+<td style="text-align: left;">1–5</td>
 <td style="text-align: left;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Flight status</td>
 <td style="text-align: left;">FS</td>
-<td style="text-align: left;">6-8</td>
+<td style="text-align: left;">6–8</td>
 <td style="text-align: left;">3</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Downlink request</td>
 <td style="text-align: left;">DR</td>
-<td style="text-align: left;">9-13</td>
+<td style="text-align: left;">9–13</td>
 <td style="text-align: left;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Utility message</td>
 <td style="text-align: left;">UM</td>
-<td style="text-align: left;">14-19</td>
+<td style="text-align: left;">14–19</td>
 <td style="text-align: left;">6</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Altitude code</td>
 <td style="text-align: left;">AC</td>
-<td style="text-align: left;">20-32</td>
+<td style="text-align: left;">20–32</td>
 <td style="text-align: left;">13</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Message, Comm-B</td>
 <td style="text-align: left;">MB</td>
-<td style="text-align: left;">33-88</td>
+<td style="text-align: left;">33–88</td>
 <td style="text-align: left;">56</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Parity</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">89-112</td>
+<td style="text-align: left;">89–112</td>
 <td style="text-align: left;">24</td>
 </tr>
 </tbody>
@@ -197,52 +197,52 @@
 <tr class="odd">
 <td style="text-align: left;">Downlink format</td>
 <td style="text-align: left;">DF</td>
-<td style="text-align: left;">1-5</td>
+<td style="text-align: left;">1–5</td>
 <td style="text-align: left;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Flight status</td>
 <td style="text-align: left;">FS</td>
-<td style="text-align: left;">6-8</td>
+<td style="text-align: left;">6–8</td>
 <td style="text-align: left;">3</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Downlink request</td>
 <td style="text-align: left;">DR</td>
-<td style="text-align: left;">9-13</td>
+<td style="text-align: left;">9–13</td>
 <td style="text-align: left;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Utility message</td>
 <td style="text-align: left;">UM</td>
-<td style="text-align: left;">14-19</td>
+<td style="text-align: left;">14–19</td>
 <td style="text-align: left;">6</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Identity code</td>
 <td style="text-align: left;">ID</td>
-<td style="text-align: left;">20-32</td>
+<td style="text-align: left;">20–32</td>
 <td style="text-align: left;">13</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Message, Comm-B</td>
 <td style="text-align: left;">MB</td>
-<td style="text-align: left;">33-88</td>
+<td style="text-align: left;">33–88</td>
 <td style="text-align: left;">56</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Parity</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">89-112</td>
+<td style="text-align: left;">89–112</td>
 <td style="text-align: left;">24</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>The definitions of common fields are the same as surveillance replies in chapter <a href="#chap:surv_reply" data-reference-type="ref" data-reference="chap:surv_reply">[chap:surv_reply]</a>. The parity can be either address parity or data parity, which are defined in chapter <a href="#chap:mode_s_basics" data-reference-type="ref" data-reference="chap:mode_s_basics">[chap:mode_s_basics]</a>.</p>
+<p>The definitions of these common fields are the same as surveillance replies in Chapter <a href="#chap:surv_reply" data-reference-type="ref" data-reference="chap:surv_reply">[chap:surv_reply]</a>. In addition, depending on the request from the surveillance radar, either address parity or data parity (see Chapter <a href="#chap:mode_s_basics" data-reference-type="ref" data-reference="chap:mode_s_basics">[chap:mode_s_basics]</a>) can be included in the downlink message.</p>
 <h2 id="bds">BDS</h2>
 <p>Comm-B Data Selector (BDS) is an 8-bit code that determines which information to be included in the MB fields. It is often shown as a 2-digit hexadecimal, for example, <code>4,0</code> or <code>0,A</code>. We can make a comparison between the BDS code and Type Code used in ADS-B. They both help to identify which structure shall be used to decode the message, except that the BDS code is only included in the uplink (Comm-A). For Comm-B messages, BDS codes are not always included.</p>
-<p>Without knowing the BDS code of the downlink message, the information contained in the MB field can not be decoded. Fortunately, there are methods available that can be used to infer the BDS code for most of the messages and decode them. In a later chapter, the inference process will be explained.</p>
+<p>Without knowing the BDS code of the downlink message, the information contained in the MB field cannot be decoded. Fortunately, there are methods available that can be used to infer the BDS code for most of the messages and decode them. In later Chapter <a href="#chap:bds_infer" data-reference-type="ref" data-reference="chap:bds_infer">[chap:bds_infer]</a>, the inference process will be explained.</p>
 <p>The following is the list of BDS codes for messages that will be discussed in detail in the different chapters.</p>
 <ul>
 <li><p>BDS 1,0 - Data link capability report</p></li>
@@ -255,7 +255,7 @@
 <li><p>BDS 4,4 - Meteorological routine air report</p></li>
 <li><p>BDS 4,5 - Meteorological hazard report</p></li>
 </ul>
-<p>Here, the first four BDS codes (<code>1,0</code>, <code>1,7</code>, <code>2,0</code>, <code>3,0</code>) belong to the ELS service, next three codes (<code>4,0</code>, <code>5,0</code>, <code>6,0</code>) belong to EHS services, and the last two codes (<code>4,4</code>, <code>4,5</code>) report meteorological information. All ELS, EHS and meteorological services are discussed in the following chapters.</p>
+<p>Here, the first four BDS codes (<code>1,0</code>, <code>1,7</code>, <code>2,0</code>, <code>3,0</code>) belong to the ELS service, the next three ones (<code>4,0</code>, <code>5,0</code>, <code>6,0</code>) belong to the EHS services, and the last two codes (<code>4,4</code>, <code>4,5</code>) report meteorological information. All ELS, EHS and meteorological services are discussed in the following chapters.</p>
 <p>It is also worth noting that even ADS-B messages belong to Mode S extended squitter, they are still assigned with BDS codes. The list of BDS codes for these ADS-B messages are:</p>
 <ul>
 <li><p>BDS 0,5 - Extended squitter airborne position</p></li>

@@ -129,12 +129,12 @@
 </div>
 
 <h1 id="surface-position">Surface position</h1>
-<p>When an aircraft is on the ground, a different type of message is used to broadcast its position information. Unlike the airborne position message, the surface position message also includes the speed of the aircraft. Since no altitude information needs to be transmitted, this provides extra bits for extra information, such as speed and track angle.</p>
-<p>The surface position message has the Type Code from 5 to 8, which also represents the level of uncertainties in the position. And the structure of the surface position message ME field is shown as follows:</p>
+<p>When an aircraft is on the ground, a different type of message is used to broadcast its position information. Unlike the airborne position message, the surface position message also includes the speed of the aircraft. Since no altitude information needs to be transmitted, this provides some extra bits for more information, such as speed and track angle.</p>
+<p>The surface position message has Type Code from 5 to 8, which also represents the level of uncertainties in the position. And the structure of the surface position message ME field is:</p>
 <pre><code>+-------+--------+------+--------+------+------+-------------+-------------+
 | TC, 5 | MOV, 7 | S, 1 | TRK, 7 | T, 1 | F, 1 | LAT-CPR, 17 | LON-CPR, 17 |
 +-------+--------+------+--------+------+------+-------------+-------------+</code></pre>
-<p>We can see that the fields are defined similarly to the ones from airborne messages, except that the surveillance status and altitude bits are replaced by movement and ground track. The details of the fields are shown in Table <a href="#tb:adsb-surf-pos-fields" data-reference-type="ref" data-reference="tb:adsb-surf-pos-fields">1.1</a></p>
+<p>We can see that the fields are defined similarly to the ones from airborne messages, except for the surveillance status and altitude bits which are replaced by movement and ground track. The details of the fields are shown in Table <a href="#tb:adsb-surf-pos-fields" data-reference-type="ref" data-reference="tb:adsb-surf-pos-fields">1.1</a></p>
 <div id="tb:adsb-surf-pos-fields">
 <table>
 <caption>Surface position message structure</caption>
@@ -151,15 +151,15 @@
 <tr class="odd">
 <td style="text-align: left;">Type Code</td>
 <td style="text-align: left;">TC</td>
-<td style="text-align: left;">33-37</td>
-<td style="text-align: left;">1-5</td>
+<td style="text-align: left;">33–37</td>
+<td style="text-align: left;">1–5</td>
 <td style="text-align: left;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Movement</td>
 <td style="text-align: left;">MOV</td>
-<td style="text-align: left;">38-44</td>
-<td style="text-align: left;">6-12</td>
+<td style="text-align: left;">38–44</td>
+<td style="text-align: left;">6–12</td>
 <td style="text-align: left;">7</td>
 </tr>
 <tr class="odd">
@@ -186,8 +186,8 @@
 <tr class="even">
 <td style="text-align: left;">Ground track</td>
 <td style="text-align: left;">TRK</td>
-<td style="text-align: left;">46-52</td>
-<td style="text-align: left;">14-20</td>
+<td style="text-align: left;">46–52</td>
+<td style="text-align: left;">14–20</td>
 <td style="text-align: left;">7</td>
 </tr>
 <tr class="odd">
@@ -221,15 +221,15 @@
 <tr class="odd">
 <td style="text-align: left;">Encoded latitude</td>
 <td style="text-align: left;">LAR-CPR</td>
-<td style="text-align: left;">55-71</td>
-<td style="text-align: left;">23-39</td>
+<td style="text-align: left;">55–71</td>
+<td style="text-align: left;">23–39</td>
 <td style="text-align: left;">17</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Encoded longitude</td>
 <td style="text-align: left;">LON-CPR</td>
-<td style="text-align: left;">72-88</td>
-<td style="text-align: left;">40-56</td>
+<td style="text-align: left;">72–88</td>
+<td style="text-align: left;">40–56</td>
 <td style="text-align: left;">17</td>
 </tr>
 </tbody>
@@ -259,32 +259,32 @@
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2 - 8</td>
+<td style="text-align: left;">2–8</td>
 <td style="text-align: left;">0.125 <span class="math inline">\(\leq\)</span> v <span class="math inline">\(&lt;\)</span> 1 kt</td>
 <td style="text-align: left;">0.125 kt steps</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">9 - 12</td>
+<td style="text-align: left;">9–12</td>
 <td style="text-align: left;">1 kt <span class="math inline">\(\leq\)</span> v <span class="math inline">\(&lt;\)</span> 2 kt</td>
 <td style="text-align: left;">0.25 kt steps</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">13 - 38</td>
+<td style="text-align: left;">13–38</td>
 <td style="text-align: left;">2 kt <span class="math inline">\(\leq\)</span> v <span class="math inline">\(&lt;\)</span> 15 kt</td>
 <td style="text-align: left;">0.5 kt steps</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">39 - 93</td>
+<td style="text-align: left;">39–93</td>
 <td style="text-align: left;">15 kt <span class="math inline">\(\leq\)</span> v <span class="math inline">\(&lt;\)</span> 70 kt</td>
 <td style="text-align: left;">1 kt steps</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">94 - 108</td>
+<td style="text-align: left;">94–108</td>
 <td style="text-align: left;">70 kt <span class="math inline">\(\leq\)</span> v <span class="math inline">\(&lt;\)</span> 100 kt</td>
 <td style="text-align: left;">2 kt steps</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">109 - 123</td>
+<td style="text-align: left;">109–123</td>
 <td style="text-align: left;">100 kt <span class="math inline">\(\leq\)</span> v <span class="math inline">\(&lt;\)</span> 175 kt</td>
 <td style="text-align: left;">5 kt steps</td>
 </tr>
@@ -294,7 +294,7 @@
 <td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">125 - 127</td>
+<td style="text-align: left;">125–127</td>
 <td style="text-align: left;">Reserved</td>
 <td style="text-align: left;"></td>
 </tr>
@@ -306,22 +306,22 @@
 <p><span class="math display">\[\chi = \frac{360~n}{128} \quad \text{(degrees)}\]</span></p>
 <p>When the status for the ground track field is set to 0, the information contained in the ground track fields should be considered as invalid.</p>
 <h2 id="position">Position</h2>
-<p>Like coordinates from airborne messages, the surface latitude and longitude are also encoded in the Compact Position Reporting (CPR) format. CPR format bit indicates whether the message is a <em>even</em> or <em>odd</em> message. There are only a few slight differences in decoding the surface position positions.</p>
+<p>Like coordinates from airborne messages, the surface latitude and longitude are also encoded in the Compact Position Reporting (CPR) format. CPR format bit indicates whether the message is an <em>even</em> or <em>odd</em> message. There are only a few slight differences in decoding the surface position positions.</p>
 <p>First, the latitude zone size is four times smaller, which is defined as:</p>
 <p><span class="math display">\[\begin{split}
     \mathrm{dLat}_\mathrm{even} &amp;= \frac{90^\circ}{4 N_Z} \\
     \mathrm{dLat}_\mathrm{odd} &amp;= \frac{90^\circ}{4 N_Z - 1}
 \end{split}\]</span></p>
-<p>Similarly, the longitude zone size is also smaller, which is:</p>
+<p>Similarly, the longitude zone size is smaller too, which is:</p>
 <p><span class="math display">\[\begin{split}
     \mathrm{dLon}_\mathrm{even} &amp;= \frac{90^\circ}{n_\mathrm{even}} \\
     \mathrm{dLon}_\mathrm{odd} &amp;= \frac{90^\circ}{n_\mathrm{odd}}
 \end{split}\]</span></p>
-<p>The algorithm used to encode the position is essentially the same as the one used for encoding airborne position. All the other equations from chapter <a href="#chap:airborn-position" data-reference-type="ref" data-reference="chap:airborn-position">[chap:airborn-position]</a> can be used to decode surface position.</p>
-<p>The main difference, when compared to the airborne position, is that the original number of bits used for encoding surface coordinates is 19 instead of 17. However in the message, only the lower-order 17 bits are included and transmitted in the surface message. Thus, there can be multiple solutions for a pair of odd and even messages, even when globally unambiguous decoding is used. To identify the correct solution, a reference position needs to be given. This can be the position of the receiver or the location of the airfield.</p>
+<p>The algorithm used to encode the position is essentially the same as the one used for encoding airborne position. All the other equations from Chapter <a href="#chap:airborn-position" data-reference-type="ref" data-reference="chap:airborn-position">[chap:airborn-position]</a> can be used to decode surface position.</p>
+<p>The main difference, when compared to the airborne position, is that the original number of bits used for encoding surface coordinates is 19 instead of 17. However, in the message, only the lower-order 17 bits are included and transmitted in the surface message. Thus, there can be multiple solutions for a pair of odd and even messages, even when globally unambiguous decoding is used. To identify the correct solution, a reference position needs to be given. This can be the position of the receiver or the location of the airfield.</p>
 <p>When employing locally unambiguous decoding, the reference position needs to be within 45 nautical miles of the actual location. Commonly, the positions of the airport is used.</p>
-<p>With the equations from section <a href="#sec:cpr_airborne_global_lat" data-reference-type="ref" data-reference="sec:cpr_airborne_global_lat">[sec:cpr_airborne_global_lat]</a>, the solution refers to the latitude located at the northern hemisphere. We need to compute a southern hemisphere solution by subtracting this value with 90 degrees. The final correct latitude is the one that is closet to the reference position.</p>
-<p>Similarly, with the equations from section <a href="#sec:cpr_airborne_global_lon" data-reference-type="ref" data-reference="sec:cpr_airborne_global_lon">[sec:cpr_airborne_global_lon]</a>, the solution refers only the longitude in the 0 to 90 degrees quadrant. We need to compute the other three possible solutions by adding 90, 180, and 270 degrees. The final correct longitude is also the one that is closet to the reference position.</p>
+<p>With the equations from section <a href="#sec:cpr_airborne_global_lat" data-reference-type="ref" data-reference="sec:cpr_airborne_global_lat">[sec:cpr_airborne_global_lat]</a>, the solution refers to the latitude located at the northern hemisphere. We need to compute a southern hemisphere solution by subtracting this value with 90 degrees. The final correct latitude is the one that is closest to the reference position.</p>
+<p>Similarly, with the equations from section <a href="#sec:cpr_airborne_global_lon" data-reference-type="ref" data-reference="sec:cpr_airborne_global_lon">[sec:cpr_airborne_global_lon]</a>, the solution refers only the longitude in the 0 to 90 degrees quadrant. We need to compute the other three possible solutions by adding 90, 180, and 270 degrees. The final correct longitude is also the one that is closest to the reference position.</p>
 <h2 id="decoding-example">Decoding example</h2>
 <h3 id="globally-unambiguous-decoding">Globally unambiguous decoding</h3>
 <p>First, we decode the location using globally unambiguous decoding. The following example contains an even/odd pair of surface position messages:</p>
@@ -366,10 +366,13 @@ reference longitude: 4.375</code></pre>
 <p>we can continue to calculate the global position. Since the even message is the most recent message, the northern hemisphere latitude solution is:</p>
 <p><span class="math display">\[\mathrm{lat}_N = \mathrm{lat}_\mathrm{odd} = 52.320607072215964\]</span></p>
 <p>The southern hemisphere latitude solution is:</p>
-<p><span class="math display">\[\mathrm{lat}_S = 52.320607072215964 - 90 = -37.679392927784036\]</span></p>
+<p><span class="math display">\[\begin{split}
+    \mathrm{lat}_S &amp;= 52.320607072215964 - 90 \\
+    &amp;= -37.679392927784036
+  \end{split}\]</span></p>
 <p>By comparing the result with the reference latitude (51.990), the final latitude value is the one located in the northern hemisphere.</p>
 <p><span class="math display">\[\mathrm{lat} = \mathrm{lat}_N = 52.320607072215964\]</span></p>
-<p>The longitude solution in the first quadrant of 0 to 90 degress is calculated based on the most recent (odd) message:</p>
+<p>The longitude solution in the first quadrant of 0 to 90 degrees is calculated based on the most recent (odd) message:</p>
 <p><span class="math display">\[\begin{aligned}
   m &amp;= floor \left( \frac{116941}{2^{17}} \times (36-1) - \frac{110269}{2^{17}} \times 36 + \frac{1}{2}  \right) = 1\\
   n &amp;= max \Big( 36-1, 1 \Big) = 35\\
@@ -380,10 +383,10 @@ reference longitude: 4.375</code></pre>
     \mathrm{lon}_3 &amp;= \mathrm{lon}_1 + 180 = 184.734734671456474 \\
     \mathrm{lon}_4 &amp;= \mathrm{lon}_1 + 270 = 274.734734671456474 \\
 \end{split}\]</span></p>
-<p>By comparing with the reference longitude (4.375), the final longitude is the one located in the first quadrant. Combining the result of previously obtained latitude, the final decoded coordinates (rounded up to 6 decimal position) are:</p>
+<p>By comparing with the reference longitude (4.375), the final longitude is the one located in the first quadrant. Combining the result of previously obtained latitude, the final decoded coordinates (rounded up to the 6th decimal position) are:</p>
 <pre><code>latitude: 52.320607
 longitude: 4.734735</code></pre>
-<p><span>Try it out</span> Using <code>pyModeS</code>, we can perform the decoding of this globally unambiguous surface position as:</p>
+<p><span>Try it out</span> Using pyModeS, we can perform the decoding of this globally unambiguous surface position as:</p>
 <pre><code>import pyModeS as pms
 
 msg0 = &quot;8C4841753AAB238733C8CD4020B1&quot;
@@ -393,7 +396,9 @@ t1 = 1457996412
 lat_ref = 51.990
 lon_ref = 4.375
 
-position = pms.adsb.position(msg0, msg1, t0, t1, lat_ref, lon_ref)</code></pre>
+pms.adsb.position(msg0, msg1, t0, t1, lat_ref, lon_ref)</code></pre>
+<p>Output:</p>
+<pre><code>(52.32061, 4.73473)</code></pre>
 <p>Note that the reference coordinates are needed for decoding the surface position. In this case the reference is the coordinates of the airfield.</p>
 <h3 id="locally-unambiguous-decoding">Locally unambiguous decoding</h3>
 <p>Secondly, we decode the location using locally unambiguous decoding. In this case, we want to use the position obtained previously as the reference.</p>
@@ -423,27 +428,26 @@ position = pms.adsb.position(msg0, msg1, t0, t1, lat_ref, lon_ref)</code></pre>
 <p>The final decoded coordinates (rounded up to 6 decimal positions) are:</p>
 <pre><code>latitude: 52.320561
 longitude: 4.735735</code></pre>
-<p><span>Try it out</span> Using <code>pyModeS</code>, we can perform the decoding of this locally unambiguous surface position as:</p>
+<p><span>Try it out</span> Using pyModeS, decode this locally unambiguous surface position as:</p>
 <pre><code>import pyModeS as pms
-
 msg = &quot;8C4841753A9A153237AEF0F275BE&quot;
-lat_ref = 51.990
-lon_ref = 4.375
-
-position = pms.adsb.position_with_ref(msg, lat_ref, lon_ref)</code></pre>
+lat_ref, lon_ref = 51.990, 4.375
+pms.adsb.position_with_ref(msg, lat_ref, lon_ref)</code></pre>
+<p>Output:</p>
+<pre><code>(52.32061, 4.73473)</code></pre>
 <h3 id="movement-and-track">Movement and track</h3>
 <p>As a continuation of the previous example, we can also calculate the speed and track angle from the movement and track fields.</p>
-<p>The decimal value of movement <code>0101001</code> is <code>41</code>. Based on Table <a href="#tb:adsb-surf-pos-mov" data-reference-type="ref" data-reference="tb:adsb-surf-pos-mov">1.2</a>, the speed is encoded using 1 kt steps. Thus, the speed of aircraft is:</p>
+<p>The decimal value of movement <code>0101001</code> is 41. Based on Table <a href="#tb:adsb-surf-pos-mov" data-reference-type="ref" data-reference="tb:adsb-surf-pos-mov">1.2</a>, the speed is encoded using 1 kt steps. Thus, the speed of aircraft is:</p>
 <p><span class="math display">\[15 + (42 - 39) \times 1 = 17 kt\]</span></p>
 <p>The decimal value of track angle <code>0100001</code> is <code>33</code>. The track angle can be calculated as:</p>
 <p><span class="math display">\[\frac{360^\circ}{128} \times 33 = 92.8125 ^\circ\]</span></p>
-<p><span>Try it out</span> Using <code>pyModeS</code>, we can perform the decoding aircraft speed and track angle as:</p>
+<p><span>Try it out</span> Using pyModeS, decode aircraft speed and track angle as:</p>
 <pre><code>import pyModeS as pms
-
 msg = &quot;8C4841753A9A153237AEF0F275BE&quot;
-
-spd, trk, vs, tag = pms.adsb.velocity(msg)</code></pre>
-<p>Note that the last two parameters returned by the previous function are vertical speed and a tag indicate whether the speed is ground speed (GS) or airspeed (IAS/TAS).</p>
+pms.adsb.velocity(msg)</code></pre>
+<p>Output (speed, track angle, vertical speed, tag):</p>
+<pre><code>17 92.8 0 GS</code></pre>
+<p>Note that the last two parameters returned by the previous function are vertical speed and a flag indicating whether the speed is ground speed (GS) or airspeed (IAS/TAS).</p>
 
 <footer class="mastfoot">
   <div class="text-right">

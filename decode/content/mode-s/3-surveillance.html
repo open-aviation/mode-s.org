@@ -141,37 +141,37 @@
 <tr class="odd">
 <td style="text-align: left;">Downlink format</td>
 <td style="text-align: left;">DF</td>
-<td style="text-align: left;">1-5</td>
+<td style="text-align: left;">1–5</td>
 <td style="text-align: left;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Flight status</td>
 <td style="text-align: left;">FS</td>
-<td style="text-align: left;">6-8</td>
+<td style="text-align: left;">6–8</td>
 <td style="text-align: left;">3</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Downlink request</td>
 <td style="text-align: left;">DR</td>
-<td style="text-align: left;">9-13</td>
+<td style="text-align: left;">9–13</td>
 <td style="text-align: left;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Utility message</td>
 <td style="text-align: left;">UM</td>
-<td style="text-align: left;">14-19</td>
+<td style="text-align: left;">14–19</td>
 <td style="text-align: left;">6</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Altitude code</td>
 <td style="text-align: left;">AC</td>
-<td style="text-align: left;">20-32</td>
+<td style="text-align: left;">20–32</td>
 <td style="text-align: left;">13</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Address parity</td>
 <td style="text-align: left;">AP</td>
-<td style="text-align: left;">33-56</td>
+<td style="text-align: left;">33–56</td>
 <td style="text-align: left;">24</td>
 </tr>
 </tbody>
@@ -192,37 +192,37 @@
 <tr class="odd">
 <td style="text-align: left;">Downlink format</td>
 <td style="text-align: left;">DF</td>
-<td style="text-align: left;">1-5</td>
+<td style="text-align: left;">1–5</td>
 <td style="text-align: left;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Flight status</td>
 <td style="text-align: left;">FS</td>
-<td style="text-align: left;">6-8</td>
+<td style="text-align: left;">6–8</td>
 <td style="text-align: left;">3</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Downlink request</td>
 <td style="text-align: left;">DR</td>
-<td style="text-align: left;">9-13</td>
+<td style="text-align: left;">9–13</td>
 <td style="text-align: left;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Utility message</td>
 <td style="text-align: left;">UM</td>
-<td style="text-align: left;">14-19</td>
+<td style="text-align: left;">14–19</td>
 <td style="text-align: left;">6</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Identity code</td>
 <td style="text-align: left;">ID</td>
-<td style="text-align: left;">20-32</td>
+<td style="text-align: left;">20–32</td>
 <td style="text-align: left;">13</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Address parity</td>
 <td style="text-align: left;">AP</td>
-<td style="text-align: left;">33-56</td>
+<td style="text-align: left;">33–56</td>
 <td style="text-align: left;">24</td>
 </tr>
 </tbody>
@@ -245,8 +245,8 @@
 <blockquote>
 <p><code>00000</code>: no downlink request<br />
 <code>00001</code>: request to send Comm-B message<br />
-<code>00100</code>: Comm-B broadcast messages 1 available<br />
-<code>00101</code>: Comm-B broadcast messages 2 available</p>
+<code>00100</code>: Comm-B broadcast message 1 available<br />
+<code>00101</code>: Comm-B broadcast message 2 available</p>
 </blockquote></li>
 <li><p><em>Utility message (UM)</em>: 6 bits, contains transponder communication status information.</p>
 <ul>
@@ -262,20 +262,20 @@
 </ul></li>
 </ul>
 <h2 id="sec:alt_code">Altitude code</h2>
-<p>The 13-bit altitude code can be encoded in 25-ft increments, 100-ft increments, or in metric units (m). The 7th bit (MSG bit 28) is defined as the M bit. When the M bit is set to , the 9th bit (MSG bit 30) is defined as the Q bit.</p>
+<p>The 13-bit altitude code can be encoded in 25 feet increments, 100 feet increments, or in metric unit of meters. The 7th bit (MSG bit 28) is defined as the M bit. When the M bit is set to , the 9th bit (MSG bit 30) is defined as the Q bit.</p>
 <p>The decoding rules are as follows:</p>
 <ul>
 <li><p>When all bits are set to , altitude information is not available or invalid.</p></li>
 <li><p>When M=1, removing the M bit, the remaining 12 bits represent the altitude in meters.</p></li>
-<li><p>When M=0 and Q=1, removing the M and Q bits, the remaining 11 bits encode the altitude with 25 ft increments. Denote <span class="math inline">\(N\)</span> as the decimal value of the remaining 11 bits. The altitude is calculated as <span class="math inline">\(25 \times N - 1000\)</span> ft.</p></li>
+<li><p>When M=0 and Q=1, removing the M and Q bits, the remaining 11 bits encode the altitude with 25 feet increments. Denote <span class="math inline">\(N\)</span> as the decimal value of the remaining 11 bits. The altitude is calculated as <span class="math inline">\(25 \times N - 1000\)</span> feet.</p></li>
 <li><p>When M=0 and Q=0, the remaining bits are defined as follows:</p>
 <pre><code>                                M        Q
 +----+----+----+----+----+----+---+----+---+----+----+----+----+
 | C1 | A1 | C2 | A2 | C4 | A4 | 0 | B1 | 0 | B2 | D2 | B4 | D4 |
 +----+----+----+----+----+----+---+----+---+----+----+----+----+</code></pre>
-<p>This structure corresponds to the Mode C altitude reply. This structure is used to encode altitudes above 50187.5 ft.</p></li>
+<p>This structure corresponds to the Mode C altitude reply. This structure is used to encode altitudes above 50187.5 feet.</p></li>
 </ul>
-<p><span>Try it out</span> Using <code>pyModeS</code>, we can calculate the altitude code as:</p>
+<p><span>Try it out</span> Using pyModeS, we can calculate the altitude code as:</p>
 <pre><code>import pyModeS as pms
 
 msg = &quot;2000171806A983&quot;
@@ -299,11 +299,11 @@ MSG BIN: 00101 01000000000010 1000101101101 010010010010101110000000
 0  0  0  | 0  1  1  | 1  0  1  | 1  1  0</code></pre>
 <p>Finally, the four octal digit squawk code can be decoded from the binary groups as:</p>
 <pre><code>0 3 5 6</code></pre>
-<p><span>Try it out</span> Using <code>pyModeS</code>, we can calculate the squawk code as:</p>
+<p><span>Try it out</span> Using pyModeS, we can calculate the squawk code as:</p>
 <pre><code>import pyModeS as pms
 
 msg = &quot;2A00516D492B80&quot;
-altitude = pms.idcode(msg)  # 0356</code></pre>
+squawk = pms.idcode(msg)  # 0356</code></pre>
 
 <footer class="mastfoot">
   <div class="text-right">
