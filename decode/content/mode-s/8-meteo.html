@@ -45,26 +45,37 @@
 <div class="row">
 <div class="col-md-4 col-lg-3">
 <nav>
-  <a href="http://mode-s.org" type="button"
-      class="btn btn-sm btn-outline-dark btn-light">
-    <i class="fas fa-angle-double-left"></i> mode-s.org
+  <a href="../../index.html" type="button"
+      class="btn btn-sm btn-outline-info btn-light">
+      <i class="fas fa-home"></i> Home
   </a>
+
+  <br>
 
   <a href="../../book-the_1090mhz_riddle-junzi_sun.pdf"
       type="button" class="btn btn-sm btn-outline-info">
     <i class="far fa-file-pdf"></i> Download PDF book
   </a>
 
+  <br>
+
   <a href="../../index.html#cite-this-book" type="button"
       class="btn btn-sm btn-outline-info btn-light">
     <i class="fas fa-quote-left"></i> Cite this book
+  </a>
+
+  <br>
+
+  <a href="http://mode-s.org" type="button"
+      class="btn btn-sm btn-outline-dark btn-light">
+    <i class="fas fa-angle-double-left"></i> mode-s.org
   </a>
 
   <hr>
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../misc/preface.html">0. Preface</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -282,7 +293,7 @@
 <li><p>5–15: Reserved</p></li>
 </ul>
 <p>For static air temperature, the encoded value can be negative. Hence, two’s complement coding (see section <a href="#sec:two_complement" data-reference-type="ref" data-reference="sec:two_complement">[sec:two_complement]</a>) is used for encoding the value. The actual maximum range of temperature is from -80 <span class="math inline">\(^\circ\)</span>C to +60 <span class="math inline">\(^\circ\)</span>C.</p>
-<p>It is also worth pointing out a discrepancy in the design. The temperature is encoded using 10 bits, where the least significant bit value should have been 0.125<span class="math inline">\(^\circ\)</span>. However, according to the official document <span class="citation" data-cites="icao9871v1"></span>, the LSB value is 0.25<span class="math inline">\(^\circ\)</span>. ICAO is planning to update this to 0.125<span class="math inline">\(^\circ\)</span> in the future. Most current implementations still use 0.25<span class="math inline">\(^\circ\)</span>.</p>
+<p>It is also worth pointing out a discrepancy in the design. The temperature is encoded using 10 bits, where the least significant bit value should have been 0.125<span class="math inline">\(^\circ\)</span>. However, according to the official document <span class="citation" data-cites="icao9871v1"></span>, the LSB value is 0.25<span class="math inline">\(^\circ\)</span>. ICAO is planning to update this to 0.125<span class="math inline">\(^\circ\)</span> in the future. However, most current implementations still use 0.25<span class="math inline">\(^\circ\)</span>.</p>
 <p>Figure <a href="#fig:bds44_example" data-reference-type="ref" data-reference="fig:bds44_example">1.1</a> shows the decoding of an MRAR example message.</p>
 <figure>
 <img src="../../figures/a04f07d31a12aa89280bcee47e65cd41bc87cbb3.png" id="fig:bds44_example" /><figcaption aria-hidden="true">Meteorological routine air report (BDS 4,4) decoding example</figcaption>
@@ -298,7 +309,7 @@ pms.commb.p44(msg)      # None
 pms.commb.hum44(msg)    # None</code></pre>
 <h2 id="meteorological-hazard-report-bds-45">Meteorological hazard report (BDS 4,5)</h2>
 <p>In MHR messages, different hazard condition levels are reported, such as turbulence, wind shear, microburst, icing, and wake vortex. It also includes temperature, pressure, and radio height. Table <a href="#tb:bds45" data-reference-type="ref" data-reference="tb:bds45">1.2</a> shows the structure of the MHR message.</p>
-<p>It is worth noting that during real flights, MHR messages are much rarer than MARA messages. Whenever they are available, most of the messages only contain temperature information.</p>
+<p>It is worth noting that during real flights, MHR messages are much rarer than MARA messages. Based on the tests I conducted, whenever MRAR messages are detected, most of the them only contain temperature information.</p>
 <div id="tb:bds45">
 <table>
 <caption>Meteorological harzard report (BDS 4,5), MB field</caption>
@@ -474,7 +485,7 @@ pms.commb.hum44(msg)    # None</code></pre>
 
 <footer class="mastfoot">
   <div class="text-right">
-    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+    <p> © Copyright 2021 <a href="https://junzis.com">Junzi Sun</a>. Build with LaTeX, Pandoc, and GitHub</p>
   </div>
 </footer>
 

@@ -113,7 +113,7 @@
 <nav id="TOC">
 <h1>In this page</h1>
 <ul>
-<li><a href="#acknowledgements">Acknowledgements</a></li>
+<li><a href="#synopsis">Synopsis</a></li>
 </ul>
 </nav>
 
@@ -123,25 +123,14 @@
 <div class="col-md-8 col-lg-9 maintext">
 
 <div class="float-right">
-  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/misc/ack.tex"
+  <a href="https://github.com/junzis/the-1090mhz-riddle/edit/master/misc/synopsis.tex"
     class='btn btn-sm btn-outline-dark'> <i class="fas fa-edit"></i> Recommend edits</a>
 </div>
 
-<h1 class="unnumbered" id="acknowledgements">Acknowledgements</h1>
-<p>I could not have completed this book without the support of my wife, Marie. She proofread every word in this book and gave valuable input on its content. I want to thank my parents for their encouragement of my curiosity and scientific endeavors since childhood. My sons, William and Vincent, make my life and research more joyful, especially when I see they are curious and enthusiastic to see me testing antennas, receivers, and hardware.</p>
-<p>Navigating through the mountain of information in different ICAO documents is complicated. I am grateful to have met Huy Vû and supervised his master thesis project. He was able to find almost any needed information regarding Mode S, which was a great help for this book and the pyModeS library. He is now a data analyst at <em>LVNL</em>, the Dutch air traffic control, and we still work together on interesting research topics.</p>
-<p>In the summer of 2017, I received an email from a researcher from <em>ONERA</em>, the French aerospace research institute, who wanted to meet me for a coffee to discuss Mode S. That coffee discussion with Xavier Olive has turned into a fruitful collaboration. I want to say thanks to Xavier for his input on Mode S, ADS-B, and all other related and unrelated discussions.</p>
-<p>Before the notion of this book ever existed, I was a new PhD student at TU Delft’s CNS/ATM research group. I would like to thank Jacco Hoekstra and Joost Ellerbroek, who were my promotors and provided me with great support for all my PhD research topics. I am also extremely happy to have been able to continue working with them as a colleague since 2019. I would also like to extend my thanks to the Dean of our faculty, Henri Werij, for his consistent support and for offering me the opportunity to continue my research at the faculty.</p>
-<p>My research often relies on Mode S and ADS-B data from regions beyond the coverage of our antenna in Delft. This is only possible with the help of crowd-sourced networks. I want to thank Martin Strohmeier from <em>OpenSky network</em>, Sean Atkinson from <em>FlightRadar24</em>, and James Stanford from <em>ADS-B Exchange</em> for sharing their data with me for different research projects over the past years.</p>
-<p>The manual was an open-access book from the beginning. I heartily appreciate all the GitHub contributors who made suggestions and edits for this book and pyModeS library.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Since I decided to publish this book with TU Delft OPEN Publishing, our publishing officer, Frédérique Belliard, has been extremely helpful in making this book a reality. Finally, I would also like to thank Petr Jonas, Xavier Olive, and Enrico Spinielli for their comprehensive peer reviews that led to the successful completion of this book.</p>
-<section class="footnotes" role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1" role="doc-endnote"><p>The most up-to-date list of contributors can be found at:<br />
-https://github.com/junzis/the-1090mhz-riddle/graphs/contributors<br />
-https://github.com/junzis/pyModeS/graphs/contributors<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
+<h1 class="unnumbered" id="synopsis">Synopsis</h1>
+<p><embed src="cover/front.pdf" /></p>
+<p>In the last twenty years, aircraft surveillance has moved from controller-based interrogation to automatic broadcast. The Automatic Dependent Surveillance-Broadcast (ADS-B) is the most common method for aircraft to report their state information like identity, position, and speed. Like other Mode S communications, ADS-B makes use of the 1090 megahertz transponder to transmit data. The protocol for ADS-B is open, and low-cost receivers can easily be used to intercept its signals. Many recent air transportation studies have benefited from this open data source. However, the current literature does not offer a systematic exploration of Mode S and ADS-B data, nor does it offer an in-depth explanation of the decoding process.</p>
+<p>This book tackles this missing area in the literature. It offers researchers, engineers, students, and enthusiasts a clear guide to understanding and making use of open ADS-B and Mode S data. The first part of this book presents the knowledge required to get started with decoding these signals. It includes background information on primary radar, secondary radar, Mode A/C, Mode S, and ADS-B, as well as the hardware and software setups necessary to gather radio signals. After that, the 17 core chapters of the book investigate the details of all types of ADS-B signals and commonly used Mode S signals. Throughout these chapters, examples and sample Python code are used extensively to explain and demonstrate the decoding process. Finally, the last chapter of the book offers a summary and a brief overview of research topics that go beyond the decoding of these signals.</p>
 
 <footer class="mastfoot">
   <div class="text-right">

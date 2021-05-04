@@ -44,26 +44,37 @@
 <div class="row">
 <div class="col-md-4 col-lg-3">
 <nav>
-  <a href="http://mode-s.org" type="button"
-      class="btn btn-sm btn-outline-dark btn-light">
-    <i class="fas fa-angle-double-left"></i> mode-s.org
+  <a href="../../index.html" type="button"
+      class="btn btn-sm btn-outline-info btn-light">
+      <i class="fas fa-home"></i> Home
   </a>
+
+  <br>
 
   <a href="../../book-the_1090mhz_riddle-junzi_sun.pdf"
       type="button" class="btn btn-sm btn-outline-info">
     <i class="far fa-file-pdf"></i> Download PDF book
   </a>
 
+  <br>
+
   <a href="../../index.html#cite-this-book" type="button"
       class="btn btn-sm btn-outline-info btn-light">
     <i class="fas fa-quote-left"></i> Cite this book
+  </a>
+
+  <br>
+
+  <a href="http://mode-s.org" type="button"
+      class="btn btn-sm btn-outline-dark btn-light">
+    <i class="fas fa-angle-double-left"></i> mode-s.org
   </a>
 
   <hr>
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../misc/preface.html">0. Preface</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -160,11 +171,11 @@
 </div>
 <p>The fields can be decoded as follows:</p>
 <ul>
-<li><p>The definition of transponder capability is the same as in ADS-B messages (Table <a href="#tb:transponder_capability" data-reference-type="ref" data-reference="tb:transponder_capability">[tb:transponder_capability]</a> in Chapter <a href="#chap:adsb-basic" data-reference-type="ref" data-reference="chap:adsb-basic">[chap:adsb-basic]</a>).</p></li>
-<li><p>The address refers to the 24-bit transponder address.</p></li>
-<li><p>The decoding of PI is similar to the decoding of ADS-B parity (Chapter <a href="#chap:adsb_parity" data-reference-type="ref" data-reference="chap:adsb_parity">[chap:adsb_parity]</a>).</p></li>
+<li><p>CA: The definition of transponder capability is the same as in ADS-B messages (Table <a href="#tb:transponder_capability" data-reference-type="ref" data-reference="tb:transponder_capability">[tb:transponder_capability]</a> in Chapter <a href="#chap:adsb-basic" data-reference-type="ref" data-reference="chap:adsb-basic">[chap:adsb-basic]</a>).</p></li>
+<li><p>AA: The address refers to the 24-bit transponder address.</p></li>
+<li><p>PI: The decoding of PI is similar to the decoding of ADS-B parity (Chapter <a href="#chap:adsb_parity" data-reference-type="ref" data-reference="chap:adsb_parity">[chap:adsb_parity]</a>).</p></li>
 </ul>
-<p>For a message with downlink format 11, PI is overlaid with the interrogator identifier.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Hence, assuming there is no error in the data, the CRC will produce the interrogator identifier code for all-call replies.</p>
+<p>For a message with downlink format 11, PI is overlaid with the interrogator identifier.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Hence, assuming there is no error in the data, the CRC will produce the interrogator identifier code for all-call replies. The interrogator identifier code can be zero. In this case the message is generated due to a spontaneous acquisition squitter (see Chapter <a href="#chap:acas" data-reference-type="ref" data-reference="chap:acas">[chap:acas]</a>).</p>
 <p>A decoding example is shown as follows:</p>
 <pre><code>MSG HEX:  5D484FDEA248F5
 MSG BIN:  01011   101    010010000100111111011110  101000100100100011110101
@@ -186,7 +197,7 @@ pms.icao(msg)</code></pre>
 
 <footer class="mastfoot">
   <div class="text-right">
-    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+    <p> © Copyright 2021 <a href="https://junzis.com">Junzi Sun</a>. Build with LaTeX, Pandoc, and GitHub</p>
   </div>
 </footer>
 

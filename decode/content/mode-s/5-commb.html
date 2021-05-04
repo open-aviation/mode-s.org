@@ -44,26 +44,37 @@
 <div class="row">
 <div class="col-md-4 col-lg-3">
 <nav>
-  <a href="http://mode-s.org" type="button"
-      class="btn btn-sm btn-outline-dark btn-light">
-    <i class="fas fa-angle-double-left"></i> mode-s.org
+  <a href="../../index.html" type="button"
+      class="btn btn-sm btn-outline-info btn-light">
+      <i class="fas fa-home"></i> Home
   </a>
+
+  <br>
 
   <a href="../../book-the_1090mhz_riddle-junzi_sun.pdf"
       type="button" class="btn btn-sm btn-outline-info">
     <i class="far fa-file-pdf"></i> Download PDF book
   </a>
 
+  <br>
+
   <a href="../../index.html#cite-this-book" type="button"
       class="btn btn-sm btn-outline-info btn-light">
     <i class="fas fa-quote-left"></i> Cite this book
+  </a>
+
+  <br>
+
+  <a href="http://mode-s.org" type="button"
+      class="btn btn-sm btn-outline-dark btn-light">
+    <i class="fas fa-angle-double-left"></i> mode-s.org
   </a>
 
   <hr>
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../misc/preface.html">0. Preface</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -122,7 +133,7 @@
 
 <h1 id="chap:comm-b">Comm-B</h1>
 <p>Comm-B messages count for a large portion of the Mode S selective interrogation responses. The message can have a downlink format of either 20 or 21, depending on whether the aircraft identity code or altitude code is included in the message.</p>
-<p>Comm-B protocol supports many different types of messages (up to 255). Several important surveillance services utilize some of the Comm-B message types (see Figure <a href="#fig:mode_s_services" data-reference-type="ref" data-reference="fig:mode_s_services">[fig:mode_s_services]</a> from Chapter <a href="#chap:intro" data-reference-type="ref" data-reference="chap:intro">[chap:intro]</a>). In this book, we are mainly interested in three types of services, which are Mode S Elementary Surveillance (ELS), Mode S Enhanced Surveillance (EHS), and Meteorological information. By decoding these messages, we can discover some additional information regarding an aircraft.</p>
+<p>Comm-B protocol supports many different types of messages (up to 255). Several important surveillance services utilize some of the Comm-B message types (see Figure <a href="#fig:mode_s_services" data-reference-type="ref" data-reference="fig:mode_s_services">[fig:mode_s_services]</a> from Chapter <a href="#chap:intro" data-reference-type="ref" data-reference="chap:intro">[chap:intro]</a>). In this book, we are mainly interested in three types of services, which are Mode S Elementary Surveillance (ELS), Mode S Enhanced Surveillance (EHS), and Meteorological information. By decoding these messages, we can discover some additional information of an aircraft.</p>
 <h2 id="structure">Structure</h2>
 <p>Comm-B messages have similar structures as surveillance replies (DF=4/5). The structures are shown in the Tables <a href="#tb:df_20_structure" data-reference-type="ref" data-reference="tb:df_20_structure">1.1</a> and <a href="#tb:df_21_structure" data-reference-type="ref" data-reference="tb:df_21_structure">1.2</a>.</p>
 <div id="tb:df_20_structure">
@@ -239,7 +250,7 @@
 </tbody>
 </table>
 </div>
-<p>The definitions of these common fields are the same as surveillance replies in Chapter <a href="#chap:surv_reply" data-reference-type="ref" data-reference="chap:surv_reply">[chap:surv_reply]</a>. In addition, depending on the request from the surveillance radar, either address parity or data parity (see Chapter <a href="#chap:mode_s_basics" data-reference-type="ref" data-reference="chap:mode_s_basics">[chap:mode_s_basics]</a>) can be included in the downlink message.</p>
+<p>The definitions of these common fields are the same as surveillance replies in Chapter <a href="#chap:surv_reply" data-reference-type="ref" data-reference="chap:surv_reply">[chap:surv_reply]</a>. In addition, depending on the request in the uplink, either address parity or data parity (see Chapter <a href="#chap:mode_s_basics" data-reference-type="ref" data-reference="chap:mode_s_basics">[chap:mode_s_basics]</a>) can be included in the downlink message.</p>
 <h2 id="bds">BDS</h2>
 <p>Comm-B Data Selector (BDS) is an 8-bit code that determines which information to be included in the MB fields. It is often shown as a 2-digit hexadecimal, for example, <code>4,0</code> or <code>0,A</code>. We can make a comparison between the BDS code and Type Code used in ADS-B. They both help to identify which structure shall be used to decode the message, except that the BDS code is only included in the uplink (Comm-A). For Comm-B messages, BDS codes are not always included.</p>
 <p>Without knowing the BDS code of the downlink message, the information contained in the MB field cannot be decoded. Fortunately, there are methods available that can be used to infer the BDS code for most of the messages and decode them. In later Chapter <a href="#chap:bds_infer" data-reference-type="ref" data-reference="chap:bds_infer">[chap:bds_infer]</a>, the inference process will be explained.</p>
@@ -267,7 +278,7 @@
 
 <footer class="mastfoot">
   <div class="text-right">
-    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+    <p> © Copyright 2021 <a href="https://junzis.com">Junzi Sun</a>. Build with LaTeX, Pandoc, and GitHub</p>
   </div>
 </footer>
 

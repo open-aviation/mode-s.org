@@ -45,26 +45,37 @@
 <div class="row">
 <div class="col-md-4 col-lg-3">
 <nav>
-  <a href="http://mode-s.org" type="button"
-      class="btn btn-sm btn-outline-dark btn-light">
-    <i class="fas fa-angle-double-left"></i> mode-s.org
+  <a href="../../index.html" type="button"
+      class="btn btn-sm btn-outline-info btn-light">
+      <i class="fas fa-home"></i> Home
   </a>
+
+  <br>
 
   <a href="../../book-the_1090mhz_riddle-junzi_sun.pdf"
       type="button" class="btn btn-sm btn-outline-info">
     <i class="far fa-file-pdf"></i> Download PDF book
   </a>
 
+  <br>
+
   <a href="../../index.html#cite-this-book" type="button"
       class="btn btn-sm btn-outline-info btn-light">
     <i class="fas fa-quote-left"></i> Cite this book
+  </a>
+
+  <br>
+
+  <a href="http://mode-s.org" type="button"
+      class="btn btn-sm btn-outline-dark btn-light">
+    <i class="fas fa-angle-double-left"></i> mode-s.org
   </a>
 
   <hr>
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../misc/preface.html">0. Preface</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -302,9 +313,9 @@
 </table>
 </div>
 <h2 id="ground-track">Ground track</h2>
-<p>The ground track is encoded with a precision of (and rounded to) 360/128 degrees. Zero degrees represents an aircraft ground track that is aligned with the true north. Based on the encoded value (<span class="math inline">\(n\)</span>), the ground track (<span class="math inline">\(\chi\)</span>) is calculated as:</p>
+<p>When the status for the ground track field is set to , the ground track is encoded with a precision of (and rounded to) 360/128 degrees. Zero degrees represents an aircraft ground track that is aligned with the true north. Based on the encoded value (<span class="math inline">\(n\)</span>), the ground track (<span class="math inline">\(\chi\)</span>) is calculated as:</p>
 <p><span class="math display">\[\chi = \frac{360~n}{128} \quad \text{(degrees)}\]</span></p>
-<p>When the status for the ground track field is set to 0, the information contained in the ground track fields should be considered as invalid.</p>
+<p>When the status for the ground track field is set to , the information contained in the ground track fields should be considered as invalid.</p>
 <h2 id="position">Position</h2>
 <p>Like coordinates from airborne messages, the surface latitude and longitude are also encoded in the Compact Position Reporting (CPR) format. CPR format bit indicates whether the message is an <em>even</em> or <em>odd</em> message. There are only a few slight differences in decoding the surface position positions.</p>
 <p>First, the latitude zone size is four times smaller, which is defined as:</p>
@@ -451,7 +462,7 @@ pms.adsb.velocity(msg)</code></pre>
 
 <footer class="mastfoot">
   <div class="text-right">
-    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+    <p> © Copyright 2021 <a href="https://junzis.com">Junzi Sun</a>. Build with LaTeX, Pandoc, and GitHub</p>
   </div>
 </footer>
 

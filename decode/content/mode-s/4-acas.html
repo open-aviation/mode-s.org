@@ -45,26 +45,37 @@
 <div class="row">
 <div class="col-md-4 col-lg-3">
 <nav>
-  <a href="http://mode-s.org" type="button"
-      class="btn btn-sm btn-outline-dark btn-light">
-    <i class="fas fa-angle-double-left"></i> mode-s.org
+  <a href="../../index.html" type="button"
+      class="btn btn-sm btn-outline-info btn-light">
+      <i class="fas fa-home"></i> Home
   </a>
+
+  <br>
 
   <a href="../../book-the_1090mhz_riddle-junzi_sun.pdf"
       type="button" class="btn btn-sm btn-outline-info">
     <i class="far fa-file-pdf"></i> Download PDF book
   </a>
 
+  <br>
+
   <a href="../../index.html#cite-this-book" type="button"
       class="btn btn-sm btn-outline-info btn-light">
     <i class="fas fa-quote-left"></i> Cite this book
+  </a>
+
+  <br>
+
+  <a href="http://mode-s.org" type="button"
+      class="btn btn-sm btn-outline-dark btn-light">
+    <i class="fas fa-angle-double-left"></i> mode-s.org
   </a>
 
   <hr>
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../misc/preface.html">0. Preface</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -103,7 +114,7 @@
 <nav id="TOC">
 <h1>In this page</h1>
 <ul>
-<li><a href="#airborne-collision-avoidance-system">Airborne collision avoidance system</a>
+<li><a href="#chap:acas">Airborne collision avoidance system</a>
 <ul>
 <li><a href="#background">Background</a></li>
 <li><a href="#acas-with-mode-c-transponders">ACAS with Mode C transponders</a></li>
@@ -133,7 +144,7 @@
     class='btn btn-sm btn-outline-dark'> <i class="fas fa-edit"></i> Recommend edits</a>
 </div>
 
-<h1 id="airborne-collision-avoidance-system">Airborne collision avoidance system</h1>
+<h1 id="chap:acas">Airborne collision avoidance system</h1>
 <h2 id="background">Background</h2>
 <p><em>Airborne Collision Avoidance System</em> (ACAS) is a system to reduce the risk of mid-air collisions and near mid-air collisions between aircraft. There are three types of ACAS systems according to <span class="citation" data-cites="icaoA10V4"></span>, which are:</p>
 <ul>
@@ -150,7 +161,7 @@
 </figure>
 <h2 id="acas-with-mode-c-transponders">ACAS with Mode C transponders</h2>
 <p>The ACAS system uses Mode C only all-call interrogation to detect aircraft that are only equipped with Mode A/C transponders. In this case, the ACAS system initiates a sequence of interrogations with increasing power.</p>
-<p>The interrogation pulse is slightly different from a Mode A/C-only all-call interrogation. A special <span class="math inline">\(S_1\)</span> pulse (also known as ‘whisper-shout’) is designed to reduce interference. The <span class="math inline">\(S_1\)</span> pulse is inserted 2 s (<span class="math inline">\(\pm 0.15 \mu s\)</span>) before the <span class="math inline">\(P_1\)</span> pulse.</p>
+<p>The interrogation pulse is slightly different from a Mode A/C-only all-call interrogation. A special <span class="math inline">\(S_1\)</span> pulse (also known as ‘whisper-shout’) is designed to reduce interference. The <span class="math inline">\(S_1\)</span> pulse is inserted 2 μs (<span class="math inline">\(\pm 0.15 \mu s\)</span>) before the <span class="math inline">\(P_1\)</span> pulse.</p>
 <p>The reply should be sent with the following rules:</p>
 <ul>
 <li><p>With both <span class="math inline">\(S_1\)</span> and <span class="math inline">\(P_1\)</span> above the minimum triggering level (MTL), no reply will be generated.</p></li>
@@ -457,7 +468,7 @@
 <li><p><em>Data selector (DS)</em>: 8 bits, it indicates the BDS code of the MV content in reply with DF=16.</p></li>
 <li><p><em>Vertical status (VS)</em>: 1 bit, it indicates whether the aircraft is airborne () or on the ground ().</p></li>
 <li><p><em>Cross-link capability (CC)</em>: 1 bit, it refers to the capability of reply DF=16 upon request of UF=0. When this 1-bit field is set to , the cross-link is supported. Otherwise, the field is set to .</p></li>
-<li><p><em>Sensitivity level (SL)</em>: 3 bits, it represents the sensitivity level of the ACAS system. indicates the ACAS is inoperative. Other values indicate the sensitivity level.</p></li>
+<li><p><em>Sensitivity level (SL)</em>: 3 bits, it represents the sensitivity level of the ACAS system, except that indicates the ACAS is inoperative.</p></li>
 <li><p><em>Reply information (RI)</em>: 4 bits, it indicates the type of reply to interrogating aircraft. For ACAS message, valid values are 0 and from 2 to 4. Other values are not part of the ACAS:</p>
 <blockquote>
 <p><code>0000</code>: No operating ACAS<br />
@@ -846,7 +857,6 @@ Bit 58: Do not pass right</p>
 <p>We can see that the structure of the MV fields is similar to MU fields of RA broadcast (UDS=3,1) from Table <a href="#tb:acas_mu_uds31" data-reference-type="ref" data-reference="tb:acas_mu_uds31">1.6</a>. The interpretations of these fields are also the same as in section <a href="#sec:acas_ra" data-reference-type="ref" data-reference="sec:acas_ra">1.4.2</a>.</p>
 <h3 id="other-vds">Other VDS</h3>
 <p>When the first eight bits are not <code>0011 0000</code>, the MV field contain the Ground-initiated Comm-B information that was requested in DS field of uplink (UF=0) in Table <a href="#tb:acas_uf_0" data-reference-type="ref" data-reference="tb:acas_uf_0">1.1</a>. Comm-B will be explained in the next chapter.</p>
-<p>It is worth noting that the DS value is not transmitted in the MV field. Thus, it is difficult for us to know what data is contained in the MV field for VDS other than <code>3,0</code>.</p>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
@@ -858,7 +868,7 @@ Bit 58: Do not pass right</p>
 
 <footer class="mastfoot">
   <div class="text-right">
-    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+    <p> © Copyright 2021 <a href="https://junzis.com">Junzi Sun</a>. Build with LaTeX, Pandoc, and GitHub</p>
   </div>
 </footer>
 

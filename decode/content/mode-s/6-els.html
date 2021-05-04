@@ -45,26 +45,37 @@
 <div class="row">
 <div class="col-md-4 col-lg-3">
 <nav>
-  <a href="http://mode-s.org" type="button"
-      class="btn btn-sm btn-outline-dark btn-light">
-    <i class="fas fa-angle-double-left"></i> mode-s.org
+  <a href="../../index.html" type="button"
+      class="btn btn-sm btn-outline-info btn-light">
+      <i class="fas fa-home"></i> Home
   </a>
+
+  <br>
 
   <a href="../../book-the_1090mhz_riddle-junzi_sun.pdf"
       type="button" class="btn btn-sm btn-outline-info">
     <i class="far fa-file-pdf"></i> Download PDF book
   </a>
 
+  <br>
+
   <a href="../../index.html#cite-this-book" type="button"
       class="btn btn-sm btn-outline-info btn-light">
     <i class="fas fa-quote-left"></i> Cite this book
+  </a>
+
+  <br>
+
+  <a href="http://mode-s.org" type="button"
+      class="btn btn-sm btn-outline-dark btn-light">
+    <i class="fas fa-angle-double-left"></i> mode-s.org
   </a>
 
   <hr>
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../misc/preface.html">0. Preface</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -126,7 +137,7 @@
 <h1 id="mode-s-elementary-surveillance">Mode S elementary surveillance</h1>
 <p>Mode S Elementary Surveillance (ELS) provides a set of basic functionalities that are supported by the Mode S transponders. These basic functionalities include the reporting of aircraft identity, altitude, transponder capability, and flight status. The set of BDS codes included in ELS are <code>1,0</code>, <code>1,7</code>, <code>2,0</code>, and <code>3,0</code>.</p>
 <h2 id="data-link-capability-report-bds-10">Data link capability report (BDS 1,0)</h2>
-<p>This message is designed to report the data link capability of the installed Mode S transponder. Table <a href="#tb:bds10" data-reference-type="ref" data-reference="tb:bds10">1.1</a> shows all fields in this report.</p>
+<p>This message is designed to report the data link capability of the installed Mode S transponder. Table <a href="#tb:bds10" data-reference-type="ref" data-reference="tb:bds10">1.1</a> shows all fields in this message.</p>
 <div id="tb:bds10">
 <table>
 <caption>Data link capability report (BDS 1,0), MB field</caption>
@@ -238,8 +249,9 @@
 </tbody>
 </table>
 </div>
-<p>In the data link capability report, the first eight bits indicate the BDS number 1,0, which is <code>0001 0000</code> in binary format. The definitions of the other fields are:</p>
-<p>1) ACAS related bits are shown as follows:</p>
+<p>In the data link capability report, the first eight bits indicate the BDS number, which is <code>1,0</code>, or <code>0001 0000</code> in binary format.</p>
+<p>The definitions of the other fields are explained as follows:</p>
+<p>1) ACAS related bits can be decoded as:</p>
 <pre><code>MSG     MB      Coding
 --------------------------------------------------------------
 48      16      0: ACAS failed or on standby
@@ -255,7 +267,7 @@
                 0|1: RTCA/DO-185A
                 1|0: RTCA/DO-185B or EUROCAE ED 143
                 1|1: Reserved for future versions</code></pre>
-<p>2) Valid values for <em>Mode S subnetwork version number</em> are from 0 to 5, corresponds to compliance to a different version of ICAO documentations. Numbers 6 to 127 are currently unassigned. Numbers 0 to 5 can be interpreted as:</p>
+<p>2) Valid values for <em>Mode S subnetwork version number</em> are from 0 to 5, corresponds to the compliance to a different version of ICAO documentations. Numbers 6 to 127 are currently unassigned. Numbers 0 to 5 can be interpreted as:</p>
 <pre><code>0:  Subnetwork not available
 1:  ICAO Doc 9688 (1996)
 2:  ICAO Doc 9688 (1998)
@@ -267,9 +279,9 @@
 <p>4) When <em>Transponder enhanced protocol indicator</em> bit is set to , the transponder is a Level 5 transponder. Value indicates a Level 2 to 4 transponder.</p>
 <p>5) When <em>Mode S specific services capability</em> bit is set to , at least one Mode S specific service is supported.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p>6) <em>Aircraft identification capability</em> indicates availability of identification (Callsign).</p>
-<p>7) When <em>Squitter capability subfield</em> bit is set to , both BDS 0,5 and 0,6 registers have been updated in the past 9 to 11 seconds.</p>
+<p>7) When <em>Squitter capability subfield</em> bit is set to , both BDS 0,5 and <code>0,6</code> registers have been updated in the past 9 to 11 seconds.</p>
 <p>8) <em>Surveillance identifier code</em> determines whether the transponder has the surveillance identification code capability.</p>
-<p>9) <em>Common usage GICB capability report</em> is set to every time the GICB capacity report (BDS code 1,7) is changed. Register 1,7 is sampled every minute to check for changes.</p>
+<p>9) <em>Common usage GICB capability report</em> is set to every time the GICB capacity report (BDS 1,7) is changed. Register <code>1,7</code> is sampled every minute to check for changes.</p>
 <h2 id="common-usage-gicb-capability-report-bds-17">Common usage GICB capability report (BDS 1,7)</h2>
 <p>This message is designed to report Common Usage Ground-initiated Comm-B (GICB) capabilities. The fields in this report are shown in Table <a href="#tb:bds17" data-reference-type="ref" data-reference="tb:bds17">1.2</a>. In this table, each bit indicates whether the corresponding service is available from the transponder.</p>
 <p>A bit is set to when the corresponding register has a valid input that has been updated at the required rate. This means that the same aircraft would respond with different GICB reports due to the availability of the relevant data.</p>
@@ -557,7 +569,7 @@ BDS40, BDS50, BDS51, BDS52, BDS60</code></pre>
 </tbody>
 </table>
 </div>
-<p>The first eight bits indicates the BDS code 0010 0000 (2,0 in hexadecimal). Each of the callsign characters is represented by six bits. We first need to convert the binary numbers to decimals. Each decimal value corresponds to the index of the letter in the following character map:</p>
+<p>The first eight bits indicates the BDS code <code>0010 0000</code> (<code>2,0</code> in hexadecimal). Each of the callsign characters is represented by six bits. We first need to convert the binary numbers to decimals. Each decimal value corresponds to the index of the letter in the following character map:</p>
 <pre><code>#ABCDEFGHIJKLMNOPQRSTUVWXYZ##### ###############0123456789######</code></pre>
 <p>It is worth noting that this character mapping is the same as the one used for ADS-B identification, which also corresponds to a part of the ASCII code map.</p>
 <p>The following is an example on how to decode the callsign from a sample BDS 2,0 message:</p>
@@ -575,7 +587,7 @@ ID:   KLM1017</code></pre>
 
 msg = &quot;A000083E202CC371C31DE0AA1CCF&quot;
 callsign = pms.commb.cs20(msg)</code></pre>
-<p>Callsign <code>KLM1017_</code> will be returned by the previous function since the space is replace by <code>_</code> in pyModeS.</p>
+<p>Callsign <code>KLM1017_</code> will be returned by the previous function. The space character is replace by <code>_</code> in pyModeS.</p>
 <h2 id="acas-active-resolution-advisory-bds-30">ACAS active resolution advisory (BDS 3,0)</h2>
 <p>The BDS 3,0 message is used to report resolution advisories (RA) generated by ACAS equipment. The structure of the MB field is defined in Table <a href="#tb:bds20" data-reference-type="ref" data-reference="tb:bds20">1.4</a>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div id="tb:bds20">
@@ -635,7 +647,7 @@ callsign = pms.commb.cs20(msg)</code></pre>
 </tbody>
 </table>
 </div>
-<p>1) The first 8 bits show the BDS code 3,0 or <code>0011 0000</code> in binary format.</p>
+<p>1) The first 8 bits show the BDS code of <code>3,0</code> or <code>0011 0000</code> in binary format.</p>
 <p>2) The 14-bit active resolution advisories (ARA) indicate the characteristics of the RA generated by the ACAS associated with the transponder. To decode the information, we need to decode MB bit 9 (MSG bit 41) and MB bit 28 (MSG bit 60). Table <a href="#tb:bds30_mb9_mb28" data-reference-type="ref" data-reference="tb:bds30_mb9_mb28">1.5</a> shows how to interpret these two bits.</p>
 <div id="tb:bds30_mb9_mb28">
 <table>
@@ -849,7 +861,7 @@ MB:26=1   Do not turn right</code></pre>
 
 <footer class="mastfoot">
   <div class="text-right">
-    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+    <p> © Copyright 2021 <a href="https://junzis.com">Junzi Sun</a>. Build with LaTeX, Pandoc, and GitHub</p>
   </div>
 </footer>
 

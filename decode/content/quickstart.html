@@ -45,26 +45,37 @@
 <div class="row">
 <div class="col-md-4 col-lg-3">
 <nav>
-  <a href="http://mode-s.org" type="button"
-      class="btn btn-sm btn-outline-dark btn-light">
-    <i class="fas fa-angle-double-left"></i> mode-s.org
+  <a href="../index.html" type="button"
+      class="btn btn-sm btn-outline-info btn-light">
+      <i class="fas fa-home"></i> Home
   </a>
+
+  <br>
 
   <a href="../book-the_1090mhz_riddle-junzi_sun.pdf"
       type="button" class="btn btn-sm btn-outline-info">
     <i class="far fa-file-pdf"></i> Download PDF book
   </a>
 
+  <br>
+
   <a href="../index.html#cite-this-book" type="button"
       class="btn btn-sm btn-outline-info btn-light">
     <i class="fas fa-quote-left"></i> Cite this book
+  </a>
+
+  <br>
+
+  <a href="http://mode-s.org" type="button"
+      class="btn btn-sm btn-outline-dark btn-light">
+    <i class="fas fa-angle-double-left"></i> mode-s.org
   </a>
 
   <hr>
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../index.html">Home</a></li>
+    <li><a href="../misc/preface.html">0. Preface</a></li>
     <li><a href="../content/introduction.html">1. Introduction</a></li>
     <li><a href="../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -128,7 +139,7 @@
 </div>
 
 <h1 id="chap:quickstart">Quick Start: Hardware and Software to Receive Mode S Signals</h1>
-<p>Chapter 1 introduced several fundamental concepts about Mode S communication. This chapter focuses on the practical aspects of Mode S data, specifically, how to receive and obtain information that is transmitted in Mode S downlink communications. Mode S signals are transmitted using 1090 MHz radio waves. Hence, the receiver and antenna have to be designed to work with this frequency. Nowadays, all necessary components required to obtain the Mode S data can be easily made with low-cost off-the-shelf components. Several open-source software tools are available to support the extraction and decoding of data from Mode S signals. In this chapter, we explain how to step up a functional hardware and software system to receive Mode S data.</p>
+<p>Chapter 1 introduced several fundamental concepts about Mode S communication. This chapter focuses on the practical aspects of acquiring Mode S data, specifically, how to receive and obtain messages that are transmitted in Mode S downlink communications. Mode S signals are transmitted using 1090 MHz radio waves. Hence, the receiver and antenna have to be designed to work with this frequency. Nowadays, all necessary components required to obtain the Mode S data can be easily made with low-cost off-the-shelf components. Several open-source software tools are available to support the extraction and decoding of data from Mode S signals. In this chapter, we explain how to step up a functional hardware and software system to receive Mode S data.</p>
 <h2 id="range">Range</h2>
 <p>Since Mode S uses L band signals that follow the line-of-sight propagation, any obstructions between the transmitter and receiver can cause a significant amount of signals to be blocked. Assuming that no obstacle exists between the aircraft and the receiver, and the transmitter has a sufficient amount of power, the maximum range of the receiver is determined by the curvature of the earth. Figure <a href="#fig:max_range" data-reference-type="ref" data-reference="fig:max_range">1.1</a> illustrates how the maximum range of the receiver can be obtained.</p>
 <figure>
@@ -158,7 +169,7 @@
 </figure>
 <h2 id="receiver">Receiver</h2>
 <p>Many modern Mode S receivers are built using software-defined radio (SDR). An SDR usually can be tuned to a wide range of radio frequencies. The user can conveniently select the center frequency of the receiver and the sampling rate, as well as defined the bandwidth of the onboard low-pass filter if it is supported.</p>
-<p>For receiving ADS-B (and other types of Mode S message), a RTL-SDR is the most common type of low-cost receiver to choose. Many different brands of RTL-SDR receivers exist; they are often built with the Realtek RTL2832U chipset. It can work with radio frequencies from 24 to 1766 MHz. The maximum sampling rate is 2.8 million samples per second (MSPS). Given that a Mode S bit consists of a pulse cycle of 0.5 s (see Figure <a href="#fig:mode_s_uplink_pulses" data-reference-type="ref" data-reference="fig:mode_s_uplink_pulses">[fig:mode_s_uplink_pulses]</a>), the minimum SDR sampling rate required for Mode S is 2 MSPS. RLT-SDR devices just barely manage to meet this requirement.</p>
+<p>For receiving ADS-B (and other types of Mode S message), a RTL-SDR is the most common type of low-cost receiver to choose. Many different brands of RTL-SDR receivers exist; they are often built with the Realtek RTL2832U chipset. It can work with radio frequencies from 24 to 1766 MHz. The maximum sampling rate is 2.8 million samples per second (MSPS). Given that a Mode S bit consists of a pulse cycle of 0.5 μs (see Figure <a href="#fig:mode_s_uplink_pulses" data-reference-type="ref" data-reference="fig:mode_s_uplink_pulses">[fig:mode_s_uplink_pulses]</a>), the minimum SDR sampling rate required for Mode S is 2 MSPS. RLT-SDR devices just barely manage to meet this requirement.</p>
 <p><span>Note</span> The maximum frequency range of RTL-SDR can be from 0 to 2220 MHz. However, the sensitivity drops off significantly outside the 24 – 1766 MHz range. The sampling rate can actually go up to a maximum of 3.2 million samples per second, but some samples may be dropped at this sampling rate. So, it is not stable.</p>
 <p>SDRs that offer a higher performance also exist. They often support a larger frequency range with higher sampling rates. Some offer multiple transmitting (TX) and receiving (RX) channels. Table <a href="#tb:sdr" data-reference-type="ref" data-reference="tb:sdr">1.1</a> lists a few examples of common SDR devices. The performance of RTL-SDR is listed as a comparison.</p>
 <div id="tb:sdr">
@@ -227,7 +238,7 @@
 </table>
 </div>
 <h2 id="software-tools">Software tools</h2>
-<p>Several software tools are also available to work with some of these SDR devices and decode Mode S and ADS-B signals directly. In this section, we explain how to use two open-source tools, which are <code>dump1090</code> and <code>pyModeS</code>.</p>
+<p>Several software tools are available to work with some of these SDR devices and decode Mode S and ADS-B signals directly. In this section, we explain how to use two open-source tools, which are <code>dump1090</code> and <code>pyModeS</code>.</p>
 <h3 id="dump1090">dump1090</h3>
 <p><code>dump1090</code> is the most well-known open-source Mode S decoder currently available. The software is written in C programming language and was originally developed by Salvatore Sanfilippo <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> under the BSD-3-Clause license.</p>
 <p>Since its release in 2013, the repository has been forked and extended intensively on GitHub, creating more than 900 forks so far. Many of the branched versions contain different variations, such as support for additional hardware, additional decoded Mode S messages, and additional output format. Currently, one of the most comprehensive forks is the repository maintained by FlightAware.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The following examples will be based on the FlightAware version of <code>dump1090</code>, using a Debian-based Linux system.</p>
@@ -326,16 +337,11 @@ pms.adsb.altitude(msg)
 # velocity messages
 pms.adsb.velocity(msg)</code></pre>
 <p>There are also a number of functions designed to infer and decode Mode S downlink messages. For example:</p>
-<pre><code># Mode S altitude code (DF=4/20)
-pms.common.altcode(msg)
-
-# Mode S squwak code (DF=5/21)
-pms.common.idcode(msg)
-
-# Infer Modes S BDS code
-pms.bds.infer(msg)
-
-# BDS 4,0
+<pre><code>pms.common.altcode(msg)   # Mode S altitude code (DF=4/20)
+pms.common.idcode(msg)    # Mode S squwak code (DF=5/21)
+pms.bds.infer(msg)        # Infer Modes S BDS code</code></pre>
+<p>Once a Mode S message type is identified, type specific functions can be used to decode corresponding parameters.</p>
+<pre><code># BDS 4,0
 pms.commb.selalt40mcp(msg)  # MCP/FCU selected altitude (ft)
 pms.commb.selalt40fms(msg)  # FMS selected altitude (ft)
 pms.commb.p40baro(msg)      # Barometric pressure setting (mb)
@@ -353,7 +359,8 @@ pms.commb.ias60(msg)        # Indicated airspeed (kt)
 pms.commb.mach60(msg)       # Mach number (-)
 pms.commb.vr60baro(msg)     # Barometric altitude rate (ft/min)
 pms.commb.vr60ins(msg)      # Inertial vertical speed (ft/min)</code></pre>
-<p>These are commonly used functions related to Mode S decoding. A complete list of the APIs can be found in the <code>pyModeS</code> library API documentation. In the rest of this book, most of the decoding details are explained, which will often involving the use of <code>pyModeS</code> and reflect its source code.</p>
+<p>These are some commonly used functions related to Mode S decoding. A complete list of the APIs can be found in the <code>pyModeS</code> library API documentation.</p>
+<p>These functionalities may seem complicated at this moment. In the rest of this book, I will explain all the details related to the decoding of these ADS-B and Mode S messages. Throughout the rest of chapters, I will make use of <code>pyModeS</code> to demonstrate the decoding.</p>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
@@ -364,7 +371,7 @@ pms.commb.vr60ins(msg)      # Inertial vertical speed (ft/min)</code></pre>
 
 <footer class="mastfoot">
   <div class="text-right">
-    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+    <p> © Copyright 2021 <a href="https://junzis.com">Junzi Sun</a>. Build with LaTeX, Pandoc, and GitHub</p>
   </div>
 </footer>
 

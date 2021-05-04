@@ -45,26 +45,37 @@
 <div class="row">
 <div class="col-md-4 col-lg-3">
 <nav>
-  <a href="http://mode-s.org" type="button"
-      class="btn btn-sm btn-outline-dark btn-light">
-    <i class="fas fa-angle-double-left"></i> mode-s.org
+  <a href="../../index.html" type="button"
+      class="btn btn-sm btn-outline-info btn-light">
+      <i class="fas fa-home"></i> Home
   </a>
+
+  <br>
 
   <a href="../../book-the_1090mhz_riddle-junzi_sun.pdf"
       type="button" class="btn btn-sm btn-outline-info">
     <i class="far fa-file-pdf"></i> Download PDF book
   </a>
 
+  <br>
+
   <a href="../../index.html#cite-this-book" type="button"
       class="btn btn-sm btn-outline-info btn-light">
     <i class="fas fa-quote-left"></i> Cite this book
+  </a>
+
+  <br>
+
+  <a href="http://mode-s.org" type="button"
+      class="btn btn-sm btn-outline-dark btn-light">
+    <i class="fas fa-angle-double-left"></i> mode-s.org
   </a>
 
   <hr>
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../misc/preface.html">0. Preface</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -145,7 +156,7 @@
 </div>
 
 <h1 id="chap:airborn-position">Airborne position</h1>
-<p>The aircraft airborne position message is used to broadcast the position and altitude of the aircraft. It has the Type Code from 9 to 18 or from 20 to 22. When Type Code is from 9 to 18, the encoded altitude represents the barometric altitude of the aircraft. When the Type Code is from 20 to 22, the encoded altitude contains the GNSS altitude of the aircraft. The Type Code value is related to the uncertainties in the position, which will be discussed in a later chapter.</p>
+<p>The aircraft airborne position message is used to broadcast the position and altitude of the aircraft. It has the Type Code 9–18 and 20–22. When Type Code is from 9 to 18, the encoded altitude represents the barometric altitude of the aircraft. When the Type Code is from 20 to 22, the encoded altitude contains the GNSS altitude of the aircraft. The Type Code value is related to the uncertainties in the position, which will be discussed in a later chapter.</p>
 <p>The structure of the ADS-B airborne position message ME field is shown as follows:</p>
 <pre><code>+-------+-------+--------+---------+------+------+-------------+-------------+
 | TC, 5 | SS, 2 | SAF, 1 | ALT, 12 | T, 1 | F, 1 | LAT-CPR, 17 | LON-CPR, 17 |
@@ -279,7 +290,7 @@
 </tbody>
 </table>
 </div>
-<p>It is important to emphasize that the encoded latitude and longitude are not the actual latitude and longitude values. Instead, the position information is encoded in a Compact Position Reporting (CPR) format, which requires fewer bits to encode positions with higher resolution. The CPR offers a trade-off between global position ambiguity and local position accuracy. Two types of position messages (identified by the odd and even frame flag) are broadcast alternately. There are two different ways to decode an airborne position based on these messages:</p>
+<p>It is important to emphasize that the encoded latitude and longitude are not the actual latitude and longitude values. Instead, the position information is encoded in a Compact Position Reporting (CPR) format, which requires fewer bits to encode positions with higher resolution. The CPR offers a trade-off between global position ambiguity and local position accuracy. Two types of position messages (identified by the odd and even frame bit) are broadcast alternately. There are two different ways to decode an airborne position based on these messages:</p>
 <ol>
 <li><p><strong>Globally unambiguous position decoding</strong>: Without a known position to start with, using both types of messages to decode the position.</p></li>
 <li><p><strong>Locally unambiguous position decoding</strong>: Knowing a reference position from previous sets of messages, using only one message for the decoding.</p></li>
@@ -326,7 +337,7 @@
 <h4 id="nllat---longitude-zone-number">NL(lat) - Longitude zone number</h4>
 <p>Given the latitude, this function yields the number of longitude zones between 1 and 59. The function is expressed as:</p>
 <p><span class="math display">\[\mathrm{NL}(\mathrm{lat}) = floor \left\{ \dfrac{2 \pi}{\arccos \left[ 1 - \dfrac{1-\cos \left( \dfrac{\pi}{2~N_Z} \right)}{\cos^2\left(\dfrac{\pi}{180} \cdot \mathrm{lat} \right)} \right] } \right\}\]</span></p>
-<p>For latitudes that are close to the equator or the poles, one of following values is returned:</p>
+<p>For latitudes that are close to the equator or the poles, the following values are used:</p>
 <pre><code>lat = 0     -&gt;    NL = 59
 lat = +87   -&gt;    NL = 2
 lat = -87   -&gt;    NL = 2
@@ -334,7 +345,7 @@ lat &gt; +87   -&gt;    NL = 1
 lat &lt; -87   -&gt;    NL = 1</code></pre>
 <h2 id="globally-unambiguous-position-decoding">Globally unambiguous position decoding</h2>
 <h3 id="sec:cpr_airborne_global_lat">Calculation of latitude</h3>
-<p>In each position message, bit 54 determines whether it is an odd or even type. indicates an even message, while indicates an odd message.</p>
+<p>In each position message, bit 54 determines whether it is an odd or even frame. indicates an even message, while indicates an odd message.</p>
 <p>Bits 55–71 and bits 72–88 represent the fractions of the latitude and longitude within the latitude and longitude grid, denoted as <span class="math inline">\(\mathrm{lat}_\mathrm{cpr}\)</span> and <span class="math inline">\(\mathrm{lon}_\mathrm{cpr}\)</span>:</p>
 <p><span class="math display">\[\begin{split}
       \mathrm{lat}_\mathrm{cpr} &amp;= \frac{N_{cpr,lat}}{2^{17}} \\
@@ -448,10 +459,11 @@ pms.adsb.position(msg0, msg1, t0, t1)</code></pre>
 <p>Output:</p>
 <pre><code>(52.2572, 3.91937)</code></pre>
 <h2 id="locally-unambiguous-position-decoding">Locally unambiguous position decoding</h2>
-<p>Previously, a globally unambiguous position was decoded using a pair of odd and even messages. In this part, we will discuss how to decode the ADS-B position with one message and a previous reference position that is obtained using globally unambiguous decoding.</p>
-<p>This method offers the possibility to continuous decode aircraft using only one message. It computes the latitude index (j) and the longitude index (m) based on this existing reference position and can be applied to both odd and even messages.</p>
+<p>Previously, a globally unambiguous position was decoded using a pair of odd and even messages. This section explains how to decode the ADS-B position with one message and a previous reference position that is obtained using globally unambiguous decoding.</p>
+<p>This method offers the possibility to continuous decode aircraft using only one message. It computes the latitude index (<span class="math inline">\(j\)</span>) and the longitude index (<span class="math inline">\(m\)</span>) based on this existing reference position and can be applied to both odd and even messages.</p>
 <h3 id="the-reference-position">The reference position</h3>
-<p>The reference position should be close to the actual position, which must be within a 180 NM range. For example, this can be the position of the aircraft that has been decoded in the previous update. The range limitation is to ensure the consistency of the latitude and longitude zones between the reference position and the decoding position. The reference position is denoted as (<span class="math inline">\(\mathrm{lat}_\mathrm{ref}\)</span>, <span class="math inline">\(\mathrm{lon}_\mathrm{ref}\)</span>).</p>
+<p>The reference position should be close to the actual position, which must be within a 180 NM range. For example, this can be the position of the aircraft that has been decoded in the previous update.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>The range limitation is to ensure the consistency of the latitude and longitude zones between the reference position and the decoding position. The reference position is denoted as (<span class="math inline">\(\mathrm{lat}_\mathrm{ref}\)</span>, <span class="math inline">\(\mathrm{lon}_\mathrm{ref}\)</span>).</p>
 <h3 id="calculation-of-latitude">Calculation of latitude</h3>
 <p>Denote <span class="math inline">\(i\)</span> as the value dependent on the type of the message:</p>
 <p><span class="math display">\[i =
@@ -473,11 +485,11 @@ pms.adsb.position(msg0, msg1, t0, t1)</code></pre>
 <p>Knowing the longitude zone index, the longitude of the new position is:</p>
 <p><span class="math display">\[\mathrm{lon} = \mathrm{dLon} \cdot (m + \mathrm{lon}_\mathrm{cpr})\]</span></p>
 <h3 id="decoding-example-1">Decoding example</h3>
-<p>Next, we illustrate the decoding process of the messages from the previous example with a reference position. The message and the reference position are as follows:</p>
+<p>Next, we illustrate the decoding process of the messages from the previous example with a reference position. The message is:</p>
 <pre><code>Message:   8D40621D58C382D690C8AC2863A7
-ME (data):         58C382D690C8AC
-
-Reference position: (52.258, 3.918)</code></pre>
+ME (data):         58C382D690C8AC</code></pre>
+<p>The reference position we will use is:</p>
+<pre><code>(52.258, 3.918)</code></pre>
 <p>We can easily convert the message data to binary format as:</p>
 <pre><code>+-------+-----+--------------+-----------------------------------------------+
 | TC    |     | ALT          | T | F | CPR-LAT           | CPR-LON           |
@@ -486,16 +498,18 @@ Reference position: (52.258, 3.918)</code></pre>
 +-------+-----+--------------+---+---+-------------------+-------------------+
 |       |     |              |   |   | 93000             | 51372             |
 +-------+-----+--------------+---+---+-------------------+-------------------+</code></pre>
-<p>First, since this is an even message (<span class="math inline">\(i=0\)</span>), we can calculate the latitude as follows:</p>
+<p>Since this is an even message (<span class="math inline">\(i=0\)</span>), we can calculate dLat and latitude index (<span class="math inline">\(j\)</span>) as follows:</p>
 <p><span class="math display">\[\begin{aligned}
   \mathrm{dLat} &amp;= \frac{360}{4 \times 15 - 0} = 6 \\
-  j &amp;= floor \left( \frac{52.258}{6} \right) + floor \left[ \frac{mod(52.258, 6)}{6} - \frac{93000}{2^{17}}  + \frac{1}{2} \right] = 8 \\
-  \mathrm{lat} &amp;= 6 \times \left( 8 + \frac{93000}{2^{17}} \right) = 52.2572021484375\end{aligned}\]</span></p>
-<p>Next, the longitude can be calculated as follows:</p>
+  j &amp;= floor \left( \frac{52.258}{6} \right) + floor \left[ \frac{mod(52.258, 6)}{6} - \frac{93000}{2^{17}}  + \frac{1}{2} \right] = 8 \\\end{aligned}\]</span></p>
+<p>The latitude can be obtained as:</p>
+<p><span class="math display">\[\mathrm{lat} = 6 \times \left( 8 + \frac{93000}{2^{17}} \right) = 52.2572021484375\]</span></p>
+<p>Next, we can calculate dLon and longitude index (<span class="math inline">\(m\)</span>) as:</p>
 <p><span class="math display">\[\begin{aligned}
   \mathrm{dLon} &amp;= \frac{360}{max \Big( \mathrm{NL}(\mathrm{lat}_\mathrm{even})-0, 1 \Big)} = \frac{360}{max(36, 1)} = 10 \\
-  m &amp;= floor \left( \frac{3.918}{10} \right) + floor \left( \frac{mod(3.918, 10)}{10} - \frac{51372}{2^{17}}  + \frac{1}{2}  \right) = 0 \\
-  \mathrm{lon} &amp;= 10 \times \left(0 + \frac{51372}{2^{17}} \right) = 3.91937255859375\end{aligned}\]</span></p>
+  m &amp;= floor \left( \frac{3.918}{10} \right) + floor \left( \frac{mod(3.918, 10)}{10} - \frac{51372}{2^{17}}  + \frac{1}{2}  \right) = 0 \\\end{aligned}\]</span></p>
+<p>Finally, the aircraft longitude is:</p>
+<p><span class="math display">\[\mathrm{lon} = 10 \times \left(0 + \frac{51372}{2^{17}} \right) = 3.91937255859375\]</span></p>
 <p><span>Try it out</span> Using pyModeS, we can perform the previous locally unambiguous position calculation as:</p>
 <pre><code>import pyModeS as pms
 
@@ -524,9 +538,10 @@ pms.adsb.position_with_ref(msg, lat_ref, lon_ref)</code></pre>
 <pre><code>11000011000 -&gt; 1560</code></pre>
 <p>The altitude of the aircraft becomes:</p>
 <p><span class="math display">\[1560 \times 25 - 1000 = 38000 \quad \text{(ft)}\]</span></p>
-<p>In the case where the altitude is higher than 50175 feet, a 100 feet increment is used. In this situation, the Q bit is set to , and the rest of the bits are encoded using Gray code <span class="citation" data-cites="doran2007"></span>. It is worth noting that it is possible for all altitude bits to be zeros,which indicates that the altitude information is not available.</p>
+<p>In the case where the altitude is higher than 50175 feet, a 100 feet increment is used. In this situation, the Q bit is set to , and the rest of the bits are encoded using Gray code <span class="citation" data-cites="doran2007"></span>.</p>
+<p>It is worth noting that it is possible for all altitude bits to be zeros,which indicates that the altitude information is not available.</p>
 <h3 id="gnss-height">GNSS height</h3>
-<p>When the position message has the Type Code from 20 to 22, the 12-bit altitude field is used for the encoding of the GNSS height. The GNSS height is derived from the global positioning satellites, and the decimal value of all 12 bits translates into the height of aircraft in meters.</p>
+<p>When the position message has the Type Code from 20 to 22, the 12-bit altitude field is used for the encoding of the GNSS height. The GNSS height is derived from the global positioning satellites, and the decimal value of all 12 bits translates into the height of aircraft in meters.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p><span>Try it out</span> Using pyModeS, we can perform the altitude decoding as:</p>
 <pre><code>import pyModeS as pms
 
@@ -536,16 +551,24 @@ pms.adsb.altitude(msg)</code></pre>
 <p>Output (altitude in feet):</p>
 <pre><code>38000</code></pre>
 <h2 id="verification-of-decoded-positions">Verification of decoded positions</h2>
+<p>The CPR decoding algorithm does not guarantee the correct decoding of all positions. In rare cases, wrong positions can be calculated.</p>
 <p>It is recommended to perform a so-called <em>reasonable test</em> to validate the decoded position. There are a couple of ways to perform such test to examine the plausibility of decoded positions:</p>
 <ol>
 <li><p>The first approach is to use the receiver position. The decoded position should not exceed the coverage of the receiver. See Chapter <a href="#chap:quickstart" data-reference-type="ref" data-reference="chap:quickstart">[chap:quickstart]</a>, Figure <a href="#fig:max_range_curve" data-reference-type="ref" data-reference="fig:max_range_curve">[fig:max_range_curve]</a>.</p></li>
 <li><p>A further test is to use more than one pair of different messages to produce multiple globally unambiguous positions. Then, the distance between these positions can be used to examine whether the decoded positions are reasonable.</p></li>
 </ol>
 <p>If the decoded position fails the reasonable tests, it should be discarded.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Not knowing the speed of aircraft, it is common to consider a position decoded within 10 seconds as a valid reference position.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>This SI unit is commonly converted feet for consistency.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 <footer class="mastfoot">
   <div class="text-right">
-    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+    <p> © Copyright 2021 <a href="https://junzis.com">Junzi Sun</a>. Build with LaTeX, Pandoc, and GitHub</p>
   </div>
 </footer>
 

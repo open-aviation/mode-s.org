@@ -44,26 +44,37 @@
 <div class="row">
 <div class="col-md-4 col-lg-3">
 <nav>
-  <a href="http://mode-s.org" type="button"
-      class="btn btn-sm btn-outline-dark btn-light">
-    <i class="fas fa-angle-double-left"></i> mode-s.org
+  <a href="../../index.html" type="button"
+      class="btn btn-sm btn-outline-info btn-light">
+      <i class="fas fa-home"></i> Home
   </a>
+
+  <br>
 
   <a href="../../book-the_1090mhz_riddle-junzi_sun.pdf"
       type="button" class="btn btn-sm btn-outline-info">
     <i class="far fa-file-pdf"></i> Download PDF book
   </a>
 
+  <br>
+
   <a href="../../index.html#cite-this-book" type="button"
       class="btn btn-sm btn-outline-info btn-light">
     <i class="fas fa-quote-left"></i> Cite this book
+  </a>
+
+  <br>
+
+  <a href="http://mode-s.org" type="button"
+      class="btn btn-sm btn-outline-dark btn-light">
+    <i class="fas fa-angle-double-left"></i> mode-s.org
   </a>
 
   <hr>
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../misc/preface.html">0. Preface</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -253,26 +264,23 @@ C*: A character</code></pre>
 </tbody>
 </table>
 </div>
-<p>Note ADS-B has its own definition of wake categories, which is different from the ICAO wake turbulence category definition commonly used in aviation. The relationships of ICAO wake turbulence category (WTC) and ADS-B wake vortex category are:</p>
+<p>It is worth noting that ADS-B has its own definition of wake categories, which is different from the ICAO wake turbulence category definition commonly used in aviation. The relationships of ICAO wake turbulence category (WTC) and ADS-B wake vortex category are:</p>
 <ul>
 <li><p>ICAO WTC L (Light) is equivalent to ADS-B (TC=4, CA=1).</p></li>
 <li><p>ICAO WTC M (Medium) is equivalent to ADS-B (TC=4, CA=2 or CA=3).</p></li>
 <li><p>ICAO WTC H (Heavy) or J (Super) is equivalent to ADS-B (TC=4, CA=5).</p></li>
 </ul>
 <h2 id="decoding-example">Decoding example</h2>
-<p>Let us use the following raw message as an example for decoding:</p>
+<p>Let us use the following raw message as an example to demonstrate the decoding:</p>
 <pre><code>8D4840D6202CC371C32CE0576098</code></pre>
 <p>The ME field is:</p>
 <pre><code>HEX: 202CC371C32CE0
 BIN: 00100000001011001100001101110001110000110010110011100000</code></pre>
 <p>The structure of the ME field can be decomposed as follows:</p>
-<pre><code>+-----+---+------+------+------+------+------+------+------+------+
-|00100|000|001011|001100|001101|110001|110000|110010|110011|100000|
-+-----+---+------+------+------+------+------+------+------+------+
-|TC   |CA |11    |12    |13    |49    |48    |50    |51    |32    |
-+-----+---+------+------+------+------+------+------+------+------+
-|4    |0  |K     |L     |M     |1     |0     |2     |3     |_     |
-+-----+---+------+------+------+------+------+------+------+------+</code></pre>
+<pre><code>00100 000 001011 001100 001101 110001 110000 110010 110011 100000 
+
+ TC   CA    11     12     13     49     48     50     51     32     
+  4    0     K      L      M      1      0      2      3      _      </code></pre>
 <p>With <code>TC=4</code>, we can confirm it is an identification and category message. The decoded identity (callsign) of the aircraft is <code>KLM1023</code> (with the trailing space ignored). With <code>CA=0</code>, we can see that the aircraft did not transmit any information on the wake vortex category.</p>
 <p><span>Try it out</span> Using pyModeS, we can decode the callsign as follows:</p>
 <pre><code>import pyModeS as pms
@@ -285,7 +293,7 @@ pms.adsb.callsign(&quot;8D4840D6202CC371C32CE0576098&quot;)
 
 <footer class="mastfoot">
   <div class="text-right">
-    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+    <p> © Copyright 2021 <a href="https://junzis.com">Junzi Sun</a>. Build with LaTeX, Pandoc, and GitHub</p>
   </div>
 </footer>
 

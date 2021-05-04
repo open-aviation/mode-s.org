@@ -45,26 +45,37 @@
 <div class="row">
 <div class="col-md-4 col-lg-3">
 <nav>
-  <a href="http://mode-s.org" type="button"
-      class="btn btn-sm btn-outline-dark btn-light">
-    <i class="fas fa-angle-double-left"></i> mode-s.org
+  <a href="../../index.html" type="button"
+      class="btn btn-sm btn-outline-info btn-light">
+      <i class="fas fa-home"></i> Home
   </a>
+
+  <br>
 
   <a href="../../book-the_1090mhz_riddle-junzi_sun.pdf"
       type="button" class="btn btn-sm btn-outline-info">
     <i class="far fa-file-pdf"></i> Download PDF book
   </a>
 
+  <br>
+
   <a href="../../index.html#cite-this-book" type="button"
       class="btn btn-sm btn-outline-info btn-light">
     <i class="fas fa-quote-left"></i> Cite this book
+  </a>
+
+  <br>
+
+  <a href="http://mode-s.org" type="button"
+      class="btn btn-sm btn-outline-dark btn-light">
+    <i class="fas fa-angle-double-left"></i> mode-s.org
   </a>
 
   <hr>
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../misc/preface.html">0. Preface</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -122,7 +133,7 @@
 </div>
 
 <h1 id="chap:adsb_parity">Error control in ADS-B</h1>
-<p>In almost all digital telecommunications, error control is an essential capability. An adequate error control coding scheme in telecommunication allows a receiver to validate the correctness of the information that has been transmitted. Sometimes, it also provides the receiver with the ability to correct errors. Depending on the characteristics of the communication channel and the types of messages, different error control coding schemes can be adopted.</p>
+<p>In almost all digital telecommunications, error control is essential. An adequate error control coding scheme in telecommunication allows the receiver to validate the correctness of the information that has been transmitted. Sometimes, it also provides the receiver with the ability to correct errors. Depending on the characteristics of the communication channel and the types of messages, different error control coding schemes can be adopted.</p>
 <p>For error detection, three types of error control codes are broadly used, which are 1) parity, 2) checksum, and 3) cyclic redundancy check (CRC)<span class="citation" data-cites="grami2015"></span>. Though there are similarities among these concepts, they should not be confused:</p>
 <ul>
 <li><p>Parity is the simplest form of error detection. Commonly, the message is divided into segments of equal length. One parity bit is added to each segment and sent along with the message. The parity bit ensures either an even or odd number of bits are contained in the segment. It guarantees the detection of at least one-bit errors. A two-dimensional parity check is also common, where additional parity bits are added to the same n-th bit in the segments.</p></li>
@@ -146,11 +157,7 @@
   G(x) = &amp;x^{24}+x^{23}+x^{22}+x^{21}+x^{20}+x^{19}+x^{18}+x^{17} \\
          &amp;+x^{16}+x^{15}+x^{14}+x^{13}+x^{12}+x^{10}+x^{3}+1
   \end{split}\]</span></p>
-<p>This generator code was found by <span class="citation" data-cites="kasami1964"></span>, which is known for its efficiency to correct burst errors. A 24-bit remainder is generated using this generator. It can also be written in different formats as:</p>
-<pre><code>Binary:   1111111111111010000001001
-Decimal:  33551369
-Octal:    177772011
-HEX:      1FFF409</code></pre>
+<p>This generator code was found by <span class="citation" data-cites="kasami1964"></span>, which is known for its efficiency to correct burst errors. It can represented in binary formats as <code>1111111111111010000001001</code> (or <code>1FFF409</code> in hexadecimal format). A 24-bit CRC remainder is generated using this generator for each ADS-B message.</p>
 <p>Knowing the logic of CRC, the computation of the remainder and the verification of the error is fairly simple. Let <span class="math inline">\(x^{i}\)</span> represent each bit of the message and <span class="math inline">\(M(x)\)</span> represent the polynomial corresponding to the ADS-B message, the CRC remainder (parity) <span class="math inline">\(P(x)\)</span> can thus be calculated as:</p>
 <p><span class="math display">\[\begin{split}
     M(x) &amp;= \sum_{i=0}^{87} a_i x^i , \quad a_i \in (0, 1)\\
@@ -185,7 +192,7 @@ remainderB = pms.crc(msgB)  # should be 16</code></pre>
 
 <footer class="mastfoot">
   <div class="text-right">
-    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+    <p> © Copyright 2021 <a href="https://junzis.com">Junzi Sun</a>. Build with LaTeX, Pandoc, and GitHub</p>
   </div>
 </footer>
 

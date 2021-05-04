@@ -45,26 +45,37 @@
 <div class="row">
 <div class="col-md-4 col-lg-3">
 <nav>
-  <a href="http://mode-s.org" type="button"
-      class="btn btn-sm btn-outline-dark btn-light">
-    <i class="fas fa-angle-double-left"></i> mode-s.org
+  <a href="../../index.html" type="button"
+      class="btn btn-sm btn-outline-info btn-light">
+      <i class="fas fa-home"></i> Home
   </a>
+
+  <br>
 
   <a href="../../book-the_1090mhz_riddle-junzi_sun.pdf"
       type="button" class="btn btn-sm btn-outline-info">
     <i class="far fa-file-pdf"></i> Download PDF book
   </a>
 
+  <br>
+
   <a href="../../index.html#cite-this-book" type="button"
       class="btn btn-sm btn-outline-info btn-light">
     <i class="fas fa-quote-left"></i> Cite this book
+  </a>
+
+  <br>
+
+  <a href="http://mode-s.org" type="button"
+      class="btn btn-sm btn-outline-dark btn-light">
+    <i class="fas fa-angle-double-left"></i> mode-s.org
   </a>
 
   <hr>
 
   <h1>Book chapters</h1>
   <ul>
-    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../misc/preface.html">0. Preface</a></li>
     <li><a href="../../content/introduction.html">1. Introduction</a></li>
     <li><a href="../../content/quickstart.html">2. Quick start</a></li>
     <li>ADS-B</li>
@@ -139,8 +150,8 @@
 </div>
 
 <h1 id="chap:uncertainty">Uncertainties in ADS-B</h1>
-<p>There are many parameters in ADS-B that define the data quality of the position and velocity reports. These parameters serve as accuracy and confidence indicators for aircraft position and speed information transmitted in ADS-B messages.</p>
-<p>With each evolution of the ADS-B versions, these parameters have been renamed and redefined. This creates a complicated landscape to understand and to analyze these indicators. This chapter is designed to give a better overview and mapping among data quality parameters across different ADS-B versions.</p>
+<p>There are many parameters in ADS-B that define the quality of data in the position and velocity reports. These parameters serve as accuracy and confidence indicators for aircraft position and speed information transmitted in ADS-B messages.</p>
+<p>With each evolution of the ADS-B versions, these parameters have been renamed and redefined. These updates complicate the understanding and analysis of uncertainties in ADS-B. This chapter is designed to give a better overview of the uncertainty indicators in different ADS-B versions, and it also gives a clear mapping between the the indicators and actual uncertainty values.</p>
 <h2 id="terminology">Terminology</h2>
 <p>In general, there are three types of data quality indicators:</p>
 <ul>
@@ -203,8 +214,8 @@
 <p>Each quality indicator also relates to a set of parameters that express the exact amount of uncertainties, errors, or probabilities. Table <a href="#tb:uncertainty-parameters" data-reference-type="ref" data-reference="tb:uncertainty-parameters">[tb:uncertainty-parameters]</a> lists these parameters.</p>
 <p><span>|l|p<span>8cm</span>|l|</span> <strong></strong> &amp; <strong>Parameter</strong> &amp;<br />
 NUCp (V0) &amp; Horizontal protection limit &amp; HPL<br />
-&amp; 95% containment radius on horizontal position error &amp; RCxy<br />
-&amp; 95% containment radius on vertical position error &amp; RCz<br />
+&amp; 95% containment radius on horizontal position error &amp; Rc/μ<br />
+&amp; 95% containment radius on vertical position error &amp; Rc/v<br />
 NUCr (V0) &amp; Horizontal velocity error (95%) &amp; HVE<br />
 &amp; Vertical velocity error (95%) &amp; VVE<br />
 NACp (V1,2) &amp; Estimated position uncertainty (95% horizontal accuracy - p). a.k.a. horizontal figure of merit (HFOM) in GNSS &amp; EPU<br />
@@ -216,7 +227,7 @@ NIC (V1,2) &amp; Horizontal containment radius limit &amp; RC<br />
 SIL (V1,2) &amp; Probability of exceeding horizontal containment radius &amp; P-RC<br />
 &amp; Probability of exceeding vertical integrity containment region &amp; P-VPL<br />
 </p>
-<p>These parameters are identified by different bits from different messages. Due to the evolution of ADS-B versions, the definitions can also differ. In order to correctly obtain these parameters, the version of ADS-B transponder used must be identified. This can be based on the logic explained in Chapter <a href="#chap:adsb-basic" data-reference-type="ref" data-reference="chap:adsb-basic">[chap:adsb-basic]</a>.</p>
+<p>These parameters are identified by different bits from different messages. Due to the evolution of ADS-B versions, the definitions can also differ. In order to correctly obtain these parameters, the ADS-B transponder version must be identified. This can be based on the logic explained in Chapter <a href="#chap:adsb-basic" data-reference-type="ref" data-reference="chap:adsb-basic">[chap:adsb-basic]</a>.</p>
 <p>In the rest of this chapter, these parameters are explained in detail according to different ADS-B versions. The changes in the same parameters between different versions are also indicated.</p>
 <h2 id="version-0">Version 0</h2>
 <p>In ADS-B version 0, only uncertainties are defined. Two sets of parameters are related to the position and velocity (or rate) separately.</p>
@@ -300,7 +311,7 @@ SIL (V1,2) &amp; Probability of exceeding horizontal containment radius &amp; P-
 </tbody>
 </table>
 </div>
-<p>In general, a higher NUCp number (lower TC number) represents higher confidence in the position measurement. When dealing with position uncertainty, the horizontal protection limit (HPL), the containment radius on horizontal position error (RCxy), and the containment radius on vertical position error (RCz) are used to quantify the uncertainties. All values are shown in Table <a href="#tb:nucp-params" data-reference-type="ref" data-reference="tb:nucp-params">1.5</a>.</p>
+<p>In general, a higher NUCp number (lower TC number) represents higher confidence in the position measurement. When dealing with position uncertainty, the horizontal protection limit (HPL), the containment radius on horizontal position error (denoted as Rc/μ), and the containment radius on vertical position error (denoted as Rc/v) are used to quantify the uncertainties. All values are shown in Table <a href="#tb:nucp-params" data-reference-type="ref" data-reference="tb:nucp-params">1.5</a>.</p>
 <div id="tb:nucp-params">
 <table>
 <caption>NUCp parameters and their values</caption>
@@ -309,8 +320,8 @@ SIL (V1,2) &amp; Probability of exceeding horizontal containment radius &amp; P-
 <th style="text-align: left;"><strong>TC</strong></th>
 <th style="text-align: left;"><strong>NUCp</strong></th>
 <th style="text-align: left;"><strong>HPL</strong></th>
-<th style="text-align: left;"><strong>RCxy</strong></th>
-<th style="text-align: left;"><strong>RCz</strong></th>
+<th style="text-align: left;"><strong>Rc/μ</strong></th>
+<th style="text-align: left;"><strong>Rc/v</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -443,7 +454,7 @@ SIL (V1,2) &amp; Probability of exceeding horizontal containment radius &amp; P-
 </tbody>
 </table>
 </div>
-<p>It is worth noting that, in the case of airborne position with GNSS height (TC=20–22), HPL, and RCxy are defined with slight differences compared to other types of position messages. In addition, the containment radius for the vertical position (<code>RCv</code>) is also defined in this message. This is possible because the altitude is obtained from GNSS sources.</p>
+<p>It is worth noting that, in the case of airborne position with GNSS height (TC=20–22), HPL, and Rc/μ are defined with slight differences compared to other types of position messages. In addition, the containment radius for the vertical position (Rc/v) is also defined in this message. This is possible because the altitude is obtained from GNSS sources.</p>
 <h3 id="navigation-uncertainty-category---rate-nucr">Navigation uncertainty category - rate (NUCr)</h3>
 <p>The Navigation Uncertainty Category - rate (NUCr) is used to indicate the uncertainty of the horizontal and vertical speeds. The bits representing NUCr can be found in the airborne velocity message (TC=19). The NUCr is located at message bits 43–45 (or ME bits 11–13), which defines the 95% of the error in horizontal and vertical speed as shown in Table <a href="#tb:nucr-params" data-reference-type="ref" data-reference="tb:nucr-params">1.6</a>.</p>
 <div id="tb:nucr-params">
@@ -486,9 +497,9 @@ SIL (V1,2) &amp; Probability of exceeding horizontal containment radius &amp; P-
 </table>
 </div>
 <h2 id="version-1">Version 1</h2>
-<p>In ADS-B version 1, the uncertainty category is removed, replaced by the accuracy category and the integrity category. Both NUCp and NUCr from version 0 do not exist in version 1. New indicators introduced in version 1 are NACp, NACv, NIC, and SIL.</p>
+<p>In ADS-B version 1, the uncertainty category is removed, replaced by the accuracy category and the integrity category. Both NUCp and NUCr from version 0 no longer exist in version 1. New indicators introduced in version 1 are NACp, NACv, NIC, and SIL.</p>
 <h3 id="navigation-integrity-category-nic">Navigation integrity category (NIC)</h3>
-<p>NIC is designed to replace NUCp from version 0, but with more levels included. Like NUCp in version 0, the Navigation Integrity Category (NIC) is related to the Type Code. However, Type Code and NIC do not have a one-to-one mapping relationship. With more levels defined, a supplemental bit is required to distinguish two levels represented by some of the same Type Codes.</p>
+<p>NIC is designed to replace NUCp from version 0, but with more levels included. Like NUCp in version 0, the Navigation Integrity Category (NIC) is related to the Type Code. However, Type Code and NIC no longer have a one-to-one mapping relationship. With more levels defined, a supplemental bit is required to distinguish two levels represented by some of the same Type Codes.</p>
 <p>The NIC Supplement bit (NICs) is introduced in the operation status messages (TC=31) and located at the message bit 76 (or ME bit 44). The relationship between TC, NIC, and Rc are listed in Table <a href="#tb:nic-params-v1" data-reference-type="ref" data-reference="tb:nic-params-v1">1.7</a>.</p>
 <div id="tb:nic-params-v1">
 <table>
@@ -1061,7 +1072,7 @@ SIL (V1,2) &amp; Probability of exceeding horizontal containment radius &amp; P-
 
 <footer class="mastfoot">
   <div class="text-right">
-    <p>Site maintained by <a href="https://github.com/junzis">@junzis</a>. Build with LaTeX, Pandoc, and GitHub</p>
+    <p> © Copyright 2021 <a href="https://junzis.com">Junzi Sun</a>. Build with LaTeX, Pandoc, and GitHub</p>
   </div>
 </footer>
 
