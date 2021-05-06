@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../../bootstrap.min.css">
   <link rel="stylesheet" href="../../style.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet"> 
@@ -286,11 +286,13 @@
 +----+----+----+----+----+----+---+----+---+----+----+----+----+</code></pre>
 <p>This structure corresponds to the Mode C altitude reply. This structure is used to encode altitudes above 50187.5 feet.</p></li>
 </ul>
+<div class="notebox">
 <p><span>Try it out</span> Using pyModeS, we can calculate the altitude code as:</p>
 <pre><code>import pyModeS as pms
 
 msg = &quot;2000171806A983&quot;
 altitude = pms.altcode(msg)  # 36000 (ft)</code></pre>
+</div>
 <h2 id="sec:id_code">Identity code</h2>
 <p>The 13-bit identity code encodes the 4 octal digit squawk code (from <code>0000</code> to <code>7777</code>). The structure of this field is shown as follows:</p>
 <pre><code>+----+----+----+----+----+----+---+----+----+----+----+----+----+
@@ -310,11 +312,13 @@ MSG BIN: 00101 01000000000010 1000101101101 010010010010101110000000
 0  0  0  | 0  1  1  | 1  0  1  | 1  1  0</code></pre>
 <p>Finally, the four octal digit squawk code can be decoded from the binary groups as:</p>
 <pre><code>0 3 5 6</code></pre>
+<div class="notebox">
 <p><span>Try it out</span> Using pyModeS, we can calculate the squawk code as:</p>
 <pre><code>import pyModeS as pms
 
 msg = &quot;2A00516D492B80&quot;
 squawk = pms.idcode(msg)  # 0356</code></pre>
+</div>
 
 <footer class="mastfoot">
   <div class="text-right">

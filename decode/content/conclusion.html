@@ -144,6 +144,7 @@
 <p>In Chapter 2, I talked about the coverage of ADS-B receivers. Even with the perfect visibility, one receiver can only cover a maximum area of around 400 km radius, due to the curvature of the Earth. The coverage is further reduced when the antenna is not free of obstacles like buildings and mountains.</p>
 <p>To cover full flight trajectories for a larger area, a group of receivers needs to be deployed. Furthermore, to have coverage over the entire continent (or multiple continents), an even larger network of receivers is needed. Easy access to low-cost software-defined radios make crowd-sourced ADS-B networks a reality nowadays.</p>
 <p>A crowd-sourced network usually consists of a large group of enthusiasts who are voluntarily feeding their receiver data to a central server (or cluster of servers) on the internet owned by an entity. The owner of the service can be a commercial company or a non-profit organization. These companies often provide free premium user accounts to contributors in return for their data. Some companies also provide free receivers for users to host in areas with less coverage. In such cases, they often make agreements with receiver hosts to maintain and keep the receiver online as much as possible. Table <a href="#tb:adsb_networks" data-reference-type="ref" data-reference="tb:adsb_networks">1.1</a> lists several ADS-B networks.</p>
+<div class="threeparttable">
 <div id="tb:adsb_networks">
 <table>
 <caption>A short list of ADS-B receiver networks</caption>
@@ -189,14 +190,17 @@
 </tbody>
 </table>
 </div>
+<div class="tablenotes">
 <p>Number of receivers obtained from each company’s website, as of January 2021.</p>
-<p>Another advantage of having a network of receivers is that it can be used to locate aircraft or validate their locations using multilateration <span class="citation" data-cites="kaune2012"></span>, and this capability can be applied to any Mode A/C/S signals transmitted by aircraft. This technique has been used by many receiver networks. It is specifically useful to locate aircraft that are not equipped with ADS-B compliant transponders.</p>
+</div>
+</div>
+<p>Another advantage of having a network of receivers is that it can be used to locate aircraft or validate their locations using multilateration <span class="citation" data-cites="kaune2012">[Kaune et al. 2012]</span>, and this capability can be applied to any Mode A/C/S signals transmitted by aircraft. This technique has been used by many receiver networks. It is specifically useful to locate aircraft that are not equipped with ADS-B compliant transponders.</p>
 <p><span><strong>OpenSky network</strong></span></p>
-<p>Among these crowd-sourced networks, the OpenSky network <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is one of the most well-known research networks in the air transportation research community. It is a crowd-sourced network that includes volunteers and researchers around the world. Currently, it has good coverage over Europe and a large part of North America. Figure <a href="#fig:opensky_coverage" data-reference-type="ref" data-reference="fig:opensky_coverage">1.1</a> shows a recent current global coverage of the OpenSky network.</p>
+<p>Among these crowd-sourced networks, the OpenSky network<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is one of the most well-known research networks in the air transportation research community. It is a crowd-sourced network that includes volunteers and researchers around the world. Currently, it has good coverage over Europe and a large part of North America. Figure <a href="#fig:opensky_coverage" data-reference-type="ref" data-reference="fig:opensky_coverage">1.1</a> shows a recent current global coverage of the OpenSky network.</p>
 <figure>
 <img src="../figures/07ee63740500b01f85948f90aab82a558fcfa809.png" id="fig:opensky_coverage" alt="Coverage of OpenSky network, as of November 2020" /><figcaption aria-hidden="true">Coverage of OpenSky network, as of November 2020</figcaption>
 </figure>
-<p>The OpenSky network provides users free and unlimited access to its data for non-commercial purposes <span class="citation" data-cites="schafer2014opensky"></span>. It is possible to access its live ADS-B traffic data through a web API. Access to historical data is also possible through its Impala shell. However, the user must request this permission first. I also wrote a Python library,<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> which facilitates the access and decoding of raw Mode S messages from the OpenSky historical database using its Impala interface <span class="citation" data-cites="sun2019pyopensky"></span>. Another tool, <em>traffic</em>, can also be used to access the OpenSky historical database <span class="citation" data-cites="olive2019"></span>.</p>
+<p>The OpenSky network provides users free and unlimited access to its data for non-commercial purposes <span class="citation" data-cites="schafer2014opensky">[Schäfer et al. 2014]</span>. It is possible to access its live ADS-B traffic data through a web API. Access to historical data is also possible through its Impala shell. However, the user must request this permission first. I also wrote a Python library,<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> which facilitates the access and decoding of raw Mode S messages from the OpenSky historical database using its Impala interface <span class="citation" data-cites="sun2019pyopensky">[Sun and Hoekstra 2019]</span>. Another tool, <em>traffic</em>, can also be used to access the OpenSky historical database <span class="citation" data-cites="olive2019">[Olive 2019]</span>.</p>
 <p>If you are setting up a receiver or have an existing receiver, I strongly encourage you to consider sharing your Mode S feed with the OpenSky network to increase coverage and to support open flight data for researchers. Guides on how to feed data to OpenSky can be found on its website.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <h2 id="additional-data">Additional data</h2>
 <p>For many air traffic-related studies, researchers frequently require information that is not transmitted in ADS-B and Mode S. One of the first things researchers often need is an aircraft database that can map the transponder address from ADS-B or Mode S to aircraft registration and aircraft type.</p>
@@ -204,7 +208,7 @@
 <p>On this website, a few other common data sources are listed too, including, for example, aircraft performance database, engine emission data, and weather data. All these data sources are available for public use.</p>
 <h2 id="congestion">Congestion</h2>
 <p>In the first chapter of this book, I discussed all types of signals that are transmitted over the 1090 MHz frequency. They include Mode A, Mode C, and Mode S. Due to the mix of different types of transponders from a wide range of aircraft including both commercial and general aviation, all these modes of surveillance are still in use nowadays. In addition to the increasing number of operational aircraft, the frequency congestion can be quite a serious issue during the daytime in busy airspace.</p>
-<p>In a recent study <span class="citation" data-cites="sun2020rf"></span>, with the focus on Dutch airspace, a very high rate of corrupted ADS-B signals during the daytime was found. Figure <a href="#fig:adsb_corruption" data-reference-type="ref" data-reference="fig:adsb_corruption">1.2</a> illustrates the severity of the frequency congestion during one day of radio frequency testing.</p>
+<p>In a recent study <span class="citation" data-cites="sun2020rf">[Sun and Hoekstra 2020]</span>, with the focus on Dutch airspace, a very high rate of corrupted ADS-B signals during the daytime was found. Figure <a href="#fig:adsb_corruption" data-reference-type="ref" data-reference="fig:adsb_corruption">1.2</a> illustrates the severity of the frequency congestion during one day of radio frequency testing.</p>
 <figure>
 <img src="../figures/2182738558d38c95b8f01bab075e283a535b8b33.png" id="fig:adsb_corruption" /><figcaption aria-hidden="true">Corruption detected in ADS-B messages during a 24-hour period on 29 January, 2020 for Dutch airspace.</figcaption>
 </figure>
@@ -218,9 +222,29 @@
 <li><p>Introduce more error resistance modulation and channel coding methods;</p></li>
 <li><p>Make use of alternative frequencies.</p></li>
 </ul>
-<p>Another issue is the global coverage of ADS-B. Currently, it is still difficult to fully track aircraft over the oceans, due to the lack of ground stations. One trend is to make use of satellites for receiving and relaying ADS-B messages transmitted by planes to ground stations <span class="citation" data-cites="noschese2011"></span>. Companies like Aireon and Spire have launched satellites that can receive ADS-B signals and make the data available commercially.</p>
+<p>Another issue is the global coverage of ADS-B. Currently, it is still difficult to fully track aircraft over the oceans, due to the lack of ground stations. One trend is to make use of satellites for receiving and relaying ADS-B messages transmitted by planes to ground stations <span class="citation" data-cites="noschese2011">[Noschese et al. 2011]</span>. Companies like Aireon and Spire have launched satellites that can receive ADS-B signals and make the data available commercially.</p>
 <p>It is still challenging for satellites to handle signals with a low signal to noise ratio given their high orbits, as well as the high signal garbling rates caused by their large coverage. Furthermore, a large quantity of oceanic ADS-B data is located behind paywalls, which makes it hard for researchers to take advantage of space-based ADS-B data.</p>
 <p>To this end, how to help researchers access higher-quality open surveillance data over a larger geographic scope, is a question that remains for me, you, and the entire research community to answer.</p>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-kaune2012" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Kaune, R., Steffes, C., Rau, S., Konle, W., and Pagel, J.</span> 2012. Wide area multilateration using ADS-b transponder signals. <em>Information fusion (FUSION), 2012 15th international conference on</em>, IEEE, 727–734.
+</div>
+<div id="ref-noschese2011" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Noschese, P., Porfili, S., and Di Girolamo, S.</span> 2011. Ads-b via iridium next satellites. <em>Digital communications-enhanced surveillance of aircraft and vehicles (TIWDC/ESAV), 2011 tyrrhenian international workshop on</em>, IEEE, 213–218.
+</div>
+<div id="ref-olive2019" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Olive, X.</span> 2019. Traffic, a toolbox for processing and analysing air traffic data. <em>Journal of Open Source Software</em> <em>4</em>, 39, 1518.
+</div>
+<div id="ref-schafer2014opensky" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Schäfer, M., Strohmeier, M., Lenders, V., Martinovic, I., and Wilhelm, M.</span> 2014. Bringing up OpenSky: A large-scale ADS-b sensor network for research. <em>IPSN-14 proceedings of the 13th international symposium on information processing in sensor networks</em>, IEEE, 83–94.
+</div>
+<div id="ref-sun2019pyopensky" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Sun, J. and Hoekstra, J.</span> 2019. Integrating pyModeS and OpenSky historical database. <em>Proceedings of the 7th OpenSky workshop 2019</em>.
+</div>
+<div id="ref-sun2020rf" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Sun, J. and Hoekstra, J.</span> 2020. Analyzing aircraft surveillance signal quality at the 1090 megahertz radio frequency. <em>Proceedings of the 9th international conference for research in air transportation</em>.
+</div>
+</div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>

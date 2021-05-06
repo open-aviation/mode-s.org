@@ -282,6 +282,7 @@ BIN: 00100000001011001100001101110001110000110010110011100000</code></pre>
  TC   CA    11     12     13     49     48     50     51     32     
   4    0     K      L      M      1      0      2      3      _      </code></pre>
 <p>With <code>TC=4</code>, we can confirm it is an identification and category message. The decoded identity (callsign) of the aircraft is <code>KLM1023</code> (with the trailing space ignored). With <code>CA=0</code>, we can see that the aircraft did not transmit any information on the wake vortex category.</p>
+<div class="notebox">
 <p><span>Try it out</span> Using pyModeS, we can decode the callsign as follows:</p>
 <pre><code>import pyModeS as pms
 
@@ -290,6 +291,7 @@ pms.adsb.category(&quot;8D4840D6202CC371C32CE0576098&quot;)
 
 pms.adsb.callsign(&quot;8D4840D6202CC371C32CE0576098&quot;)
 # Output: KLM1023_</code></pre>
+</div>
 
 <footer class="mastfoot">
   <div class="text-right">

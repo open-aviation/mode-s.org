@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../../bootstrap.min.css">
   <link rel="stylesheet" href="../../style.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet"> 
@@ -212,6 +212,7 @@
 </table>
 </div>
 <p>Each quality indicator also relates to a set of parameters that express the exact amount of uncertainties, errors, or probabilities. Table <a href="#tb:uncertainty-parameters" data-reference-type="ref" data-reference="tb:uncertainty-parameters">[tb:uncertainty-parameters]</a> lists these parameters.</p>
+<div class="tabular">
 <p><span>|l|p<span>8cm</span>|l|</span> <strong></strong> &amp; <strong>Parameter</strong> &amp;<br />
 NUCp (V0) &amp; Horizontal protection limit &amp; HPL<br />
 &amp; 95% containment radius on horizontal position error &amp; Rc/μ<br />
@@ -227,16 +228,24 @@ NIC (V1,2) &amp; Horizontal containment radius limit &amp; RC<br />
 SIL (V1,2) &amp; Probability of exceeding horizontal containment radius &amp; P-RC<br />
 &amp; Probability of exceeding vertical integrity containment region &amp; P-VPL<br />
 </p>
+</div>
 <p>These parameters are identified by different bits from different messages. Due to the evolution of ADS-B versions, the definitions can also differ. In order to correctly obtain these parameters, the ADS-B transponder version must be identified. This can be based on the logic explained in Chapter <a href="#chap:adsb-basic" data-reference-type="ref" data-reference="chap:adsb-basic">[chap:adsb-basic]</a>.</p>
 <p>In the rest of this chapter, these parameters are explained in detail according to different ADS-B versions. The changes in the same parameters between different versions are also indicated.</p>
 <h2 id="version-0">Version 0</h2>
 <p>In ADS-B version 0, only uncertainties are defined. Two sets of parameters are related to the position and velocity (or rate) separately.</p>
 <h3 id="navigation-uncertainty-category---position-nucp">Navigation uncertainty category - position (NUCp)</h3>
 <p>NUCp is directly related to ADS-B Type Code with one-to-one mapping. The mapping between Type Code and NUCp in surface position messages and the two types of airborne position messages is shown in Table <a href="#tb:tc-nucp-mapping" data-reference-type="ref" data-reference="tb:tc-nucp-mapping">1.4</a>.</p>
+<div class="subtable">
 <p><span>0.7</span></p>
 <div id="tb:tc-nucp-mapping">
 <table>
 <caption>Mapping between TC and NUCp</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;" colspan="5">Surface position</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">TC</td>
@@ -257,10 +266,18 @@ SIL (V1,2) &amp; Probability of exceeding horizontal containment radius &amp; P-
 </tbody>
 </table>
 </div>
+</div>
+<div class="subtable">
 <p><span>0.7</span></p>
 <div id="tb:tc-nucp-mapping">
 <table>
 <caption>Mapping between TC and NUCp</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;" colspan="10">Airborne position (Barometric altitude)</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">TC</td>
@@ -291,10 +308,18 @@ SIL (V1,2) &amp; Probability of exceeding horizontal containment radius &amp; P-
 </tbody>
 </table>
 </div>
+</div>
+<div class="subtable">
 <p><span>0.7</span></p>
 <div id="tb:tc-nucp-mapping">
 <table>
 <caption>Mapping between TC and NUCp</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;" colspan="3">(GNSS altitude)</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">TC</td>
@@ -310,6 +335,7 @@ SIL (V1,2) &amp; Probability of exceeding horizontal containment radius &amp; P-
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <p>In general, a higher NUCp number (lower TC number) represents higher confidence in the position measurement. When dealing with position uncertainty, the horizontal protection limit (HPL), the containment radius on horizontal position error (denoted as Rc/μ), and the containment radius on vertical position error (denoted as Rc/v) are used to quantify the uncertainties. All values are shown in Table <a href="#tb:nucp-params" data-reference-type="ref" data-reference="tb:nucp-params">1.5</a>.</p>
 <div id="tb:nucp-params">

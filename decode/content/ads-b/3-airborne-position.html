@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../../bootstrap.min.css">
   <link rel="stylesheet" href="../../style.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet"> 
@@ -447,6 +447,7 @@ lat &lt; -87   -&gt;    NL = 1</code></pre>
   m &amp;= floor \left( \frac{51372}{2^{17}} \times (36-1) - \frac{50194}{2^{17}} \times 36 + \frac{1}{2}  \right) = 0\\
   n &amp;= max \Big( 36-0, 1 \Big) = 36\\
     \mathrm{lon} &amp;= \frac{360}{36} \Big[ mod(0, 36) + \frac{51372}{2^{17}} \Big] = 3.91937255859375\end{aligned}\]</span></p>
+<div class="notebox">
 <p><span>Try it out</span> Using pyModeS, we can perform the previous calculation of globally unambiguous position as:</p>
 <pre><code>import pyModeS as pms
 
@@ -458,6 +459,7 @@ t1 = 1457996400
 pms.adsb.position(msg0, msg1, t0, t1)</code></pre>
 <p>Output:</p>
 <pre><code>(52.2572, 3.91937)</code></pre>
+</div>
 <h2 id="locally-unambiguous-position-decoding">Locally unambiguous position decoding</h2>
 <p>Previously, a globally unambiguous position was decoded using a pair of odd and even messages. This section explains how to decode the ADS-B position with one message and a previous reference position that is obtained using globally unambiguous decoding.</p>
 <p>This method offers the possibility to continuous decode aircraft using only one message. It computes the latitude index (<span class="math inline">\(j\)</span>) and the longitude index (<span class="math inline">\(m\)</span>) based on this existing reference position and can be applied to both odd and even messages.</p>
@@ -510,6 +512,7 @@ ME (data):         58C382D690C8AC</code></pre>
   m &amp;= floor \left( \frac{3.918}{10} \right) + floor \left( \frac{mod(3.918, 10)}{10} - \frac{51372}{2^{17}}  + \frac{1}{2}  \right) = 0 \\\end{aligned}\]</span></p>
 <p>Finally, the aircraft longitude is:</p>
 <p><span class="math display">\[\mathrm{lon} = 10 \times \left(0 + \frac{51372}{2^{17}} \right) = 3.91937255859375\]</span></p>
+<div class="notebox">
 <p><span>Try it out</span> Using pyModeS, we can perform the previous locally unambiguous position calculation as:</p>
 <pre><code>import pyModeS as pms
 
@@ -520,6 +523,7 @@ lon_ref = 3.918
 pms.adsb.position_with_ref(msg, lat_ref, lon_ref)</code></pre>
 <p>Output:</p>
 <pre><code>(52.2572, 3.91937)</code></pre>
+</div>
 <h2 id="altitude-decoding">Altitude decoding</h2>
 <p>The altitude of the aircraft can be decoded with one position message, regardless of it being an even or odd type. However, depending on the type code of the messages, the altitudes are decoded differently. Table <a href="#tb:adsb-tc" data-reference-type="ref" data-reference="tb:adsb-tc">[tb:adsb-tc]</a> from Chapter <a href="#chap:adsb-basic" data-reference-type="ref" data-reference="chap:adsb-basic">[chap:adsb-basic]</a> shows two different types of altitudes. They are:</p>
 <ul>
@@ -538,10 +542,11 @@ pms.adsb.position_with_ref(msg, lat_ref, lon_ref)</code></pre>
 <pre><code>11000011000 -&gt; 1560</code></pre>
 <p>The altitude of the aircraft becomes:</p>
 <p><span class="math display">\[1560 \times 25 - 1000 = 38000 \quad \text{(ft)}\]</span></p>
-<p>In the case where the altitude is higher than 50175 feet, a 100 feet increment is used. In this situation, the Q bit is set to , and the rest of the bits are encoded using Gray code <span class="citation" data-cites="doran2007"></span>.</p>
+<p>In the case where the altitude is higher than 50175 feet, a 100 feet increment is used. In this situation, the Q bit is set to , and the rest of the bits are encoded using Gray code <span class="citation" data-cites="doran2007">[Doran 2007]</span>.</p>
 <p>It is worth noting that it is possible for all altitude bits to be zeros,which indicates that the altitude information is not available.</p>
 <h3 id="gnss-height">GNSS height</h3>
 <p>When the position message has the Type Code from 20 to 22, the 12-bit altitude field is used for the encoding of the GNSS height. The GNSS height is derived from the global positioning satellites, and the decimal value of all 12 bits translates into the height of aircraft in meters.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<div class="notebox">
 <p><span>Try it out</span> Using pyModeS, we can perform the altitude decoding as:</p>
 <pre><code>import pyModeS as pms
 
@@ -550,6 +555,7 @@ msg = &quot;8D40621D58C382D690C8AC2863A7&quot;
 pms.adsb.altitude(msg)</code></pre>
 <p>Output (altitude in feet):</p>
 <pre><code>38000</code></pre>
+</div>
 <h2 id="verification-of-decoded-positions">Verification of decoded positions</h2>
 <p>The CPR decoding algorithm does not guarantee the correct decoding of all positions. In rare cases, wrong positions can be calculated.</p>
 <p>It is recommended to perform a so-called <em>reasonable test</em> to validate the decoded position. There are a couple of ways to perform such test to examine the plausibility of decoded positions:</p>
@@ -558,6 +564,11 @@ pms.adsb.altitude(msg)</code></pre>
 <li><p>A further test is to use more than one pair of different messages to produce multiple globally unambiguous positions. Then, the distance between these positions can be used to examine whether the decoded positions are reasonable.</p></li>
 </ol>
 <p>If the decoded position fails the reasonable tests, it should be discarded.</p>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-doran2007" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Doran, R.W.</span> 2007. The gray code. <em>Journal of Universal Computer Science</em> <em>13</em>, 11, 1573–1597.
+</div>
+</div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>

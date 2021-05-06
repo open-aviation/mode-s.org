@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../../bootstrap.min.css">
   <link rel="stylesheet" href="../../style.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet"> 
@@ -146,7 +146,7 @@
 
 <h1 id="chap:acas">Airborne collision avoidance system</h1>
 <h2 id="background">Background</h2>
-<p><em>Airborne Collision Avoidance System</em> (ACAS) is a system to reduce the risk of mid-air collisions and near mid-air collisions between aircraft. There are three types of ACAS systems according to <span class="citation" data-cites="icaoA10V4"></span>, which are:</p>
+<p><em>Airborne Collision Avoidance System</em> (ACAS) is a system to reduce the risk of mid-air collisions and near mid-air collisions between aircraft. There are three types of ACAS systems according to <span class="citation" data-cites="icaoA10V4">[ICAO 2002]</span>, which are:</p>
 <ul>
 <li><p>ACAS I: Gives traffic advisories (TA), without recommending manoeuvres.</p></li>
 <li><p>ACAS II: Gives traffic advisories (TA) and resolution advisories (RA) only in vertical directions.</p></li>
@@ -154,7 +154,9 @@
 </ul>
 <p>This chapter will focus on ACAS II. The ACAS II is a system that utilizes the aircraft transponder, which interrogates the Mode C and Mode S transponders of nearby aircraft. When threats are detected, corresponding alerts are given to the pilots.</p>
 <p>Currently, the most common implementation of ACAS II is <em>Traffic alert and Collision Avoidance System</em> (TCAS) II version 7.1, which was initiated by EUROCONTROL. It has been mandatory for aircraft in Europe since 2015. ACAS II works independently of the navigation system, FMS, and ATC. No input from these systems is considered for producing the alerts.</p>
-<p><span>Note</span> In the future, a new system developed by FAA, called ‘ACAS X’, is expected to replace the current ACAS II. It makes use of dynamic programming to generate resolution advisories and offers four performance capability variants for different air traffic scenarios. <span class="citation" data-cites="chomik2016"></span></p>
+<div class="notebox">
+<p><span>Note</span> In the future, a new system developed by FAA, called ‘ACAS X,’ is expected to replace the current ACAS II. It makes use of dynamic programming to generate resolution advisories and offers four performance capability variants for different air traffic scenarios. <span class="citation" data-cites="chomik2016">[Chomik 2016]</span></p>
+</div>
 <p>In ACAS II, TA and RA are triggered when certain thresholds to the closest point of approach (CPA) are passed. The thresholds depend on the altitude, speed, and heading of the aircraft. The examples of the TA and RA regions are illustrated in Figure <a href="#fig:acas_regions" data-reference-type="ref" data-reference="fig:acas_regions">1.1</a>.</p>
 <figure>
 <img src="../../figures/1d9fb738fd38d9eb846430aedce5443e22f69e38.png" id="fig:acas_regions" /><figcaption aria-hidden="true">Example of an ACAS protection volume in horizontal and vertical directions (between FL50 and FL100)</figcaption>
@@ -585,7 +587,7 @@
 <p>These fields can be interpreted as follows:</p>
 <ul>
 <li><p><em>Multiple threat bit (MTB)</em>: 1 bit, indicates whether multiple threats are present.</p></li>
-<li><p><em>Vertical RAC <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (VRC)</em>: 2 bits, contains vertical resolution advisory complement information:</p>
+<li><p><em>Vertical RAC<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (VRC)</em>: 2 bits, contains vertical resolution advisory complement information:</p>
 <blockquote>
 <p><code>00</code>: No vertical RAC information<br />
 <code>01</code>: Do not pass below<br />
@@ -857,6 +859,14 @@ Bit 58: Do not pass right</p>
 <p>We can see that the structure of the MV fields is similar to MU fields of RA broadcast (UDS=3,1) from Table <a href="#tb:acas_mu_uds31" data-reference-type="ref" data-reference="tb:acas_mu_uds31">1.6</a>. The interpretations of these fields are also the same as in section <a href="#sec:acas_ra" data-reference-type="ref" data-reference="sec:acas_ra">1.4.2</a>.</p>
 <h3 id="other-vds">Other VDS</h3>
 <p>When the first eight bits are not <code>0011 0000</code>, the MV field contain the Ground-initiated Comm-B information that was requested in DS field of uplink (UF=0) in Table <a href="#tb:acas_uf_0" data-reference-type="ref" data-reference="tb:acas_uf_0">1.1</a>. Comm-B will be explained in the next chapter.</p>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-chomik2016" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Chomik, G.</span> 2016. The future of collision avoidance–ACAS x. <em>International Journal of Engineering Trends and Technology</em> <em>39</em>, 5, 284–287.
+</div>
+<div id="ref-icaoA10V4" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">ICAO</span>. 2002. <em>Annex 10 to the convention on international civil aviation, aeronautical telecommunications</em>. International Civil Aviation Organization.
+</div>
+</div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>

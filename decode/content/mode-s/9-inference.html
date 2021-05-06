@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../../bootstrap.min.css">
   <link rel="stylesheet" href="../../style.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet"> 
@@ -463,9 +463,9 @@
 <p>In order to distinguish between these two messages, we need to utilize the information contained in the messages. BDS 5,0 and BDS 6,0 both contain aircraft speed information. We can design the additional check using the following logic:</p>
 <ul>
 <li><p>Assuming the message is BDS 5,0, compare the difference between the ground speed and true airspeed. The difference should not be too large. Empirically, this threshold can be set at approximately 200 kt to include possible wind speed.</p></li>
-<li><p>Assuming the message is BDS 6,0, convert the Mach number to calibrated airspeed based on altitude code under ISA condition <span class="citation" data-cites="young2017"></span>. The difference between calibrated airspeed and indicated airspeed should not be too large.</p></li>
+<li><p>Assuming the message is BDS 6,0, convert the Mach number to calibrated airspeed based on altitude code under ISA condition <span class="citation" data-cites="young2017">[Young 2017]</span>. The difference between calibrated airspeed and indicated airspeed should not be too large.</p></li>
 </ul>
-<p>If the previous logic does not eliminate one of the two possibilities, we need to make use of the information collected in ADS-B (if available) to verify the information. ADS-B data from the same aircraft can be used as a reference, to check whether the speed from the assumed message type agrees with the ground speed from ADS-B. The details of this process is described in <span class="citation" data-cites="sun2019pymodes"></span>. Wind information can also be taken into consideration to make the identification more accurate.</p>
+<p>If the previous logic does not eliminate one of the two possibilities, we need to make use of the information collected in ADS-B (if available) to verify the information. ADS-B data from the same aircraft can be used as a reference, to check whether the speed from the assumed message type agrees with the ground speed from ADS-B. The details of this process is described in <span class="citation" data-cites="sun2019pymodes">[Sun et al. 2019]</span>. Wind information can also be taken into consideration to make the identification more accurate.</p>
 <h2 id="decoding-examples">Decoding examples</h2>
 <p>The basic BDS code identification logic is relatively simple. It checks all criteria from all message types and decides whether all but one BDS code can be eliminated. In this example section, we are only going to show how a message with both possibilities of BDS 5,0 and BDS 6,0 can be identified.</p>
 <p>Figure <a href="#fig:bds_bds_infer_example_1" data-reference-type="ref" data-reference="fig:bds_bds_infer_example_1">1.1</a> shows the identification of a DF=20 message.</p>
@@ -477,6 +477,7 @@
 <figure>
 <img src="../../figures/5b9855068115ee3fcc77a3f0e8bd6dc0f81d6dc4.png" id="fig:bds_bds_infer_example_2" /><figcaption aria-hidden="true">Identification of BDS code, DF=21</figcaption>
 </figure>
+<div class="notebox">
 <p><span>Try it out</span> Using pyModeS, we can infer the BDS code of a message as:</p>
 <pre><code>import pyModeS as pms
 
@@ -488,6 +489,15 @@ bds2 = pms.bds.infer(msg2) </code></pre>
 <p>The first BDS code should be BDS60. The second message has the possibility of being either BDS50 or BDS60, we can further infer the type based on ADS-B information:</p>
 <pre><code>bds2 = pms.bds.is50or60(msg2, 320, 250, 14000)</code></pre>
 <p>The final BDS code should be BDS50.</p>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-sun2019pymodes" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Sun, J., Vû, H., Ellerbroek, J., and Hoekstra, J.M.</span> 2019. Pymodes: Decoding mode s surveillance data for open air transportation research. <em>IEEE Transactions on Intelligent Transportation Systems</em>.
+</div>
+<div id="ref-young2017" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Young, T.M.</span> 2017. <em><span class="nocase">Performance of the Jet Transport Airplane: Analysis Methods, Flight Operations, and Regulations</span></em>. John Wiley <span>&amp;</span> Sons.
+</div>
+</div>
 
 <footer class="mastfoot">
   <div class="text-right">

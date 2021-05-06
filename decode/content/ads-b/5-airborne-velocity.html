@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../../bootstrap.min.css">
   <link rel="stylesheet" href="../../style.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet"> 
@@ -366,13 +366,17 @@ Message B:  8DA05F219B06B6AF189400CBC33F (sub-type 3)</code></pre>
 <p>First of all, the vertical rate source bit <code>VrSrc</code> (ME bit 36) indicates the source of the altitude measurements. GNSS altitude is encoded as , while encodes the barometric altitude.</p>
 <p>The direction of aircraft vertical movement can be read from <code>Svr</code> bit (ME bit 37), with and referring to climb and descent, respectively. The encoded vertical rate value <code>VR</code> can be computed using message ME bits 38 to 46. If the 9-bit block contains all zeros, the vertical rate information is not available.</p>
 <p>The final vertical speed (<span class="math inline">\(\mathrm{VS}\)</span>) is calculated as:</p>
-<p><span class="math display">\[\mathrm{VS} = (2S_{vr} - 1) \cdot 64 \cdot (V_R - 1)\]</span></p>
+<p><span class="math display">\[\mathrm{VS} =   
+   \begin{cases}
+     64 (V_R - 1), &amp; S_{vr} = 0 \\
+     -64 (V_R - 1), &amp; S_{vr} = 1
+   \end{cases}\]</span></p>
 <p>where the final vertical speed has the unit of ft/min.</p>
 <p>Based on the example <code>Message A</code>, the vertical speed is calculated as:</p>
-<p><span class="math display">\[\mathrm{VS}_A = (2 \times 0 - 1) \times 64 \times (37 -1) = -832 ~\text{ft/min}\]</span></p>
+<p><span class="math display">\[\mathrm{VS}_A = -64 \times (37 -1) = -832 ~\text{ft/min}\]</span></p>
 <p>which indicates that the aircraft A is descending with a vertical speed of 832 ft/min.</p>
 <p>Based on the example <code>Message B</code>, the vertical speed is calculated as:</p>
-<p><span class="math display">\[\mathrm{VS}_B = (2 \times 0 - 1) \times 64 \times (14 -1) = -2304 ~\text{ft/min}\]</span></p>
+<p><span class="math display">\[\mathrm{VS}_B = -64 \times (14 -1) = -2304 ~\text{ft/min}\]</span></p>
 <p>which indicates that the aircraft B is descending with a vertical speed of 2304 ft/min.</p>
 <h2 id="gnss-and-barometric-altitudes-difference">GNSS and barometric altitudes difference</h2>
 <p>The last eight bits of the ME field contain the difference between the barometric and GNSS altitudes. Of these eight bits, the first bit indicates the sign for the value of the remaining bits. When it is , the value is negative. This means the GNSS altitude is below the barometric altitude.</p>
@@ -516,12 +520,30 @@ Message B:  8DA05F219B06B6AF189400CBC33F (sub-type 3)</code></pre>
 <p>To calculate the velocity, four values are needed, which are <code>Sew</code>, <code>Vew</code>, <code>Sns</code>, and <code>Vns</code>. It is common to consider speed vector’s West-East and South-North component as positive values, which are denoted as <span class="math inline">\(V_x\)</span> and <span class="math inline">\(V_y\)</span>. The formulas for sub-type 1 (subsonic) and sub-type 2 (supersonic) differ by a factor of 4.</p>
 <p>For subsonic speed (sub-type 1), the speed components can be computed as:</p>
 <p><span class="math display">\[\begin{aligned}
-  V_x &amp;= (-2S_{ew} + 1) (V_{ew} - 1) \\
-  V_y &amp;= (-2S_{ns} + 1) (V_{ns} - 1)\end{aligned}\]</span></p>
+  V_x &amp;= 
+  \begin{cases}
+    V_{ew} - 1, &amp; S_{ew} = 0 \\
+    -1(V_{ew} - 1), &amp; S_{ew} = 1
+  \end{cases}
+ \\
+  V_y &amp;= 
+  \begin{cases}
+    V_{ns} - 1, &amp; S_{ns} = 0 \\
+    -1(V_{ns} - 1), &amp; S_{ns} = 1
+  \end{cases}\end{aligned}\]</span></p>
 <p>For supersonic speed (sub-type 2), the speed components can be computed as:</p>
 <p><span class="math display">\[\begin{aligned}
-  V_x &amp;= 4 \cdot (-2S_{ew} + 1) (V_{ew} - 1)\\
-  V_y &amp;= 4 \cdot (-2S_{ns} + 1) (V_{ns} - 1)\end{aligned}\]</span></p>
+  V_x &amp;= 
+  \begin{cases}
+    4(V_{ew} - 1), &amp; S_{ew} = 0 \\
+    -4(V_{ew} - 1), &amp; S_{ew} = 1
+  \end{cases}
+ \\
+  V_y &amp;= 
+  \begin{cases}
+    4(V_{ns} - 1), &amp; S_{ns} = 0 \\
+    -4((V_{ns} - 1), &amp; S_{ns} = 1
+  \end{cases}\end{aligned}\]</span></p>
 <p>The final ground speed (<span class="math inline">\(V\)</span>) of aircraft is:</p>
 <p><span class="math display">\[V = \sqrt{V_x^2 + V_y^2}\]</span></p>
 <p>With these two speed components, the ground track angle (<span class="math inline">\(\lambda\)</span>) of the aircraft can also be calculated conveniently as:</p>
@@ -540,8 +562,8 @@ Message B:  8DA05F219B06B6AF189400CBC33F (sub-type 3)</code></pre>
 +-----+------------+-----+------------+-------+</code></pre>
 <p>the final aircraft speed and track angle are calculated as:</p>
 <p><span class="math display">\[\begin{aligned}
-  V_x &amp;= (-2 \times 1 + 1) \times (9 - 1)  = -8 \\
-  V_y &amp;= (-2 \times 1 + 1) \times (160 - 1) = -159 \\
+  V_x &amp;= -1 (9 - 1)  = -8 \\
+  V_y &amp;= -1 (160 - 1) = -159 \\
   V &amp;= \sqrt{(-9)^2+ (-160)^2} = 159.20 \\
   \lambda &amp;= arctan2(-9, -160) \times \frac{360}{2\pi} = 182.88\end{aligned}\]</span></p>
 <p>where the aircraft speed is 159.20 kt and the track angle is 182.88 degrees.</p>
@@ -684,6 +706,7 @@ Message B:  8DA05F219B06B6AF189400CBC33F (sub-type 3)</code></pre>
   \phi &amp;= 694 \times \frac{360}{1024} = 243.98 \\
   V_{as} &amp;= 376 - 1 = 375\end{aligned}\]</span></p>
 <p>With airspeed type <code>T=1</code>, we can also determine that the speed refers to the true airspeed of the aircraft.</p>
+<div class="notebox">
 <p><span>Try it out</span> Using pyModeS, we can perform the decoding the airborne velocities messages as follows:</p>
 <pre><code>import pyModeS as pms
 
@@ -696,6 +719,7 @@ vB = pms.adsb.velocity(msgB)</code></pre>
 <pre><code>vA: (159, 182.88, -832, &#39;GS&#39;)
 vB: (375, 243.98, -2304, &#39;TAS&#39;)</code></pre>
 <p>Note that the parameters returned by the <code>velocity()</code> function are speed, track angle (or heading), vertical speed, and speed type.</p>
+</div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>

@@ -181,6 +181,7 @@
 MSG BIN:  01011   101    010010000100111111011110  101000100100100011110101
           [DF=11] [CA=5] [AA=484FDE]               [CRC=22]</code></pre>
 <p>With the capability value (CA=5), we can see the aircraft has a Level 2+ transponder, with the ability to set CA to 7 and that it is airborne. The CRC remainder indicates the interrogator identifier code is 22.</p>
+<div class="notebox">
 <p><span>Try it out</span> Using pyModeS, we can obtain the ICAO address as:</p>
 <pre><code>import pyModeS as pms
 
@@ -188,6 +189,7 @@ msg = &quot;5D484FDEA248F5&quot;
 pms.icao(msg)</code></pre>
 <p>Output:</p>
 <pre><code>484FDE</code></pre>
+</div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
