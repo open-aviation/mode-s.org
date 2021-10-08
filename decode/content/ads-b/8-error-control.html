@@ -159,7 +159,7 @@
   G(x) = &amp;x^{24}+x^{23}+x^{22}+x^{21}+x^{20}+x^{19}+x^{18}+x^{17} \\
          &amp;+x^{16}+x^{15}+x^{14}+x^{13}+x^{12}+x^{10}+x^{3}+1
   \end{split}\]</span></p>
-<p>This generator code was found by <span class="citation" data-cites="kasami1964">[Kasami and Matoba 1964]</span>, which is known for its efficiency to correct burst errors. It can represented in binary formats as <code>1111111111111010000001001</code> (or <code>1FFF409</code> in hexadecimal format). A 24-bit CRC remainder is generated using this generator for each ADS-B message.</p>
+<p>This generator code was found by <span class="citation" data-cites="kasami1964">[Kasami and Matoba 1964]</span>, which is known for its efficiency to correct burst errors. It can be represented in binary formats as <code>1111111111111010000001001</code> (or <code>1FFF409</code> in hexadecimal format). A 24-bit CRC remainder is generated using this generator for each ADS-B message.</p>
 <p>Knowing the logic of CRC, the computation of the remainder and the verification of the error is fairly simple. Let <span class="math inline">\(x^{i}\)</span> represent each bit of the message and <span class="math inline">\(M(x)\)</span> represent the polynomial corresponding to the ADS-B message, the CRC remainder (parity) <span class="math inline">\(P(x)\)</span> can thus be calculated as:</p>
 <p><span class="math display">\[\begin{split}
     M(x) &amp;= \sum_{i=0}^{87} a_i x^i , \quad a_i \in (0, 1)\\

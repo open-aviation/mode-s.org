@@ -571,7 +571,7 @@ BDS40, BDS50, BDS51, BDS52, BDS60</code></pre>
 </tbody>
 </table>
 </div>
-<p>The first eight bits indicates the BDS code <code>0010 0000</code> (<code>2,0</code> in hexadecimal). Each of the callsign characters is represented by six bits. We first need to convert the binary numbers to decimals. Each decimal value corresponds to the index of the letter in the following character map:</p>
+<p>The first eight bits indicate the BDS code <code>0010 0000</code> (<code>2,0</code> in hexadecimal). Each of the callsign characters is represented by six bits. We first need to convert the binary numbers to decimals. Each decimal value corresponds to the index of the letter in the following character map:</p>
 <pre><code>#ABCDEFGHIJKLMNOPQRSTUVWXYZ##### ###############0123456789######</code></pre>
 <p>It is worth noting that this character mapping is the same as the one used for ADS-B identification, which also corresponds to a part of the ASCII code map.</p>
 <p>The following is an example on how to decode the callsign from a sample BDS 2,0 message:</p>
