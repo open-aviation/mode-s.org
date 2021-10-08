@@ -135,7 +135,7 @@
 </div>
 
 <h1 id="chap:mode_s_basics">Basics of Mode S services</h1>
-<p>In Chapter <a href="#chap:intro" data-reference-type="ref" data-reference="chap:intro">[chap:intro]</a>, an overview of different Mode S services is given. Most of the services except the extended squitter are interrogations based, which means information is only transmitted upon request. The request, also known as ‘<em>uplink</em>,’ is transmitted using 1030 MHz radio frequency. The reply (‘<em>downlink</em>’) signals are all transmitted using the 1090 MHz radio frequency. Hence, all Mode S downlink messages can be intercepted using the same setup as ADS-B.</p>
+<p>In Chapter <a href="#chap:intro" data-reference-type="ref" data-reference="chap:intro">[chap:intro]</a>, an overview of different Mode S services is given. Most of the services except the extended squitter are interrogations based, which means information is only transmitted upon request. The request, also known as ‘<em>uplink</em>’, is transmitted using 1030 MHz radio frequency. The reply (‘<em>downlink</em>’) signals are all transmitted using the 1090 MHz radio frequency. Hence, all Mode S downlink messages can be intercepted using the same setup as ADS-B.</p>
 <p>In the following chapters of this book, we are going to explain the interrogation based Mode S services in four groups, specifically:</p>
 <ol>
 <li><p>All-call reply (DF 11)</p></li>
@@ -206,25 +206,25 @@ pms.icao(msg)</code></pre>
 </div>
 <h2 id="sec:two_complement">Two’s complement coding</h2>
 <p>Two’s complement coding is used for representing negative numbers in some Mode S messages, for example, heading and vertical rates in BDS 5,0 and BDS 6,0 messages. Every parameter in Mode S using two’s complement coding include a 1-bit sign and n-bit value.</p>
-<p>1) If the sign bit is , the result is simply the decimal representation of the value bits.</p>
+<p>1) If the sign bit is <code>0</code>, the result is simply the decimal representation of the value bits.</p>
 <p>For example, we have the following representation of a signed parameter:</p>
 <pre><code> sign    value
 ------------------
   0    111010011</code></pre>
 <p>The result is the decimal representation of the last nine value bits, which is <code>467</code>.</p>
-<p>2) If the sign bit is , we first calculate the decimal representation of the value bits (<span class="math inline">\(x\)</span>) and then calculate the negative value as:</p>
+<p>2) If the sign bit is <code>1</code>, we first calculate the decimal representation of the value bits (<span class="math inline">\(x\)</span>) and then calculate the negative value as:</p>
 <p><span class="math display">\[x - 2^n\]</span></p>
-<p>For example, if we changed the signed bit in the previous example to , as follows:</p>
+<p>For example, if we changed the signed bit in the previous example to <code>1</code>, as follows:</p>
 <pre><code> sign    value
 ------------------
   1    111010011</code></pre>
-<p>since the sign bit is and there are <code>9</code> value bits, the final value is calculated as: <span class="math display">\[467 - 2^9 = -45\]</span></p>
+<p>since the sign bit is <code>1</code> and there are <code>9</code> value bits, the final value is calculated as: <span class="math display">\[467 - 2^9 = -45\]</span></p>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-gertz1984" class="csl-entry" role="doc-biblioentry">
 <span class="smallcaps">Gertz, J.L.</span> 1984. <em>Fundamentals of mode s parity coding</em>. Massachusetts Institute of Technology, Lincoln Laboratory.
 </div>
 <div id="ref-sun2019pymodes" class="csl-entry" role="doc-biblioentry">
-<span class="smallcaps">Sun, J., Vû, H., Ellerbroek, J., and Hoekstra, J.M.</span> 2019. Pymodes: Decoding mode s surveillance data for open air transportation research. <em>IEEE Transactions on Intelligent Transportation Systems</em>.
+<span class="smallcaps">Sun, J., Vû, H., Ellerbroek, J., and Hoekstra, J.M.</span> 2019. <a href="https://doi.org/10.1109/TITS.2019.2914770">Pymodes: Decoding mode s surveillance data for open air transportation research</a>. <em>IEEE Transactions on Intelligent Transportation Systems</em>.
 </div>
 </div>
 

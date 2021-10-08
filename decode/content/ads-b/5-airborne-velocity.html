@@ -363,8 +363,8 @@ Message B:  8DA05F219B06B6AF189400CBC33F (sub-type 3)</code></pre>
 <p>Here, the second rows and third rows of the messages are binary and decimal values, respectively.</p>
 <h2 id="vertical-rate">Vertical rate</h2>
 <p>The method for decoding vertical rate and its related parameters are the same for different sub-types.</p>
-<p>First of all, the vertical rate source bit <code>VrSrc</code> (ME bit 36) indicates the source of the altitude measurements. GNSS altitude is encoded as , while encodes the barometric altitude.</p>
-<p>The direction of aircraft vertical movement can be read from <code>Svr</code> bit (ME bit 37), with and referring to climb and descent, respectively. The encoded vertical rate value <code>VR</code> can be computed using message ME bits 38 to 46. If the 9-bit block contains all zeros, the vertical rate information is not available.</p>
+<p>First of all, the vertical rate source bit <code>VrSrc</code> (ME bit 36) indicates the source of the altitude measurements. GNSS altitude is encoded as <code>0</code>, while <code>1</code> encodes the barometric altitude.</p>
+<p>The direction of aircraft vertical movement can be read from <code>Svr</code> bit (ME bit 37), with <code>0</code> and <code>1</code> referring to climb and descent, respectively. The encoded vertical rate value <code>VR</code> can be computed using message ME bits 38 to 46. If the 9-bit block contains all zeros, the vertical rate information is not available.</p>
 <p>The final vertical speed (<span class="math inline">\(\mathrm{VS}\)</span>) is calculated as:</p>
 <p><span class="math display">\[\mathrm{VS} =   
    \begin{cases}
@@ -373,13 +373,13 @@ Message B:  8DA05F219B06B6AF189400CBC33F (sub-type 3)</code></pre>
    \end{cases}\]</span></p>
 <p>where the final vertical speed has the unit of ft/min.</p>
 <p>Based on the example <code>Message A</code>, the vertical speed is calculated as:</p>
-<p><span class="math display">\[\mathrm{VS}_A = -64 \times (37 -1) = -832 ~\text{ft/min}\]</span></p>
+<p><span class="math display">\[\mathrm{VS}_A = -64 \times (14 - 1) = -832 ~\text{ft/min}\]</span></p>
 <p>which indicates that the aircraft A is descending with a vertical speed of 832 ft/min.</p>
 <p>Based on the example <code>Message B</code>, the vertical speed is calculated as:</p>
-<p><span class="math display">\[\mathrm{VS}_B = -64 \times (14 -1) = -2304 ~\text{ft/min}\]</span></p>
+<p><span class="math display">\[\mathrm{VS}_B = -64 \times (37 - 1) = -2304 ~\text{ft/min}\]</span></p>
 <p>which indicates that the aircraft B is descending with a vertical speed of 2304 ft/min.</p>
 <h2 id="gnss-and-barometric-altitudes-difference">GNSS and barometric altitudes difference</h2>
-<p>The last eight bits of the ME field contain the difference between the barometric and GNSS altitudes. Of these eight bits, the first bit indicates the sign for the value of the remaining bits. When it is , the value is negative. This means the GNSS altitude is below the barometric altitude.</p>
+<p>The last eight bits of the ME field contain the difference between the barometric and GNSS altitudes. Of these eight bits, the first bit indicates the sign for the value of the remaining bits. When it is <code>1</code>, the value is negative. This means the GNSS altitude is below the barometric altitude.</p>
 <p>The value is encoded with the increment of 25 feet, and the equation to calculate the altitude difference is:</p>
 <p><span class="math display">\[\Delta h = s (n - 1) \times 25\]</span></p>
 <p>where <span class="math inline">\(s\)</span> is the sign and <span class="math inline">\(n\)</span> is the decimal value of the encoded altitude difference.</p>

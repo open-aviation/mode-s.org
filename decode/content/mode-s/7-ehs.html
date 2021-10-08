@@ -278,7 +278,7 @@
 </table>
 </div>
 <p>Two different types of selected altitude fields are included in the message. Values in the <em>MCP/FCU selected altitude</em> field are from the mode control panel or flight control unit. These are often inputs from the pilot. Values in <em>FMS selected altitude</em> field are derived from the flight management system controlling the vertical profile, which often does not come from manual input. In practice, FMS selected altitude values are often empty or unusable. When it is presented, the value is mostly the same as MCP/FCU selected altitude.</p>
-<p>The <em>barometric pressure setting</em> value is the actual pressure in millibars (mb) subtracted by a constant of 800. If the actual value is below 800 mb (or above 1209 mb), the corresponding status bit (MB:27) is set to .</p>
+<p>The <em>barometric pressure setting</em> value is the actual pressure in millibars (mb) subtracted by a constant of 800. If the actual value is below 800 mb (or above 1209 mb), the corresponding status bit (MB:27) is set to <code>0</code>.</p>
 <p>The last two bits in the MB field show the source of the target altitude. They have the following meaning:</p>
 <pre><code>  00: Unknown source
   01: Aircraft altitude
@@ -286,7 +286,7 @@
   11: FMS selected altitude</code></pre>
 <p>Figure <a href="#fig:bds40_example" data-reference-type="ref" data-reference="fig:bds40_example">1.1</a> illustrates an example of how to decode a BDS 4,0 message.</p>
 <figure>
-<img src="../../figures/d8b645b2523cc44b4f38d1f2bb9c8e11bb9a26f0.png" id="fig:bds40_example" /><figcaption aria-hidden="true">BDS 4,0 decoding example</figcaption>
+<img src="../../figures/mode_s/bds40_example.png" id="fig:bds40_example" /><figcaption aria-hidden="true">BDS 4,0 decoding example</figcaption>
 </figure>
 <div class="notebox">
 <p><span>Try it out</span> Using pyModeS, we can decode information of BDS 4,0 messages as:</p>
@@ -462,7 +462,7 @@ pms.commb.p40baro(msg)
 <p>In this message, three signed values are shown, which are roll angle, track angle, and track angle rate. Two’s complement coding (see section <a href="#sec:two_complement" data-reference-type="ref" data-reference="sec:two_complement">[sec:two_complement]</a>) should be used to calculate these values.</p>
 <p>The following Figure <a href="#fig:bds50_example" data-reference-type="ref" data-reference="fig:bds50_example">1.2</a> shows an example of decoding a BDS 5,0 message.</p>
 <figure>
-<img src="../../figures/2aefee745c1f060238361ee7bee294879632532f.png" id="fig:bds50_example" /><figcaption aria-hidden="true">BDS 5,0 decoding example</figcaption>
+<img src="../../figures/mode_s/bds50_example.png" id="fig:bds50_example" /><figcaption aria-hidden="true">BDS 5,0 decoding example</figcaption>
 </figure>
 <div class="notebox">
 <p><span>Try it out</span> Using pyModeS, we can decode information of BDS 5,0 messages as:</p>
@@ -670,7 +670,7 @@ pms.commb.tas50(msg)    # 466, TAS (kt)
 </div>
 <p>Figure <a href="#fig:bds60_example" data-reference-type="ref" data-reference="fig:bds60_example">1.3</a> illustrates an example on how to decode a BDS 6,0 message.</p>
 <figure>
-<img src="../../figures/712248ab0bde7bffaf3058e3480cdc3e246daf47.png" id="fig:bds60_example" /><figcaption aria-hidden="true">BDS 6,0 decoding example</figcaption>
+<img src="../../figures/mode_s/bds60_example.png" id="fig:bds60_example" /><figcaption aria-hidden="true">BDS 6,0 decoding example</figcaption>
 </figure>
 <div class="notebox">
 <p><span>Try it out</span> Using pyModeS, we can decode information of BDS 6,0 messages as:</p>

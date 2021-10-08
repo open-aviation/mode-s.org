@@ -143,7 +143,7 @@
 <h2 id="range">Range</h2>
 <p>Since Mode S uses L band signals that follow the line-of-sight propagation, any obstructions between the transmitter and receiver can cause a significant amount of signals to be blocked. Assuming that no obstacle exists between the aircraft and the receiver, and the transmitter has a sufficient amount of power, the maximum range of the receiver is determined by the curvature of the earth. Figure <a href="#fig:max_range" data-reference-type="ref" data-reference="fig:max_range">1.1</a> illustrates how the maximum range of the receiver can be obtained.</p>
 <figure>
-<img src="../figures/afd23132890361714fd7a74569428514c0af367f.png" id="fig:max_range" /><figcaption aria-hidden="true">Maximum receiver range</figcaption>
+<img src="../figures/quickstart/max_range.png" id="fig:max_range" /><figcaption aria-hidden="true">Maximum receiver range</figcaption>
 </figure>
 <p>Knowing the altitude of the receiver antenna, it is possible to determine the maximum range (<span class="math inline">\(d\)</span>) of a Mode S receiver as:</p>
 <p><span class="math display">\[\begin{aligned}
@@ -151,21 +151,21 @@
   &amp; = \left( \arccos \frac{R}{R+h_r} + \arccos \frac{R}{R+h_t} \right) R\end{aligned}\]</span></p>
 <p>where <span class="math inline">\(R\)</span> is the radius of the earth, while <span class="math inline">\(h_t\)</span> and <span class="math inline">\(h_r\)</span> are the height of the aircraft and receiver above the sea level. Using this equation, we can calculate the maximum receiving range for aircraft flying at different altitudes. Figure <a href="#fig:max_range_curve" data-reference-type="ref" data-reference="fig:max_range_curve">1.2</a> shows the maximum range curves calculated using several receiver heights.</p>
 <figure>
-<img src="../figures/1bfd4ef227c33e62ff9a24dfc44504c444c7e11c.png" id="fig:max_range_curve" /><figcaption aria-hidden="true">Maximum receiver range curve</figcaption>
+<img src="../figures/quickstart/max_range_curve.png" id="fig:max_range_curve" /><figcaption aria-hidden="true">Maximum receiver range curve</figcaption>
 </figure>
 <p>It should be noted that this figure shows the maximum radio range due to the curvature of the Earth. However, in real-life applications, Mode S signal follows the Friis transmission model, which states that the maximum distance also depends on the power of the transmitter, as well as the directivities of the transmission and receiving antennas. When considering these factors, the actual radio range for the receiver is typically lower than the theoretical values shown in the previous figure.</p>
 <h2 id="antenna">Antenna</h2>
 <p>In principle, any antenna designed for the radio frequency around 1 GHz can be used for receiving Mode S signals. A large variety of commercial off-the-shelf antennas can be found nowadays.</p>
 <p>However, it is not difficult to design your own antenna. The carrier frequency of Mode S is 1090 MHz, which corresponds to the wavelength of 27.5 centimeters. In order to have an antenna that is tuned to this specific frequency, one can design the antenna simply using a piece of a conductor (metal wire) and a coaxial feeder cable. Figure <a href="#fig:antennas" data-reference-type="ref" data-reference="fig:antennas">1.3</a> shows a few common antenna designs.</p>
 <figure>
-<img src="../figures/56b1e67edfca1027cd807b6c57145d5a78ebe010.png" id="fig:antennas" /><figcaption aria-hidden="true">Common antenna designs</figcaption>
+<img src="../figures/quickstart/antennas.png" id="fig:antennas" /><figcaption aria-hidden="true">Common antenna designs</figcaption>
 </figure>
 <p>The monopole antenna and the dipole antenna both are half-wavelength (<span class="math inline">\(\lambda/2\)</span>) antennas with a total conductor length of 13.75 cm. The ground plane antenna is a quarter-wavelength (<span class="math inline">\(\lambda/4\)</span>) antenna, where the main pole is 6.875 cm.</p>
 <p>All these previous antennas are omnidirectional. Some time is also desirable to make use of directional antennas (such a Yagi antenna), for example, to receive messages coming from the airport direction with a higher receiving gain.</p>
 <p>For a remote installation where the antenna is far from the receiver (i.e., long coaxial cable between the antenna and receiver), the high-frequency signal of Mode S can attenuate quickly. When the signal has arrived at the receiver end, the signal-to-noise ratio can become quite high. To overcome this limitation, an active antenna may be used.</p>
 <p>The active antenna (see Figure <a href="#fig:biastee_active_antenna" data-reference-type="ref" data-reference="fig:biastee_active_antenna">1.4</a>) has a low-noise amplifier integrated on the antenna side. Sometimes, it also includes a band-pass filter that is designed for 1090 MHz. The active antenna requires additional powering. Power is commonly supplied through a bias-tee device connected at the receiver end, which is on the left-hand side of the diagram. On the right-hand side, the radio frequency is mixed with the DC component, which allows the electronic circuit to be powered close to the receiver end.</p>
 <figure>
-<img src="../figures/96625d8d1a640149ab57b07be456c23c906b0fa2.png" id="fig:biastee_active_antenna" /><figcaption aria-hidden="true">Diagram of an active antenna powered through a bias-tee</figcaption>
+<img src="../figures/quickstart/biastee_active_antenna.png" id="fig:biastee_active_antenna" /><figcaption aria-hidden="true">Diagram of an active antenna powered through a bias-tee</figcaption>
 </figure>
 <h2 id="receiver">Receiver</h2>
 <p>Many modern Mode S receivers are built using software-defined radio (SDR). An SDR usually can be tuned to a wide range of radio frequencies. The user can conveniently select the center frequency of the receiver and the sampling rate, as well as defined the bandwidth of the onboard low-pass filter if it is supported.</p>
@@ -242,11 +242,11 @@
 <h2 id="software-tools">Software tools</h2>
 <p>Several software tools are available to work with some of these SDR devices and decode Mode S and ADS-B signals directly. In this section, we explain how to use two open-source tools, which are <code>dump1090</code> and <code>pyModeS</code>.</p>
 <h3 id="dump1090">dump1090</h3>
-<p><code>dump1090</code> is the most well-known open-source Mode S decoder currently available. The software is written in C programming language and was originally developed by Salvatore Sanfilippo<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> under the BSD-3-Clause license.</p>
+<p><code>dump1090</code> is the most well-known open-source Mode S decoder currently available. The software is written in C programming language and was originally developed by Salvatore Sanfilippo <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> under the BSD-3-Clause license.</p>
 <p>Since its release in 2013, the repository has been forked and extended intensively on GitHub, creating more than 900 forks so far. Many of the branched versions contain different variations, such as support for additional hardware, additional decoded Mode S messages, and additional output format. Currently, one of the most comprehensive forks is the repository maintained by FlightAware.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The following examples will be based on the FlightAware version of <code>dump1090</code>, using a Debian-based Linux system.</p>
 <h4 id="installation-of-dump1090">Installation of dump1090</h4>
 <p>The latest version of <code>dump1090</code> source code can download as follows:</p>
-<pre><code>$ git checkout https://github.com/flightaware/dump1090.git</code></pre>
+<pre><code>$ git clone https://github.com/flightaware/dump1090.git</code></pre>
 <p>Before compiling the code, following dependencies must be installed:</p>
 <pre><code>sudo apt-get install build-essential debhelper librtlsdr-dev \
   pkg-config dh-systemd libncurses5-dev libbladerf-dev</code></pre>
@@ -287,7 +287,7 @@ DF:17 AA:451DBD CA:5 ME:9905B501800400
 <pre><code>$ ./dump1090 --interactive</code></pre>
 <p>An example of the terminal output is shown in Figure <a href="#fig:dump1090" data-reference-type="ref" data-reference="fig:dump1090">1.5</a>.</p>
 <figure>
-<img src="../figures/55f3ba831e9cf0aee2e6283226de0df20bdf525a.png" id="fig:dump1090" alt="Example of a dump1090 interactive output" /><figcaption aria-hidden="true">Example of a dump1090 interactive output</figcaption>
+<img src="../figures/quickstart/dump1090.png" id="fig:dump1090" alt="Example of a dump1090 interactive output" /><figcaption aria-hidden="true">Example of a dump1090 interactive output</figcaption>
 </figure>
 <h3 id="pymodes">pyModeS</h3>
 <p><code>pyModeS</code> is an open-source Mode S decoder project that I started in 2015. It is a library that was originally designed to focus on lower level inference and decoding of individual raw Mode S messages. Later on, hardware support and live decoding were added, which made it more akin to <code>dump1090</code> of late.</p>
@@ -321,7 +321,7 @@ arguments:
 $ modeslive --source net --connect localhost 30002 raw</code></pre>
 <p>An example of the live view is shown in Figure <a href="#fig:modeslive" data-reference-type="ref" data-reference="fig:modeslive">1.6</a>.</p>
 <figure>
-<img src="../figures/a9d81f6413d467684fcb327bd919b9bf85249be0.png" id="fig:modeslive" alt="Example of a live view of modeslive from pyModeS" /><figcaption aria-hidden="true">Example of a live view of <code>modeslive</code> from <code>pyModeS</code></figcaption>
+<img src="../figures/quickstart/modeslive.png" id="fig:modeslive" alt="Example of a live view of modeslive from pyModeS" /><figcaption aria-hidden="true">Example of a live view of <code>modeslive</code> from <code>pyModeS</code></figcaption>
 </figure>
 <p>Real-time flight states are shown, including, for example, ICAO transponder code, call sign, position, altitude, ground speed, true airspeed, indicated airspeed, Mach number, rate of climb, track angle, and heading.</p>
 <h4 id="programming-interface">Programming interface</h4>

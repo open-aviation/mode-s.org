@@ -155,11 +155,11 @@
 <p>This chapter will focus on ACAS II. The ACAS II is a system that utilizes the aircraft transponder, which interrogates the Mode C and Mode S transponders of nearby aircraft. When threats are detected, corresponding alerts are given to the pilots.</p>
 <p>Currently, the most common implementation of ACAS II is <em>Traffic alert and Collision Avoidance System</em> (TCAS) II version 7.1, which was initiated by EUROCONTROL. It has been mandatory for aircraft in Europe since 2015. ACAS II works independently of the navigation system, FMS, and ATC. No input from these systems is considered for producing the alerts.</p>
 <div class="notebox">
-<p><span>Note</span> In the future, a new system developed by FAA, called ‘ACAS X,’ is expected to replace the current ACAS II. It makes use of dynamic programming to generate resolution advisories and offers four performance capability variants for different air traffic scenarios. <span class="citation" data-cites="chomik2016">[Chomik 2016]</span></p>
+<p><span>Note</span> In the future, a new system developed by FAA, called ‘ACAS X’, is expected to replace the current ACAS II. It makes use of dynamic programming to generate resolution advisories and offers four performance capability variants for different air traffic scenarios. <span class="citation" data-cites="chomik2016">[Chomik 2016]</span></p>
 </div>
 <p>In ACAS II, TA and RA are triggered when certain thresholds to the closest point of approach (CPA) are passed. The thresholds depend on the altitude, speed, and heading of the aircraft. The examples of the TA and RA regions are illustrated in Figure <a href="#fig:acas_regions" data-reference-type="ref" data-reference="fig:acas_regions">1.1</a>.</p>
 <figure>
-<img src="../../figures/1d9fb738fd38d9eb846430aedce5443e22f69e38.png" id="fig:acas_regions" /><figcaption aria-hidden="true">Example of an ACAS protection volume in horizontal and vertical directions (between FL50 and FL100)</figcaption>
+<img src="../../figures/mode_s/acas_regions.png" id="fig:acas_regions" /><figcaption aria-hidden="true">Example of an ACAS protection volume in horizontal and vertical directions (between FL50 and FL100)</figcaption>
 </figure>
 <h2 id="acas-with-mode-c-transponders">ACAS with Mode C transponders</h2>
 <p>The ACAS system uses Mode C only all-call interrogation to detect aircraft that are only equipped with Mode A/C transponders. In this case, the ACAS system initiates a sequence of interrogations with increasing power.</p>
@@ -173,7 +173,7 @@
 </ul>
 <h2 id="acas-with-mode-s-transponders">ACAS with Mode S transponders</h2>
 <p>For Mode S transponders, the ACAS system employs a three-phase process, which includes the phases of <em>detection</em>, <em>surveillance</em>, and <em>coordination</em>.</p>
-<p>For the detection phase, ACAS passively listens to Mode S only all-call replies (DF=11). These all-call replies are usually generated as a result of ground SSR interrogations, or created by spontaneous acquisition squitter (broadcast of DF=11 message with interrogator code ). In this process, aircraft with Mode S transponders in the vicinity are discovered. ACAS may also listen to extended squitter messages (Downlink Format 17, ADS-B) to detect other aircraft.</p>
+<p>For the detection phase, ACAS passively listens to Mode S only all-call replies (DF=11). These all-call replies are usually generated as a result of ground SSR interrogations, or created by spontaneous acquisition squitter (broadcast of DF=11 message with interrogator code <code>0</code>). In this process, aircraft with Mode S transponders in the vicinity are discovered. ACAS may also listen to extended squitter messages (Downlink Format 17, ADS-B) to detect other aircraft.</p>
 <p>Once another aircraft is determined to be within the ACAS surveillance range, and within 10,000 ft of the own aircraft<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, ACAS will initiate a short air-air interrogation (UF=0) to acquire the range. The interrogation rate is defined as:</p>
 <ul>
 <li><p>Once every five cycles: when the target aircraft remains in the surveillance range.</p></li>
@@ -465,12 +465,12 @@
 </div>
 <p>Specific fields in the above mentioned messages are defined as follows:</p>
 <ul>
-<li><p><em>Reply length (RL)</em>: 1 bit, it defines the required reply format: requires a reply with DF=0, while requires reply with DF=16.</p></li>
+<li><p><em>Reply length (RL)</em>: 1 bit, it defines the required reply format: <code>0</code> requires a reply with DF=0, while <code>1</code> requires reply with DF=16.</p></li>
 <li><p><em>Acquisition (AQ)</em>: 1 bit, it contains code that controls the content of RI field in the reply.</p></li>
 <li><p><em>Data selector (DS)</em>: 8 bits, it indicates the BDS code of the MV content in reply with DF=16.</p></li>
-<li><p><em>Vertical status (VS)</em>: 1 bit, it indicates whether the aircraft is airborne () or on the ground ().</p></li>
-<li><p><em>Cross-link capability (CC)</em>: 1 bit, it refers to the capability of reply DF=16 upon request of UF=0. When this 1-bit field is set to , the cross-link is supported. Otherwise, the field is set to .</p></li>
-<li><p><em>Sensitivity level (SL)</em>: 3 bits, it represents the sensitivity level of the ACAS system, except that indicates the ACAS is inoperative.</p></li>
+<li><p><em>Vertical status (VS)</em>: 1 bit, it indicates whether the aircraft is airborne (<code>0</code>) or on the ground (<code>1</code>).</p></li>
+<li><p><em>Cross-link capability (CC)</em>: 1 bit, it refers to the capability of reply DF=16 upon request of UF=0. When this 1-bit field is set to <code>1</code>, the cross-link is supported. Otherwise, the field is set to <code>0</code>.</p></li>
+<li><p><em>Sensitivity level (SL)</em>: 3 bits, it represents the sensitivity level of the ACAS system, except that <code>0</code> indicates the ACAS is inoperative.</p></li>
 <li><p><em>Reply information (RI)</em>: 4 bits, it indicates the type of reply to interrogating aircraft. For ACAS message, valid values are 0 and from 2 to 4. Other values are not part of the ACAS:</p>
 <blockquote>
 <p><code>0000</code>: No operating ACAS<br />
@@ -587,7 +587,7 @@
 <p>These fields can be interpreted as follows:</p>
 <ul>
 <li><p><em>Multiple threat bit (MTB)</em>: 1 bit, indicates whether multiple threats are present.</p></li>
-<li><p><em>Vertical RAC<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (VRC)</em>: 2 bits, contains vertical resolution advisory complement information:</p>
+<li><p><em>Vertical RAC <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (VRC)</em>: 2 bits, contains vertical resolution advisory complement information:</p>
 <blockquote>
 <p><code>00</code>: No vertical RAC information<br />
 <code>01</code>: Do not pass below<br />
@@ -706,29 +706,29 @@
 <ul>
 <li><p><em>Active RA (ARA)</em>: 14 bits, indicates the resolution advisory characteristics. It has to be interpreted together with the MTB field.</p>
 <ul>
-<li><p>When ARA first bit (MSG bit 41) is and MTE is either or :</p>
+<li><p>When ARA first bit (MSG bit 41) is <code>1</code> and MTE is either <code>0</code> or <code>1</code>:</p>
 <blockquote>
-<p>Bit 42: RA is corrective () or preventive ()<br />
-Bit 43: RA is downward sense () or upward sense ()<br />
-Bit 44: RA is increased rate () or not ()<br />
-Bit 45: RA is a sense reversal () or not ()<br />
-Bit 46: RA is altitude crossing () or not ()<br />
-Bit 47: RA is positive () or vertical speed limit ()<br />
+<p>Bit 42: RA is corrective (<code>1</code>) or preventive (<code>0</code>)<br />
+Bit 43: RA is downward sense (<code>1</code>) or upward sense (<code>0</code>)<br />
+Bit 44: RA is increased rate (<code>1</code>) or not (<code>0</code>)<br />
+Bit 45: RA is a sense reversal (<code>1</code>) or not (<code>0</code>)<br />
+Bit 46: RA is altitude crossing (<code>1</code>) or not (<code>0</code>)<br />
+Bit 47: RA is positive (<code>1</code>) or vertical speed limit (<code>0</code>)<br />
 Bit 48–54: Reserved for ACAS III</p>
 </blockquote></li>
-<li><p>When ARA first bit (MSG bit 41) is and MTE is :</p>
+<li><p>When ARA first bit (MSG bit 41) is <code>0</code> and MTE is <code>1</code>:</p>
 <blockquote>
-<p>Bit 42: RA requires a correction in the upward sense () or not ()<br />
-Bit 43: RA requires a positive climb () or not ()<br />
-Bit 44: RA requires a correction in the downward sense () or not ()<br />
-Bit 45: RA requires a positive descent () or not ()<br />
-Bit 46: RA requires a crossing () or not ()<br />
-Bit 47: RA is a sense reversal () or not ()<br />
+<p>Bit 42: RA requires a correction in the upward sense (<code>1</code>) or not (<code>0</code>)<br />
+Bit 43: RA requires a positive climb (<code>1</code>) or not (<code>0</code>)<br />
+Bit 44: RA requires a correction in the downward sense (<code>1</code>) or not (<code>0</code>)<br />
+Bit 45: RA requires a positive descent (<code>1</code>) or not (<code>0</code>)<br />
+Bit 46: RA requires a crossing (<code>1</code>) or not (<code>0</code>)<br />
+Bit 47: RA is a sense reversal (<code>1</code>) or not (<code>0</code>)<br />
 Bit 48–54: Reserved for ACAS III</p>
 </blockquote></li>
-<li><p>When ARA first bit (MSG bit 41) is and MTE is , no vertical RA is generated.</p></li>
+<li><p>When ARA first bit (MSG bit 41) is <code>0</code> and MTE is <code>0</code>, no vertical RA is generated.</p></li>
 </ul></li>
-<li><p><em>RAC’s record (RAC)</em>: 4 bits, contains current active RACs that are received from other ACAS aircraft (if any). Each of the four bits in this field indicates the following RAC when set to . When a bit is set to , the corresponding RAC is inactive.</p>
+<li><p><em>RAC’s record (RAC)</em>: 4 bits, contains current active RACs that are received from other ACAS aircraft (if any). Each of the four bits in this field indicates the following RAC when set to <code>1</code>. When a bit is set to <code>0</code>, the corresponding RAC is inactive.</p>
 <blockquote>
 <p>Bit 55: Do not pass below<br />
 Bit 56: Do not pass above<br />
@@ -736,7 +736,7 @@ Bit 57: Do not pass left<br />
 Bit 58: Do not pass right</p>
 </blockquote></li>
 <li><p><em>RA terminated indicator (RAT)</em>: 1 bit, indicates whether ACAS is currently generating RA in the ARA field or RA in the ARA field has been terminated.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p></li>
-<li><p><em>Multiple threat encounter (MTE)</em>: 1 bit, indicates whether multiple threats are currently being processed by the ACAS resolution. When MTE is set to , either one threat is being processed (ARA bit 41 sets to ) or no threat is being processed (ARA bit 41 sets to ). When MTE is set to , multiple threats are being processed.</p></li>
+<li><p><em>Multiple threat encounter (MTE)</em>: 1 bit, indicates whether multiple threats are currently being processed by the ACAS resolution. When MTE is set to <code>0</code>, either one threat is being processed (ARA bit 41 sets to <code>1</code>) or no threat is being processed (ARA bit 41 sets to <code>0</code>). When MTE is set to <code>1</code>, multiple threats are being processed.</p></li>
 <li><p><em>Mode A identity code (AID)</em>: 13 bits, contains the Mode A identity code (sqwake code) of the reporting aircraft. It can be decoded according to section <a href="#sec:id_code" data-reference-type="ref" data-reference="sec:id_code">[sec:id_code]</a>.</p></li>
 <li><p><em>Mode C altitude code (CAC)</em>: 13 bits, contains the Mode C altitude code reporting aircraft. It can be decoded according to section <a href="#sec:alt_code" data-reference-type="ref" data-reference="sec:alt_code">[sec:alt_code]</a>.</p></li>
 </ul>

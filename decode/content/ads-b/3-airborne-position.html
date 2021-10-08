@@ -300,26 +300,26 @@
 <p>In the following simple example, we want to encode position <span class="math inline">\((9, 7)\)</span> in a <span class="math inline">\(16\times16\)</span> discrete world. Normally, this would require four bits each to encode the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates, which is <span class="math inline">\((1001, 0111)\)</span>.</p>
 <p>For this simplified algorithm, we first define two different grids. The even grid has a size of <span class="math inline">\(4\times4\)</span>, while the odd grid has a size of <span class="math inline">\(5\times5\)</span>. This is illustrated in Figure <a href="#fig:cpr_simple_1" data-reference-type="ref" data-reference="fig:cpr_simple_1">1.1</a>.</p>
 <figure>
-<img src="../../figures/a86ae7179bbada65de6a7bd0639dbb7b47856644.png" id="fig:cpr_simple_1" /><figcaption aria-hidden="true">Simplified CPR position coding (encoding)</figcaption>
+<img src="../../figures/adsb/cpr_simple_1.png" id="fig:cpr_simple_1" /><figcaption aria-hidden="true">Simplified CPR position coding (encoding)</figcaption>
 </figure>
 <p>With these two grids, we can encode the local positions within each grid systems, which are <span class="math inline">\((1,3)\)</span> and <span class="math inline">\((4,2)\)</span>, respectively. Now, the position can be encoded only using three bits.</p>
 <p>When the odd and even messages are received, each message alone has different possible global positions, which are shown in Figure <a href="#fig:cpr_simple_2" data-reference-type="ref" data-reference="fig:cpr_simple_2">1.2</a>.</p>
 <figure>
-<img src="../../figures/2621f1efedc79392158e7afd0601dfe80217abf3.png" id="fig:cpr_simple_2" /><figcaption aria-hidden="true">Simplified CPR position coding (all position possibilities)</figcaption>
+<img src="../../figures/adsb/cpr_simple_2.png" id="fig:cpr_simple_2" /><figcaption aria-hidden="true">Simplified CPR position coding (all position possibilities)</figcaption>
 </figure>
 <p>Combining the possible positions from both even and odd messages, we can recover the global position where the solutions from both grids overlap with each other. This is shown in Figure <a href="#fig:cpr_simple_3" data-reference-type="ref" data-reference="fig:cpr_simple_3">1.3</a>.</p>
 <figure>
-<img src="../../figures/ba4b73e2914e2f7a8283e7070dc64b68c339d8c2.png" id="fig:cpr_simple_3" /><figcaption aria-hidden="true">Simplified CPR position coding (final global position)</figcaption>
+<img src="../../figures/adsb/cpr_simple_3.png" id="fig:cpr_simple_3" /><figcaption aria-hidden="true">Simplified CPR position coding (final global position)</figcaption>
 </figure>
 <h2 id="compact-position-reporting">Compact position reporting</h2>
 <h3 id="cpr-zones">CPR zones</h3>
 <p>The actual CPR algorithm is more sophisticated. First of all, more zones are defined. There are 15 latitude zones defined for each hemisphere. Up to 59 longitude zones are used, and the number of longitude zones is different at different altitudes.</p>
 <p>Figure <a href="#fig:cpr_lat_zones" data-reference-type="ref" data-reference="fig:cpr_lat_zones">1.5</a> illustrates the latitude zones. The solid and dashed lines represent the latitude zone size of even and odd messages.</p>
-<p><img src="../../figures/7d4aa985c70cda622744ab2663b93cf5ff10da0d.png" title="fig:" id="fig:cpr_lat_zones" /><br />
-<img src="../../figures/0caacb9d2073e394957876acd803a3e3e686e71c.png" title="fig:" id="fig:cpr_lat_zones" /></p>
+<p><img src="../../figures/adsb/cpr_lat_zone_high.png" title="fig:" id="fig:cpr_lat_zones" /><br />
+<img src="../../figures/adsb/cpr_lat_zone_low.png" title="fig:" id="fig:cpr_lat_zones" /></p>
 <p>Figure <a href="#fig:cpr_lon_zones" data-reference-type="ref" data-reference="fig:cpr_lon_zones">1.7</a> illustrates the latitude zones. The second plot of the figure is a zoomed-in view of the grid of northern Europe. The black and gray lines represent the longitude zone size of even and odd messages respectively. We can see that the number of longitude zones (and the sizes) also differs depending on the latitude.</p>
-<p><img src="../../figures/d377155b5fcabdd0ebe0fb7de952649284f62f0a.png" title="fig:" id="fig:cpr_lon_zones" /><br />
-<img src="../../figures/a370857824fb55ff350954dc06a6304fc4b77e11.png" title="fig:" id="fig:cpr_lon_zones" /></p>
+<p><img src="../../figures/adsb/cpr_lon_zone_full.png" title="fig:" id="fig:cpr_lon_zones" /><br />
+<img src="../../figures/adsb/cpr_lon_zone_zoom.png" title="fig:" id="fig:cpr_lon_zones" /></p>
 <p>To report a position, the fractions of latitude and longitude in the respective zones are encoded using 17 bits. These bits are transmitted in the position messages.</p>
 <h3 id="core-functions-and-parameters">Core functions and parameters</h3>
 <p>To decode the CPR positions, we first introduce relevant parameters and common functions.</p>
@@ -345,7 +345,7 @@ lat &gt; +87   -&gt;    NL = 1
 lat &lt; -87   -&gt;    NL = 1</code></pre>
 <h2 id="globally-unambiguous-position-decoding">Globally unambiguous position decoding</h2>
 <h3 id="sec:cpr_airborne_global_lat">Calculation of latitude</h3>
-<p>In each position message, bit 54 determines whether it is an odd or even frame. indicates an even message, while indicates an odd message.</p>
+<p>In each position message, bit 54 determines whether it is an odd or even frame. <code>0</code> indicates an even message, while <code>1</code> indicates an odd message.</p>
 <p>Bits 55–71 and bits 72–88 represent the fractions of the latitude and longitude within the latitude and longitude grid, denoted as <span class="math inline">\(\mathrm{lat}_\mathrm{cpr}\)</span> and <span class="math inline">\(\mathrm{lon}_\mathrm{cpr}\)</span>:</p>
 <p><span class="math display">\[\begin{split}
       \mathrm{lat}_\mathrm{cpr} &amp;= \frac{N_{cpr,lat}}{2^{17}} \\
@@ -429,7 +429,7 @@ lat &lt; -87   -&gt;    NL = 1</code></pre>
     \mathrm{lon}_\mathrm{cpr,odd} &amp;=  \frac{50194}{2^{17}}
   \end{split}\]</span></p>
 <p>We can calculate the latitude index, <span class="math inline">\(j\)</span>, as:</p>
-<p><span class="math display">\[j = floor \left( 59 \times \frac{93000}{2^{17}} - 60 \times \frac{51372}{2^{17}} + \frac{1}{2}  \right) = 8\]</span></p>
+<p><span class="math display">\[j = floor \left( 59 \times \frac{93000}{2^{17}} - 60 \times \frac{74158}{2^{17}} + \frac{1}{2}  \right) = 8\]</span></p>
 <p>Then, we can decode the latitudes from both even and odd messages:</p>
 <p><span class="math display">\[\begin{split}
     \mathrm{lat}_\mathrm{even} &amp;= \frac{360}{4 \times 15} \Big[ mod(8, 60) + \frac{93000}{2^{17}} \Big] = 52.25720214843750 \\
@@ -542,7 +542,7 @@ pms.adsb.position_with_ref(msg, lat_ref, lon_ref)</code></pre>
 <pre><code>11000011000 -&gt; 1560</code></pre>
 <p>The altitude of the aircraft becomes:</p>
 <p><span class="math display">\[1560 \times 25 - 1000 = 38000 \quad \text{(ft)}\]</span></p>
-<p>In the case where the altitude is higher than 50175 feet, a 100 feet increment is used. In this situation, the Q bit is set to , and the rest of the bits are encoded using Gray code <span class="citation" data-cites="doran2007">[Doran 2007]</span>.</p>
+<p>In the case where the altitude is higher than 50175 feet, a 100 feet increment is used. In this situation, the Q bit is set to <code>0</code>, and the rest of the bits are encoded using Gray code <span class="citation" data-cites="doran2007">[Doran 2007]</span>.</p>
 <p>It is worth noting that it is possible for all altitude bits to be zeros,which indicates that the altitude information is not available.</p>
 <h3 id="gnss-height">GNSS height</h3>
 <p>When the position message has the Type Code from 20 to 22, the 12-bit altitude field is used for the encoding of the GNSS height. The GNSS height is derived from the global positioning satellites, and the decimal value of all 12 bits translates into the height of aircraft in meters.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>

@@ -276,15 +276,15 @@
 5:  ICAO Doc 9871 (Ed 2), RTCA DO-181E, EUROCAE ED-73E
 &gt;5: Reserved for future use</code></pre>
 <p>3) <em>Overlay Command Capability</em> indicates whether the transponder supports BDS overlay (Data Parity).</p>
-<p>4) When <em>Transponder enhanced protocol indicator</em> bit is set to , the transponder is a Level 5 transponder. Value indicates a Level 2 to 4 transponder.</p>
-<p>5) When <em>Mode S specific services capability</em> bit is set to , at least one Mode S specific service is supported.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>4) When <em>Transponder enhanced protocol indicator</em> bit is set to <code>1</code>, the transponder is a Level 5 transponder. Value <code>0</code> indicates a Level 2 to 4 transponder.</p>
+<p>5) When <em>Mode S specific services capability</em> bit is set to <code>1</code>, at least one Mode S specific service is supported.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p>6) <em>Aircraft identification capability</em> indicates availability of identification (Callsign).</p>
-<p>7) When <em>Squitter capability subfield</em> bit is set to , both BDS 0,5 and <code>0,6</code> registers have been updated in the past 9 to 11 seconds.</p>
+<p>7) When <em>Squitter capability subfield</em> bit is set to <code>1</code>, both BDS 0,5 and <code>0,6</code> registers have been updated in the past 9 to 11 seconds.</p>
 <p>8) <em>Surveillance identifier code</em> determines whether the transponder has the surveillance identification code capability.</p>
-<p>9) <em>Common usage GICB capability report</em> is set to every time the GICB capacity report (BDS 1,7) is changed. Register <code>1,7</code> is sampled every minute to check for changes.</p>
+<p>9) <em>Common usage GICB capability report</em> is set to <code>1</code> every time the GICB capacity report (BDS 1,7) is changed. Register <code>1,7</code> is sampled every minute to check for changes.</p>
 <h2 id="common-usage-gicb-capability-report-bds-17">Common usage GICB capability report (BDS 1,7)</h2>
 <p>This message is designed to report Common Usage Ground-initiated Comm-B (GICB) capabilities. The fields in this report are shown in Table <a href="#tb:bds17" data-reference-type="ref" data-reference="tb:bds17">1.2</a>. In this table, each bit indicates whether the corresponding service is available from the transponder.</p>
-<p>A bit is set to when the corresponding register has a valid input that has been updated at the required rate. This means that the same aircraft would respond with different GICB reports due to the availability of the relevant data.</p>
+<p>A bit is set to <code>1</code> when the corresponding register has a valid input that has been updated at the required rate. This means that the same aircraft would respond with different GICB reports due to the availability of the relevant data.</p>
 <div id="tb:bds17">
 <table>
 <caption>Common usage GICB capability report (BDS 1,0), MB field</caption>
@@ -484,7 +484,7 @@
 <pre><code>MSG:      A0000638FA81C10000000081A92F
 MB:               FA81C100000000
 MB BIN:   11111010100000011100000100000000000000000000000000000000</code></pre>
-<p>From the MB field, we can identify that following bits are set to :</p>
+<p>From the MB field, we can identify that following bits are set to <code>1</code>:</p>
 <pre><code>Bit: 1, 2, 3, 4, 5, 7, 9, 16, 17, 18, 24</code></pre>
 <p>Hence, BDS codes supported by the transponder are:</p>
 <pre><code>BDS05 BDS06 BDS07 BDS08 BDS09     &lt; ADSB
@@ -644,7 +644,7 @@ callsign = pms.commb.cs20(msg)</code></pre>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Threat identity data</td>
-<td style="text-align: left;">63–86</td>
+<td style="text-align: left;">63–88</td>
 <td style="text-align: left;">31–56</td>
 <td style="text-align: left;">26</td>
 </tr>

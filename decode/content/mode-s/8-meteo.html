@@ -296,7 +296,7 @@
 <p>It is also worth pointing out a discrepancy in the design. The temperature is encoded using 10 bits, where the least significant bit value should have been 0.125<span class="math inline">\(^\circ\)</span>. However, according to the official document <span class="citation" data-cites="icao9871v1">[ICAO 2008]</span>, the LSB value is 0.25<span class="math inline">\(^\circ\)</span>. ICAO is planning to update this to 0.125<span class="math inline">\(^\circ\)</span> in the future. However, most current implementations still use 0.25<span class="math inline">\(^\circ\)</span>.</p>
 <p>Figure <a href="#fig:bds44_example" data-reference-type="ref" data-reference="fig:bds44_example">1.1</a> shows the decoding of an MRAR example message.</p>
 <figure>
-<img src="../../figures/a04f07d31a12aa89280bcee47e65cd41bc87cbb3.png" id="fig:bds44_example" /><figcaption aria-hidden="true">Meteorological routine air report (BDS 4,4) decoding example</figcaption>
+<img src="../../figures/mode_s/bds44_example.png" id="fig:bds44_example" /><figcaption aria-hidden="true">Meteorological routine air report (BDS 4,4) decoding example</figcaption>
 </figure>
 <div class="notebox">
 <p><span>Try it out</span> Using pyModeS, we can decode information of BDS 4,4 messages as:</p>
@@ -481,7 +481,7 @@ pms.commb.hum44(msg)    # None</code></pre>
 <p>As is the case for MRAR messages, the actual range of the temperature is from -80 <span class="math inline">\(^\circ\)</span>C to +60 <span class="math inline">\(^\circ\)</span>C, and it is encoded using the two’s complement coding.</p>
 <p>Figure <a href="#fig:bds45_example" data-reference-type="ref" data-reference="fig:bds45_example">1.2</a> shows the decoding of an example message. Note that in this example, only the air temperature information is included. None of the hazard conditions is reported.</p>
 <figure>
-<img src="../../figures/7291ef71742d009bbd029ebec702293b26c703cb.png" id="fig:bds45_example" /><figcaption aria-hidden="true">Meteorological harzard report (BDS 4,5) decoding example</figcaption>
+<img src="../../figures/mode_s/bds45_example.png" id="fig:bds45_example" /><figcaption aria-hidden="true">Meteorological harzard report (BDS 4,5) decoding example</figcaption>
 </figure>
 <div class="notebox">
 <p><span>Note</span> The availability of BDS 4,4 messages is quite low. Very few aircraft’s transponders have these capabilities enabled. BDS 4,5 messages are even rarer. When such a message is transmitted, it is very common that the information in many fields is not available.</p>

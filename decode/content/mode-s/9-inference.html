@@ -470,12 +470,12 @@
 <p>The basic BDS code identification logic is relatively simple. It checks all criteria from all message types and decides whether all but one BDS code can be eliminated. In this example section, we are only going to show how a message with both possibilities of BDS 5,0 and BDS 6,0 can be identified.</p>
 <p>Figure <a href="#fig:bds_bds_infer_example_1" data-reference-type="ref" data-reference="fig:bds_bds_infer_example_1">1.1</a> shows the identification of a DF=20 message.</p>
 <figure>
-<img src="../../figures/ccf1eb19600a02e8e6dc06368ecc424c46fdfb1d.png" id="fig:bds_bds_infer_example_1" /><figcaption aria-hidden="true">Identification of BDS code, DF=20</figcaption>
+<img src="../../figures/mode_s/bds_infer_example_1.png" id="fig:bds_bds_infer_example_1" /><figcaption aria-hidden="true">Identification of BDS code, DF=20</figcaption>
 </figure>
 <p>We see that BDS 6,0 is identified since the difference between the ground speed and airspeed is too high in the BDS 5,0 assumption.</p>
 <p>Figure <a href="#fig:bds_bds_infer_example_2" data-reference-type="ref" data-reference="fig:bds_bds_infer_example_2">1.2</a> shows the identification of a DF=21 message. In DF=21 messages, the altitude code is not included. Thus, we have to rely on other information, such as speed and track angle from ADS-B to validate the BDS code. The assumption about it being BDS 5,0 corroborates the speed information from ADS-B.</p>
 <figure>
-<img src="../../figures/5b9855068115ee3fcc77a3f0e8bd6dc0f81d6dc4.png" id="fig:bds_bds_infer_example_2" /><figcaption aria-hidden="true">Identification of BDS code, DF=21</figcaption>
+<img src="../../figures/mode_s/bds_infer_example_2.png" id="fig:bds_bds_infer_example_2" /><figcaption aria-hidden="true">Identification of BDS code, DF=21</figcaption>
 </figure>
 <div class="notebox">
 <p><span>Try it out</span> Using pyModeS, we can infer the BDS code of a message as:</p>
@@ -492,7 +492,7 @@ bds2 = pms.bds.infer(msg2) </code></pre>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-sun2019pymodes" class="csl-entry" role="doc-biblioentry">
-<span class="smallcaps">Sun, J., Vû, H., Ellerbroek, J., and Hoekstra, J.M.</span> 2019. Pymodes: Decoding mode s surveillance data for open air transportation research. <em>IEEE Transactions on Intelligent Transportation Systems</em>.
+<span class="smallcaps">Sun, J., Vû, H., Ellerbroek, J., and Hoekstra, J.M.</span> 2019. <a href="https://doi.org/10.1109/TITS.2019.2914770">Pymodes: Decoding mode s surveillance data for open air transportation research</a>. <em>IEEE Transactions on Intelligent Transportation Systems</em>.
 </div>
 <div id="ref-young2017" class="csl-entry" role="doc-biblioentry">
 <span class="smallcaps">Young, T.M.</span> 2017. <em><span class="nocase">Performance of the Jet Transport Airplane: Analysis Methods, Flight Operations, and Regulations</span></em>. John Wiley <span>&amp;</span> Sons.
